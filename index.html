@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call of Cthulhu 7th Ed - Investigator</title>
+    <style>
+        :root {
+            --border-color: #000;
+            --bg-color: #fff;
+            --menu-bg: #333;
+            --menu-text: #fff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin: 0;
+            padding: 20px;
+            background: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Menu System --- */
+        #menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--menu-bg);
+            color: var(--menu-text);
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 24px;
+            user-select: none;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        #menu-panel {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background: var(--menu-bg);
+            color: var(--menu-text);
+            z-index: 1000;
+            transition: left 0.3s ease;
+            padding: 70px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
+
+        #menu-panel.open { left: 0; }
+
+        .menu-btn {
+            background: #a00;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-btn:hover { background: #d00; }
+
+        .menu-label {
+            font-family: sans-serif;
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: -10px;
+        }
+
+        select#lang-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            background: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* --- Paper format A4 --- */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--bg-color);
+            padding: 10mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Utils */
+        .row { display: flex; width: 100%; }
+        .col { display: flex; flex-direction: column; }
+        .grow { flex-grow: 1; }
+        .center { text-align: center; justify-content: center; align-items: center; }
+        .small-text { font-size: 0.8em; }
+        
+        /* Inputs */
+        input, textarea {
+            border: none;
+            border-bottom: 1px dotted #000;
+            font-family: inherit;
+            background: transparent;
+            width: 100%;
+            resize: none;
+            padding: 0 2px;
+        }
+        input:focus, textarea:focus { outline: none; border-bottom: 1px solid #a00; }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+
+        /* --- Global Sections --- */
+        .section-box {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .section-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 5px; /* Reduced margin */
+            font-size: 1em; /* Slightly smaller title */
+            width: 100%;
+        }
+
+        /* --- Page 1 Specifics --- */
+        .header-section {
+            display: flex;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 5px; /* Reduced from 10px */
+            flex-shrink: 0;
+        }
+        .header-col { padding: 8px; }
+        .header-col.left { width: 30%; border-right: 1px solid var(--border-color); }
+        .header-col.mid { width: 45%; border-right: 1px solid var(--border-color); }
+        .header-col.right { width: 25%; display: flex; flex-direction: column; align-items: center;}
+
+        .field-row { display: flex; margin-bottom: 3px; align-items: baseline; font-size: 0.85em;}
+        .field-label { white-space: nowrap; margin-right: 5px; font-weight: bold; font-size: 0.9em;}
+
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+        .stat-container { display: flex; align-items: center; margin-bottom: 2px; }
+        .stat-label { font-weight: bold; font-size: 0.9em; width: 28px; margin-right: 5px; }
+        
+        .stat-box {
+            display: flex; border: 1px solid #000; width: 55px; height: 30px; background: #fff;
+        }
+        .stat-main { width: 50%; border-right: 1px solid #000; font-size: 1.2em; text-align: center; font-weight: bold; }
+        .stat-main input { text-align: center; height: 100%; display: block; padding:0; font-size: 16px; border-bottom: none;}
+        .stat-subs { width: 50%; display: flex; flex-direction: column; }
+        .stat-sub { height: 50%; font-size: 0.65em; display: flex; align-items: center; justify-content: center; }
+        .stat-sub.hard { border-bottom: 1px solid #000; }
+
+        .photo-box {
+            width: 80px; height: 100px; border: 1px solid #ccc; background: #f9f9f9; 
+            margin-top: 5px; display: flex; align-items: center; justify-content: center; 
+            color: #ccc; font-size: 0.8em;
+        }
+
+        /* Trackers */
+        .trackers-section {
+            display: flex; border-top: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color);
+            margin-bottom: 5px; padding: 5px 0; align-items: flex-start; flex-shrink: 0;
+        }
+        .tracker-col { padding: 0 5px; }
+        .tracker-col.small { flex: 1; }
+        .tracker-col.large { flex: 2; }
+        .tracker-col:not(:last-child) { border-right: 1px solid #ccc; }
+        .number-grid { display: grid; gap: 2px; font-size: 0.6em; justify-items: center; width: 100%; }
+        .num-item {
+            width: 15px; height: 15px; line-height: 13px; text-align: center; cursor: pointer; user-select: none;
+            border-radius: 50%; border: 1px solid transparent;
+        }
+        .num-item.circled { border-color: red; color: red; font-weight: bold; }
+        .input-box-small { width: 30px; border: 1px solid #000; text-align: center; display: inline-block; }
+
+        /* Skills - COMPACT MODE */
+        .skills-section {
+            border: 2px solid var(--border-color); border-radius: 10px; padding: 5px 8px;
+            display: flex; flex-wrap: wrap; flex-grow: 1; margin-bottom: 5px;
+        }
+        .skills-header { width: 100%; text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; border-bottom: 1px solid #000; }
+        .skills-column { width: 33.33%; padding: 0 4px; }
+        
+        /* Reduced Height for Skill Rows to fit everything */
+        .skill-row { display: flex; align-items: center; margin-bottom: 2px; font-size: 0.75em; height: 23px; }
+        
+        .skill-check { width: 10px; height: 10px; border: 1px solid #000; margin-right: 4px; cursor: pointer; flex-shrink: 0; }
+        .skill-check.checked { background: #000; }
+        .skill-name { flex-grow: 1; white-space: nowrap; overflow: hidden; display: flex; align-items: baseline; margin-right: 2px; }
+        .skill-base { color: #666; font-size: 0.85em; margin: 0 4px;}
+        .skill-box-wrapper { flex-shrink: 0; transform: scale(0.85); transform-origin: right center; width: 55px; }
+        
+        .custom-name-input { width: 100%; border-bottom: 1px dotted #888; font-size: 0.9em; min-width: 0; }
+        .custom-base-input { width: 25px; border-bottom: 1px dotted #888; font-size: 0.8em; text-align: right; color: #666; }
+
+        /* Weapons */
+        .weapons-section {
+            border: 2px solid var(--border-color); border-radius: 10px; padding: 8px; font-size: 0.75em; flex-shrink: 0;
+            margin-bottom: 0; /* Align to bottom */
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; border-bottom: 1px solid #000; }
+        td { border-bottom: 1px dotted #ccc; padding: 3px 0; }
+
+        /* --- Page 2 Specifics --- */
+        .full-line { width: 100%; border-bottom: 1px dotted #000; margin-bottom: 3px; height: 18px; display: block; }
+        
+        .h-profil { flex: 0 0 auto; }
+        .h-equipment { height: 19%; } 
+        .h-friends { height: 26%; } 
+        .h-footer { flex: 1; min-height: 10%; display: flex; flex-direction: column; }
+
+        /* Friends Section */
+        .friends-layout { display: flex; height: 100%; width: 100%; align-items: center; }
+        .friend-col { width: 30%; display: flex; flex-direction: column; justify-content: space-around; height: 100%; }
+        .friend-center { width: 40%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
+        
+        .friend-box {
+            border: 1px solid #000; padding: 2px 4px; width: 100%; font-size: 0.7em;
+            margin-bottom: 4px; background: #fff; position: relative; z-index: 2;
+        }
+        .friend-box input { height: 1.1em; font-size: 1.1em; }
+
+        .moi-circle {
+            width: 60px; height: 60px; border: 3px solid #333; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.4em; background: white; z-index: 5;
+        }
+        /* Tentacles */
+        .tentacles-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;
+        }
+        .tentacles-bg::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: #000; transform: translateY(-50%); }
+        .tentacles-bg::after { content: ''; position: absolute; top: 50%; left: 10%; width: 80%; height: 2px; background: #000; transform: translateY(-50%) rotate(45deg); }
+        .tentacles-cross { position: absolute; top: 50%; left: 10%; width: 80%; height: 2px; background: #000; transform: translateY(-50%) rotate(-45deg); }
+
+        /* Footer */
+        .footer-content { display: flex; height: 100%; padding-top: 5px; }
+        
+        @media print {
+            body { background: white; padding: 0; display: block; }
+            #menu-toggle, #menu-panel { display: none; }
+            .page { box-shadow: none; margin: 0; page-break-after: always; height: 297mm; display: flex; }
+            input { border-bottom: none; }
+            .full-line, .custom-name-input, .custom-base-input { border-bottom: 1px dotted #ccc; } 
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            input::placeholder { color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menu System -->
+<div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<div id="menu-panel">
+    <span class="menu-label">Langue / Language</span>
+    <select id="lang-select" onchange="changeLanguage(this.value)">
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+    </select>
+    
+    <span class="menu-label">Actions</span>
+    <button class="menu-btn" onclick="rollInvestigator()">🎲 <span data-i18n="roll">Générer Stats</span></button>
+    <button class="menu-btn" onclick="window.print()">🖨️ <span data-i18n="print">Imprimer</span></button>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page">
+    <div class="header-section">
+        <div class="header-col left">
+            <div class="section-title" data-i18n="era">Époque Moderne</div>
+            <div class="field-row"><span class="field-label" data-i18n="name">Nom</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="player">Joueur</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="occupation">Occupation</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="sex">Sexe</span><input type="text" style="width:30px"> <span class="field-label" data-i18n="age">Âge</span><input type="text" style="width:30px"></div>
+            <div class="field-row"><span class="field-label" data-i18n="residence">Résidence</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="birthplace">Lieu de naissance</span><input type="text"></div>
+        </div>
+
+        <div class="header-col mid">
+            <div class="section-title" data-i18n="characteristics">Caractéristiques</div>
+            <div class="stats-grid">
+                <div class="stat-container"><span class="stat-label" data-i18n="str">FOR</span><div class="stat-box" id="box-FOR"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="dex">DEX</span><div class="stat-box" id="box-DEX"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="pow">POU</span><div class="stat-box" id="box-POU"></div></div>
+                <div class="stat-container"></div>
+
+                <div class="stat-container"><span class="stat-label" data-i18n="con">CON</span><div class="stat-box" id="box-CON"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="app">APP</span><div class="stat-box" id="box-APP"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="edu">ÉDU</span><div class="stat-box" id="box-EDU"></div></div>
+                <div class="stat-container"></div>
+
+                <div class="stat-container"><span class="stat-label" data-i18n="siz">TAI</span><div class="stat-box" id="box-TAI"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="int">INT</span><div class="stat-box" id="box-INT"></div></div>
+                <div class="stat-container"><span class="stat-label" data-i18n="mov">MVT</span>
+                    <div class="stat-box" style="border: 1px solid #000; width:40px; justify-content:center;">
+                        <input type="number" id="val-MVT" style="text-align:center;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-col right">
+            <h1 style="font-family:'Courier New'; font-weight:900; margin:0; font-size:1.5em; text-align:center;">CTHULHU</h1>
+            <div class="small-text" data-i18n="call_of">l'Appel de</div>
+            <div class="photo-box" data-i18n="photo">Photo</div>
+        </div>
+    </div>
+
+    <div class="trackers-section">
+        <div class="tracker-col small">
+            <div class="section-title" style="font-size: 0.9em;" data-i18n="hp">Points de Vie</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                <div class="small-text"><span data-i18n="max">Max</span>: <input class="input-box-small" id="hp-max" readonly></div>
+                <div class="small-text"><span data-i18n="unconscious">Inconscient</span> ☐</div>
+                <div class="small-text"><span data-i18n="dying">Mourant</span> ☐</div>
+            </div>
+            <div class="number-grid" id="hp-grid"></div>
+        </div>
+        
+        <div class="tracker-col small">
+            <div class="section-title" style="font-size: 0.9em;" data-i18n="mp">Points de Magie</div>
+            <div style="margin-bottom:5px;" class="center">
+                <span class="small-text"><span data-i18n="max">Max</span>: <input class="input-box-small" id="mp-max" readonly></span>
+            </div>
+            <div class="number-grid" id="mp-grid"></div>
+        </div>
+
+        <div class="tracker-col large">
+            <div class="section-title" style="font-size: 0.9em;" data-i18n="san">Santé Mentale</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                <div class="small-text"><span data-i18n="initial">Initiale</span>: <input class="input-box-small" id="san-init"></div>
+                <div class="small-text"><span data-i18n="temp">Temp</span> ☐</div>
+                <div class="small-text"><span data-i18n="persist">Persist</span> ☐</div>
+            </div>
+            <div class="number-grid" id="san-grid"></div>
+        </div>
+
+        <div class="tracker-col large">
+            <div class="section-title" style="font-size: 0.9em;" data-i18n="luck">Chance</div>
+            <div class="number-grid" id="luck-grid"></div>
+        </div>
+    </div>
+
+    <div class="skills-section">
+        <div class="skills-header" data-i18n="skills_title">Compétences de l'Investigateur</div>
+        <div class="row" id="skills-container"></div>
+    </div>
+
+    <div class="row">
+        <div class="col grow weapons-section">
+            <div class="section-title" data-i18n="weapons">Armes</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:30%" data-i18n="weapon_name">Arme</th>
+                        <th data-i18n="reg">Ord.</th>
+                        <th data-i18n="hard">Maj.</th>
+                        <th data-i18n="ext">Ext.</th>
+                        <th data-i18n="damage">Dégâts</th>
+                        <th data-i18n="range">Portée</th>
+                        <th data-i18n="attacks">Cad.</th>
+                        <th data-i18n="ammo">Cap.</th>
+                        <th data-i18n="malf">Panne</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="unarmed">À mains nues</td>
+                        <td><input value="50" style="width:25px;font-size:0.8em"></td>
+                        <td><input value="25" style="width:25px;font-size:0.8em"></td>
+                        <td><input value="10" style="width:25px;font-size:0.8em"></td>
+                        <td>1D3+db</td><td>-</td><td>1</td><td>-</td><td>-</td>
+                    </tr>
+                    <tr><td><input type="text"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td><input type="text"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td><input type="text"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col weapons-section" style="width: 150px; margin-left: 10px;">
+            <div class="section-title" data-i18n="combat">Combat</div>
+            <div class="field-row" style="justify-content: space-between;"><span data-i18n="db">Impact</span> <input class="input-box-small" id="val-db" style="width:40px;"></div>
+            <div class="field-row" style="justify-content: space-between;"><span data-i18n="build">Carrure</span> <input class="input-box-small" id="val-build" style="width:40px;"></div>
+            <div class="field-row" style="justify-content: space-between;"><span data-i18n="dodge">Esquive</span> <div class="stat-box" id="box-Dodge" style="transform: scale(0.8); transform-origin: right;"></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+    <div class="section-box h-profil">
+        <div class="section-title" data-i18n="profile">Profil</div>
+        <div class="row">
+            <div class="col" style="width:50%; padding-right:10px;">
+                <label class="field-label" data-i18n="description">Description</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="ideology">Idéologie et croyances</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="people">Personnes importantes</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="locations">Lieux significatifs</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="possessions">Biens précieux</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+            </div>
+            <div class="col" style="width:50%; padding-left:10px; border-left:1px dotted #ccc;">
+                <label class="field-label" data-i18n="traits">Traits</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="injuries">Séquelles et cicatrices</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="phobias">Phobies et manies</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="tomes">Ouvrages occultes, sorts</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+                <label class="field-label" data-i18n="entities">Rencontres entités étranges</label> <input type="text" class="full-line">
+                <input type="text" class="full-line">
+            </div>
+        </div>
+    </div>
+
+    <div class="row section-box h-equipment">
+        <div class="col" style="width: 50%; border-right: 1px solid #000; padding-right: 10px; height: 100%;">
+            <div class="section-title" data-i18n="gear">Équipement et Possessions</div>
+            <textarea style="width: 100%; height: 100%; border: none; background: transparent; font-family: inherit; resize: none;" placeholder="..."></textarea>
+        </div>
+        <div class="col" style="width: 50%; padding-left: 10px; height: 100%;">
+            <div class="section-title" data-i18n="wealth">Fortune</div>
+            <div class="field-row"><span class="field-label" data-i18n="spending">Dépenses courantes</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="cash">Espèces</span><input type="text"></div>
+            <div class="field-row"><span class="field-label" data-i18n="assets">Capital</span><input type="text"></div>
+            <div style="flex-grow:1; border-top:1px dotted #000; margin-top:10px;"></div>
+        </div>
+    </div>
+
+    <div class="row h-friends">
+        <div class="section-box" style="width: 65%; display: flex; flex-direction: column;">
+            <div class="section-title" data-i18n="friends">Amis Investigateurs</div>
+            <div class="friends-layout">
+                <div class="friend-col">
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                </div>
+                <div class="friend-center">
+                    <div class="tentacles-bg"><div class="tentacles-cross"></div></div>
+                    <div class="moi-circle" data-i18n="me">Moi</div>
+                </div>
+                <div class="friend-col">
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                    <div class="friend-box"><span data-i18n="char_name">Nom</span>:<input><br><span data-i18n="char_player">Joueur</span>:<input></div>
+                </div>
+            </div>
+        </div>
+        <div class="section-box" style="width: 33%; margin-left: 2%;">
+            <div class="section-title" data-i18n="notes">Notes</div>
+            <textarea style="width:100%; height:100%; border:none;"></textarea>
+        </div>
+    </div>
+
+    <div class="section-box h-footer">
+        <div class="section-title" style="font-size:0.9em; margin-bottom:5px;" data-i18n="cheat_sheet">Aide-Mémoire</div>
+        <div class="footer-content">
+            <div class="col" style="width: 50%; font-size: 0.85em; padding-right:5px; line-height: 1.4em;" data-i18n="rules_left">
+                <!-- JS will fill this -->
+            </div>
+            <div class="col" style="width: 50%; font-size: 0.85em; padding-left:10px; border-left:1px solid #ccc; line-height: 1.4em;" data-i18n="rules_right">
+                <!-- JS will fill this -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* --- TRANSLATIONS --- */
+    const translations = {
+        fr: {
+            roll: "Générer Stats", print: "Imprimer", era: "Époque Moderne", name: "Nom", player: "Joueur", occupation: "Occupation", sex: "Sexe", age: "Âge", residence: "Résidence", birthplace: "Lieu de naissance",
+            characteristics: "Caractéristiques", str: "FOR", dex: "DEX", pow: "POU", con: "CON", app: "APP", edu: "ÉDU", siz: "TAI", int: "INT", mov: "MVT",
+            call_of: "l'Appel de", photo: "Photo", hp: "Points de Vie", max: "Max", unconscious: "Inconscient", dying: "Mourant", mp: "Points de Magie", san: "Santé Mentale",
+            initial: "Initiale", temp: "Temp", persist: "Persist", luck: "Chance", skills_title: "Compétences de l'Investigateur",
+            weapons: "Armes", weapon_name: "Arme", reg: "Ord.", hard: "Maj.", ext: "Ext.", damage: "Dégâts", range: "Portée", attacks: "Cad.", ammo: "Cap.", malf: "Panne",
+            unarmed: "À mains nues", combat: "Combat", db: "Impact", build: "Carrure", dodge: "Esquive",
+            profile: "Profil", description: "Description", ideology: "Idéologie et croyances", people: "Personnes importantes", locations: "Lieux significatifs", possessions: "Biens précieux",
+            traits: "Traits", injuries: "Séquelles et cicatrices", phobias: "Phobies et manies", tomes: "Ouvrages occultes, sorts", entities: "Rencontres entités étranges",
+            gear: "Équipement et Possessions", wealth: "Fortune", spending: "Dépenses courantes", cash: "Espèces", assets: "Capital",
+            friends: "Amis Investigateurs", char_name: "Nom", char_player: "Joueur", me: "Moi", notes: "Notes", cheat_sheet: "Aide-Mémoire",
+            rules_left: "<b>Tests de compétence</b><br>Niveaux de réussite :<br>Maladresse 100/96+ | Échec > % | Ordinaire ≤ %<br>Majeure ½ % | Extrême 1/5 % | Critique 01<br><b>Redoubler un test :</b> Justification nécessaire ; impossible en combat ou pour la Santé Mentale.",
+            rules_right: "<b>Blessures et soins</b><br>Premiers soins : soigne 1 PV. Médecine : soigne 1D3 PV.<br>Blessure grave : perte ≥ ½ max PV en une attaque.<br>Guérison naturelle : 1 PV / jour.<br>Mourant : 0 PV + Blessure grave."
+        },
+        en: {
+            roll: "Generate Stats", print: "Print", era: "Modern Era", name: "Name", player: "Player", occupation: "Occupation", sex: "Sex", age: "Age", residence: "Residence", birthplace: "Birthplace",
+            characteristics: "Characteristics", str: "STR", dex: "DEX", pow: "POW", con: "CON", app: "APP", edu: "EDU", siz: "SIZ", int: "INT", mov: "MOV",
+            call_of: "Call of", photo: "Photo", hp: "Hit Points", max: "Max", unconscious: "Unconscious", dying: "Dying", mp: "Magic Points", san: "Sanity",
+            initial: "Initial", temp: "Temp", persist: "Indef", luck: "Luck", skills_title: "Investigator Skills",
+            weapons: "Weapons", weapon_name: "Weapon", reg: "Reg.", hard: "Hard", ext: "Ext.", damage: "Damage", range: "Range", attacks: "Attacks", ammo: "Ammo", malf: "Malf",
+            unarmed: "Unarmed", combat: "Combat", db: "Damage Bonus", build: "Build", dodge: "Dodge",
+            profile: "Backstory", description: "Personal Description", ideology: "Ideology/Beliefs", people: "Significant People", locations: "Meaningful Locations", possessions: "Treasured Possessions",
+            traits: "Traits", injuries: "Injuries & Scars", phobias: "Phobias & Manias", tomes: "Arcane Tomes, Spells", entities: "Encounters with Strange Entities",
+            gear: "Gear & Possessions", wealth: "Cash & Assets", spending: "Spending Level", cash: "Cash", assets: "Assets",
+            friends: "Fellow Investigators", char_name: "Name", char_player: "Player", me: "Me", notes: "Notes", cheat_sheet: "Quick Reference",
+            rules_left: "<b>Skill Tests</b><br>Success Levels:<br>Fumble 100/96+ | Fail > % | Regular ≤ %<br>Hard ½ % | Extreme 1/5 % | Critical 01<br><b>Pushing a roll:</b> Justification required; impossible in combat or for Sanity.",
+            rules_right: "<b>Wounds and Healing</b><br>First Aid: Heals 1 HP. Medicine: Heals 1D3 HP.<br>Major Wound: Loss ≥ ½ max HP in one attack.<br>Natural Healing: 1 HP / day.<br>Dying: 0 HP + Major Wound."
+        },
+        es: {
+            roll: "Generar Estads.", print: "Imprimir", era: "Época Moderna", name: "Nombre", player: "Jugador", occupation: "Ocupación", sex: "Sexo", age: "Edad", residence: "Residencia", birthplace: "Lugar de nacimiento",
+            characteristics: "Características", str: "FUE", dex: "DES", pow: "POD", con: "CON", app: "APA", edu: "EDU", siz: "TAM", int: "INT", mov: "MOV",
+            call_of: "La Llamada de", photo: "Foto", hp: "Puntos de Vida", max: "Máx", unconscious: "Inconsciente", dying: "Moribundo", mp: "Puntos de Magia", san: "Cordura",
+            initial: "Inicial", temp: "Temp", persist: "Indef", luck: "Suerte", skills_title: "Habilidades del Investigador",
+            weapons: "Armas", weapon_name: "Arma", reg: "Nor.", hard: "Dif.", ext: "Ext.", damage: "Daño", range: "Alcance", attacks: "Ataq.", ammo: "Munic.", malf: "Fallo",
+            unarmed: "Desarmado", combat: "Combate", db: "Bonif. Daño", build: "Corpulencia", dodge: "Esquivar",
+            profile: "Trasfondo", description: "Descripción personal", ideology: "Ideología/Creencias", people: "Personas importantes", locations: "Lugares significativos", possessions: "Posesiones preciadas",
+            traits: "Rasgos", injuries: "Heridas y cicatrices", phobias: "Fobias y manías", tomes: "Tomos y hechizos", entities: "Encuentros con entidades",
+            gear: "Equipo y Posesiones", wealth: "Dinero y Bienes", spending: "Nivel de gasto", cash: "Efectivo", assets: "Activos",
+            friends: "Compañeros Investigadores", char_name: "Nombre", char_player: "Jugador", me: "Yo", notes: "Notas", cheat_sheet: "Referencia Rápida",
+            rules_left: "<b>Pruebas de Habilidad</b><br>Niveles de éxito:<br>Pifia 100/96+ | Fallo > % | Normal ≤ %<br>Difícil ½ % | Extremo 1/5 % | Crítico 01<br><b>Forzar tirada:</b> Justificación necesaria; imposible en combate o Cordura.",
+            rules_right: "<b>Heridas y Curación</b><br>Primeros Auxilios: Cura 1 PV. Medicina: Cura 1D3 PV.<br>Herida Grave: Pérdida ≥ ½ máx PV en un ataque.<br>Curación natural: 1 PV / día.<br>Moribundo: 0 PV + Herida Grave."
+        }
+    };
+
+    const skillKeys = {
+        "anthro": {fr: "Anthropologie", en: "Anthropology", es: "Antropología"},
+        "archaeology": {fr: "Archéologie", en: "Archaeology", es: "Arqueología"},
+        "art": {fr: "Arts et métiers", en: "Art/Craft", es: "Arte/Artesanía"},
+        "charm": {fr: "Charme", en: "Charm", es: "Encanto"},
+        "fast_talk": {fr: "Baratin", en: "Fast Talk", es: "Charlatanería"},
+        "library": {fr: "Bibliothèque", en: "Library Use", es: "Buscar Libros"},
+        "brawl": {fr: "Combat (Corps à corps)", en: "Fighting (Brawl)", es: "Combatir (Pelea)"},
+        "handgun": {fr: "Combat (Armes de poing)", en: "Firearms (Handgun)", es: "Armas (Corta)"},
+        "rifle": {fr: "Combat (Fusils)", en: "Firearms (Rifle/Shotgun)", es: "Armas (Larga)"},
+        "accounting": {fr: "Comptabilité", en: "Accounting", es: "Contabilidad"},
+        "drive": {fr: "Conduite", en: "Drive Auto", es: "Conducir"},
+        "heavy": {fr: "Conduite engin lourd", en: "Operate Heavy Mach.", es: "Maquinaria Pesada"},
+        "credit": {fr: "Crédit", en: "Credit Rating", es: "Crédito"},
+        "locksmith": {fr: "Crochetage", en: "Locksmith", es: "Cerrajería"},
+        "stealth": {fr: "Discrétion", en: "Stealth", es: "Sigilo"},
+        "law": {fr: "Droit", en: "Law", es: "Leyes"},
+        "listen": {fr: "Écouter", en: "Listen", es: "Escuchar"},
+        "electric": {fr: "Électricité", en: "Electrical Repair", es: "Electricidad"},
+        "electronics": {fr: "Électronique", en: "Electronics", es: "Electrónica"},
+        "dodge": {fr: "Esquive", en: "Dodge", es: "Esquivar"},
+        "appraise": {fr: "Estimation", en: "Appraise", es: "Tasación"},
+        "climb": {fr: "Grimper", en: "Climb", es: "Trepar"},
+        "history": {fr: "Histoire", en: "History", es: "Historia"},
+        "disguise": {fr: "Imposture", en: "Disguise", es: "Disfrazarse"},
+        "computers": {fr: "Informatique", en: "Computers", es: "Informática"},
+        "intimidate": {fr: "Intimidation", en: "Intimidate", es: "Intimidar"},
+        "throw": {fr: "Lancer", en: "Throw", es: "Lanzar"},
+        "mother_tongue": {fr: "Langue maternelle", en: "Language (Own)", es: "Lengua (Propia)"},
+        "mech": {fr: "Mécanique", en: "Mech. Repair", es: "Mecánica"},
+        "medicine": {fr: "Médecine", en: "Medicine", es: "Medicina"},
+        "cthulhu": {fr: "Mythe de Cthulhu", en: "Cthulhu Mythos", es: "Mitos de Cthulhu"},
+        "swim": {fr: "Nager", en: "Swim", es: "Nadar"},
+        "nature": {fr: "Naturalisme", en: "Natural World", es: "Ciencias Naturales"},
+        "occult": {fr: "Occultisme", en: "Occult", es: "Ocultismo"},
+        "navigate": {fr: "Orientation", en: "Navigate", es: "Orientación"},
+        "persuade": {fr: "Persuasion", en: "Persuade", es: "Persuasión"},
+        "sleight": {fr: "Pickpocket", en: "Sleight of Hand", es: "Juego de Manos"},
+        "pilot": {fr: "Pilotage", en: "Pilot", es: "Pilotar"},
+        "track": {fr: "Pister", en: "Track", es: "Seguir Rastros"},
+        "first_aid": {fr: "Premiers soins", en: "First Aid", es: "Primeros Auxilios"},
+        "psychoanalysis": {fr: "Psychanalyse", en: "Psychoanalysis", es: "Psicoanálisis"},
+        "psychology": {fr: "Psychologie", en: "Psychology", es: "Psicología"},
+        "jump": {fr: "Sauter", en: "Jump", es: "Saltar"},
+        "science": {fr: "Sciences", en: "Science", es: "Ciencias"},
+        "survival": {fr: "Survie", en: "Survival", es: "Supervivencia"},
+        "spot": {fr: "Trouver Objet Caché", en: "Spot Hidden", es: "Descubrir"}
+    };
+
+    let skillsData = [
+        {key: "anthro", base: 1}, {key: "archaeology", base: 1}, {key: "art", base: 5}, {key: "fast_talk", base: 5},
+        {key: "library", base: 20}, {key: "charm", base: 15}, {key: "brawl", base: 25}, {key: "handgun", base: 20},
+        {key: "rifle", base: 25}, {key: "accounting", base: 5}, {key: "drive", base: 20}, {key: "heavy", base: 1},
+        {key: "credit", base: 0}, {key: "locksmith", base: 1}, {key: "stealth", base: 20}, {key: "law", base: 5},
+        {key: "listen", base: 20}, {key: "electric", base: 10}, {key: "electronics", base: 1}, 
+        {key: "dodge", base: "DEX/2", id: "skill-Dodge"}, 
+        {key: "appraise", base: 5}, {key: "climb", base: 20}, {key: "history", base: 5}, {key: "disguise", base: 5},
+        {key: "computers", base: 5}, {key: "intimidate", base: 15}, {key: "throw", base: 20}, 
+        {key: "mother_tongue", base: "EDU", id: "skill-MotherTongue"},
+        {key: "mech", base: 10}, {key: "medicine", base: 1}, {key: "cthulhu", base: 0}, {key: "swim", base: 20},
+        {key: "nature", base: 10}, {key: "occult", base: 5}, {key: "navigate", base: 10}, {key: "persuade", base: 10},
+        {key: "sleight", base: 10}, {key: "pilot", base: 1}, {key: "track", base: 10}, {key: "first_aid", base: 30},
+        {key: "psychoanalysis", base: 1}, {key: "psychology", base: 10}, {key: "jump", base: 20}, {key: "science", base: 1},
+        {key: "survival", base: 10}, {key: "spot", base: 25}
+    ];
+
+    for(let i=0; i<6; i++) {
+        skillsData.push({isCustom: true, base: 0, id: `custom-${i}`});
+    }
+
+    const characteristics = ['FOR', 'CON', 'TAI', 'DEX', 'APP', 'INT', 'POU', 'EDU'];
+    let currentLang = 'fr';
+
+    function toggleMenu() {
+        document.getElementById('menu-panel').classList.toggle('open');
+    }
+
+    function changeLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(t[key]) el.innerHTML = t[key];
+        });
+
+        skillsData.forEach((skill, index) => {
+            if(!skill.isCustom) {
+                const skillId = skill.id ? skill.id : 'skill-'+index;
+                const nameEl = document.getElementById('name-'+skillId);
+                if(nameEl && skillKeys[skill.key]) {
+                    const baseText = typeof skill.base === 'string' ? skill.base : `(${skill.base}%)`;
+                    nameEl.innerHTML = `${skillKeys[skill.key][lang]} <span class="skill-base">${baseText}</span>`;
+                }
+            }
+        });
+    }
+
+    function createStatBox(id, initialVal = 0) {
+        return `
+            <div class="stat-main">
+                <input type="number" id="val-${id}" value="${initialVal}" oninput="updateBox('${id}')">
+            </div>
+            <div class="stat-subs">
+                <div class="stat-sub hard" id="hard-${id}">${Math.floor(initialVal/2)}</div>
+                <div class="stat-sub extreme" id="ext-${id}">${Math.floor(initialVal/5)}</div>
+            </div>
+        `;
+    }
+
+    function createNumberGrid(elementId, start, end, columns = 10) {
+        const el = document.getElementById(elementId);
+        el.innerHTML = '';
+        el.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+        for(let i=start; i<=end; i++) {
+            let num = i.toString().padStart(2, '0');
+            let div = document.createElement('div');
+            div.className = 'num-item';
+            div.innerText = num;
+            div.onclick = function() {
+                if(this.classList.contains('circled')) {
+                    this.classList.remove('circled');
+                } else {
+                    Array.from(el.children).forEach(c => c.classList.remove('circled'));
+                    this.classList.add('circled');
+                }
+            };
+            el.appendChild(div);
+        }
+    }
+
+    function init() {
+        characteristics.forEach(stat => {
+            const el = document.getElementById('box-'+stat);
+            if(el) el.innerHTML = createStatBox(stat);
+        });
+
+        const skillsContainer = document.getElementById('skills-container');
+        const col1 = document.createElement('div'); col1.className = 'skills-column';
+        const col2 = document.createElement('div'); col2.className = 'skills-column';
+        const col3 = document.createElement('div'); col3.className = 'skills-column';
+        
+        const totalSkills = skillsData.length;
+        const itemsPerCol = Math.ceil(totalSkills / 3);
+
+        skillsData.forEach((skill, index) => {
+            const row = document.createElement('div');
+            row.className = 'skill-row';
+            const skillId = skill.id ? skill.id : 'skill-'+index;
+            
+            let namePart = '';
+            if(skill.isCustom) {
+                namePart = `
+                    <input type="text" class="custom-name-input" placeholder="...........................................">
+                    <input type="number" class="custom-base-input" placeholder="%" value="">
+                `;
+            } else {
+                const baseText = typeof skill.base === 'string' ? skill.base : `(${skill.base}%)`;
+                namePart = `<div id="name-${skillId}" style="width:100%; display:flex;">${skillKeys[skill.key]['fr']} <span class="skill-base">${baseText}</span></div>`;
+            }
+
+            row.innerHTML = `
+                <div class="skill-check" onclick="this.classList.toggle('checked')"></div>
+                <div class="skill-name">${namePart}</div>
+                <div class="skill-box-wrapper">
+                   <div class="stat-box" style="width:100%; height:100%">
+                       ${createStatBox(skillId, typeof skill.base === 'number' ? skill.base : 0)} 
+                   </div>
+                </div>
+            `;
+
+            if(index < itemsPerCol) col1.appendChild(row);
+            else if(index < itemsPerCol * 2) col2.appendChild(row);
+            else col3.appendChild(row);
+        });
+
+        skillsContainer.appendChild(col1);
+        skillsContainer.appendChild(col2);
+        skillsContainer.appendChild(col3);
+
+        document.getElementById('box-Dodge').innerHTML = createStatBox('DodgeCombat');
+
+        createNumberGrid('hp-grid', -2, 20, 5);  
+        createNumberGrid('mp-grid', 0, 25, 5);   
+        createNumberGrid('san-grid', 0, 99, 10); 
+        createNumberGrid('luck-grid', 0, 99, 10);
+        
+        changeLanguage('fr');
+    }
+
+    function updateBox(id) {
+        const val = parseInt(document.getElementById('val-'+id).value) || 0;
+        document.getElementById('hard-'+id).innerText = Math.floor(val/2);
+        document.getElementById('ext-'+id).innerText = Math.floor(val/5);
+        if(characteristics.includes(id)) calculateDerived();
+    }
+
+    function setBoxValue(id, val) {
+        const input = document.getElementById('val-'+id);
+        if(input) { input.value = val; updateBox(id); }
+    }
+
+    function calculateDerived() {
+        const str = parseInt(document.getElementById('val-FOR').value) || 0;
+        const con = parseInt(document.getElementById('val-CON').value) || 0;
+        const siz = parseInt(document.getElementById('val-TAI').value) || 0;
+        const dex = parseInt(document.getElementById('val-DEX').value) || 0;
+        const pow = parseInt(document.getElementById('val-POU').value) || 0;
+        const edu = parseInt(document.getElementById('val-EDU').value) || 0;
+
+        document.getElementById('hp-max').value = Math.floor((con + siz) / 10);
+        document.getElementById('mp-max').value = Math.floor(pow / 5);
+        document.getElementById('san-init').value = pow;
+
+        const str_siz = str + siz;
+        let db = "0", build = 0;
+        if(str_siz <= 64) { db = "-2"; build = -2; }
+        else if(str_siz <= 84) { db = "-1"; build = -1; }
+        else if(str_siz <= 124) { db = "0"; build = 0; }
+        else if(str_siz <= 164) { db = "+1D4"; build = 1; }
+        else if(str_siz <= 204) { db = "+1D6"; build = 2; }
+        
+        document.getElementById('val-db').value = db;
+        document.getElementById('val-build').value = build;
+
+        let mov = 8;
+        if(dex < siz && str < siz) mov = 7;
+        if(dex > siz && str > siz) mov = 9;
+        document.getElementById('val-MVT').value = mov;
+    }
+
+    function rollInvestigator() {
+        const rollSimple = () => (Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1) * 5;
+        const rollEduSize = () => ((Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1 + 6) * 5);
+
+        setBoxValue('FOR', rollSimple()); setBoxValue('CON', rollSimple()); setBoxValue('DEX', rollSimple());
+        setBoxValue('APP', rollSimple()); setBoxValue('POU', rollSimple());
+        setBoxValue('TAI', rollEduSize()); setBoxValue('INT', rollEduSize()); setBoxValue('EDU', rollEduSize());
+
+        const luck = rollSimple();
+        const luckGrid = document.getElementById('luck-grid');
+        Array.from(luckGrid.children).forEach(c => c.classList.remove('circled'));
+        if(luckGrid.children[luck]) luckGrid.children[luck].classList.add('circled');
+        calculateDerived();
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
