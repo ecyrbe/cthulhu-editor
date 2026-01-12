@@ -231,7 +231,7 @@
         font-weight: bold;
         font-size: 0.9em;
         width: 28px;
-        margin-right: 5px;
+        margin-right: 10px;
       }
 
       .stat-box {
@@ -755,11 +755,16 @@
               <span data-i18n="max">Max</span>:
               <input class="input-box-small" id="hp-max" readonly />
             </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 5px;
+            "
+          >
             <div class="small-text">
-              <span data-i18n="unconscious">Inconscient</span> ☐
-            </div>
-            <div class="small-text">
-              <span data-i18n="dying">Mourant</span> ☐
+              <span data-i18n="major-wound">Blessure grave</span> ☐
             </div>
           </div>
           <div class="number-grid" id="hp-grid"></div>
@@ -767,7 +772,7 @@
 
         <div class="tracker-col small">
           <div class="section-title" style="font-size: 0.9em" data-i18n="mp">
-            Points de Magie
+            PT. de Magie
           </div>
           <div style="margin-bottom: 5px" class="center">
             <span class="small-text"
@@ -835,7 +840,7 @@
             </thead>
             <tbody>
               <tr>
-                <td data-i18n="unarmed">À mains nues</td>
+                <td data-i18n="brawl">À mains nues</td>
                 <td>
                   <input value="50" style="width: 25px; font-size: 0.8em" />
                 </td>
@@ -853,9 +858,15 @@
               </tr>
               <tr>
                 <td><input type="text" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -864,9 +875,15 @@
               </tr>
               <tr>
                 <td><input type="text" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -875,9 +892,15 @@
               </tr>
               <tr>
                 <td><input type="text" /></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
+                <td>
+                  <input value="" style="width: 25px; font-size: 0.8em" />
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -1150,9 +1173,8 @@
           photo: "Photo",
           hp: "Points de Vie",
           max: "Max",
-          unconscious: "Inconscient",
-          dying: "Mourant",
-          mp: "Points de Magie",
+          "major-wound": "Blessure grave",
+          mp: "PT. de Magie",
           san: "Santé Mentale",
           initial: "Initiale",
           temp: "Temp",
@@ -1169,7 +1191,7 @@
           attacks: "Cad.",
           ammo: "Cap.",
           malf: "Panne",
-          unarmed: "À mains nues",
+          brawl: "À mains nues",
           combat: "Combat",
           db: "Impact",
           build: "Carrure",
@@ -1226,8 +1248,7 @@
           photo: "Photo",
           hp: "Hit Points",
           max: "Max",
-          unconscious: "Unconscious",
-          dying: "Dying",
+          "major-wound": "Major Wound",
           mp: "Magic Points",
           san: "Sanity",
           initial: "Initial",
@@ -1245,7 +1266,7 @@
           attacks: "Attacks",
           ammo: "Ammo",
           malf: "Malf",
-          unarmed: "Unarmed",
+          brawl: "Brawl",
           combat: "Combat",
           db: "Damage Bonus",
           build: "Build",
@@ -1302,8 +1323,7 @@
           photo: "Foto",
           hp: "Puntos de Vida",
           max: "Máx",
-          unconscious: "Inconsciente",
-          dying: "Moribundo",
+          "major-wound": "Herida grave",
           mp: "Puntos de Magia",
           san: "Cordura",
           initial: "Inicial",
@@ -1321,7 +1341,7 @@
           attacks: "Ataq.",
           ammo: "Munic.",
           malf: "Fallo",
-          unarmed: "Desarmado",
+          brawl: "Desarmado",
           combat: "Combate",
           db: "Bonif. Daño",
           build: "Corpulencia",
