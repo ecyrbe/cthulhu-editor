@@ -1,0 +1,59 @@
+import React from "react";
+import { useLanguage } from "../LanguageContext";
+import { StatBox } from "../ui/StatBox";
+import type { InvestigatorData } from "../../types";
+
+interface CharacteristicsSectionProps {
+  characteristics: InvestigatorData["characteristics"];
+  onValueChange: (stat: string, value: number) => void;
+}
+
+const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
+  characteristics,
+  onValueChange,
+}) => {
+  const { t } = useLanguage();
+
+  return (
+    <div className="header-col mid">
+      <div className="section-title">{t("characteristics")}</div>
+      <div className="stats-grid">
+        {[
+          ["FOR", "DEX", "POU"],
+          ["CON", "APP", "EDU"],
+          ["TAI", "INT", "MVT"],
+        ].map((row, i) => (
+          <React.Fragment key={i}>
+            {row.map((stat) => (
+              <div key={stat} className="stat-container">
+                <span className="stat-label">{t(stat.toLowerCase())}</span>
+                {stat === "MVT" ? (
+                  <div className="mvt-box">
+                    <input
+                      type="number"
+                      value={characteristics.MVT || ""}
+                      onChange={(e) =>
+                        onValueChange("MVT", parseInt(e.target.value) || 0)
+                      }
+                    />
+                  </div>
+                ) : (
+                  <StatBox
+                    value={
+                      characteristics[
+                        stat as keyof InvestigatorData["characteristics"]
+                      ]
+                    }
+                    onChange={(val) => onValueChange(stat, val)}
+                  />
+                )}
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default CharacteristicsSection;

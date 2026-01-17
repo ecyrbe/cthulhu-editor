@@ -1,0 +1,32 @@
+:root {
+  --border-color: #000;
+  --bg-color: #fff;
+  --menu-bg: #333;
+  --menu-text: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  margin: 0;
+  padding: 20px;
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+    display: block;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
