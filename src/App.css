@@ -52,6 +52,12 @@
   align-items: center;
   gap: 10px;
 }
+
+.reset-btn {
+  margin-top: 20px;
+  color: #ff4444;
+}
+
 .menu-btn:hover {
   background: #d00;
 }
@@ -63,13 +69,64 @@
   margin-bottom: -10px;
 }
 
-select#lang-select {
-  padding: 8px;
-  border-radius: 4px;
-  border: none;
+/* Language Selector styling */
+.lang-selector-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.lang-current-btn {
+  width: 100%;
+  padding: 10px;
   background: #555;
   color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #444;
+  border-radius: 4px;
+  margin-top: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1010;
+  overflow: hidden;
+}
+
+.lang-option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lang-option:hover {
+  background: #666;
+}
+
+.lang-option.active {
+  background: #a00;
+}
+
+.lang-option .flag {
+  font-size: 1.2em;
+}
+
+.lang-option .label {
+  font-size: 0.9em;
+  color: white;
 }
 
 /* --- Paper format A4 --- */
@@ -950,11 +1007,127 @@ td {
     transform: none !important;
   }
 
-  /* Keep sidebar navigation at 1:1 scale and clickable */
-  #menu-toggle,
+  /* App-like bottom navigation for mobile */
+  #menu-toggle {
+    display: none !important;
+  }
+
   #menu-panel {
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    width: 100vw !important;
+    height: 75px !important;
+    background: #1a1a1a !important;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    padding: 0 5px !important;
+    gap: 0 !important;
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.6) !important;
+    z-index: 2000 !important;
     zoom: 1 !important;
     transform: none !important;
+  }
+
+  .menu-label {
+    display: none !important;
+  }
+
+  .menu-btn {
+    background: transparent !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2px !important;
+    padding: 0 !important;
+    width: 16% !important; /* Adjusted width since we have 6 buttons now (Save, Roll, Export, Import, Reset, Lang) */
+    height: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-btn {
+    display: none !important;
+  }
+
+  .btn-icon {
+    font-size: 20px !important;
+  }
+
+  .btn-text {
+    font-size: 8px !important;
+    font-weight: normal !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Mobile Language Popup */
+  .lang-selector-wrapper {
+    width: 13% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .lang-current-btn {
+    background: transparent !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    height: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .lang-flag {
+    font-size: 20px !important;
+  }
+
+  .lang-label-text {
+    display: none !important;
+  }
+
+  .lang-current-btn::after {
+    content: "Lang";
+    font-size: 8px !important;
+    opacity: 0.8;
+  }
+
+  .lang-dropdown {
+    position: fixed !important;
+    bottom: 85px !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 80% !important;
+    max-width: 300px !important;
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+  }
+
+  .lang-option {
+    padding: 15px !important;
+    border-radius: 8px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .lang-option:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .reset-btn {
+    margin-top: 0 !important;
+  }
+
+  /* Prevent page content from being hidden behind the bar */
+  body {
+    padding-bottom: 85px !important;
   }
 }
 
