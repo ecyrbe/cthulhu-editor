@@ -44,7 +44,7 @@ const getInitialData = (): InvestigatorData => ({
       current: typeof s.base === "number" ? s.base : 0,
       checked: false,
     })),
-    ...Array(11)
+    ...Array(14)
       .fill(null)
       .map((_, i) => ({
         isCustom: true,

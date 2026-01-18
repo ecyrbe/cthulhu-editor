@@ -92,178 +92,191 @@ function App() {
 
       {/* PAGE 1 */}
       <div className="page" id="page1">
-        <div className="header-section">
-          <IdentitySection
-            identity={data.identity}
-            onValueChange={setIdentity}
-          />
-          <div className="vertical-separator" />
+        <div className="page-box">
+          <div className="header-section">
+            <IdentitySection
+              identity={data.identity}
+              onValueChange={setIdentity}
+            />
+            <div className="vertical-separator" />
 
-          <CharacteristicsSection
-            characteristics={data.characteristics}
-            onValueChange={setCharacteristic}
-          />
-          <div className="vertical-separator" />
+            <CharacteristicsSection
+              characteristics={data.characteristics}
+              onValueChange={setCharacteristic}
+            />
+            <div className="vertical-separator" />
 
-          {/* Logo/Photo Column */}
-          <div className="header-col right">
-            <div className="logo-container">
-              <div className="call-of-label">{t("call_of")}</div>
-              <div className="cthulhu-label">CTHULHU</div>
+            {/* Logo/Photo Column */}
+            <div className="header-col right">
+              <div className="logo-container">
+                <div className="call-of-label">{t("call_of")}</div>
+                <div className="cthulhu-label">CTHULHU</div>
+              </div>
+              <label
+                className="photo-box"
+                style={{ backgroundImage: `url(${data.photo})` }}
+              >
+                {!data.photo && t("photo")}
+                <input
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handlePhotoUpload}
+                />
+              </label>
             </div>
-            <label
-              className="photo-box"
-              style={{ backgroundImage: `url(${data.photo})` }}
-            >
-              {!data.photo && t("photo")}
-              <input
-                type="file"
-                hidden
-                accept="image/*"
-                onChange={handlePhotoUpload}
-              />
-            </label>
           </div>
-        </div>
 
-        <div className="trackers-section">
-          <Tracker
-            title={t("hp")}
-            start={-2}
-            end={20}
-            columns={5}
-            currentValue={data.trackers.hp}
-            onSelect={(val) => setTracker("hp", val)}
-            extra={
-              <div className="tracker-extra align-left">
-                <div className="tracker-row-top">
-                  {t("max")}{" "}
-                  <span className="small-stat-box">{data.trackers.hpMax}</span>
-                </div>
-                <div className="major-wound-box">
-                  {t("major-wound")}
-                  <div
-                    className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
-                    onClick={() =>
-                      setTracker("majorWound", !data.trackers.majorWound)
-                    }
-                  />
-                </div>
-              </div>
-            }
-          />
-          <Tracker
-            title={t("mp")}
-            start={0}
-            end={25}
-            columns={5}
-            currentValue={data.trackers.mp}
-            onSelect={(val) => setTracker("mp", val)}
-            extra={
-              <div className="tracker-extra align-left">
-                <div className="tracker-row-top">
-                  {t("max")}{" "}
-                  <span className="small-stat-box">{data.trackers.mpMax}</span>
-                </div>
-              </div>
-            }
-          />
-          <Tracker
-            title={t("san")}
-            start={0}
-            end={99}
-            columns={10}
-            currentValue={data.trackers.sanity}
-            onSelect={(val) => setTracker("sanity", val)}
-            extra={
-              <div className="tracker-extra">
-                <div className="tracker-row-top">
-                  {t("initial")}{" "}
-                  <span className="small-stat-box">
-                    {data.trackers.sanityInitial}
-                  </span>
-                  <span
-                    style={{
-                      marginLeft: "12px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <span style={{ display: "flex", alignItems: "center" }}>
-                      {t("temp")}
-                      <div
-                        className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
-                        onClick={() =>
-                          setTracker("tempInsane", !data.trackers.tempInsane)
-                        }
-                      />
+          <div className="trackers-section">
+            <Tracker
+              title={t("hp")}
+              start={-2}
+              end={20}
+              columns={5}
+              currentValue={data.trackers.hp}
+              onSelect={(val) => setTracker("hp", val)}
+              extra={
+                <div className="tracker-extra align-left">
+                  <div className="tracker-row-top">
+                    {t("max")}{" "}
+                    <span className="small-stat-box">
+                      {data.trackers.hpMax}
                     </span>
-                    <span style={{ display: "flex", alignItems: "center" }}>
-                      {t("persist")}
-                      <div
-                        className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
-                        onClick={() =>
-                          setTracker("indefInsane", !data.trackers.indefInsane)
-                        }
-                      />
-                    </span>
-                  </span>
+                  </div>
+                  <div className="major-wound-box">
+                    {t("major-wound")}
+                    <div
+                      className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
+                      onClick={() =>
+                        setTracker("majorWound", !data.trackers.majorWound)
+                      }
+                    />
+                  </div>
                 </div>
-              </div>
-            }
-          />
-          <Tracker
-            title={t("luck")}
-            start={0}
-            end={99}
-            columns={10}
-            currentValue={data.trackers.luck}
-            onSelect={(val) => setTracker("luck", val)}
-          />
-        </div>
+              }
+            />
+            <Tracker
+              title={t("mp")}
+              start={0}
+              end={25}
+              columns={5}
+              currentValue={data.trackers.mp}
+              onSelect={(val) => setTracker("mp", val)}
+              extra={
+                <div className="tracker-extra align-left">
+                  <div className="tracker-row-top">
+                    {t("max")}{" "}
+                    <span className="small-stat-box">
+                      {data.trackers.mpMax}
+                    </span>
+                  </div>
+                </div>
+              }
+            />
+            <Tracker
+              title={t("san")}
+              start={0}
+              end={99}
+              columns={10}
+              currentValue={data.trackers.sanity}
+              onSelect={(val) => setTracker("sanity", val)}
+              extra={
+                <div className="tracker-extra">
+                  <div className="tracker-row-top">
+                    {t("initial")}{" "}
+                    <span className="small-stat-box">
+                      {data.trackers.sanityInitial}
+                    </span>
+                    <span
+                      style={{
+                        marginLeft: "12px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <span style={{ display: "flex", alignItems: "center" }}>
+                        {t("temp")}
+                        <div
+                          className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                          onClick={() =>
+                            setTracker("tempInsane", !data.trackers.tempInsane)
+                          }
+                        />
+                      </span>
+                      <span style={{ display: "flex", alignItems: "center" }}>
+                        {t("persist")}
+                        <div
+                          className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
+                          onClick={() =>
+                            setTracker(
+                              "indefInsane",
+                              !data.trackers.indefInsane,
+                            )
+                          }
+                        />
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              }
+            />
+            <Tracker
+              title={t("luck")}
+              start={0}
+              end={99}
+              columns={10}
+              currentValue={data.trackers.luck}
+              onSelect={(val) => setTracker("luck", val)}
+            />
+          </div>
 
-        <SkillsSection
-          skills={data.skills}
-          onSkillChange={(idx, field, val) => setSkill(idx, { [field]: val })}
-        />
-
-        <div className="section-box combat-weapons-box">
-          <WeaponTable />
-          <div className="vertical-separator" />
-          <CombatSection
-            db={derivedCombat.db || "0"}
-            build={derivedCombat.build || 0}
-            dodge={data.skills.find((s) => s.key === "dodge")?.current || 0}
+          <SkillsSection
+            skills={data.skills}
+            onSkillChange={(idx, field, val) => setSkill(idx, { [field]: val })}
           />
+
+          <div className="section-box combat-weapons-box">
+            <WeaponTable />
+            <div className="vertical-separator" />
+            <CombatSection
+              db={derivedCombat.db || "0"}
+              build={derivedCombat.build || 0}
+              dodge={data.skills.find((s) => s.key === "dodge")?.current || 0}
+            />
+          </div>
         </div>
       </div>
 
       {/* PAGE 2 */}
       <div className="page" id="page2">
-        <BackstorySection
-          backstory={data.backstory}
-          onValueChange={setBackstory}
-        />
+        <div className="page-box">
+          <BackstorySection
+            backstory={data.backstory}
+            onValueChange={setBackstory}
+          />
 
-        <div className="section-box gear-wealth-row">
-          <GearSection gear={data.gear} onValueChange={setGear} />
-          <WealthSection wealth={data.wealth} onValueChange={setWealth} />
-        </div>
-
-        <div className="row friends-notes-row">
-          <div className="friends-column">
-            <FellowInvestigatorsSection
-              fellows={data.fellowInvestigators}
-              onValueChange={setFellowInvestigator}
-            />
+          <div className="section-box gear-wealth-row">
+            <GearSection gear={data.gear} onValueChange={setGear} />
+            <div className="vertical-separator" />
+            <WealthSection wealth={data.wealth} onValueChange={setWealth} />
           </div>
-          <div className="notes-column">
-            <NotesSection notes={data.notes} onValueChange={setNotes} />
-          </div>
-        </div>
 
-        <AideMemoireSection />
+          <div className="section-box row friends-notes-row">
+            <div className="friends-column">
+              <FellowInvestigatorsSection
+                fellows={data.fellowInvestigators}
+                onValueChange={setFellowInvestigator}
+              />
+            </div>
+            <div className="vertical-separator" />
+            <div className="notes-column">
+              <NotesSection notes={data.notes} onValueChange={setNotes} />
+            </div>
+          </div>
+
+          <AideMemoireSection />
+        </div>
       </div>
     </div>
   );

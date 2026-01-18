@@ -21,7 +21,7 @@ const FellowInvestigatorsSection: React.FC<FellowInvestigatorsSectionProps> = ({
   const rightFellows = fellows.slice(3, 6);
 
   return (
-    <div className="section-box grow fellow-investigators-section">
+    <div className="grow fellow-investigators-section">
       <div className="section-title">{t("friends")}</div>
       <div className="friends-layout">
         <div className="friend-col">

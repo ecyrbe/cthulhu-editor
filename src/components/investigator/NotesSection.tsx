@@ -22,7 +22,7 @@ const NotesSection: React.FC<NotesSectionProps> = ({
   };
 
   return (
-    <div className="section-box grow">
+    <div className="grow">
       <div className="section-title">{t("notes")}</div>
       <div
         className="notes-list"
