@@ -915,6 +915,49 @@ td {
   padding-top: 5px;
 }
 
+@media screen and (max-width: 860px) {
+  body {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    overflow-x: hidden !important;
+    background: #555;
+  }
+
+  .app-container {
+    display: block !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .page {
+    /* Fix the width to A4 dimensions to lock the desktop layout */
+    width: 210mm !important;
+    height: 297mm !important;
+    padding: 8mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+
+    /* Use zoom to scale the entire page to fit the viewport width */
+    zoom: calc(100vw / 210mm);
+
+    /* Ensure no shifts from centering or transforms */
+    position: relative;
+    left: 0;
+    transform: none !important;
+  }
+
+  /* Keep sidebar navigation at 1:1 scale and clickable */
+  #menu-toggle,
+  #menu-panel {
+    zoom: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media print {
   #menu-toggle,
   #menu-panel {
