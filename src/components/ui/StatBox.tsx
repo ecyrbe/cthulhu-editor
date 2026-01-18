@@ -6,7 +6,11 @@ interface StatBoxProps {
   readOnly?: boolean;
 }
 
-export const StatBox: React.FC<StatBoxProps> = ({ value, onChange, readOnly }) => {
+export const StatBox: React.FC<StatBoxProps> = ({
+  value,
+  onChange,
+  readOnly,
+}) => {
   return (
     <div className="stat-box">
       <div className="stat-main">
@@ -18,8 +22,12 @@ export const StatBox: React.FC<StatBoxProps> = ({ value, onChange, readOnly }) =
         />
       </div>
       <div className="stat-subs">
-        <div className="stat-sub hard">{Math.floor(value / 2)}</div>
-        <div className="stat-sub extreme">{Math.floor(value / 5)}</div>
+        <div className="stat-sub hard">
+          {value ? Math.floor(value / 2) : ""}
+        </div>
+        <div className="stat-sub extreme">
+          {value ? Math.floor(value / 5) : ""}
+        </div>
       </div>
     </div>
   );
