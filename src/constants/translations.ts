@@ -4,6 +4,10 @@ export const translations: Record<Language, Record<string, string>> = {
   fr: {
     roll: "Générer Stats",
     print: "Imprimer",
+    save: "Sauvegarder",
+    export: "Exporter JSON",
+    import: "Importer JSON",
+    reset: "Réinitialiser tout",
     era: "Époque Moderne",
     name: "Nom",
     player: "Joueur",
@@ -79,6 +83,10 @@ export const translations: Record<Language, Record<string, string>> = {
   en: {
     roll: "Generate Stats",
     print: "Print",
+    save: "Save",
+    export: "Export JSON",
+    import: "Import JSON",
+    reset: "Reset All",
     era: "Modern Era",
     name: "Name",
     player: "Player",
@@ -154,6 +162,10 @@ export const translations: Record<Language, Record<string, string>> = {
   es: {
     roll: "Generar Estads.",
     print: "Imprimir",
+    save: "Guardar",
+    export: "Exportar JSON",
+    import: "Importar JSON",
+    reset: "Restablecer todo",
     era: "Época Moderna",
     name: "Nombre",
     player: "Jugador",

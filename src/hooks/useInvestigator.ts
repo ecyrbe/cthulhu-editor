@@ -4,7 +4,7 @@ import { initialSkillsData } from "../constants/skills";
 
 const STORAGE_KEY = "cthulhu-investigator-data";
 
-const initialData: InvestigatorData = {
+const getInitialData = (): InvestigatorData => ({
   identity: {
     name: "",
     player: "",
@@ -73,7 +73,7 @@ const initialData: InvestigatorData = {
   },
   fellowInvestigators: Array(6).fill({ name: "", player: "" }),
   notes: "",
-};
+});
 
 export function useInvestigator() {
   const [data, setData] = useState<InvestigatorData>(() => {
@@ -97,7 +97,7 @@ export function useInvestigator() {
         console.error("Failed to load saved data", e);
       }
     }
-    return initialData;
+    return getInitialData();
   });
 
   const saveData = useCallback(() => {
@@ -221,6 +221,28 @@ export function useInvestigator() {
     setData((prev) => ({ ...prev, photo }));
   }, []);
 
+  const resetData = useCallback(() => {
+    if (window.confirm("Are you sure you want to reset all data?")) {
+      setData(getInitialData());
+    }
+  }, []);
+
+  const exportData = useCallback(() => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `investigator-${data.identity.name || "unnamed"}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [data]);
+
+  const importData = useCallback((newData: InvestigatorData) => {
+    setData(newData);
+  }, []);
+
   const rollInvestigator = useCallback(() => {
     const rollSimple = () =>
       (Math.floor(Math.random() * 6) +
@@ -331,6 +353,9 @@ export function useInvestigator() {
     setNotes,
     setFellowInvestigator,
     setPhoto,
+    resetData,
+    exportData,
+    importData,
     rollInvestigator,
     derivedCombat,
   };

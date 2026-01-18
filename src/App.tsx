@@ -31,6 +31,9 @@ function App() {
     setNotes,
     setFellowInvestigator,
     setPhoto,
+    resetData,
+    exportData,
+    importData,
     rollInvestigator,
     derivedCombat,
   } = useInvestigator();
@@ -57,6 +60,24 @@ function App() {
     window.print();
   };
 
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const json = JSON.parse(event.target?.result as string);
+          importData(json);
+          toast.success("Investigator data imported!");
+        } catch (error) {
+          toast.error("Failed to parse JSON file");
+          console.error(error);
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
   return (
     <div className="app-container">
       <Toaster position="bottom-right" />
@@ -64,6 +85,9 @@ function App() {
         onRoll={rollInvestigator}
         onPrint={handlePrint}
         onSave={handleSave}
+        onReset={resetData}
+        onExport={exportData}
+        onImport={handleImport}
       />
 
       {/* PAGE 1 */}

@@ -6,9 +6,19 @@ interface SidebarProps {
   onRoll: () => void;
   onPrint: () => void;
   onSave: () => void;
+  onReset: () => void;
+  onExport: () => void;
+  onImport: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onRoll, onPrint, onSave }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  onRoll,
+  onPrint,
+  onSave,
+  onReset,
+  onExport,
+  onImport,
+}) => {
   const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,10 +44,31 @@ const Sidebar: React.FC<SidebarProps> = ({ onRoll, onPrint, onSave }) => {
           🎲 {t("roll")}
         </button>
         <button className="menu-btn" onClick={onSave}>
-          💾 Save
+          💾 {t("save")}
         </button>
         <button className="menu-btn" onClick={onPrint}>
           🖨️ {t("print")}
+        </button>
+
+        <div className="menu-label">Data</div>
+        <button className="menu-btn" onClick={onExport}>
+          📤 {t("export")}
+        </button>
+        <label className="menu-btn" style={{ cursor: "pointer" }}>
+          📥 {t("import")}
+          <input
+            type="file"
+            accept=".json"
+            onChange={onImport}
+            style={{ display: "none" }}
+          />
+        </label>
+        <button
+          className="menu-btn"
+          onClick={onReset}
+          style={{ marginTop: "20px", color: "#ff4444" }}
+        >
+          🗑️ {t("reset")}
         </button>
       </div>
     </>
