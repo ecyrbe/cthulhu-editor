@@ -12,6 +12,7 @@ const AideMemoireSection: React.FC = () => {
           className="aide-col"
           dangerouslySetInnerHTML={{ __html: t("rules_left") }}
         />
+        <div className="vertical-separator" />
         <div
           className="aide-col"
           dangerouslySetInnerHTML={{ __html: t("rules_right") }}

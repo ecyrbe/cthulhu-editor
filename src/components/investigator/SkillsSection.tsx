@@ -65,7 +65,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                         onChange={(e) =>
                           onSkillChange(index, "name", e.target.value)
                         }
-                        placeholder="..."
                       />
                     ) : (
                       <>
