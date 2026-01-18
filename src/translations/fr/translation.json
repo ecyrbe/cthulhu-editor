@@ -73,5 +73,9 @@
   "notes": "Notes",
   "cheat_sheet": "Aide-Mémoire",
   "rules_left": "<b>Tests de compétence</b><br>Niveaux de réussite :<br>Maladresse 100/96+ | Échec > % | Ordinaire ≤ %<br>Majeure ½ % | Extrême 1/5 % | Critique 01<br><b>Redoubler un test :</b> Justification nécessaire ; impossible en combat ou pour la Santé Mentale.",
-  "rules_right": "<b>Blessures et soins</b><br>Premiers soins : soigne 1 PV. Médecine : soigne 1D3 PV.<br>Blessure grave : perte ≥ ½ max PV en une attaque.<br>Guérison naturelle : 1 PV / jour.<br>Mourant : 0 PV + Blessure grave."
+  "rules_right": "<b>Blessures et soins</b><br>Premiers soins : soigne 1 PV. Médecine : soigne 1D3 PV.<br>Blessure grave : perte ≥ ½ max PV en une attaque.<br>Guérison naturelle : 1 PV / jour.<br>Mourant : 0 PV + Blessure grave.",
+  "toast_save_success": "Données de l'investigateur sauvegardées !",
+  "toast_import_success": "Données de l'investigateur importées !",
+  "toast_import_error": "Échec de l'analyse du fichier JSON",
+  "confirm_reset": "Êtes-vous sûr de vouloir réinitialiser toutes les données ?"
 }

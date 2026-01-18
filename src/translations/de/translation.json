@@ -73,5 +73,9 @@
   "notes": "Notizen",
   "cheat_sheet": "Schnellreferenz",
   "rules_left": "<b>Fertigkeitsproben</b><br>Erfolgsgrade:<br>Patzer 100/96+ | Misserfolg > % | Erfolg ≤ %<br>Schwerer Erfolg ½ % | Extremer Erfolg 1/5 % | Kritisch 01<br><b>Forcieren einer Probe:</b> Rechtfertigung nötig; unmöglich im Kampf oder für Stabilität.",
-  "rules_right": "<b>Wunden und Heilung</b><br>Erste Hilfe: Heilt 1 TP. Medizin: Heilt 1W3 TP.<br>Schwere Wunde: Verlust ≥ ½ max TP durch einen Angriff.<br>Natürliche Heilung: 1 TP / Tag.<br>Sterbend: 0 TP + Schwere Wunde."
+  "rules_right": "<b>Wunden und Heilung</b><br>Erste Hilfe: Heilt 1 TP. Medizin: Heilt 1W3 TP.<br>Schwere Wunde: Verlust ≥ ½ max TP durch einen Angriff.<br>Natürliche Heilung: 1 TP / Tag.<br>Sterbend: 0 TP + Schwere Wunde.",
+  "toast_save_success": "Investigator-Daten gespeichert!",
+  "toast_import_success": "Investigator-Daten importiert!",
+  "toast_import_error": "JSON-Datei konnte nicht analysiert werden",
+  "confirm_reset": "Sind Sie sicher, dass Sie alle Daten zurücksetzen möchten?"
 }

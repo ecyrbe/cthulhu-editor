@@ -73,5 +73,9 @@
   "notes": "Notas",
   "cheat_sheet": "Referencia Rápida",
   "rules_left": "<b>Pruebas de Habilidad</b><br>Niveles de éxito:<br>Pifia 100/96+ | Fallo > % | Normal ≤ %<br>Difícil ½ % | Extremo 1/5 % | Crítico 01<br><b>Forzar tirada:</b> Justificación necesaria; imposible en combate o Cordura.",
-  "rules_right": "<b>Heridas et Curación</b><br>Primeros Auxilios: Cura 1 PV. Medicina: Cura 1D3 PV.<br>Herida Grave: Pérdida ≥ ½ máx PV en un ataque.<br>Curación natural: 1 PV / día.<br>Moribundo: 0 PV + Herida Grave."
+  "rules_right": "<b>Heridas et Curación</b><br>Primeros Auxilios: Cura 1 PV. Medicina: Cura 1D3 PV.<br>Herida Grave: Pérdida ≥ ½ máx PV en un ataque.<br>Curación natural: 1 PV / día.<br>Moribundo: 0 PV + Herida Grave.",
+  "toast_save_success": "¡Datos del investigador guardados!",
+  "toast_import_success": "¡Datos del investigador importados!",
+  "toast_import_error": "Error al analizar el archivo JSON",
+  "confirm_reset": "¿Estás seguro de que quieres restablecer todos los datos?"
 }

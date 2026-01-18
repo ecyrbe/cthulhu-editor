@@ -73,5 +73,9 @@
   "notes": "Notes",
   "cheat_sheet": "Quick Reference",
   "rules_left": "<b>Skill Tests</b><br>Success Levels:<br>Fumble 100/96+ | Fail > % | Regular ≤ %<br>Hard ½ % | Extreme 1/5 % | Critical 01<br><b>Pushing a roll:</b> Justification required; impossible in combat or for Sanity.",
-  "rules_right": "<b>Wounds and Healing</b><br>First Aid: Heals 1 HP. Medicine: Heals 1D3 HP.<br>Major Wound: Loss ≥ ½ max HP in one attack.<br>Natural Healing: 1 HP / day.<br>Dying: 0 HP + Major Wound."
+  "rules_right": "<b>Wounds and Healing</b><br>First Aid: Heals 1 HP. Medicine: Heals 1D3 HP.<br>Major Wound: Loss ≥ ½ max HP in one attack.<br>Natural Healing: 1 HP / day.<br>Dying: 0 HP + Major Wound.",
+  "toast_save_success": "Investigator data saved!",
+  "toast_import_success": "Investigator data imported!",
+  "toast_import_error": "Failed to parse JSON file",
+  "confirm_reset": "Are you sure you want to reset all data?"
 }

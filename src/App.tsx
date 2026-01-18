@@ -53,7 +53,7 @@ function App() {
 
   const handleSave = () => {
     saveData();
-    toast.success("Investigator data saved!");
+    toast.success(t("toast_save_success"));
   };
 
   const handlePrint = () => {
@@ -68,9 +68,9 @@ function App() {
         try {
           const json = JSON.parse(event.target?.result as string);
           importData(json);
-          toast.success("Investigator data imported!");
+          toast.success(t("toast_import_success"));
         } catch (error) {
-          toast.error("Failed to parse JSON file");
+          toast.error(t("toast_import_error"));
           console.error(error);
         }
       };

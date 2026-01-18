@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import type { InvestigatorData, Skill } from "../types";
 import { initialSkillsData } from "../constants/skills";
 
@@ -76,6 +77,7 @@ const getInitialData = (): InvestigatorData => ({
 });
 
 export function useInvestigator() {
+  const { t } = useTranslation();
   const [data, setData] = useState<InvestigatorData>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -222,10 +224,10 @@ export function useInvestigator() {
   }, []);
 
   const resetData = useCallback(() => {
-    if (window.confirm("Are you sure you want to reset all data?")) {
+    if (window.confirm(t("confirm_reset"))) {
       setData(getInitialData());
     }
-  }, []);
+  }, [t]);
 
   const exportData = useCallback(() => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
