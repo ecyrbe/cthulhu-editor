@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
 import type { Skill } from "../../types";
 
@@ -16,17 +16,17 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
   skills,
   onSkillChange,
 }) => {
-  const { t, getSkillName } = useLanguage();
+  const { t } = useTranslation();
 
   const sortedWithIndex = skills
     .map((skill, index) => ({ skill, index }))
     .sort((a, b) => {
       const nameA = a.skill.isCustom
         ? a.skill.name || ""
-        : getSkillName(a.skill.key || "");
+        : t(`skills:${a.skill.key}`);
       const nameB = b.skill.isCustom
         ? b.skill.name || ""
-        : getSkillName(b.skill.key || "");
+        : t(`skills:${b.skill.key}`);
 
       if (!nameA && nameB) return 1;
       if (nameA && !nameB) return -1;
@@ -69,7 +69,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                       />
                     ) : (
                       <>
-                        {getSkillName(skill.key || "")}
+                        {t(`skills:${skill.key}`)}
                         <span className="skill-base">
                           (
                           {typeof skill.base === "number"

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import { DottedInput } from "../ui/DottedInput";
 
 interface GearSectionProps {
@@ -8,7 +8,7 @@ interface GearSectionProps {
 }
 
 const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const numLines = 7;
   const lines = (gear || "").split("\n");
 

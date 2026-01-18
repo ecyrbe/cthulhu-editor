@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 import { DottedInput } from "../ui/DottedInput";
 
@@ -15,7 +15,7 @@ const WealthSection: React.FC<WealthSectionProps> = ({
   wealth,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   const renderMultiField = (
     field: keyof InvestigatorData["wealth"],

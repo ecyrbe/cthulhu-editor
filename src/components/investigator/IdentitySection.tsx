@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 
 interface IdentitySectionProps {
@@ -14,7 +14,7 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
   identity,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <div className="header-col left">

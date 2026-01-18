@@ -1,8 +1,8 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 
 const AideMemoireSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <div className="section-box aide-memoire-section">

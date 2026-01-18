@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
 import type { InvestigatorData } from "../../types";
 
@@ -12,7 +12,7 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
   characteristics,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <div className="header-col mid">

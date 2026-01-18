@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 import { DottedInput } from "../ui/DottedInput";
 
@@ -15,7 +15,7 @@ const BackstorySection: React.FC<BackstorySectionProps> = ({
   backstory,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   const col1 = [
     { key: "personalDescription", label: "description" },

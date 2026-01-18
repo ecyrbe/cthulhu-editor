@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
 
 interface CombatSectionProps {
@@ -9,7 +9,7 @@ interface CombatSectionProps {
 }
 
 const CombatSection: React.FC<CombatSectionProps> = ({ db, build, dodge }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <div className="combat-derived-content">

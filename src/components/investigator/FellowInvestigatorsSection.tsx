@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 
 interface FellowInvestigatorsSectionProps {
@@ -15,7 +15,7 @@ const FellowInvestigatorsSection: React.FC<FellowInvestigatorsSectionProps> = ({
   fellows,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   const leftFellows = fellows.slice(0, 3);
   const rightFellows = fellows.slice(3, 6);

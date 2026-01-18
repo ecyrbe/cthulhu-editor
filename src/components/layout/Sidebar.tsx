@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useLanguage } from "../LanguageContext";
-import type { Language } from "../../types";
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   onRoll: () => void;
@@ -19,7 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   onExport,
   onImport,
 }) => {
-  const { language, setLanguage, t } = useLanguage();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -31,8 +30,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className="menu-label">Language / Langue</div>
         <select
           id="lang-select"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as Language)}
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
         >
           <option value="fr">Français</option>
           <option value="en">English</option>

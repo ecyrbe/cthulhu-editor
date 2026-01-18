@@ -1,5 +1,5 @@
 import React from "react";
-import { useLanguage } from "../LanguageContext";
+import { useTranslation } from "react-i18next";
 import { DottedInput } from "../ui/DottedInput";
 
 interface NotesSectionProps {
@@ -11,7 +11,7 @@ const NotesSection: React.FC<NotesSectionProps> = ({
   notes,
   onValueChange,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const numLines = 8;
   const lines = (notes || "").split("\n");
 

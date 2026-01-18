@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { useInvestigator } from "./hooks/useInvestigator";
-import { useLanguage } from "./components/LanguageContext";
 import { Tracker } from "./components/ui/Tracker";
 import Sidebar from "./components/layout/Sidebar";
 import SkillsSection from "./components/investigator/SkillsSection";
@@ -38,7 +38,7 @@ function App() {
     derivedCombat,
   } = useInvestigator();
 
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
