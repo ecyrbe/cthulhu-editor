@@ -8,6 +8,8 @@ import translationEN from "./translations/en/translation.json";
 import skillsEN from "./translations/en/skills.json";
 import translationES from "./translations/es/translation.json";
 import skillsES from "./translations/es/skills.json";
+import translationDE from "./translations/de/translation.json";
+import skillsDE from "./translations/de/skills.json";
 
 const resources = {
   fr: {
@@ -22,6 +24,10 @@ const resources = {
     translation: translationES,
     skills: skillsES,
   },
+  de: {
+    translation: translationDE,
+    skills: skillsDE,
+  },
 };
 
 i18n
@@ -30,6 +36,7 @@ i18n
   .init({
     resources,
     fallbackLng: "fr",
+    load: "languageOnly",
     interpolation: {
       escapeValue: false,
     },

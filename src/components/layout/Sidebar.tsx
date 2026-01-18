@@ -30,12 +30,13 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className="menu-label">Language / Langue</div>
         <select
           id="lang-select"
-          value={i18n.language}
+          value={i18n.resolvedLanguage || i18n.language}
           onChange={(e) => i18n.changeLanguage(e.target.value)}
         >
           <option value="fr">Français</option>
           <option value="en">English</option>
           <option value="es">Español</option>
+          <option value="de">Deutsch</option>
         </select>
 
         <div className="menu-label">Actions</div>
