@@ -84,6 +84,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                     <StatBox
                       value={skill.current}
                       onChange={(val) => onSkillChange(index, "current", val)}
+                      readOnly={
+                        skill.key === "dodge" || skill.key === "mother_tongue"
+                      }
                     />
                   </div>
                 </div>

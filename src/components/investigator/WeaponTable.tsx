@@ -5,7 +5,7 @@ const WeaponTable: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="section-box weapon-section">
+    <div className="weapons-section-content">
       <div className="section-title">{t("weapons")}</div>
       <table className="weapon-table">
         <thead>
@@ -22,7 +22,7 @@ const WeaponTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {Array(6)
+          {Array(5)
             .fill(null)
             .map((_, i) => (
               <tr key={i}>

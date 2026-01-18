@@ -46,9 +46,10 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
           <input
             value={identity.sex}
             onChange={(e) => onValueChange("sex", e.target.value)}
+            style={{ width: "100px" }}
           />
         </div>
-        <div className="field-row grow">
+        <div className="field-row">
           <span className="field-label">{t("age")}</span>
           <input
             value={identity.age}

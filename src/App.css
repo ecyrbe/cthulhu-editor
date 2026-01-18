@@ -145,12 +145,16 @@ input[type="number"] {
   font-weight: 900;
   text-transform: uppercase;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 0.8em;
   width: 100%;
   letter-spacing: 0.8px;
   margin-bottom: 5px;
   font-family: sans-serif;
   color: #000;
+}
+
+.section-title::first-letter {
+  font-size: 1.5em;
 }
 
 /* --- Page 1 Specifics --- */
@@ -167,14 +171,12 @@ input[type="number"] {
 }
 .header-col.left {
   width: 30%;
-  border-right: 1px solid #000;
 }
 .header-col.mid {
-  width: 48%;
-  border-right: 1px solid #000;
+  width: 45%;
 }
 .header-col.right {
-  width: 22%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,7 +200,7 @@ input[type="number"] {
 .cthulhu-label {
   font-family: sans-serif;
   font-weight: 900;
-  font-size: 1.8em;
+  font-size: 1.5em;
   letter-spacing: 0.5px;
 }
 
@@ -213,7 +215,7 @@ input[type="number"] {
 .field-label {
   white-space: nowrap;
   font-weight: 800;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 /* Stats */
@@ -262,7 +264,6 @@ input[type="number"] {
   width: 100%;
   padding: 0;
   font-size: 1.1em;
-  font-weight: 900;
   border-bottom: none;
 }
 
@@ -342,7 +343,7 @@ input[type="number"] {
 .tracker-col {
   padding: 2px 4px;
   flex: 1.5;
-  border-right: 1px solid #000;
+  border-right: 1px solid #ddd;
 }
 .tracker-col.small {
   flex: 1;
@@ -371,6 +372,15 @@ input[type="number"] {
   margin-bottom: 2px;
 }
 
+.tracker-extra.align-left {
+  text-align: left;
+  padding-left: 4px;
+}
+
+.tracker-extra.align-left .tracker-row-top {
+  justify-content: flex-start;
+}
+
 .tracker-row-top {
   display: flex;
   align-items: center;
@@ -396,6 +406,21 @@ input[type="number"] {
   font-weight: 700;
 }
 
+.tracker-check {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #000;
+  display: inline-block;
+  cursor: pointer;
+  background: #fff;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.tracker-check.checked {
+  background: #000;
+}
+
 .major-wound-box {
   margin-top: 2px;
   font-weight: 800;
@@ -404,7 +429,6 @@ input[type="number"] {
 .number-grid {
   display: grid;
   gap: 1px;
-  border-top: 1px solid #ddd;
   padding-top: 2px;
 }
 
@@ -454,21 +478,21 @@ input[type="number"] {
   display: flex;
   align-items: center;
   margin-bottom: 2px;
-  font-size: 0.7em;
-  height: 18px;
+  font-size: 0.8em;
+  height: 23px;
   gap: 2px;
 }
 
 .skill-check {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border: 1px solid #000;
   cursor: pointer;
   flex-shrink: 0;
   background: #fff;
 }
 
-.skill-row.checked .skill-check {
+.skill-check.checked {
   background: #000;
 }
 
@@ -477,7 +501,6 @@ input[type="number"] {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 700;
   display: flex;
   align-items: baseline;
 }
@@ -515,7 +538,6 @@ input[type="number"] {
 
 .skill-box-wrapper .stat-sub {
   font-size: 0.45em;
-  font-weight: 800;
 }
 .custom-name-input {
   width: 100%;
@@ -534,41 +556,88 @@ input[type="number"] {
 }
 
 /* Weapons & Combat Row */
-.combat-weapons-row {
+.combat-weapons-box {
+  padding: 0 !important;
   display: flex;
-  margin-top: 2px;
-  gap: 8px;
   align-items: stretch;
+  width: 100%;
 }
 
-.weapons-column {
-  flex: 2;
+.vertical-separator {
+  width: 1px;
+  background-color: #000;
+  margin: 12px 0;
+  align-self: stretch;
+  flex-shrink: 0;
 }
 
-.combat-derived-column {
+.weapons-section-content {
   flex: 1;
-  min-width: 170px;
+  padding: 4px 10px;
+  border: none;
+}
+
+.combat-derived-content {
+  width: 150px;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.w-name {
+  width: 30%;
+}
+
+.weapon-table {
+  width: 100%;
+  font-size: 0.85em;
+}
+
+.weapon-table input {
+  border-bottom: none;
+  text-align: inherit;
+  font-size: 0.9em;
+}
+
+.weapon-table th,
+.weapon-table td {
+  text-align: center;
+  padding: 2px 1px;
+}
+
+.weapon-table .w-name,
+.weapon-table td:first-child {
+  text-align: left;
 }
 
 .combat-stats-grid {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 3px;
+  gap: 12px;
+  margin-top: 8px;
   padding: 0 4px;
 }
 
+.combat-stats-grid .stat-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .stat-label.horizontal {
-  width: 70px;
-  text-align: right;
-  margin-right: 6px;
+  width: 80px;
+  text-align: left;
+  margin-right: 4px;
   font-size: 0.85em;
   font-weight: 800;
 }
 
 .simple-stat-box {
   border: 1px solid #000;
-  width: 50px;
+  width: 52px;
   height: 26px;
   display: flex;
   align-items: center;
@@ -578,18 +647,11 @@ input[type="number"] {
   font-size: 1em;
 }
 
-.combat-derived .stat-box {
+.combat-derived-content .stat-box {
   width: 54px;
   height: 28px;
 }
 
-.weapons-section {
-  border: 1.2px solid #000;
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 0.85em;
-  height: 100%;
-}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -623,7 +685,6 @@ td {
 
 .backstory-label-box {
   white-space: nowrap;
-  font-weight: 800;
   font-size: 0.85em;
   padding-right: 4px;
 }
@@ -636,19 +697,13 @@ td {
 }
 
 .dotted-line-input {
-  border: none !important;
-  border-bottom: 1px dotted #000 !important;
-  background: transparent !important;
+  border-bottom: 1px dotted #000;
   width: 100%;
   padding: 0 2px;
   font-family: inherit;
   font-size: 0.85em;
   height: 1.4em;
   line-height: normal;
-}
-
-.friend-input {
-  border-bottom: none !important;
 }
 
 .gear-wealth-row {

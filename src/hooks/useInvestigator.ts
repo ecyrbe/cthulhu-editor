@@ -1,6 +1,8 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import type { InvestigatorData, Skill } from "../types";
 import { initialSkillsData } from "../constants/skills";
+
+const STORAGE_KEY = "cthulhu-investigator-data";
 
 const initialData: InvestigatorData = {
   identity: {
@@ -31,6 +33,9 @@ const initialData: InvestigatorData = {
     hpMax: 0,
     mpMax: 0,
     sanityInitial: 0,
+    majorWound: false,
+    tempInsane: false,
+    indefInsane: false,
   },
   skills: [
     ...initialSkillsData.map((s) => ({
@@ -38,7 +43,7 @@ const initialData: InvestigatorData = {
       current: typeof s.base === "number" ? s.base : 0,
       checked: false,
     })),
-    ...Array(8)
+    ...Array(11)
       .fill(null)
       .map((_, i) => ({
         isCustom: true,
@@ -71,7 +76,33 @@ const initialData: InvestigatorData = {
 };
 
 export function useInvestigator() {
-  const [data, setData] = useState<InvestigatorData>(initialData);
+  const [data, setData] = useState<InvestigatorData>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Recalculate reactive skills on load
+        const dex = parsed.characteristics?.DEX || 0;
+        const edu = parsed.characteristics?.EDU || 0;
+        if (parsed.skills) {
+          parsed.skills = parsed.skills.map((s: Skill) => {
+            if (s.key === "dodge")
+              return { ...s, current: Math.floor(dex / 2) };
+            if (s.key === "mother_tongue") return { ...s, current: edu };
+            return s;
+          });
+        }
+        return parsed;
+      } catch (e) {
+        console.error("Failed to load saved data", e);
+      }
+    }
+    return initialData;
+  });
+
+  const saveData = useCallback(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }, [data]);
 
   const setIdentity = useCallback(
     (field: keyof InvestigatorData["identity"], value: string) => {
@@ -93,6 +124,7 @@ export function useInvestigator() {
       const siz = newChars.TAI || 0;
       const dex = newChars.DEX || 0;
       const pow = newChars.POU || 0;
+      const edu = newChars.EDU || 0;
 
       const hpMax = Math.floor((con + siz) / 10);
       const mpMax = Math.floor(pow / 5);
@@ -102,9 +134,22 @@ export function useInvestigator() {
       if (dex < siz && str < siz) mov = 7;
       if (dex > siz && str > siz) mov = 9;
 
+      // Update reactive skills
+      let updatedSkills = prev.skills;
+      if (stat === "DEX") {
+        updatedSkills = updatedSkills.map((s) =>
+          s.key === "dodge" ? { ...s, current: Math.floor(dex / 2) } : s,
+        );
+      } else if (stat === "EDU") {
+        updatedSkills = updatedSkills.map((s) =>
+          s.key === "mother_tongue" ? { ...s, current: edu } : s,
+        );
+      }
+
       return {
         ...prev,
         characteristics: { ...newChars, MVT: mov },
+        skills: updatedSkills,
         trackers: {
           ...prev.trackers,
           hpMax,
@@ -124,7 +169,7 @@ export function useInvestigator() {
   }, []);
 
   const setTracker = useCallback(
-    (field: keyof InvestigatorData["trackers"], value: number) => {
+    (field: keyof InvestigatorData["trackers"], value: number | boolean) => {
       setData((prev) => ({
         ...prev,
         trackers: { ...prev.trackers, [field]: value },
@@ -224,6 +269,12 @@ export function useInvestigator() {
       return {
         ...prev,
         characteristics: { ...mergedChars, MVT: mov },
+        skills: prev.skills.map((s) => {
+          if (s.key === "dodge") return { ...s, current: Math.floor(dex / 2) };
+          if (s.key === "mother_tongue")
+            return { ...s, current: mergedChars.EDU };
+          return s;
+        }),
         trackers: {
           ...prev.trackers,
           hpMax,
@@ -233,6 +284,9 @@ export function useInvestigator() {
           sanity: pow, // Initial sanity is often POW
           hp: hpMax,
           mp: mpMax,
+          majorWound: false,
+          tempInsane: false,
+          indefInsane: false,
         },
       };
     });
@@ -266,6 +320,7 @@ export function useInvestigator() {
   return {
     data,
     setData,
+    saveData,
     setIdentity,
     setCharacteristic,
     setSkill,

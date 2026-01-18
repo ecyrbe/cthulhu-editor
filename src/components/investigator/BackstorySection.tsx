@@ -1,6 +1,7 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
 import type { InvestigatorData } from "../../types";
+import { DottedInput } from "../ui/DottedInput";
 
 interface BackstorySectionProps {
   backstory: InvestigatorData["backstory"];
@@ -35,7 +36,7 @@ const BackstorySection: React.FC<BackstorySectionProps> = ({
   const renderMultiLine = (
     key: keyof InvestigatorData["backstory"],
     label: string,
-    numLines: number = 4,
+    numLines: number = 3,
   ) => {
     const text = backstory[key] || "";
     const lines = text.split("\n");
@@ -51,22 +52,17 @@ const BackstorySection: React.FC<BackstorySectionProps> = ({
 
     return (
       <div key={key} className="backstory-item">
-        <div className="backstory-item-line">
-          <div className="backstory-label-box">{t(label)}</div>
-          <input
-            className="dotted-line-input"
-            value={lines[0] || ""}
-            onChange={(e) => handleLineChange(0, e.target.value)}
-          />
-        </div>
+        <DottedInput
+          label={t(label)}
+          value={lines[0] || ""}
+          onChange={(val) => handleLineChange(0, val)}
+        />
         {Array.from({ length: numLines - 1 }).map((_, i) => (
-          <div key={i + 1} className="backstory-item-line">
-            <input
-              className="dotted-line-input"
-              value={lines[i + 1] || ""}
-              onChange={(e) => handleLineChange(i + 1, e.target.value)}
-            />
-          </div>
+          <DottedInput
+            key={i + 1}
+            value={lines[i + 1] || ""}
+            onChange={(val) => handleLineChange(i + 1, val)}
+          />
         ))}
       </div>
     );

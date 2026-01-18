@@ -1,6 +1,7 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
 import type { InvestigatorData } from "../../types";
+import { DottedInput } from "../ui/DottedInput";
 
 interface WealthSectionProps {
   wealth: InvestigatorData["wealth"];
@@ -34,23 +35,18 @@ const WealthSection: React.FC<WealthSectionProps> = ({
     };
 
     return (
-      <div className="wealth-item" style={{ marginBottom: "8px" }}>
-        <div className="backstory-item-line">
-          <div className="backstory-label-box">{label}</div>
-          <input
-            className="dotted-line-input"
-            value={lines[0] || ""}
-            onChange={(e) => handleLineChange(0, e.target.value)}
-          />
-        </div>
+      <div className="wealth-item">
+        <DottedInput
+          label={label}
+          value={lines[0] || ""}
+          onChange={(val) => handleLineChange(0, val)}
+        />
         {Array.from({ length: numLines - 1 }).map((_, i) => (
-          <div key={i + 1} className="backstory-item-line">
-            <input
-              className="dotted-line-input"
-              value={lines[i + 1] || ""}
-              onChange={(e) => handleLineChange(i + 1, e.target.value)}
-            />
-          </div>
+          <DottedInput
+            key={i + 1}
+            value={lines[i + 1] || ""}
+            onChange={(val) => handleLineChange(i + 1, val)}
+          />
         ))}
       </div>
     );
@@ -59,9 +55,9 @@ const WealthSection: React.FC<WealthSectionProps> = ({
   return (
     <div className="wealth-section-content">
       <div className="section-title">{t("wealth")}</div>
-      {renderMultiField("spendingLevel", t("spending"), 2)}
-      {renderMultiField("cash", t("cash"), 2)}
-      {renderMultiField("assets", t("assets"), 8)}
+      {renderMultiField("spendingLevel", t("spending"), 1)}
+      {renderMultiField("cash", t("cash"), 1)}
+      {renderMultiField("assets", t("assets"), 5)}
     </div>
   );
 };

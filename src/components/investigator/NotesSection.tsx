@@ -1,5 +1,6 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
+import { DottedInput } from "../ui/DottedInput";
 
 interface NotesSectionProps {
   notes: string;
@@ -11,7 +12,7 @@ const NotesSection: React.FC<NotesSectionProps> = ({
   onValueChange,
 }) => {
   const { t } = useLanguage();
-  const numLines = 15;
+  const numLines = 8;
   const lines = (notes || "").split("\n");
 
   const handleLineChange = (index: number, newValue: string) => {
@@ -28,13 +29,11 @@ const NotesSection: React.FC<NotesSectionProps> = ({
         style={{ display: "flex", flexDirection: "column", height: "100%" }}
       >
         {Array.from({ length: numLines }).map((_, i) => (
-          <div key={i} className="backstory-item-line">
-            <input
-              className="dotted-line-input"
-              value={lines[i] || ""}
-              onChange={(e) => handleLineChange(i, e.target.value)}
-            />
-          </div>
+          <DottedInput
+            key={i}
+            value={lines[i] || ""}
+            onChange={(val) => handleLineChange(i, val)}
+          />
         ))}
       </div>
     </div>

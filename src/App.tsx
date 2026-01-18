@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useInvestigator } from "./hooks/useInvestigator";
 import { useLanguage } from "./components/LanguageContext";
 import { Tracker } from "./components/ui/Tracker";
@@ -19,6 +20,7 @@ import AideMemoireSection from "./components/investigator/AideMemoireSection";
 function App() {
   const {
     data,
+    saveData,
     setIdentity,
     setCharacteristic,
     setSkill,
@@ -47,8 +49,8 @@ function App() {
   };
 
   const handleSave = () => {
-    console.log("Saving Investigator Data:", data);
-    alert("Check console for saved data!");
+    saveData();
+    toast.success("Investigator data saved!");
   };
 
   const handlePrint = () => {
@@ -57,6 +59,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Toaster position="bottom-right" />
       <Sidebar
         onRoll={rollInvestigator}
         onPrint={handlePrint}
@@ -70,11 +73,13 @@ function App() {
             identity={data.identity}
             onValueChange={setIdentity}
           />
+          <div className="vertical-separator" />
 
           <CharacteristicsSection
             characteristics={data.characteristics}
             onValueChange={setCharacteristic}
           />
+          <div className="vertical-separator" />
 
           {/* Logo/Photo Column */}
           <div className="header-col right">
@@ -111,7 +116,15 @@ function App() {
                   {t("max")}{" "}
                   <span className="small-stat-box">{data.trackers.hpMax}</span>
                 </div>
-                <div className="major-wound-box">{t("major-wound")} ☐</div>
+                <div className="major-wound-box">
+                  {t("major-wound")}
+                  <div
+                    className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
+                    onClick={() =>
+                      setTracker("majorWound", !data.trackers.majorWound)
+                    }
+                  />
+                </div>
               </div>
             }
           />
@@ -145,8 +158,32 @@ function App() {
                   <span className="small-stat-box">
                     {data.trackers.sanityInitial}
                   </span>
-                  <span style={{ marginLeft: "8px" }}>
-                    {t("temp")} ☐ {t("persist")} ☐
+                  <span
+                    style={{
+                      marginLeft: "12px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      {t("temp")}
+                      <div
+                        className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                        onClick={() =>
+                          setTracker("tempInsane", !data.trackers.tempInsane)
+                        }
+                      />
+                    </span>
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      {t("persist")}
+                      <div
+                        className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
+                        onClick={() =>
+                          setTracker("indefInsane", !data.trackers.indefInsane)
+                        }
+                      />
+                    </span>
                   </span>
                 </div>
               </div>
@@ -167,10 +204,9 @@ function App() {
           onSkillChange={(idx, field, val) => setSkill(idx, { [field]: val })}
         />
 
-        <div className="row combat-weapons-row">
-          <div className="weapons-column">
-            <WeaponTable />
-          </div>
+        <div className="section-box combat-weapons-box">
+          <WeaponTable />
+          <div className="vertical-separator" />
           <CombatSection
             db={derivedCombat.db || "0"}
             build={derivedCombat.build || 0}

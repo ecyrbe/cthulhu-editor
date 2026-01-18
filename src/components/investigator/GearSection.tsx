@@ -1,5 +1,6 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
+import { DottedInput } from "../ui/DottedInput";
 
 interface GearSectionProps {
   gear: string;
@@ -8,7 +9,7 @@ interface GearSectionProps {
 
 const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
   const { t } = useLanguage();
-  const numLines = 10;
+  const numLines = 7;
   const lines = (gear || "").split("\n");
 
   const handleLineChange = (index: number, newValue: string) => {
@@ -22,13 +23,11 @@ const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
       <div className="section-title">{t("gear")}</div>
       <div className="gear-list">
         {Array.from({ length: numLines }).map((_, i) => (
-          <div key={i} className="backstory-item-line">
-            <input
-              className="dotted-line-input"
-              value={lines[i] || ""}
-              onChange={(e) => handleLineChange(i, e.target.value)}
-            />
-          </div>
+          <DottedInput
+            key={i}
+            value={lines[i] || ""}
+            onChange={(val) => handleLineChange(i, val)}
+          />
         ))}
       </div>
     </div>

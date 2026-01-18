@@ -26,7 +26,7 @@ export const Tracker: React.FC<TrackerProps> = ({
 
   return (
     <div className={`tracker-col ${columns < 10 ? "small" : "large"}`}>
-      <div className="field-label center">{title}</div>
+      <div className="section-title center">{title}</div>
       {extra}
       <div
         className="number-grid"

@@ -27,7 +27,7 @@ export const translations: Record<Language, Record<string, string>> = {
     hp: "Points de Vie",
     max: "Max",
     "major-wound": "Blessure grave",
-    mp: "PT. de Magie",
+    mp: "Points de Magie",
     san: "Santé Mentale",
     initial: "Initiale",
     temp: "Temp",

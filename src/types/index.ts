@@ -45,6 +45,9 @@ export interface InvestigatorData {
     hpMax: number;
     mpMax: number;
     sanityInitial: number;
+    majorWound: boolean;
+    tempInsane: boolean;
+    indefInsane: boolean;
   };
   skills: Skill[];
   backstory: {
@@ -70,4 +73,4 @@ export interface InvestigatorData {
   photo?: string;
 }
 
-export type Language = 'fr' | 'en' | 'es';
+export type Language = "fr" | "en" | "es";
