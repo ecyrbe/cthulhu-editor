@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import type { InvestigatorData, Skill } from "../types";
 import { initialSkillsData } from "../constants/skills";
 
