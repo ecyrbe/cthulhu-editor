@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DottedInput } from "../ui/DottedInput";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface NotesSectionProps {
   notes: string;
@@ -23,7 +24,7 @@ const NotesSection: React.FC<NotesSectionProps> = ({
 
   return (
     <div className="grow">
-      <div className="section-title">{t("notes")}</div>
+      <SectionTitle>{t("notes")}</SectionTitle>
       <div
         className="notes-list"
         style={{ display: "flex", flexDirection: "column", height: "100%" }}

@@ -1,12 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { SectionTitle } from "../ui/SectionTitle";
 
 const AideMemoireSection: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <div className="section-box aide-memoire-section">
-      <div className="section-title">{t("cheat_sheet")}</div>
+      <SectionTitle>{t("cheat_sheet")}</SectionTitle>
       <div className="aide-memoire-grid">
         <div
           className="aide-col"

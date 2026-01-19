@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface CombatSectionProps {
   db: string;
@@ -13,7 +14,7 @@ const CombatSection: React.FC<CombatSectionProps> = ({ db, build, dodge }) => {
 
   return (
     <div className="combat-derived-content">
-      <div className="section-title">{t("combat")}</div>
+      <SectionTitle>{t("combat")}</SectionTitle>
       <div className="combat-stats-grid">
         <div className="stat-container">
           <span className="stat-label horizontal">{t("db")}</span>

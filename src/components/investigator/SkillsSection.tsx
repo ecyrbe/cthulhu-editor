@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
+import { SectionTitle } from "../ui/SectionTitle";
 import type { Skill } from "../../types";
 
 interface SkillsSectionProps {
@@ -43,7 +44,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
 
   return (
     <div className="section-box skills-section grow">
-      <div className="section-title">{t("skills_title")}</div>
+      <SectionTitle>{t("skills_title")}</SectionTitle>
       <div className="row">
         {columns.map((col, colIdx) => (
           <div key={colIdx} className="skills-column">

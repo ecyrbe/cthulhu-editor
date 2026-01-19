@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface IdentitySectionProps {
   identity: InvestigatorData["identity"];
@@ -18,7 +19,7 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
 
   return (
     <div className="header-col left">
-      <div className="section-title">{t("era")}</div>
+      <SectionTitle>{t("era")}</SectionTitle>
       <div className="field-row">
         <span className="field-label">{t("name")}</span>
         <input

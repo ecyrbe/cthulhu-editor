@@ -1,4 +1,5 @@
 import React from "react";
+import { SectionTitle } from "./SectionTitle";
 
 interface TrackerProps {
   title: string;
@@ -26,7 +27,7 @@ export const Tracker: React.FC<TrackerProps> = ({
 
   return (
     <div className={`tracker-col ${columns < 10 ? "small" : "large"}`}>
-      <div className="section-title center">{title}</div>
+      <SectionTitle className="center">{title}</SectionTitle>
       {extra}
       <div
         className="number-grid"

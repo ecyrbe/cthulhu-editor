@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface FellowInvestigatorsSectionProps {
   fellows: InvestigatorData["fellowInvestigators"];
@@ -22,7 +23,7 @@ const FellowInvestigatorsSection: React.FC<FellowInvestigatorsSectionProps> = ({
 
   return (
     <div className="grow fellow-investigators-section">
-      <div className="section-title">{t("friends")}</div>
+      <SectionTitle>{t("friends")}</SectionTitle>
       <div className="friends-layout">
         <div className="friend-col">
           {leftFellows.map((friend, i) => (

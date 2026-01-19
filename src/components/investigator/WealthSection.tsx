@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 import { DottedInput } from "../ui/DottedInput";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface WealthSectionProps {
   wealth: InvestigatorData["wealth"];
@@ -54,7 +55,7 @@ const WealthSection: React.FC<WealthSectionProps> = ({
 
   return (
     <div className="wealth-section-content">
-      <div className="section-title">{t("wealth")}</div>
+      <SectionTitle>{t("wealth")}</SectionTitle>
       {renderMultiField("spendingLevel", t("spending"), 1)}
       {renderMultiField("cash", t("cash"), 1)}
       {renderMultiField("assets", t("assets"), 5)}

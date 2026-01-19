@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import type { InvestigatorData } from "../../types";
 import { DottedInput } from "../ui/DottedInput";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface BackstorySectionProps {
   backstory: InvestigatorData["backstory"];
@@ -70,7 +71,7 @@ const BackstorySection: React.FC<BackstorySectionProps> = ({
 
   return (
     <div className="section-box backstory-section h-profil">
-      <div className="section-title">{t("profile")}</div>
+      <SectionTitle>{t("profile")}</SectionTitle>
       <div className="backstory-columns">
         <div className="backstory-col">
           {col1.map(({ key, label }) => renderMultiLine(key, label))}

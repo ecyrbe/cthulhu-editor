@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StatBox } from "../ui/StatBox";
+import { SectionTitle } from "../ui/SectionTitle";
 import type { InvestigatorData } from "../../types";
 
 interface CharacteristicsSectionProps {
@@ -16,7 +17,7 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
 
   return (
     <div className="header-col mid">
-      <div className="section-title">{t("characteristics")}</div>
+      <SectionTitle>{t("characteristics")}</SectionTitle>
       <div className="stats-grid">
         {[
           ["FOR", "DEX", "POU"],

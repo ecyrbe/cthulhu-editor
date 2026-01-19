@@ -1,12 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { SectionTitle } from "../ui/SectionTitle";
 
 const WeaponTable: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <div className="weapons-section-content">
-      <div className="section-title">{t("weapons")}</div>
+      <SectionTitle>{t("weapons")}</SectionTitle>
       <table className="weapon-table">
         <thead>
           <tr>

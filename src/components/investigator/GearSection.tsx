@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DottedInput } from "../ui/DottedInput";
+import { SectionTitle } from "../ui/SectionTitle";
 
 interface GearSectionProps {
   gear: string;
@@ -20,7 +21,7 @@ const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
 
   return (
     <div className="gear-section-content grow">
-      <div className="section-title">{t("gear")}</div>
+      <SectionTitle>{t("gear")}</SectionTitle>
       <div className="gear-list">
         {Array.from({ length: numLines }).map((_, i) => (
           <DottedInput
