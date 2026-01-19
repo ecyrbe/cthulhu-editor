@@ -174,7 +174,7 @@ input,
 textarea {
   border: none;
   border-bottom: 1px dotted #000;
-  font-family: inherit;
+  font-family: "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
   background: transparent;
   width: 100%;
   resize: none;
@@ -593,6 +593,7 @@ input[type="number"] {
 .custom-name-input {
   width: 100%;
   border-bottom: 1px dotted #888;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1em;
   min-width: 0;
   padding: 0;
@@ -751,7 +752,7 @@ td {
   border-bottom: 1px dotted #000;
   width: 100%;
   padding: 0 2px;
-  font-family: inherit;
+  font-family: "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
   font-size: 0.85em;
   height: 1.4em;
   line-height: normal;
