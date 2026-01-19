@@ -174,7 +174,8 @@ input,
 textarea {
   border: none;
   border-bottom: 1px dotted #000;
-  font-family: "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
+  font-family:
+    "P22 Typewriter", "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
   background: transparent;
   width: 100%;
   resize: none;
@@ -752,7 +753,8 @@ td {
   border-bottom: 1px dotted #000;
   width: 100%;
   padding: 0 2px;
-  font-family: "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
+  font-family:
+    "P22 Typewriter", "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
   font-size: 0.85em;
   height: 1.4em;
   line-height: normal;
