@@ -442,7 +442,6 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  font-weight: 800;
   margin-bottom: 1px;
 }
 
@@ -479,7 +478,6 @@ input[type="number"] {
 
 .major-wound-box {
   margin-top: 2px;
-  font-weight: 800;
 }
 
 .number-grid {
