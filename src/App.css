@@ -830,24 +830,19 @@ td {
 }
 
 .friends-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
   flex: 1;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
   padding: 5px;
-}
-.friend-col {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-}
-.friend-center {
-  width: 40%;
-  height: 100%;
   position: relative;
+}
+
+.friend-grid-cell {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -858,10 +853,11 @@ td {
   padding: 2px 4px;
   width: 100%;
   font-size: 0.7em;
-  margin-bottom: 4px;
   background: #fff;
-  position: relative;
-  z-index: 2;
+  min-height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .friend-box input {
   height: 1.1em;
@@ -881,6 +877,7 @@ td {
   background: white;
   z-index: 5;
 }
+
 .tentacles-bg {
   position: absolute;
   top: 0;
@@ -890,47 +887,57 @@ td {
   pointer-events: none;
   z-index: 1;
 }
+
 .tentacle-line {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 1.5px;
+  height: 1.2px;
   background: #000;
   transform-origin: left center;
-  z-index: 1;
 }
 
-/* 6 lines for 6 boxes */
+/* 8 lines for 8 boxes in 3x3 grid */
 .line-1 {
-  transform: translateY(-50%) rotate(150deg);
-  width: 120px;
-  left: calc(50% - 10px);
-}
-.line-2 {
   transform: translateY(-50%) rotate(180deg);
-  width: 100px;
-  left: calc(50% - 10px);
-}
+  width: 33%;
+  left: 50%;
+} /* Left Mid */
+.line-2 {
+  transform: translateY(-50%) rotate(150deg);
+  width: 38%;
+  left: 50%;
+} /* Left Top */
 .line-3 {
   transform: translateY(-50%) rotate(210deg);
-  width: 120px;
-  left: calc(50% - 10px);
-}
+  width: 38%;
+  left: 50%;
+} /* Left Bottom */
 .line-4 {
-  transform: translateY(-50%) rotate(-30deg);
-  width: 120px;
-  left: calc(50% + 10px);
-}
-.line-5 {
   transform: translateY(-50%) rotate(0deg);
-  width: 100px;
-  left: calc(50% + 10px);
-}
+  width: 33%;
+  left: 50%;
+} /* Right Mid */
+.line-5 {
+  transform: translateY(-50%) rotate(-30deg);
+  width: 38%;
+  left: 50%;
+} /* Right Top */
 .line-6 {
   transform: translateY(-50%) rotate(30deg);
-  width: 120px;
-  left: calc(50% + 10px);
-}
+  width: 38%;
+  left: 50%;
+} /* Right Bottom */
+.line-7 {
+  transform: translateY(-50%) rotate(-90deg);
+  width: 18%;
+  left: 50%;
+} /* Top Mid */
+.line-8 {
+  transform: translateY(-50%) rotate(90deg);
+  width: 18%;
+  left: 50%;
+} /* Bottom Mid */
 
 .fellow-investigators-section {
   overflow: hidden;

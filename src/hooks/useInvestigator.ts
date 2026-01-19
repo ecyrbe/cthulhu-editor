@@ -72,7 +72,7 @@ const getInitialData = (): InvestigatorData => ({
     cash: "",
     assets: "",
   },
-  fellowInvestigators: Array(6).fill({ name: "", player: "" }),
+  fellowInvestigators: Array(8).fill({ name: "", player: "" }),
   notes: "",
 });
 
