@@ -5,6 +5,8 @@
   "export": "Export",
   "import": "Import",
   "reset": "Reset",
+  "fit_to_width": "Fit to Width",
+  "fit_to_height": "Fit to Height",
   "era": "Modern Era",
   "name": "Name",
   "player": "Player",

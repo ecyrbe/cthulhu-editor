@@ -16,8 +16,41 @@ import WealthSection from "./components/investigator/WealthSection";
 import FellowInvestigatorsSection from "./components/investigator/FellowInvestigatorsSection";
 import NotesSection from "./components/investigator/NotesSection";
 import AideMemoireSection from "./components/investigator/AideMemoireSection";
+import ZoomControls from "./components/layout/ZoomControls";
 
 function App() {
+  const [zoom, setZoom] = React.useState(1);
+
+  const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.1, 2));
+  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.1, 0.2));
+  const handleResetZoom = () => setZoom(1);
+
+  const handleFitWidth = () => {
+    const measure = document.createElement("div");
+    measure.style.width = "210mm";
+    measure.style.visibility = "hidden";
+    measure.style.position = "absolute";
+    document.body.appendChild(measure);
+    const mmWidthPx = measure.offsetWidth;
+    document.body.removeChild(measure);
+
+    const availableWidth = window.innerWidth - 80;
+    setZoom(availableWidth / mmWidthPx);
+  };
+
+  const handleFitHeight = () => {
+    const measure = document.createElement("div");
+    measure.style.height = "297mm";
+    measure.style.visibility = "hidden";
+    measure.style.position = "absolute";
+    document.body.appendChild(measure);
+    const mmHeightPx = measure.offsetHeight;
+    document.body.removeChild(measure);
+
+    const availableHeight = window.innerHeight - 40;
+    setZoom(availableHeight / mmHeightPx);
+  };
+
   const {
     data,
     saveData,
@@ -90,192 +123,208 @@ function App() {
         onImport={handleImport}
       />
 
-      {/* PAGE 1 */}
-      <div className="page" id="page1">
-        <div className="page-box">
-          <div className="header-section">
-            <IdentitySection
-              identity={data.identity}
-              onValueChange={setIdentity}
-            />
-            <div className="vertical-separator" />
+      <ZoomControls
+        zoom={zoom}
+        onZoomIn={handleZoomIn}
+        onZoomOut={handleZoomOut}
+        onFitWidth={handleFitWidth}
+        onFitHeight={handleFitHeight}
+        onResetZoom={handleResetZoom}
+      />
 
-            <CharacteristicsSection
-              characteristics={data.characteristics}
-              onValueChange={setCharacteristic}
-            />
-            <div className="vertical-separator" />
+      <div className="pages-wrapper" style={{ zoom }}>
+        {/* PAGE 1 */}
+        <div className="page" id="page1">
+          <div className="page-box">
+            <div className="header-section">
+              <IdentitySection
+                identity={data.identity}
+                onValueChange={setIdentity}
+              />
+              <div className="vertical-separator" />
 
-            {/* Logo/Photo Column */}
-            <div className="header-col right">
-              <div className="logo-container">
-                <div className="call-of-label">{t("call_of")}</div>
-                <div className="cthulhu-label">CTHULHU</div>
+              <CharacteristicsSection
+                characteristics={data.characteristics}
+                onValueChange={setCharacteristic}
+              />
+              <div className="vertical-separator" />
+
+              {/* Logo/Photo Column */}
+              <div className="header-col right">
+                <div className="logo-container">
+                  <div className="call-of-label">{t("call_of")}</div>
+                  <div className="cthulhu-label">CTHULHU</div>
+                </div>
+                <label
+                  className="photo-box"
+                  style={{ backgroundImage: `url(${data.photo})` }}
+                >
+                  {!data.photo && t("photo")}
+                  <input
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    onChange={handlePhotoUpload}
+                  />
+                </label>
               </div>
-              <label
-                className="photo-box"
-                style={{ backgroundImage: `url(${data.photo})` }}
-              >
-                {!data.photo && t("photo")}
-                <input
-                  type="file"
-                  hidden
-                  accept="image/*"
-                  onChange={handlePhotoUpload}
-                />
-              </label>
             </div>
-          </div>
 
-          <div className="trackers-section">
-            <Tracker
-              title={t("hp")}
-              start={-2}
-              end={20}
-              columns={5}
-              currentValue={data.trackers.hp}
-              onSelect={(val) => setTracker("hp", val)}
-              extra={
-                <div className="tracker-extra align-left">
-                  <div className="tracker-row-top">
-                    {t("max")}{" "}
-                    <span className="small-stat-box">
-                      {data.trackers.hpMax}
-                    </span>
-                  </div>
-                  <div className="major-wound-box">
-                    {t("major-wound")}
-                    <div
-                      className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
-                      onClick={() =>
-                        setTracker("majorWound", !data.trackers.majorWound)
-                      }
-                    />
-                  </div>
-                </div>
-              }
-            />
-            <Tracker
-              title={t("mp")}
-              start={0}
-              end={25}
-              columns={5}
-              currentValue={data.trackers.mp}
-              onSelect={(val) => setTracker("mp", val)}
-              extra={
-                <div className="tracker-extra align-left">
-                  <div className="tracker-row-top">
-                    {t("max")}{" "}
-                    <span className="small-stat-box">
-                      {data.trackers.mpMax}
-                    </span>
-                  </div>
-                </div>
-              }
-            />
-            <Tracker
-              title={t("san")}
-              start={0}
-              end={99}
-              columns={10}
-              currentValue={data.trackers.sanity}
-              onSelect={(val) => setTracker("sanity", val)}
-              extra={
-                <div className="tracker-extra">
-                  <div className="tracker-row-top">
-                    {t("initial")}{" "}
-                    <span className="small-stat-box">
-                      {data.trackers.sanityInitial}
-                    </span>
-                    <span
-                      style={{
-                        marginLeft: "12px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <span style={{ display: "flex", alignItems: "center" }}>
-                        {t("temp")}
-                        <div
-                          className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
-                          onClick={() =>
-                            setTracker("tempInsane", !data.trackers.tempInsane)
-                          }
-                        />
+            <div className="trackers-section">
+              <Tracker
+                title={t("hp")}
+                start={-2}
+                end={20}
+                columns={5}
+                currentValue={data.trackers.hp}
+                onSelect={(val) => setTracker("hp", val)}
+                extra={
+                  <div className="tracker-extra align-left">
+                    <div className="tracker-row-top">
+                      {t("max")}{" "}
+                      <span className="small-stat-box">
+                        {data.trackers.hpMax}
                       </span>
-                      <span style={{ display: "flex", alignItems: "center" }}>
-                        {t("persist")}
-                        <div
-                          className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
-                          onClick={() =>
-                            setTracker(
-                              "indefInsane",
-                              !data.trackers.indefInsane,
-                            )
-                          }
-                        />
-                      </span>
-                    </span>
+                    </div>
+                    <div className="major-wound-box">
+                      {t("major-wound")}
+                      <div
+                        className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
+                        onClick={() =>
+                          setTracker("majorWound", !data.trackers.majorWound)
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
-              }
-            />
-            <Tracker
-              title={t("luck")}
-              start={0}
-              end={99}
-              columns={10}
-              currentValue={data.trackers.luck}
-              onSelect={(val) => setTracker("luck", val)}
-            />
-          </div>
-
-          <SkillsSection
-            skills={data.skills}
-            onSkillChange={(idx, field, val) => setSkill(idx, { [field]: val })}
-          />
-
-          <div className="section-box combat-weapons-box">
-            <WeaponTable />
-            <div className="vertical-separator" />
-            <CombatSection
-              db={derivedCombat.db || "0"}
-              build={derivedCombat.build || 0}
-              dodge={data.skills.find((s) => s.key === "dodge")?.current || 0}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* PAGE 2 */}
-      <div className="page" id="page2">
-        <div className="page-box">
-          <BackstorySection
-            backstory={data.backstory}
-            onValueChange={setBackstory}
-          />
-
-          <div className="section-box gear-wealth-row">
-            <GearSection gear={data.gear} onValueChange={setGear} />
-            <div className="vertical-separator" />
-            <WealthSection wealth={data.wealth} onValueChange={setWealth} />
-          </div>
-
-          <div className="section-box row friends-notes-row">
-            <div className="friends-column">
-              <FellowInvestigatorsSection
-                fellows={data.fellowInvestigators}
-                onValueChange={setFellowInvestigator}
+                }
+              />
+              <Tracker
+                title={t("mp")}
+                start={0}
+                end={25}
+                columns={5}
+                currentValue={data.trackers.mp}
+                onSelect={(val) => setTracker("mp", val)}
+                extra={
+                  <div className="tracker-extra align-left">
+                    <div className="tracker-row-top">
+                      {t("max")}{" "}
+                      <span className="small-stat-box">
+                        {data.trackers.mpMax}
+                      </span>
+                    </div>
+                  </div>
+                }
+              />
+              <Tracker
+                title={t("san")}
+                start={0}
+                end={99}
+                columns={10}
+                currentValue={data.trackers.sanity}
+                onSelect={(val) => setTracker("sanity", val)}
+                extra={
+                  <div className="tracker-extra">
+                    <div className="tracker-row-top">
+                      {t("initial")}{" "}
+                      <span className="small-stat-box">
+                        {data.trackers.sanityInitial}
+                      </span>
+                      <span
+                        style={{
+                          marginLeft: "12px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        <span style={{ display: "flex", alignItems: "center" }}>
+                          {t("temp")}
+                          <div
+                            className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                            onClick={() =>
+                              setTracker(
+                                "tempInsane",
+                                !data.trackers.tempInsane,
+                              )
+                            }
+                          />
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center" }}>
+                          {t("persist")}
+                          <div
+                            className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
+                            onClick={() =>
+                              setTracker(
+                                "indefInsane",
+                                !data.trackers.indefInsane,
+                              )
+                            }
+                          />
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                }
+              />
+              <Tracker
+                title={t("luck")}
+                start={0}
+                end={99}
+                columns={10}
+                currentValue={data.trackers.luck}
+                onSelect={(val) => setTracker("luck", val)}
               />
             </div>
-            <div className="vertical-separator" />
-            <div className="notes-column">
-              <NotesSection notes={data.notes} onValueChange={setNotes} />
+
+            <SkillsSection
+              skills={data.skills}
+              onSkillChange={(idx, field, val) =>
+                setSkill(idx, { [field]: val })
+              }
+            />
+
+            <div className="section-box combat-weapons-box">
+              <WeaponTable />
+              <div className="vertical-separator" />
+              <CombatSection
+                db={derivedCombat.db || "0"}
+                build={derivedCombat.build || 0}
+                dodge={data.skills.find((s) => s.key === "dodge")?.current || 0}
+              />
             </div>
           </div>
+        </div>
 
-          <AideMemoireSection />
+        {/* PAGE 2 */}
+        <div className="page" id="page2">
+          <div className="page-box">
+            <BackstorySection
+              backstory={data.backstory}
+              onValueChange={setBackstory}
+            />
+
+            <div className="section-box gear-wealth-row">
+              <GearSection gear={data.gear} onValueChange={setGear} />
+              <div className="vertical-separator" />
+              <WealthSection wealth={data.wealth} onValueChange={setWealth} />
+            </div>
+
+            <div className="section-box row friends-notes-row">
+              <div className="friends-column">
+                <FellowInvestigatorsSection
+                  fellows={data.fellowInvestigators}
+                  onValueChange={setFellowInvestigator}
+                />
+              </div>
+              <div className="vertical-separator" />
+              <div className="notes-column">
+                <NotesSection notes={data.notes} onValueChange={setNotes} />
+              </div>
+            </div>
+
+            <AideMemoireSection />
+          </div>
         </div>
       </div>
     </div>

@@ -5,6 +5,8 @@
   "export": "Exporter",
   "import": "Importer",
   "reset": "Réinitialiser",
+  "fit_to_width": "Ajuster à la largeur",
+  "fit_to_height": "Ajuster à la hauteur",
   "era": "Époque Moderne",
   "name": "Nom",
   "player": "Joueur",
