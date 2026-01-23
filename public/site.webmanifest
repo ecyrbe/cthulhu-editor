@@ -1,6 +1,6 @@
 {
-  "name": "cthulhu-editor",
-  "short_name": "CthulhuEditor",
+  "name": "Call of Cthulhu Investigator Sheet",
+  "short_name": "CthulhuSheet",
   "icons": [
     {
       "src": "favicon-16x16.png",
