@@ -5,6 +5,27 @@
   --menu-text: #fff;
 }
 
+@font-face {
+  font-family: "P22 Typewriter";
+  src: url("./assets/fonts/P22 Typewriter Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Century Gothic";
+  src: url("./assets/fonts/centurygothic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Century Gothic";
+  src: url("./assets/fonts/centurygothic_bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
