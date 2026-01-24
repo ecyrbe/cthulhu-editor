@@ -4,12 +4,14 @@ interface StatBoxProps {
   value: number;
   onChange?: (val: number) => void;
   readOnly?: boolean;
+  ariaLabel?: string;
 }
 
 export const StatBox: React.FC<StatBoxProps> = ({
   value,
   onChange,
   readOnly,
+  ariaLabel,
 }) => {
   return (
     <div className="stat-box">
@@ -19,6 +21,7 @@ export const StatBox: React.FC<StatBoxProps> = ({
           value={value || ""}
           onChange={(e) => onChange?.(parseInt(e.target.value) || 0)}
           readOnly={readOnly}
+          aria-label={ariaLabel}
         />
       </div>
       <div className="stat-subs">

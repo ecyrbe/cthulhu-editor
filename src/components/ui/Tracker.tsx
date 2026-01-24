@@ -34,13 +34,15 @@ export const Tracker: React.FC<TrackerProps> = ({
         style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}
       >
         {items.map((num) => (
-          <div
+          <button
             key={num}
             className={`num-item ${currentValue === num ? "circled" : ""}`}
             onClick={() => onSelect(num)}
+            aria-pressed={currentValue === num}
+            aria-label={`${title} ${num}`}
           >
             {num.toString().padStart(2, "0")}
-          </div>
+          </button>
         ))}
       </div>
     </div>

@@ -30,22 +30,22 @@ const FriendBox: React.FC<FriendBoxProps> = ({
   const { t } = useTranslation();
   return (
     <div className="friend-box">
-      <div className="field-row">
+      <label className="field-row">
         <span className="field-label">{t("char_name")}:</span>
         <input
           className="friend-input"
           value={friend.name ?? ""}
           onChange={(e) => onValueChange(index, "name", e.target.value)}
         />
-      </div>
-      <div className="field-row">
+      </label>
+      <label className="field-row">
         <span className="field-label">{t("char_player")}:</span>
         <input
           className="friend-input"
           value={friend.player ?? ""}
           onChange={(e) => onValueChange(index, "player", e.target.value)}
         />
-      </div>
+      </label>
     </div>
   );
 };

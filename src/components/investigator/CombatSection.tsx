@@ -26,7 +26,7 @@ const CombatSection: React.FC<CombatSectionProps> = ({ db, build, dodge }) => {
         </div>
         <div className="stat-container">
           <span className="stat-label horizontal">{t("dodge")}</span>
-          <StatBox value={dodge} readOnly />
+          <StatBox value={dodge} readOnly ariaLabel={t("dodge")} />
         </div>
       </div>
     </div>

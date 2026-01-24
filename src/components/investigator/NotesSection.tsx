@@ -34,6 +34,7 @@ const NotesSection: React.FC<NotesSectionProps> = ({
             key={i}
             value={lines[i] || ""}
             onChange={(val) => handleLineChange(i, val)}
+            ariaLabel={`${t("notes")} ${i + 1}`}
           />
         ))}
       </div>

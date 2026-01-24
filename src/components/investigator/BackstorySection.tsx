@@ -63,6 +63,7 @@ const BackstorySection: React.FC<BackstorySectionProps> = ({
             key={i + 1}
             value={lines[i + 1] || ""}
             onChange={(val) => handleLineChange(i + 1, val)}
+            ariaLabel={`${t(label)} ${i + 2}`}
           />
         ))}
       </div>

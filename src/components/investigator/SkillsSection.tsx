@@ -49,13 +49,19 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
         {columns.map((col, colIdx) => (
           <div key={colIdx} className="skills-column">
             {col.map(({ skill, index }) => {
+              const skillName = skill.isCustom
+                ? skill.name || t("custom_skill")
+                : t(`skills:${skill.key}`);
+
               return (
                 <div key={index} className="skill-row">
-                  <div
+                  <button
                     className={`skill-check ${skill.checked ? "checked" : ""}`}
                     onClick={() =>
                       onSkillChange(index, "checked", !skill.checked)
                     }
+                    aria-label={`${t("check")} ${skillName}`}
+                    aria-pressed={skill.checked}
                   />
                   <div className="skill-name">
                     {skill.isCustom ? (
@@ -66,6 +72,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                         onChange={(e) =>
                           onSkillChange(index, "name", e.target.value)
                         }
+                        aria-label={t("skill_name")}
                       />
                     ) : (
                       <>
@@ -87,6 +94,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                       readOnly={
                         skill.key === "dodge" || skill.key === "mother_tongue"
                       }
+                      ariaLabel={`${skillName} ${t("value")}`}
                     />
                   </div>
                 </div>

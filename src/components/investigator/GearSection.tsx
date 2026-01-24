@@ -28,6 +28,7 @@ const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
             key={i}
             value={lines[i] || ""}
             onChange={(val) => handleLineChange(i, val)}
+            ariaLabel={`${t("gear")} ${i + 1}`}
           />
         ))}
       </div>

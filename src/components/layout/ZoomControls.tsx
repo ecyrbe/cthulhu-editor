@@ -28,23 +28,40 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         className="zoom-btn"
         onClick={onFitWidth}
         title={t("fit_to_width")}
+        aria-label={t("fit_to_width")}
       >
-        <img src={fitWidthIcon} alt="Fit Width" width="16" height="16" />
+        <img
+          src={fitWidthIcon}
+          aria-hidden="true"
+          width="16"
+          height="16"
+        />
       </button>
       <button
         className="zoom-btn"
         onClick={onFitHeight}
         title={t("fit_to_height")}
+        aria-label={t("fit_to_height")}
       >
-        <img src={fitHeightIcon} alt="Fit Height" width="16" height="16" />
+        <img
+          src={fitHeightIcon}
+          aria-hidden="true"
+          width="16"
+          height="16"
+        />
       </button>
       <div className="zoom-indicator">
         <button className="zoom-btn" onClick={onZoomOut} title={t("zoom_out")}>
           -
         </button>
-        <span className="zoom-text" onClick={onResetZoom} title={t("reset")}>
+        <button
+          className="zoom-text"
+          onClick={onResetZoom}
+          title={t("reset")}
+          aria-label={`${t("reset_zoom")}: ${Math.round(zoom * 100)}%`}
+        >
           {Math.round(zoom * 100)}%
-        </span>
+        </button>
         <button className="zoom-btn" onClick={onZoomIn} title={t("zoom_in")}>
           +
         </button>

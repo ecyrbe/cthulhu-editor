@@ -190,6 +190,7 @@ function App() {
                     hidden
                     accept="image/*"
                     onChange={handlePhotoUpload}
+                    aria-label={t("photo_upload")}
                   />
                 </label>
               </div>
@@ -213,11 +214,13 @@ function App() {
                     </div>
                     <div className="major-wound-box">
                       {t("major-wound")}
-                      <div
+                      <button
                         className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
                         onClick={() =>
                           setTracker("majorWound", !data.trackers.majorWound)
                         }
+                        aria-label={t("major-wound")}
+                        aria-pressed={data.trackers.majorWound}
                       />
                     </div>
                   </div>
@@ -265,7 +268,7 @@ function App() {
                       >
                         <span style={{ display: "flex", alignItems: "center" }}>
                           {t("temp")}
-                          <div
+                          <button
                             className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
                             onClick={() =>
                               setTracker(
@@ -273,11 +276,13 @@ function App() {
                                 !data.trackers.tempInsane,
                               )
                             }
+                            aria-label={t("temp")}
+                            aria-pressed={data.trackers.tempInsane}
                           />
                         </span>
                         <span style={{ display: "flex", alignItems: "center" }}>
                           {t("persist")}
-                          <div
+                          <button
                             className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
                             onClick={() =>
                               setTracker(
@@ -285,6 +290,8 @@ function App() {
                                 !data.trackers.indefInsane,
                               )
                             }
+                            aria-label={t("persist")}
+                            aria-pressed={data.trackers.indefInsane}
                           />
                         </span>
                       </span>
@@ -357,8 +364,9 @@ function App() {
           className="scroll-to-top desktop-only"
           onClick={scrollToTop}
           title={t("go_to_top")}
+          aria-label={t("go_to_top")}
         >
-          <img src={arrowUpIcon} alt="Top" width="24" height="24" />
+          <img src={arrowUpIcon} aria-hidden="true" width="24" height="24" />
         </button>
       )}
     </div>

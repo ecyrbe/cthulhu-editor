@@ -25,31 +25,36 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
           ["TAI", "INT", "MVT"],
         ].map((row, i) => (
           <React.Fragment key={i}>
-            {row.map((stat) => (
-              <div key={stat} className="stat-container">
-                <span className="stat-label">{t(stat.toLowerCase())}</span>
-                {stat === "MVT" ? (
-                  <div className="mvt-box">
-                    <input
-                      type="number"
-                      value={characteristics.MVT || ""}
-                      onChange={(e) =>
-                        onValueChange("MVT", parseInt(e.target.value) || 0)
+            {row.map((stat) => {
+              const label = t(stat.toLowerCase());
+              return (
+                <div key={stat} className="stat-container">
+                  <span className="stat-label">{label}</span>
+                  {stat === "MVT" ? (
+                    <div className="mvt-box">
+                      <input
+                        type="number"
+                        value={characteristics.MVT || ""}
+                        onChange={(e) =>
+                          onValueChange("MVT", parseInt(e.target.value) || 0)
+                        }
+                        aria-label={label}
+                      />
+                    </div>
+                  ) : (
+                    <StatBox
+                      value={
+                        characteristics[
+                          stat as keyof InvestigatorData["characteristics"]
+                        ]
                       }
+                      onChange={(val) => onValueChange(stat, val)}
+                      ariaLabel={label}
                     />
-                  </div>
-                ) : (
-                  <StatBox
-                    value={
-                      characteristics[
-                        stat as keyof InvestigatorData["characteristics"]
-                      ]
-                    }
-                    onChange={(val) => onValueChange(stat, val)}
-                  />
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </React.Fragment>
         ))}
       </div>

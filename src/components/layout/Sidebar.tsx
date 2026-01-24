@@ -43,37 +43,47 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      <div
+      <button
         id="menu-toggle"
         onClick={() => setIsOpen(!isOpen)}
         title={t("menu")}
+        aria-label={t("menu")}
+        aria-expanded={isOpen}
       >
         {isOpen ? "✕" : "☰"}
-      </div>
+      </button>
       <div id="menu-panel" className={isOpen ? "open" : ""}>
         <div className="menu-label">Language / Langue</div>
         <div className="lang-selector-wrapper">
           <button
             className="lang-current-btn"
             onClick={() => setIsLangOpen(!isLangOpen)}
+            aria-expanded={isLangOpen}
+            aria-haspopup="listbox"
           >
-            <span className="lang-flag">{currentLang.flag}</span>
+            <span className="lang-flag" aria-hidden="true">
+              {currentLang.flag}
+            </span>
             <span className="lang-label-text">{currentLang.label}</span>
           </button>
           {isLangOpen && (
-            <div className="lang-dropdown">
+            <div className="lang-dropdown" role="listbox">
               {languages.map((lang) => (
-                <div
+                <button
                   key={lang.code}
                   className={`lang-option ${currentLang.code === lang.code ? "active" : ""}`}
                   onClick={() => {
                     i18n.changeLanguage(lang.code);
                     setIsLangOpen(false);
                   }}
+                  role="option"
+                  aria-selected={currentLang.code === lang.code}
                 >
-                  <span className="flag">{lang.flag}</span>
+                  <span className="flag" aria-hidden="true">
+                    {lang.flag}
+                  </span>
                   <span className="label">{lang.label}</span>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -83,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="menu-btn" onClick={onRoll}>
           <img
             src={diceIcon}
-            alt="Roll"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"
@@ -93,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="menu-btn" onClick={onSave}>
           <img
             src={saveIcon}
-            alt="Save"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"
@@ -103,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="menu-btn print-btn" onClick={onPrint}>
           <img
             src={printIcon}
-            alt="Print"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"
@@ -115,17 +125,27 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="menu-btn" onClick={onExport}>
           <img
             src={exportIcon}
-            alt="Export"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"
           />{" "}
           <span className="btn-text">{t("export")}</span>
         </button>
-        <label className="menu-btn" style={{ cursor: "pointer" }}>
+        <label
+          className="menu-btn"
+          style={{ cursor: "pointer" }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.currentTarget.querySelector("input")?.click();
+            }
+          }}
+        >
           <img
             src={importIcon}
-            alt="Import"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"
@@ -141,7 +161,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="menu-btn reset-btn" onClick={onReset}>
           <img
             src={resetIcon}
-            alt="Reset"
+            aria-hidden="true"
             width="18"
             height="18"
             className="btn-icon"

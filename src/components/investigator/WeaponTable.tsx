@@ -28,31 +28,31 @@ const WeaponTable: React.FC = () => {
             .map((_, i) => (
               <tr key={i}>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("weapon_name")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("reg")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("hard")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("ext")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("damage")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("range")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("attacks")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("ammo")} ${i + 1}`} />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input type="text" aria-label={`${t("malf")} ${i + 1}`} />
                 </td>
               </tr>
             ))}
