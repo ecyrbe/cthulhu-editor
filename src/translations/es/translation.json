@@ -81,6 +81,7 @@
   "rules_right": "<b>Heridas et Curación</b><br>Primeros Auxilios: Cura 1 PV. Medicina: Cura 1D3 PV.<br>Herida Grave: Pérdida ≥ ½ máx PV en un ataque.<br>Curación natural: 1 PV / día.<br>Moribundo: 0 PV + Herida Grave.",
   "toast_save_success": "¡Datos del investigador guardados!",
   "toast_import_success": "¡Datos del investigador importados!",
+  "toast_reset_success": "¡Datos restablecidos!",
   "toast_import_error": "Error al analizar el archivo JSON",
   "confirm_reset": "¿Estás seguro de que quieres restablecer todos los datos?"
 }

@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 import type { InvestigatorData, Skill } from "../types";
 import { initialSkillsData } from "../constants/skills";
 
@@ -224,9 +225,8 @@ export function useInvestigator() {
   }, []);
 
   const resetData = useCallback(() => {
-    if (window.confirm(t("confirm_reset"))) {
-      setData(getInitialData());
-    }
+    setData(getInitialData());
+    toast.success(t("toast_reset_success"));
   }, [t]);
 
   const exportData = useCallback(() => {

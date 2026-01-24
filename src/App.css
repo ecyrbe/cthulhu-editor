@@ -53,9 +53,12 @@
   gap: 10px;
 }
 
+.btn-icon {
+  filter: invert(1);
+}
+
 .reset-btn {
   margin-top: 20px;
-  color: #ff4444;
 }
 
 .menu-btn:hover {

@@ -81,6 +81,7 @@
   "rules_right": "<b>Wunden und Heilung</b><br>Erste Hilfe: Heilt 1 TP. Medizin: Heilt 1W3 TP.<br>Schwere Wunde: Verlust ≥ ½ max TP durch einen Angriff.<br>Natürliche Heilung: 1 TP / Tag.<br>Sterbend: 0 TP + Schwere Wunde.",
   "toast_save_success": "Investigator-Daten gespeichert!",
   "toast_import_success": "Investigator-Daten importiert!",
+  "toast_reset_success": "Daten zurückgesetzt!",
   "toast_import_error": "JSON-Datei konnte nicht analysiert werden",
   "confirm_reset": "Sind Sie sicher, dass Sie alle Daten zurücksetzen möchten?"
 }

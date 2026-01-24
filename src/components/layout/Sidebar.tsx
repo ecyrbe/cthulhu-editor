@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import diceIcon from "../../assets/dice-six.svg";
+import saveIcon from "../../assets/floppy-disk.svg";
+import printIcon from "../../assets/printing-page.svg";
+import exportIcon from "../../assets/floppy-disk-arrow-out.svg";
+import importIcon from "../../assets/floppy-disk-arrow-in.svg";
+import resetIcon from "../../assets/erase.svg";
 
 interface SidebarProps {
   onRoll: () => void;
@@ -74,25 +80,55 @@ const Sidebar: React.FC<SidebarProps> = ({
 
         <div className="menu-label">Actions</div>
         <button className="menu-btn" onClick={onRoll}>
-          <span className="btn-icon">🎲</span>{" "}
+          <img
+            src={diceIcon}
+            alt="Roll"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("roll")}</span>
         </button>
         <button className="menu-btn" onClick={onSave}>
-          <span className="btn-icon">💾</span>{" "}
+          <img
+            src={saveIcon}
+            alt="Save"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("save")}</span>
         </button>
         <button className="menu-btn print-btn" onClick={onPrint}>
-          <span className="btn-icon">🖨️</span>{" "}
+          <img
+            src={printIcon}
+            alt="Print"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("print")}</span>
         </button>
 
         <div className="menu-label">Data</div>
         <button className="menu-btn" onClick={onExport}>
-          <span className="btn-icon">📤</span>{" "}
+          <img
+            src={exportIcon}
+            alt="Export"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("export")}</span>
         </button>
         <label className="menu-btn" style={{ cursor: "pointer" }}>
-          <span className="btn-icon">📥</span>{" "}
+          <img
+            src={importIcon}
+            alt="Import"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("import")}</span>
           <input
             type="file"
@@ -102,7 +138,13 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         </label>
         <button className="menu-btn reset-btn" onClick={onReset}>
-          <span className="btn-icon">🗑️</span>{" "}
+          <img
+            src={resetIcon}
+            alt="Reset"
+            width="18"
+            height="18"
+            className="btn-icon"
+          />{" "}
           <span className="btn-text">{t("reset")}</span>
         </button>
       </div>
