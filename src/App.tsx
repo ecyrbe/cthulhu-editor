@@ -347,10 +347,7 @@ function App() {
             />
 
             <div className="section-box combat-weapons-box">
-              <WeaponTable
-                weapons={data.weapons}
-                onWeaponChange={setWeapon}
-              />
+              <WeaponTable weapons={data.weapons} onWeaponChange={setWeapon} />
               <div className="vertical-separator" />
               <CombatSection
                 db={derivedCombat.db || "0"}
