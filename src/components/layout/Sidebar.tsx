@@ -36,7 +36,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      <div id="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+      <div
+        id="menu-toggle"
+        onClick={() => setIsOpen(!isOpen)}
+        title={t("menu")}
+      >
         {isOpen ? "✕" : "☰"}
       </div>
       <div id="menu-panel" className={isOpen ? "open" : ""}>

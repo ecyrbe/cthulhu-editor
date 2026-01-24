@@ -39,13 +39,13 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         <img src={fitHeightIcon} alt="Fit Height" width="16" height="16" />
       </button>
       <div className="zoom-indicator">
-        <button className="zoom-btn" onClick={onZoomOut}>
+        <button className="zoom-btn" onClick={onZoomOut} title={t("zoom_out")}>
           -
         </button>
         <span className="zoom-text" onClick={onResetZoom} title={t("reset")}>
           {Math.round(zoom * 100)}%
         </span>
-        <button className="zoom-btn" onClick={onZoomIn}>
+        <button className="zoom-btn" onClick={onZoomIn} title={t("zoom_in")}>
           +
         </button>
       </div>
