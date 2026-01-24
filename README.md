@@ -26,7 +26,7 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Interactive Trackers**: Easily track Hit Points, Sanity, Luck, and Magic Points.
 - **Weapon & Combat Management**: Dedicated sections for weapons and combat calculations.
-- **Multi-language Support**: Available in English, Spanish, French, and German.
+- **Multi-language Support**: Available in English, Spanish, French, German, and Portuguese.
 - **Import/Export**: Save your investigator data as JSON files to keep them safe or share them.
 - **Printable**: Formatted specifically for printing to take your digital sheet to the physical table.
 - **Aide Memoire**: Quick reference for common rules and rolls.

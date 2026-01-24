@@ -10,6 +10,8 @@ import translationES from "./translations/es/translation.json";
 import skillsES from "./translations/es/skills.json";
 import translationDE from "./translations/de/translation.json";
 import skillsDE from "./translations/de/skills.json";
+import translationPT from "./translations/pt/translation.json";
+import skillsPT from "./translations/pt/skills.json";
 
 const resources = {
   fr: {
@@ -27,6 +29,10 @@ const resources = {
   de: {
     translation: translationDE,
     skills: skillsDE,
+  },
+  pt: {
+    translation: translationPT,
+    skills: skillsPT,
   },
 };
 
