@@ -197,116 +197,150 @@ function App() {
             </div>
 
             <div className="trackers-section">
-              <Tracker
-                title={t("hp")}
-                start={-2}
-                end={20}
-                columns={5}
-                currentValue={data.trackers.hp}
-                onSelect={(val) => setTracker("hp", val)}
-                extra={
-                  <div className="tracker-extra align-left">
-                    <div className="tracker-row-top">
-                      {t("max")}{" "}
-                      <span className="small-stat-box">
-                        {data.trackers.hpMax}
-                      </span>
-                    </div>
-                    <div className="major-wound-box">
-                      {t("major-wound")}
-                      <button
-                        className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
-                        onClick={() =>
-                          setTracker("majorWound", !data.trackers.majorWound)
-                        }
-                        aria-label={t("major-wound")}
-                        aria-pressed={data.trackers.majorWound}
-                      />
-                    </div>
-                  </div>
-                }
-              />
-              <Tracker
-                title={t("mp")}
-                start={0}
-                end={25}
-                columns={5}
-                currentValue={data.trackers.mp}
-                onSelect={(val) => setTracker("mp", val)}
-                extra={
-                  <div className="tracker-extra align-left">
-                    <div className="tracker-row-top">
-                      {t("max")}{" "}
-                      <span className="small-stat-box">
-                        {data.trackers.mpMax}
-                      </span>
-                    </div>
-                  </div>
-                }
-              />
-              <Tracker
-                title={t("san")}
-                start={0}
-                end={99}
-                columns={10}
-                currentValue={data.trackers.sanity}
-                onSelect={(val) => setTracker("sanity", val)}
-                extra={
-                  <div className="tracker-extra">
-                    <div className="tracker-row-top">
-                      {t("initial")}{" "}
-                      <span className="small-stat-box">
-                        {data.trackers.sanityInitial}
-                      </span>
-                      <span
-                        style={{
-                          marginLeft: "12px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "8px",
-                        }}
-                      >
-                        <span style={{ display: "flex", alignItems: "center" }}>
-                          {t("temp")}
+              <div className="trackers-outer-container">
+                <div className="trackers-group-left">
+                  <Tracker
+                    title={t("hp")}
+                    start={0}
+                    end={20}
+                    columns={5}
+                    layoutType="offset-zero"
+                    currentValue={data.trackers.hp}
+                    onSelect={(val) => setTracker("hp", val)}
+                    extra={
+                      <div className="tracker-extra">
+                        <div className="tracker-row-top">
+                          {t("major-wound")}
                           <button
-                            className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                            className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
                             onClick={() =>
                               setTracker(
-                                "tempInsane",
-                                !data.trackers.tempInsane,
+                                "majorWound",
+                                !data.trackers.majorWound,
                               )
                             }
-                            aria-label={t("temp")}
-                            aria-pressed={data.trackers.tempInsane}
+                            aria-label={t("major-wound")}
+                            aria-pressed={data.trackers.majorWound}
                           />
-                        </span>
-                        <span style={{ display: "flex", alignItems: "center" }}>
-                          {t("persist")}
-                          <button
-                            className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
-                            onClick={() =>
-                              setTracker(
-                                "indefInsane",
-                                !data.trackers.indefInsane,
-                              )
+                        </div>
+                        <div className="tracker-row-top">
+                          {t("max")}{" "}
+                          <input
+                            type="number"
+                            className="small-stat-box"
+                            value={data.trackers.hpMax || ""}
+                            onChange={(e) =>
+                              setTracker("hpMax", parseInt(e.target.value) || 0)
                             }
-                            aria-label={t("persist")}
-                            aria-pressed={data.trackers.indefInsane}
                           />
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                }
-              />
-              <Tracker
-                title={t("luck")}
-                start={0}
-                end={99}
-                columns={10}
-                currentValue={data.trackers.luck}
-                onSelect={(val) => setTracker("luck", val)}
-              />
+                        </div>
+                      </div>
+                    }
+                  />
+                  <Tracker
+                    title={t("mp")}
+                    start={0}
+                    end={25}
+                    columns={6}
+                    layoutType="offset-zero"
+                    currentValue={data.trackers.mp}
+                    onSelect={(val) => setTracker("mp", val)}
+                    extra={
+                      <div className="tracker-extra">
+                        <div className="tracker-row-top">
+                          {t("max")}{" "}
+                          <input
+                            type="number"
+                            className="small-stat-box"
+                            value={data.trackers.mpMax || ""}
+                            onChange={(e) =>
+                              setTracker("mpMax", parseInt(e.target.value) || 0)
+                            }
+                          />
+                        </div>
+                      </div>
+                    }
+                  />
+                </div>
+
+                <div className="trackers-group-right">
+                  <Tracker
+                    title={t("san")}
+                    start={1}
+                    end={99}
+                    columns={21}
+                    layoutType="with-prefix"
+                    prefixText={t("insanity")}
+                    prefixSpan={6}
+                    currentValue={data.trackers.sanity}
+                    onSelect={(val) => setTracker("sanity", val)}
+                    headerLeft={
+                      <>
+                        {t("temp")}
+                        <button
+                          className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                          onClick={() =>
+                            setTracker("tempInsane", !data.trackers.tempInsane)
+                          }
+                          aria-label={t("temp")}
+                          aria-pressed={data.trackers.tempInsane}
+                        />
+                        {t("persist")}
+                        <button
+                          className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
+                          onClick={() =>
+                            setTracker(
+                              "indefInsane",
+                              !data.trackers.indefInsane,
+                            )
+                          }
+                          aria-label={t("persist")}
+                          aria-pressed={data.trackers.indefInsane}
+                        />
+                      </>
+                    }
+                    headerRight={
+                      <>
+                        {t("initial")}
+                        <input
+                          type="number"
+                          className="small-stat-box"
+                          value={data.trackers.sanityInitial || ""}
+                          onChange={(e) =>
+                            setTracker(
+                              "sanityInitial",
+                              parseInt(e.target.value) || 0,
+                            )
+                          }
+                        />
+                        {t("max")}
+                        <input
+                          type="number"
+                          className="small-stat-box"
+                          value={data.trackers.sanityMax || ""}
+                          onChange={(e) =>
+                            setTracker(
+                              "sanityMax",
+                              parseInt(e.target.value) || 0,
+                            )
+                          }
+                        />
+                      </>
+                    }
+                  />
+                  <Tracker
+                    title={t("luck")}
+                    start={1}
+                    end={99}
+                    columns={21}
+                    layoutType="with-prefix"
+                    prefixText={t("bad_luck")}
+                    prefixSpan={6}
+                    currentValue={data.trackers.luck}
+                    onSelect={(val) => setTracker("luck", val)}
+                  />
+                </div>
+              </div>
             </div>
 
             <SkillsSection

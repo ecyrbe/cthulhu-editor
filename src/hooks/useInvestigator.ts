@@ -36,6 +36,7 @@ const getInitialData = (): InvestigatorData => ({
     hpMax: 0,
     mpMax: 0,
     sanityInitial: 0,
+    sanityMax: 0,
     majorWound: false,
     tempInsane: false,
     indefInsane: false,

@@ -481,61 +481,91 @@ input[type="number"] {
 
 /* Trackers */
 .trackers-section {
-  display: flex;
-  border-bottom: 1.5px solid #000;
-  padding: 0;
-  align-items: stretch;
-  flex-shrink: 0;
+  border-bottom: 2px solid #000;
   background-color: #f2f2f2;
 }
 
-.tracker-col {
+.trackers-outer-container {
+  display: flex;
+  width: 100%;
+}
+
+.trackers-group-left {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trackers-group-right {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker-container {
   padding: 2px 4px;
-  flex: 1.5;
-  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
 }
-.tracker-col.small {
+
+.trackers-group-left .tracker-container:first-child,
+.trackers-group-right .tracker-container:first-child {
+  padding-bottom: 4px;
+}
+
+.tracker-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1px;
+  position: relative;
+  width: 100%;
+  min-height: 16px;
+}
+
+.tracker-header-left,
+.tracker-header-right {
   flex: 1;
-}
-.tracker-col:last-child {
-  border-right: none;
-}
-
-.field-label.center {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  gap: 8px;
 }
 
-.tracker-col .field-label.center {
-  text-align: center;
-  font-size: 1.1em;
-  text-transform: uppercase;
-  margin-bottom: 2px;
-  display: block;
-  font-weight: 900;
-  letter-spacing: 0.8px;
+.tracker-header-left {
+  justify-content: flex-start;
+}
+
+.tracker-header-right {
+  justify-content: flex-end;
+}
+
+.tracker-content-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.tracker-extra-side {
+  flex: 0 0 auto;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .tracker-extra {
-  font-size: 0.75em;
-  text-align: center;
-  margin-bottom: 2px;
-}
-
-.tracker-extra.align-left {
-  text-align: left;
-  padding-left: 4px;
-}
-
-.tracker-extra.align-left .tracker-row-top {
-  justify-content: flex-start;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .tracker-row-top {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
-  margin-bottom: 1px;
 }
 
 .small-stat-box {
@@ -545,13 +575,64 @@ input[type="number"] {
   height: 16px;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
   background: #fff;
+  font-size: 0.8em;
+  padding: 0;
+  text-align: center;
+  appearance: textfield;
 }
 
-.tracker-row-sub {
-  margin-top: 2px;
-  font-weight: 700;
+.tracker-grid {
+  display: grid;
+  gap: 0;
+  flex: 1;
+}
+
+.tracker-num,
+.tracker-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  position: relative;
+  border: none;
+  height: 12px;
+}
+
+.tracker-prefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  height: 12px;
+}
+
+.tracker-empty {
+  background: transparent;
+}
+
+.tracker-num:hover {
+  background: #f8f8f8;
+}
+
+.tracker-num.selected .num-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 110%;
+  border: 1px solid #000;
+  border-radius: 50%;
+  font-weight: 900;
+}
+
+.num-text {
+  font-family: inherit;
+  color: #333;
+}
+
+.tracker-num.selected .num-text {
+  color: #000;
 }
 
 .tracker-check {
@@ -560,39 +641,13 @@ input[type="number"] {
   border: 1.5px solid #000;
   display: inline-block;
   background: #fff;
-  vertical-align: middle;
-  margin-left: 4px;
+  cursor: pointer;
 }
 
 .tracker-check.checked {
   background: #000;
 }
 
-.major-wound-box {
-  margin-top: 2px;
-}
-
-.number-grid {
-  display: grid;
-  gap: 1px;
-  padding-top: 2px;
-}
-
-.num-item {
-  font-size: 0.65em;
-  text-align: center;
-  padding: 1px 0;
-  color: #333;
-  width: 100%;
-}
-
-.num-item.circled {
-  color: #000;
-  font-weight: 900;
-  outline: 1.5px solid #000;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.05);
-}
 .input-box-small {
   width: 30px;
   border: 1px solid #000;

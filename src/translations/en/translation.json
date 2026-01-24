@@ -40,6 +40,8 @@
   "initial": "Initial",
   "temp": "Temp",
   "persist": "Indef",
+  "insanity": "Insanity",
+  "bad_luck": "Bad Luck",
   "luck": "Luck",
   "skills_title": "Skills",
   "weapons": "Weapons",

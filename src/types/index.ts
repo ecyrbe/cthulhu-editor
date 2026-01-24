@@ -45,6 +45,7 @@ export interface InvestigatorData {
     hpMax: number;
     mpMax: number;
     sanityInitial: number;
+    sanityMax: number;
     majorWound: boolean;
     tempInsane: boolean;
     indefInsane: boolean;
