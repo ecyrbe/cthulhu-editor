@@ -31,6 +31,7 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 - **Printable**: Formatted specifically for printing to take your digital sheet to the physical table.
 - **Aide Memoire**: Quick reference for common rules and rolls.
 - **Rolling System**: Built-in support for character initialization and rolling.
+- **Zoom Controls**: Flexible zooming options to fit the sheet to width, height, or reset to default level.
 
 ## Tech Stack
 
