@@ -23,7 +23,7 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div id="zoom-controls">
+    <aside id="zoom-controls" aria-label={t("zoom_controls")}>
       <button
         className="zoom-btn"
         onClick={onFitWidth}
@@ -41,7 +41,12 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         <img src={fitHeightIcon} aria-hidden="true" width="16" height="16" />
       </button>
       <div className="zoom-indicator">
-        <button className="zoom-btn" onClick={onZoomOut} title={t("zoom_out")}>
+        <button
+          className="zoom-btn"
+          onClick={onZoomOut}
+          title={t("zoom_out")}
+          aria-label={t("zoom_out")}
+        >
           -
         </button>
         <button
@@ -52,11 +57,16 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         >
           {Math.round(zoom * 100)}%
         </button>
-        <button className="zoom-btn" onClick={onZoomIn} title={t("zoom_in")}>
+        <button
+          className="zoom-btn"
+          onClick={onZoomIn}
+          title={t("zoom_in")}
+          aria-label={t("zoom_in")}
+        >
           +
         </button>
       </div>
-    </div>
+    </aside>
   );
 };
 

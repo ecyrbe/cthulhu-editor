@@ -157,7 +157,7 @@ function App() {
         onResetZoom={handleResetZoom}
       />
 
-      <div className="pages-wrapper" style={{ zoom }}>
+      <main className="pages-wrapper" style={{ zoom }}>
         {/* PAGE 1 */}
         <div className="page" id="page1">
           <div className="page-box">
@@ -358,17 +358,18 @@ function App() {
             <AideMemoireSection />
           </div>
         </div>
-      </div>
-      {showScrollTop && (
-        <button
-          className="scroll-to-top desktop-only"
-          onClick={scrollToTop}
-          title={t("go_to_top")}
-          aria-label={t("go_to_top")}
-        >
-          <img src={arrowUpIcon} aria-hidden="true" width="24" height="24" />
-        </button>
-      )}
+
+        {showScrollTop && (
+          <button
+            className="scroll-to-top desktop-only"
+            onClick={scrollToTop}
+            title={t("go_to_top")}
+            aria-label={t("go_to_top")}
+          >
+            <img src={arrowUpIcon} aria-hidden="true" width="24" height="24" />
+          </button>
+        )}
+      </main>
     </div>
   );
 }

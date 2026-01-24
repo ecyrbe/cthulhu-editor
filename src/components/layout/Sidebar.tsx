@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     ) || languages[0];
 
   return (
-    <>
+    <nav className="sidebar-nav" aria-label={t("menu")}>
       <button
         id="menu-toggle"
         onClick={() => setIsOpen(!isOpen)}
@@ -167,7 +167,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <span className="btn-text">{t("reset")}</span>
         </button>
       </div>
-    </>
+    </nav>
   );
 };
 
