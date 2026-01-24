@@ -148,6 +148,41 @@
   color: var(--menu-text);
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background: var(--menu-bg);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.scroll-to-top:hover {
+  background: #444;
+  transform: translateY(-5px);
+}
+
+.scroll-to-top img {
+  filter: invert(1);
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
 .zoom-indicator {
   display: flex;
   align-items: center;
