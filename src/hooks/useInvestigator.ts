@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+import { normalize } from "../utils/normalize";
 import type { InvestigatorData, Skill } from "../types";
 import { initialSkillsData } from "../constants/skills";
 
@@ -236,7 +237,7 @@ export function useInvestigator() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `investigator-${data.identity.name || "unnamed"}.json`;
+    a.download = `investigator-${normalize(data.identity.name) || "unnamed"}.json`;
     a.click();
     URL.revokeObjectURL(url);
   }, [data]);
