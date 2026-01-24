@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import diceIcon from "../../assets/dice-six.svg";
 import saveIcon from "../../assets/floppy-disk.svg";
@@ -27,6 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const languages = [
     { code: "fr", label: "Français", flag: "🇫🇷" },
@@ -132,16 +133,9 @@ const Sidebar: React.FC<SidebarProps> = ({
           />{" "}
           <span className="btn-text">{t("export")}</span>
         </button>
-        <label
+        <button
           className="menu-btn"
-          style={{ cursor: "pointer" }}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.currentTarget.querySelector("input")?.click();
-            }
-          }}
+          onClick={() => fileInputRef.current?.click()}
         >
           <img
             src={importIcon}
@@ -153,11 +147,12 @@ const Sidebar: React.FC<SidebarProps> = ({
           <span className="btn-text">{t("import")}</span>
           <input
             type="file"
+            ref={fileInputRef}
             accept=".json"
             onChange={onImport}
             style={{ display: "none" }}
           />
-        </label>
+        </button>
         <button className="menu-btn reset-btn" onClick={onReset}>
           <img
             src={resetIcon}
