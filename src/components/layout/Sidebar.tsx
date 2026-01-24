@@ -54,13 +54,16 @@ const Sidebar: React.FC<SidebarProps> = ({
         {isOpen ? "✕" : "☰"}
       </button>
       <div id="menu-panel" className={isOpen ? "open" : ""}>
-        <div className="menu-label">Language / Langue</div>
+        <div id="lang-label" className="menu-label">
+          Language / Langue
+        </div>
         <div className="lang-selector-wrapper">
           <button
             className="lang-current-btn"
             onClick={() => setIsLangOpen(!isLangOpen)}
             aria-expanded={isLangOpen}
             aria-haspopup="listbox"
+            aria-labelledby="lang-label"
           >
             <span className="lang-flag" aria-hidden="true">
               {currentLang.flag}
