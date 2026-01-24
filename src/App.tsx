@@ -207,36 +207,32 @@ function App() {
                     layoutType="offset-zero"
                     currentValue={data.trackers.hp}
                     onSelect={(val) => setTracker("hp", val)}
-                    extra={
-                      <div className="tracker-extra">
-                        <div className="tracker-row-top">
-                          {t("major-wound")}
-                          <button
-                            className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
-                            onClick={() =>
-                              setTracker(
-                                "majorWound",
-                                !data.trackers.majorWound,
-                              )
-                            }
-                            aria-label={t("major-wound")}
-                            aria-pressed={data.trackers.majorWound}
-                          />
-                        </div>
-                        <div className="tracker-row-top">
-                          {t("max")}{" "}
-                          <input
-                            type="number"
-                            className="small-stat-box"
-                            value={data.trackers.hpMax || ""}
-                            onChange={(e) =>
-                              setTracker("hpMax", parseInt(e.target.value) || 0)
-                            }
-                          />
-                        </div>
+                  >
+                    <div className="tracker-extra">
+                      <div className="tracker-row-top">
+                        {t("major-wound")}
+                        <button
+                          className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
+                          onClick={() =>
+                            setTracker("majorWound", !data.trackers.majorWound)
+                          }
+                          aria-label={t("major-wound")}
+                          aria-pressed={data.trackers.majorWound}
+                        />
                       </div>
-                    }
-                  />
+                      <div className="tracker-row-top">
+                        {t("max")}{" "}
+                        <input
+                          type="number"
+                          className="small-stat-box"
+                          value={data.trackers.hpMax || ""}
+                          onChange={(e) =>
+                            setTracker("hpMax", parseInt(e.target.value) || 0)
+                          }
+                        />
+                      </div>
+                    </div>
+                  </Tracker>
                   <Tracker
                     title={t("mp")}
                     start={0}
@@ -245,22 +241,21 @@ function App() {
                     layoutType="offset-zero"
                     currentValue={data.trackers.mp}
                     onSelect={(val) => setTracker("mp", val)}
-                    extra={
-                      <div className="tracker-extra">
-                        <div className="tracker-row-top">
-                          {t("max")}{" "}
-                          <input
-                            type="number"
-                            className="small-stat-box"
-                            value={data.trackers.mpMax || ""}
-                            onChange={(e) =>
-                              setTracker("mpMax", parseInt(e.target.value) || 0)
-                            }
-                          />
-                        </div>
+                  >
+                    <div className="tracker-extra">
+                      <div className="tracker-row-top">
+                        {t("max")}{" "}
+                        <input
+                          type="number"
+                          className="small-stat-box"
+                          value={data.trackers.mpMax || ""}
+                          onChange={(e) =>
+                            setTracker("mpMax", parseInt(e.target.value) || 0)
+                          }
+                        />
                       </div>
-                    }
-                  />
+                    </div>
+                  </Tracker>
                 </div>
 
                 <div className="trackers-group-right">

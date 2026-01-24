@@ -8,7 +8,7 @@ interface TrackerProps {
   columns?: number;
   currentValue: number;
   onSelect: (val: number) => void;
-  extra?: React.ReactNode;
+  children?: React.ReactNode;
   headerLeft?: React.ReactNode;
   headerRight?: React.ReactNode;
   layoutType?: "standard" | "offset-zero" | "with-prefix";
@@ -23,7 +23,7 @@ export const Tracker: React.FC<TrackerProps> = ({
   columns = 10,
   currentValue,
   onSelect,
-  extra,
+  children,
   headerLeft,
   headerRight,
   layoutType = "standard",
@@ -107,7 +107,7 @@ export const Tracker: React.FC<TrackerProps> = ({
         <div className="tracker-header-right">{headerRight}</div>
       </div>
       <div className="tracker-content-wrapper">
-        {extra && <div className="tracker-extra-side">{extra}</div>}
+        {children && <div className="tracker-extra-side">{children}</div>}
         <div
           className="tracker-grid"
           style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}
