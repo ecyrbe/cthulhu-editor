@@ -18,7 +18,7 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 
 ### Mobile View
 
-![Mobile View](docs/cthulhu-editor-mobile.png)
+<img src="docs/cthulhu-editor-mobile.png" alt="Mobile View" width="300">
 
 ## Features
 
