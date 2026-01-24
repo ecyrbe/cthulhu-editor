@@ -482,7 +482,7 @@ input[type="number"] {
 /* Trackers */
 .trackers-section {
   border-bottom: 2px solid #000;
-  background-color: #f2f2f2;
+  background-color: #f1f1f0;
 }
 
 .trackers-outer-container {
@@ -675,10 +675,14 @@ input[type="number"] {
 .skill-row {
   display: flex;
   align-items: center;
-  margin-bottom: 2px;
+  padding: 0 2px 2px 2px;
   font-size: 0.8em;
-  height: 23px;
+  height: 21px;
   gap: 2px;
+}
+
+.skill-row:nth-child(odd) {
+  background-color: #f1f1f0;
 }
 
 .skill-check {
@@ -944,7 +948,7 @@ td {
 
 .aide-memoire-section {
   margin-top: auto;
-  background-color: #f2f2f2;
+  background-color: #f1f1f0;
   padding: 8px 15px;
   border-radius: 8px;
 }
