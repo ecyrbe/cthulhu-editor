@@ -69,6 +69,7 @@ export interface InvestigatorData {
     cash: string;
     assets: string;
   };
+  weapons: Weapon[];
   fellowInvestigators: Array<{ name: string; player: string }>;
   notes: string;
   photo?: string;

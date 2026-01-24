@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import { normalize } from "../utils/normalize";
-import type { InvestigatorData, Skill } from "../types";
+import type { InvestigatorData, Skill, Weapon } from "../types";
 import { initialSkillsData } from "../constants/skills";
 
 const STORAGE_KEY = "cthulhu-investigator-data";
@@ -69,6 +69,17 @@ const getInitialData = (): InvestigatorData => ({
     arcaneTomesSpells: "",
     strangeEntities: "",
   },
+  weapons: Array(5).fill({
+    name: "",
+    regular: "",
+    hard: "",
+    extreme: "",
+    damage: "",
+    range: "",
+    attacks: "",
+    ammo: "",
+    malfunction: "",
+  }),
   gear: "",
   wealth: {
     spendingLevel: "",
@@ -97,7 +108,7 @@ export function useInvestigator() {
             return s;
           });
         }
-        return parsed;
+        return { ...getInitialData(), ...parsed };
       } catch (e) {
         console.error("Failed to load saved data", e);
       }
@@ -193,6 +204,17 @@ export function useInvestigator() {
     [],
   );
 
+  const setWeapon = useCallback(
+    (index: number, field: keyof Weapon, value: string) => {
+      setData((prev) => {
+        const newWeapons = [...prev.weapons];
+        newWeapons[index] = { ...newWeapons[index], [field]: value };
+        return { ...prev, weapons: newWeapons };
+      });
+    },
+    [],
+  );
+
   const setWealth = useCallback(
     (field: keyof InvestigatorData["wealth"], value: string) => {
       setData((prev) => ({
@@ -244,7 +266,7 @@ export function useInvestigator() {
   }, [data]);
 
   const importData = useCallback((newData: InvestigatorData) => {
-    setData(newData);
+    setData({ ...getInitialData(), ...newData });
   }, []);
 
   const rollInvestigator = useCallback(() => {
@@ -352,6 +374,7 @@ export function useInvestigator() {
     setSkill,
     setTracker,
     setBackstory,
+    setWeapon,
     setWealth,
     setGear,
     setNotes,

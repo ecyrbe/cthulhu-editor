@@ -80,6 +80,7 @@ function App() {
     setSkill,
     setTracker,
     setBackstory,
+    setWeapon,
     setWealth,
     setGear,
     setNotes,
@@ -346,7 +347,10 @@ function App() {
             />
 
             <div className="section-box combat-weapons-box">
-              <WeaponTable />
+              <WeaponTable
+                weapons={data.weapons}
+                onWeaponChange={setWeapon}
+              />
               <div className="vertical-separator" />
               <CombatSection
                 db={derivedCombat.db || "0"}
