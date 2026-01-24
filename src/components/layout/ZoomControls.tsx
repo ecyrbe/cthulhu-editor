@@ -30,12 +30,7 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         title={t("fit_to_width")}
         aria-label={t("fit_to_width")}
       >
-        <img
-          src={fitWidthIcon}
-          aria-hidden="true"
-          width="16"
-          height="16"
-        />
+        <img src={fitWidthIcon} aria-hidden="true" width="16" height="16" />
       </button>
       <button
         className="zoom-btn"
@@ -43,12 +38,7 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
         title={t("fit_to_height")}
         aria-label={t("fit_to_height")}
       >
-        <img
-          src={fitHeightIcon}
-          aria-hidden="true"
-          width="16"
-          height="16"
-        />
+        <img src={fitHeightIcon} aria-hidden="true" width="16" height="16" />
       </button>
       <div className="zoom-indicator">
         <button className="zoom-btn" onClick={onZoomOut} title={t("zoom_out")}>

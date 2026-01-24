@@ -28,7 +28,10 @@ const WeaponTable: React.FC = () => {
             .map((_, i) => (
               <tr key={i}>
                 <td>
-                  <input type="text" aria-label={`${t("weapon_name")} ${i + 1}`} />
+                  <input
+                    type="text"
+                    aria-label={`${t("weapon_name")} ${i + 1}`}
+                  />
                 </td>
                 <td>
                   <input type="text" aria-label={`${t("reg")} ${i + 1}`} />
