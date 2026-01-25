@@ -22,43 +22,42 @@ const IdentitySection: React.FC<IdentitySectionProps> = ({
     <div className="header-col left">
       <SectionTitle>{t("era")}</SectionTitle>
       <IdentityField
-        label={t("name")}
+        field="name"
         value={identity.name}
-        onChange={(val) => onValueChange("name", val)}
+        onValueChange={onValueChange}
       />
       <IdentityField
-        label={t("player")}
+        field="player"
         value={identity.player}
-        onChange={(val) => onValueChange("player", val)}
+        onValueChange={onValueChange}
       />
       <IdentityField
-        label={t("occupation")}
+        field="occupation"
         value={identity.occupation}
-        onChange={(val) => onValueChange("occupation", val)}
+        onValueChange={onValueChange}
       />
       <div className="row">
         <IdentityField
-          label={t("sex")}
+          field="sex"
           value={identity.sex}
-          onChange={(val) => onValueChange("sex", val)}
-          className="grow"
+          onValueChange={onValueChange}
           style={{ width: "100px" }}
         />
         <IdentityField
-          label={t("age")}
+          field="age"
           value={identity.age}
-          onChange={(val) => onValueChange("age", val)}
+          onValueChange={onValueChange}
         />
       </div>
       <IdentityField
-        label={t("residence")}
+        field="residence"
         value={identity.residence}
-        onChange={(val) => onValueChange("residence", val)}
+        onValueChange={onValueChange}
       />
       <IdentityField
-        label={t("birthplace")}
+        field="birthplace"
         value={identity.birthplace}
-        onChange={(val) => onValueChange("birthplace", val)}
+        onValueChange={onValueChange}
       />
     </div>
   );
