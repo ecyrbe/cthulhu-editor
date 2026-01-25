@@ -638,6 +638,7 @@ input[type="number"] {
   display: inline-block;
   background: #fff;
   cursor: pointer;
+  box-shadow: 1px -1px 0 #000;
 }
 
 .tracker-check.checked {
@@ -674,7 +675,7 @@ input[type="number"] {
   padding: 0 2px 2px 2px;
   font-size: 0.8em;
   height: 21px;
-  gap: 2px;
+  gap: 4px;
 }
 
 .skill-row:nth-child(odd) {
@@ -687,6 +688,7 @@ input[type="number"] {
   border: 1px solid #000;
   flex-shrink: 0;
   background: #fff;
+  box-shadow: 1px -1px 0 #000;
 }
 
 .skill-check.checked {
