@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-router": "^1.157.9",
-    "@tanstack/zod-adapter": "^1.157.9",
     "i18next": "^25.7.4",
     "i18next-browser-languagedetector": "^8.2.0",
     "react": "^19.2.0",

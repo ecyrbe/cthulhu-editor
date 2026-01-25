@@ -17,7 +17,6 @@ import type { StandardSkill } from "../../types";
 
 const InvestigatorSheet: React.FC = () => {
   const { t } = useTranslation();
-  const investigator = useInvestigatorContext();
   const {
     data,
     setIdentity,
@@ -33,7 +32,7 @@ const InvestigatorSheet: React.FC = () => {
     handlePhotoUpload,
     derivedCombat,
     zoom,
-  } = investigator;
+  } = useInvestigatorContext();
 
   return (
     <main className="pages-wrapper" style={{ zoom }}>

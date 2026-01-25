@@ -2,37 +2,19 @@ import "./App.css";
 import React, { useCallback, useMemo } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import {
-  createRootRouteWithContext,
-  createRoute,
-  createRouter,
-  RouterProvider,
-  Outlet,
-  useNavigate,
-  useSearch,
-} from "@tanstack/react-router";
-import { z } from "zod";
-import { zodValidator } from "@tanstack/zod-adapter";
 import { useInvestigator } from "./hooks/useInvestigator";
 import {
   InvestigatorContext,
   useInvestigatorContext,
-  type InvestigatorContextValue,
 } from "./hooks/useInvestigatorContext";
 import Sidebar from "./components/layout/Sidebar";
 import ZoomControls from "./components/layout/ZoomControls";
 import InvestigatorSheet from "./components/investigator/InvestigatorSheet";
 import arrowUpIcon from "./assets/arrow-up.svg";
 
-// --- TYPES ---
-
-interface MyRouterContext {
-  investigator: InvestigatorContextValue;
-}
-
 // --- COMPONENTS ---
 
-function Root() {
+function MainLayout() {
   const { t } = useTranslation();
   const investigator = useInvestigatorContext();
   const {
@@ -114,7 +96,7 @@ function Root() {
         onResetZoom={handleResetZoom}
       />
 
-      <Outlet />
+      <InvestigatorSheet />
 
       {showScrollTop && (
         <button
@@ -130,92 +112,41 @@ function Root() {
   );
 }
 
-function LoadData() {
-  const { link } = useSearch({ from: "/load" });
-  const navigate = useNavigate();
-  const { importData } = useInvestigatorContext();
+export default function App() {
+  const [zoom, setZoom] = React.useState(1);
+  const investigator = useInvestigator();
   const { t } = useTranslation();
 
+  // Handle shortcut links like #link=...
   React.useEffect(() => {
-    if (link) {
-      const load = async () => {
+    const handleHash = async () => {
+      const hash = window.location.hash;
+      if (hash.startsWith("#link=")) {
+        const urlToLoad = hash.substring(6);
+        if (!urlToLoad) return;
+
         const toastId = toast.loading(
           t("loading_external_data") || "Loading investigator data...",
         );
         try {
-          const decodeLink = decodeURIComponent(link);
-          const response = await fetch(decodeLink);
+          const response = await fetch(decodeURIComponent(urlToLoad));
           if (!response.ok) throw new Error("Failed to fetch");
           const json = await response.json();
-          importData(json);
+          investigator.importData(json);
           toast.success(t("toast_import_success"), { id: toastId });
+          // Redirect to root without the link Param to avoid re-loads
+          window.location.hash = "/";
         } catch (error) {
           toast.error(t("toast_import_error"), { id: toastId });
           console.error(error);
-        } finally {
-          navigate({ to: "/", replace: true });
         }
-      };
-      load();
-    } else {
-      navigate({ to: "/", replace: true });
-    }
-  }, [link, importData, navigate, t]);
+      }
+    };
 
-  return null;
-}
-
-// --- ROUTES ---
-
-const rootRoute = createRootRouteWithContext<MyRouterContext>()({
-  component: Root,
-});
-
-const indexRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/",
-  component: InvestigatorSheet,
-});
-
-const loadSearchSchema = z.object({
-  link: z.string().optional(),
-});
-
-const loadRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/load",
-  validateSearch: zodValidator(loadSearchSchema),
-  component: LoadData,
-});
-
-const routeTree = rootRoute.addChildren([indexRoute, loadRoute]);
-
-const router = createRouter({
-  routeTree,
-  basepath: import.meta.env.BASE_URL,
-  context: {
-    investigator: undefined!, // Placeholder
-  },
-  defaultNotFoundComponent: () => {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center" }}>
-        <h2>Page Not Found</h2>
-        <p>Current Path: {window.location.pathname}</p>
-        <a href={import.meta.env.BASE_URL || "/"}>Go to Home</a>
-      </div>
-    );
-  },
-});
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
-
-export default function App() {
-  const [zoom, setZoom] = React.useState(1);
-  const investigator = useInvestigator();
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, [investigator, t]);
 
   const handleZoomIn = useCallback(
     () => setZoom((prev) => Math.min(prev + 0.1, 2)),
@@ -294,7 +225,7 @@ export default function App() {
 
   return (
     <InvestigatorContext.Provider value={contextValue.investigator}>
-      <RouterProvider router={router} context={contextValue} />
+      <MainLayout />
     </InvestigatorContext.Provider>
   );
 }
