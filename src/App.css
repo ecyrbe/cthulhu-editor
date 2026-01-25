@@ -350,7 +350,7 @@ input[type="number"] {
 }
 
 .call-of-label {
-  font-family: serif;
+  font-family: "Liberation Serif", serif;
   font-size: 0.7em;
   font-style: italic;
   margin-bottom: -4px;
@@ -785,7 +785,7 @@ input[type="number"] {
 .custom-name-input {
   width: 100%;
   border-bottom: 1px dotted #888;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Liberation Serif", serif;
   font-size: 1em;
   min-width: 0;
   padding: 0;
