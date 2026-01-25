@@ -1,7 +1,7 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import IdentitySection from "./IdentitySection";
 import CharacteristicsSection from "./CharacteristicsSection";
+import InvestigatorPhoto from "./InvestigatorPhoto";
 import type { InvestigatorData } from "../../types";
 
 interface HeaderSectionProps {
@@ -20,8 +20,6 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
   setCharacteristic,
   handlePhotoUpload,
 }) => {
-  const { t } = useTranslation();
-
   return (
     <div className="header-section">
       <IdentitySection identity={data.identity} onValueChange={setIdentity} />
@@ -33,26 +31,7 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
       />
       <div className="vertical-separator" />
 
-      {/* Logo/Photo Column */}
-      <div className="header-col right">
-        <div className="logo-container">
-          <div className="call-of-label">{t("call_of")}</div>
-          <div className="cthulhu-label">CTHULHU</div>
-        </div>
-        <label
-          className="photo-box"
-          style={{ backgroundImage: `url(${data.photo})` }}
-        >
-          {!data.photo && t("photo")}
-          <input
-            type="file"
-            hidden
-            accept="image/*"
-            onChange={handlePhotoUpload}
-            aria-label={t("photo_upload")}
-          />
-        </label>
-      </div>
+      <InvestigatorPhoto photo={data.photo} onPhotoUpload={handlePhotoUpload} />
     </div>
   );
 };
