@@ -463,10 +463,9 @@ input[type="number"] {
 
 .photo-box {
   width: 100px;
-  height: 120px;
+  height: 100px;
   border: 1.5px solid #000;
   background: #fff;
-  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -584,7 +583,7 @@ input[type="number"] {
 
 .tracker-grid {
   display: grid;
-  gap: 0;
+  gap: 5px;
   flex: 1;
 }
 
@@ -619,10 +618,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  height: 110%;
-  border: 1px solid #000;
-  border-radius: 50%;
+  border-bottom: #000 solid 2px;
   font-weight: 900;
 }
 
@@ -715,30 +711,68 @@ input[type="number"] {
 
 .skill-box-wrapper {
   flex-shrink: 0;
-  width: 42px;
+  width: 76px;
+}
+
+.skill-stat-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.skill-stat-main {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted #888;
+  width: 34px;
+  margin-left: 4px;
+  height: 100%;
+}
+
+.skill-main-input {
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+  text-align: right;
+  font-size: 1.1em;
+  padding: 0;
+  font-family:
+    "P22 Typewriter", "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
+  appearance: textfield;
+}
+
+.skill-main-input::-webkit-outer-spin-button,
+.skill-main-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.skill-percent-char {
+  font-size: 0.8em;
+  margin-left: 1px;
+}
+
+.skill-sub-boxes {
+  display: flex;
+  gap: 0;
+}
+
+.skill-sub-box {
+  width: 18px;
   height: 18px;
+  border: 1px solid #000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  font-family:
+    "P22 Typewriter", "Tlwg Typewriter", "Tlwg Typo", "Courier New", monospace;
 }
 
-.skill-box-wrapper .stat-box {
-  width: 100%;
-  height: 100%;
-}
-
-.skill-box-wrapper .stat-box {
-  width: 100%;
-  height: 100%;
-}
-
-.skill-box-wrapper .stat-main {
-  font-size: 0.9em;
-}
-
-.skill-box-wrapper .stat-main input {
-  font-size: 1em;
-}
-
-.skill-box-wrapper .stat-sub {
-  font-size: 0.45em;
+.skill-sub-box + .skill-sub-box {
+  border-left: none;
 }
 .custom-name-input {
   width: 100%;
@@ -790,6 +824,11 @@ input[type="number"] {
 
 .w-name {
   width: 30%;
+}
+
+.w-dmg,
+.w-rng {
+  width: 15%;
 }
 
 .weapon-table {

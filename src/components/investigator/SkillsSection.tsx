@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { StatBox } from "../ui/StatBox";
+import { SkillStatBox } from "../ui/SkillStatBox";
 import { SectionTitle } from "../ui/SectionTitle";
 import type { Skill } from "../../types";
 
@@ -88,7 +88,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                     )}
                   </div>
                   <div className="skill-box-wrapper">
-                    <StatBox
+                    <SkillStatBox
                       value={skill.current}
                       onChange={(val) => onSkillChange(index, "current", val)}
                       readOnly={
