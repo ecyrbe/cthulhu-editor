@@ -465,7 +465,7 @@ input[type="number"] {
   width: 100px;
   height: 100px;
   border: 1.5px solid #000;
-  background: #fff;
+  background-color: #f1f1f0;
   display: flex;
   align-items: center;
   justify-content: center;
