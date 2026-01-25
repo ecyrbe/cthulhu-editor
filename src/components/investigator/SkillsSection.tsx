@@ -55,17 +55,15 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                   )}
                   <div className="skill-name">
                     {skill.type === "custom" ? (
-                      <>
-                        <input
-                          type="text"
-                          className="custom-name-input"
-                          value={skill.name || ""}
-                          onChange={(e) =>
-                            onSkillChange(index, "name", e.target.value)
-                          }
-                          aria-label={t("skill_name")}
-                        />
-                      </>
+                      <input
+                        type="text"
+                        className="custom-name-input"
+                        value={skill.name || ""}
+                        onChange={(e) =>
+                          onSkillChange(index, "name", e.target.value)
+                        }
+                        aria-label={t("skill_name")}
+                      />
                     ) : (
                       <>
                         {t(`skills:${skill.key}`)}

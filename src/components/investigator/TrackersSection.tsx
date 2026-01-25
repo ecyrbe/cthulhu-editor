@@ -43,8 +43,9 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
                 />
               </div>
               <div className="tracker-row-top">
-                {t("max")}{" "}
+                <label htmlFor="hpMax">{t("max")}</label>
                 <input
+                  id="hpMax"
                   type="number"
                   className="small-stat-box"
                   value={data.trackers.hpMax || ""}
@@ -66,8 +67,9 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
           >
             <div className="tracker-extra">
               <div className="tracker-row-top">
-                {t("max")}{" "}
+                <label htmlFor="mpMax">{t("max")}</label>
                 <input
+                  id="mpMax"
                   type="number"
                   className="small-stat-box"
                   value={data.trackers.mpMax || ""}
@@ -115,8 +117,9 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             }
             headerRight={
               <>
-                {t("initial")}
+                <label htmlFor="sanityInitial">{t("initial")}</label>
                 <input
+                  id="sanityInitial"
                   type="number"
                   className="small-stat-box"
                   value={data.trackers.sanityInitial || ""}
@@ -124,8 +127,9 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
                     setTracker("sanityInitial", parseInt(e.target.value) || 0)
                   }
                 />
-                {t("max")}
+                <label htmlFor="sanityMax">{t("max")}</label>
                 <input
+                  id="sanityMax"
                   type="number"
                   className="small-stat-box"
                   value={data.trackers.sanityMax || ""}
