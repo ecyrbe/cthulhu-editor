@@ -315,12 +315,7 @@ function App() {
                           type="number"
                           className="small-stat-box"
                           value={data.trackers.sanityMax || ""}
-                          onChange={(e) =>
-                            setTracker(
-                              "sanityMax",
-                              parseInt(e.target.value) || 0,
-                            )
-                          }
+                          readOnly
                         />
                       </>
                     }

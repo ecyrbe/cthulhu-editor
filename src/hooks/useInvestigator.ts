@@ -36,7 +36,7 @@ const getInitialData = (): InvestigatorData => ({
     hpMax: 0,
     mpMax: 0,
     sanityInitial: 0,
-    sanityMax: 0,
+    sanityMax: 99,
     majorWound: false,
     tempInsane: false,
     indefInsane: false,
@@ -93,6 +93,17 @@ export function useInvestigator() {
               return { ...s, current: edu };
             return s;
           });
+
+          // Recalculate sanityMax
+          const cthulhuSkill = parsed.skills.find(
+            (s: Skill) => s.type === "standard" && s.key === "cthulhu",
+          );
+          if (cthulhuSkill && cthulhuSkill.type === "standard") {
+            parsed.trackers = {
+              ...(parsed.trackers || {}),
+              sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
+            };
+          }
         }
         return { ...getInitialData(), ...parsed };
       } catch (e) {
@@ -171,7 +182,21 @@ export function useInvestigator() {
       setData((prev) => {
         const newSkills = [...prev.skills];
         newSkills[index] = { ...newSkills[index], ...updates } as Skill;
-        return { ...prev, skills: newSkills };
+
+        // Recalculate sanity max if cthulhu skill changed
+        const cthulhuSkill = newSkills.find(
+          (s) => s.type === "standard" && s.key === "cthulhu",
+        );
+        const sanityMax =
+          cthulhuSkill && cthulhuSkill.type === "standard"
+            ? 99 - (Number(cthulhuSkill.current) || 0)
+            : prev.trackers.sanityMax;
+
+        return {
+          ...prev,
+          skills: newSkills,
+          trackers: { ...prev.trackers, sanityMax },
+        };
       });
     },
     [],
@@ -179,6 +204,7 @@ export function useInvestigator() {
 
   const setTracker = useCallback(
     (field: keyof InvestigatorData["trackers"], value: number | boolean) => {
+      if (field === "sanityMax") return;
       setData((prev) => ({
         ...prev,
         trackers: { ...prev.trackers, [field]: value },
@@ -259,6 +285,16 @@ export function useInvestigator() {
   }, [data]);
 
   const importData = useCallback((newData: InvestigatorData) => {
+    // Ensure sanityMax is correct on import
+    const cthulhuSkill = newData.skills?.find(
+      (s) => s.type === "standard" && s.key === "cthulhu",
+    );
+    if (cthulhuSkill && cthulhuSkill.type === "standard") {
+      newData.trackers = {
+        ...(newData.trackers || {}),
+        sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
+      };
+    }
     setData({ ...getInitialData(), ...newData });
   }, []);
 
@@ -307,21 +343,32 @@ export function useInvestigator() {
       if (dex < siz && str < siz) mov = 7;
       if (dex > siz && str > siz) mov = 9;
 
+      const updatedSkills = prev.skills.map((s) => {
+        if (s.type === "standard" && s.key === "dodge")
+          return { ...s, current: Math.floor(dex / 2) };
+        if (s.type === "standard" && s.key === "mother_tongue")
+          return { ...s, current: mergedChars.EDU };
+        return s;
+      });
+
+      const cthulhuSkill = updatedSkills.find(
+        (s) => s.type === "standard" && s.key === "cthulhu",
+      );
+      const sanityMax =
+        cthulhuSkill && cthulhuSkill.type === "standard"
+          ? 99 - (Number(cthulhuSkill.current) || 0)
+          : 99;
+
       return {
         ...prev,
         characteristics: { ...mergedChars, MVT: mov },
-        skills: prev.skills.map((s) => {
-          if (s.type === "standard" && s.key === "dodge")
-            return { ...s, current: Math.floor(dex / 2) };
-          if (s.type === "standard" && s.key === "mother_tongue")
-            return { ...s, current: mergedChars.EDU };
-          return s;
-        }),
+        skills: updatedSkills,
         trackers: {
           ...prev.trackers,
           hpMax,
           mpMax,
           sanityInitial,
+          sanityMax,
           luck,
           sanity: pow, // Initial sanity is often POW
           hp: hpMax,
