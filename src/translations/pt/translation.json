@@ -87,5 +87,6 @@
   "toast_import_success": "Dados do investigador importados!",
   "toast_reset_success": "Dados do investigador redefinidos!",
   "toast_import_error": "Falha ao analisar arquivo JSON",
+  "loading_external_data": "Carregando dados do investigador...",
   "confirm_reset": "Tem certeza que deseja redefinir todos os dados?"
 }

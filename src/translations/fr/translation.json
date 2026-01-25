@@ -87,5 +87,6 @@
   "toast_import_success": "Données de l'investigateur importées !",
   "toast_reset_success": "Données réinitialisées !",
   "toast_import_error": "Échec de l'analyse du fichier JSON",
+  "loading_external_data": "Chargement des données de l'investigateur...",
   "confirm_reset": "Êtes-vous sûr de vouloir réinitialiser toutes les données ?"
 }

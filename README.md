@@ -8,7 +8,10 @@ A modern, responsive web-based character sheet editor for **Call of Cthulhu 7th 
 
 Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manage investigator sheets easily. It provides a clean, digital interface that mimics the classic character sheet while adding modern features like automatic calculations, multi-language support, and easy data management.
 
-### [Access the Live App Here](https://ecyrbe.github.io/cthulhu-editor/)
+### 📂 Examples
+
+- **🖋️ [New Empty Character](https://ecyrbe.github.io/cthulhu-editor/)**
+- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://ecyrbe.github.io/cthulhu-editor/load?link=https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
 
 ## Screenshots
 
