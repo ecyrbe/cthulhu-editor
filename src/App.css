@@ -691,6 +691,12 @@ input[type="number"] {
   box-shadow: 1px -1px 0 #000;
 }
 
+.skill-check-spacer {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
 .skill-check.checked {
   background: #000;
 }
@@ -713,7 +719,7 @@ input[type="number"] {
 
 .skill-box-wrapper {
   flex-shrink: 0;
-  width: 76px;
+  width: 72px;
 }
 
 .skill-stat-container {

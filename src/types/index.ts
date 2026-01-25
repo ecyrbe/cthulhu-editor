@@ -4,15 +4,32 @@ export interface Characteristic {
   fifth: number;
 }
 
-export interface Skill {
-  key?: string;
-  name?: string;
+export interface BaseSkill {
+  id: string;
+}
+
+export interface StaticSkill extends BaseSkill {
+  type: "static";
+  key: string;
+  base: number | string;
+}
+
+export interface StandardSkill extends BaseSkill {
+  type: "standard";
+  key: string;
   base: number | string;
   current: number;
   checked: boolean;
-  isCustom?: boolean;
-  id?: string;
 }
+
+export interface CustomSkill extends BaseSkill {
+  type: "custom";
+  name: string;
+  current: number;
+  checked: boolean;
+}
+
+export type Skill = StaticSkill | StandardSkill | CustomSkill;
 
 export interface Weapon {
   name: string;

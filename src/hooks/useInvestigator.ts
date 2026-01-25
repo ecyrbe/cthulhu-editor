@@ -41,22 +41,7 @@ const getInitialData = (): InvestigatorData => ({
     tempInsane: false,
     indefInsane: false,
   },
-  skills: [
-    ...initialSkillsData.map((s) => ({
-      ...s,
-      current: typeof s.base === "number" ? s.base : 0,
-      checked: false,
-    })),
-    ...Array(23)
-      .fill(null)
-      .map((_, i) => ({
-        isCustom: true,
-        base: 0,
-        current: 0,
-        checked: false,
-        id: `custom-${i}`,
-      })),
-  ],
+  skills: initialSkillsData,
   backstory: {
     personalDescription: "",
     ideologyBeliefs: "",
@@ -102,9 +87,10 @@ export function useInvestigator() {
         const edu = parsed.characteristics?.EDU || 0;
         if (parsed.skills) {
           parsed.skills = parsed.skills.map((s: Skill) => {
-            if (s.key === "dodge")
+            if (s.type === "standard" && s.key === "dodge")
               return { ...s, current: Math.floor(dex / 2) };
-            if (s.key === "mother_tongue") return { ...s, current: edu };
+            if (s.type === "standard" && s.key === "mother_tongue")
+              return { ...s, current: edu };
             return s;
           });
         }
@@ -154,11 +140,15 @@ export function useInvestigator() {
       let updatedSkills = prev.skills;
       if (stat === "DEX") {
         updatedSkills = updatedSkills.map((s) =>
-          s.key === "dodge" ? { ...s, current: Math.floor(dex / 2) } : s,
+          s.type === "standard" && s.key === "dodge"
+            ? { ...s, current: Math.floor(dex / 2) }
+            : s,
         );
       } else if (stat === "EDU") {
         updatedSkills = updatedSkills.map((s) =>
-          s.key === "mother_tongue" ? { ...s, current: edu } : s,
+          s.type === "standard" && s.key === "mother_tongue"
+            ? { ...s, current: edu }
+            : s,
         );
       }
 
@@ -176,13 +166,16 @@ export function useInvestigator() {
     });
   }, []);
 
-  const setSkill = useCallback((index: number, updates: Partial<Skill>) => {
-    setData((prev) => {
-      const newSkills = [...prev.skills];
-      newSkills[index] = { ...newSkills[index], ...updates };
-      return { ...prev, skills: newSkills };
-    });
-  }, []);
+  const setSkill = useCallback(
+    (index: number, updates: Record<string, string | number | boolean>) => {
+      setData((prev) => {
+        const newSkills = [...prev.skills];
+        newSkills[index] = { ...newSkills[index], ...updates } as Skill;
+        return { ...prev, skills: newSkills };
+      });
+    },
+    [],
+  );
 
   const setTracker = useCallback(
     (field: keyof InvestigatorData["trackers"], value: number | boolean) => {
@@ -318,8 +311,9 @@ export function useInvestigator() {
         ...prev,
         characteristics: { ...mergedChars, MVT: mov },
         skills: prev.skills.map((s) => {
-          if (s.key === "dodge") return { ...s, current: Math.floor(dex / 2) };
-          if (s.key === "mother_tongue")
+          if (s.type === "standard" && s.key === "dodge")
+            return { ...s, current: Math.floor(dex / 2) };
+          if (s.type === "standard" && s.key === "mother_tongue")
             return { ...s, current: mergedChars.EDU };
           return s;
         }),

@@ -8,7 +8,7 @@ interface SkillsSectionProps {
   skills: Skill[];
   onSkillChange: (
     index: number,
-    field: keyof Skill,
+    field: string,
     value: string | number | boolean,
   ) => void;
 }
@@ -19,22 +19,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const sortedWithIndex = skills
-    .map((skill, index) => ({ skill, index }))
-    .sort((a, b) => {
-      const nameA = a.skill.isCustom
-        ? a.skill.name || ""
-        : t(`skills:${a.skill.key}`);
-      const nameB = b.skill.isCustom
-        ? b.skill.name || ""
-        : t(`skills:${b.skill.key}`);
-
-      if (!nameA && nameB) return 1;
-      if (nameA && !nameB) return -1;
-
-      return nameA.localeCompare(nameB, undefined, { sensitivity: "base" });
-    });
-
+  const sortedWithIndex = skills.map((skill, index) => ({ skill, index }));
   const colSize = Math.ceil(sortedWithIndex.length / 3);
   const columns = [
     sortedWithIndex.slice(0, colSize),
@@ -49,31 +34,38 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
         {columns.map((col, colIdx) => (
           <div key={colIdx} className="skills-column">
             {col.map(({ skill, index }) => {
-              const skillName = skill.isCustom
-                ? skill.name || t("custom_skill")
-                : t(`skills:${skill.key}`);
+              const skillName =
+                skill.type === "custom"
+                  ? skill.name || t("custom_skill")
+                  : t(`skills:${skill.key}`);
 
               return (
                 <div key={index} className="skill-row">
-                  <button
-                    className={`skill-check ${skill.checked ? "checked" : ""}`}
-                    onClick={() =>
-                      onSkillChange(index, "checked", !skill.checked)
-                    }
-                    aria-label={`${t("check")} ${skillName}`}
-                    aria-pressed={skill.checked}
-                  />
+                  {skill.type !== "static" ? (
+                    <button
+                      className={`skill-check ${skill.checked ? "checked" : ""}`}
+                      onClick={() =>
+                        onSkillChange(index, "checked", !skill.checked)
+                      }
+                      aria-label={`${t("check")} ${skillName}`}
+                      aria-pressed={skill.checked}
+                    />
+                  ) : (
+                    <div className="skill-check-spacer" />
+                  )}
                   <div className="skill-name">
-                    {skill.isCustom ? (
-                      <input
-                        type="text"
-                        className="custom-name-input"
-                        value={skill.name || ""}
-                        onChange={(e) =>
-                          onSkillChange(index, "name", e.target.value)
-                        }
-                        aria-label={t("skill_name")}
-                      />
+                    {skill.type === "custom" ? (
+                      <>
+                        <input
+                          type="text"
+                          className="custom-name-input"
+                          value={skill.name || ""}
+                          onChange={(e) =>
+                            onSkillChange(index, "name", e.target.value)
+                          }
+                          aria-label={t("skill_name")}
+                        />
+                      </>
                     ) : (
                       <>
                         {t(`skills:${skill.key}`)}
@@ -87,16 +79,20 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                       </>
                     )}
                   </div>
-                  <div className="skill-box-wrapper">
-                    <SkillStatBox
-                      value={skill.current}
-                      onChange={(val) => onSkillChange(index, "current", val)}
-                      readOnly={
-                        skill.key === "dodge" || skill.key === "mother_tongue"
-                      }
-                      ariaLabel={`${skillName} ${t("value")}`}
-                    />
-                  </div>
+                  {skill.type !== "static" && (
+                    <div className="skill-box-wrapper">
+                      <SkillStatBox
+                        value={skill.current}
+                        onChange={(val) => onSkillChange(index, "current", val)}
+                        readOnly={
+                          skill.type === "standard" &&
+                          (skill.key === "dodge" ||
+                            skill.key === "mother_tongue")
+                        }
+                        ariaLabel={`${skillName} ${t("value")}`}
+                      />
+                    </div>
+                  )}
                 </div>
               );
             })}

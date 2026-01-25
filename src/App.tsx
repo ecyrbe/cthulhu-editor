@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useInvestigator } from "./hooks/useInvestigator";
 import { Tracker } from "./components/ui/Tracker";
+import type { StandardSkill } from "./types";
 import Sidebar from "./components/layout/Sidebar";
 import SkillsSection from "./components/investigator/SkillsSection";
 import WeaponTable from "./components/investigator/WeaponTable";
@@ -352,7 +353,13 @@ function App() {
               <CombatSection
                 db={derivedCombat.db || "0"}
                 build={derivedCombat.build || 0}
-                dodge={data.skills.find((s) => s.key === "dodge")?.current || 0}
+                dodge={
+                  (
+                    data.skills.find(
+                      (s) => s.type === "standard" && s.key === "dodge",
+                    ) as StandardSkill | undefined
+                  )?.current || 0
+                }
               />
             </div>
           </div>
