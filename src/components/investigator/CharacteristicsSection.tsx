@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { StatBox } from "../ui/StatBox";
+import { CharacteristicField } from "../ui/CharacteristicField";
 import { SectionTitle } from "../ui/SectionTitle";
 import type { InvestigatorData } from "../../types";
 
@@ -25,36 +25,19 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
           ["TAI", "INT", "MVT"],
         ].map((row, i) => (
           <React.Fragment key={i}>
-            {row.map((stat) => {
-              const label = t(stat.toLowerCase());
-              return (
-                <div key={stat} className="stat-container">
-                  <span className="stat-label">{label}</span>
-                  {stat === "MVT" ? (
-                    <div className="mvt-box">
-                      <input
-                        type="number"
-                        value={characteristics.MVT || ""}
-                        onChange={(e) =>
-                          onValueChange("MVT", parseInt(e.target.value) || 0)
-                        }
-                        aria-label={label}
-                      />
-                    </div>
-                  ) : (
-                    <StatBox
-                      value={
-                        characteristics[
-                          stat as keyof InvestigatorData["characteristics"]
-                        ]
-                      }
-                      onChange={(val) => onValueChange(stat, val)}
-                      ariaLabel={label}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {row.map((stat) => (
+              <CharacteristicField
+                key={stat}
+                label={t(stat.toLowerCase())}
+                value={
+                  characteristics[
+                    stat as keyof InvestigatorData["characteristics"]
+                  ]
+                }
+                onChange={(val) => onValueChange(stat, val)}
+                isMvt={stat === "MVT"}
+              />
+            ))}
           </React.Fragment>
         ))}
       </div>
