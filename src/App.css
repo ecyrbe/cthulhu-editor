@@ -1332,21 +1332,72 @@ td {
   }
 }
 
+.app-footer {
+  width: 100vw;
+  padding: 10px 20px;
+  font-size: 0.65rem;
+  background-color: var(--menu-bg);
+  color: #aaa;
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 40px;
+  margin-left: calc(-50vw + 50%);
+}
+
+.app-footer p {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.app-footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.app-footer a:hover {
+  color: #eee;
+}
+
 @media print {
+  @page {
+    margin: 0;
+    size: A4;
+  }
+  html,
+  body,
+  .app-container {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
   #menu-toggle,
   #menu-panel,
-  #zoom-controls {
-    display: none;
+  #zoom-controls,
+  .app-footer,
+  .scroll-to-top,
+  .Toaster {
+    display: none !important;
   }
   .pages-wrapper {
     zoom: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
   .page {
-    box-shadow: none;
-    margin: 0;
-    page-break-after: always;
-    height: 297mm;
-    display: flex;
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 297mm !important;
+    display: flex !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
   input {
     border-bottom: 1px dotted #888;

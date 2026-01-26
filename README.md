@@ -1,12 +1,14 @@
 # Cthulhu Editor
 
-A modern, responsive web-based character sheet editor for **Call of Cthulhu 7th Edition**.
+A modern, responsive web-based character sheet editor compatible with **Call of Cthulhu 7th Edition**.
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://ecyrbe.github.io/cthulhu-editor/)
 
 ## Overview
 
 Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manage investigator sheets easily. It provides a clean, digital interface that mimics the classic character sheet while adding modern features like automatic calculations, multi-language support, and easy data management.
+
+This editor uses trademarks and/or copyrights owned by Chaosium Inc/Moon Design Publications LLC, which are used under Chaosium Inc’s Fan Material Policy. We are expressly prohibited from charging you to use or access this content. This Character Sheet editor is not published, endorsed, or specifically approved by Chaosium Inc. For more information about Chaosium Inc’s products, please visit [www.chaosium.com](https://www.chaosium.com).
 
 ### 📂 Examples
 

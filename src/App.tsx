@@ -98,6 +98,25 @@ function MainLayout() {
 
       <InvestigatorSheet />
 
+      <footer className="app-footer">
+        <p>
+          This editor uses trademarks and/or copyrights owned by Chaosium
+          Inc/Moon Design Publications LLC, which are used under Chaosium Inc’s
+          Fan Material Policy. We are expressly prohibited from charging you to
+          use or access this content. This Character Sheet editor is not
+          published, endorsed, or specifically approved by Chaosium Inc. For
+          more information about Chaosium Inc’s products, please visit{" "}
+          <a
+            href="https://www.chaosium.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            www.chaosium.com
+          </a>
+          .
+        </p>
+      </footer>
+
       {showScrollTop && (
         <button
           className="scroll-to-top desktop-only"
