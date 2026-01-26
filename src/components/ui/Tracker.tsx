@@ -107,7 +107,7 @@ export const Tracker: React.FC<TrackerProps> = ({
         <div className="tracker-header-right">{headerRight}</div>
       </div>
       <div className="tracker-content-wrapper">
-        {children && <div className="tracker-extra-side">{children}</div>}
+        {children && <div className="tracker-left-side">{children}</div>}
         <div
           className="tracker-grid"
           style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}

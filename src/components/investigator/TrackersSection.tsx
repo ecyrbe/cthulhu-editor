@@ -32,18 +32,16 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             currentValue={data.trackers.hp}
             onSelect={(val) => setTracker("hp", val)}
           >
-            <div className="tracker-extra">
-              <TrackerCheckbox
-                label={t("major-wound")}
-                checked={data.trackers.majorWound}
-                onChange={(val) => setTracker("majorWound", val)}
-              />
-              <TrackerNumber
-                label={t("max")}
-                value={data.trackers.hpMax}
-                onChange={(val) => setTracker("hpMax", val)}
-              />
-            </div>
+            <TrackerCheckbox
+              label={t("major-wound")}
+              checked={data.trackers.majorWound}
+              onChange={(val) => setTracker("majorWound", val)}
+            />
+            <TrackerNumber
+              label={t("max")}
+              value={data.trackers.hpMax}
+              onChange={(val) => setTracker("hpMax", val)}
+            />
           </Tracker>
           <Tracker
             title={t("mp")}
@@ -54,13 +52,11 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             currentValue={data.trackers.mp}
             onSelect={(val) => setTracker("mp", val)}
           >
-            <div className="tracker-extra">
-              <TrackerNumber
-                label={t("max")}
-                value={data.trackers.mpMax}
-                onChange={(val) => setTracker("mpMax", val)}
-              />
-            </div>
+            <TrackerNumber
+              label={t("max")}
+              value={data.trackers.mpMax}
+              onChange={(val) => setTracker("mpMax", val)}
+            />
           </Tracker>
         </div>
 

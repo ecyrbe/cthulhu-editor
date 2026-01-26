@@ -574,19 +574,14 @@ input[type="number"] {
   gap: 4px;
 }
 
-.tracker-extra-side {
+.tracker-left-side {
   flex: 0 0 auto;
   min-width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.tracker-extra {
   font-size: 0.8em;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
+  gap: 4px;
 }
 
 .tracker-checkbox-label,
