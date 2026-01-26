@@ -1,6 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Tracker } from "../ui/Tracker";
+import { TrackerCheckbox } from "../ui/TrackerCheckbox";
+import { TrackerNumber } from "../ui/TrackerNumber";
 import type { InvestigatorData } from "../../types";
 
 interface TrackersSectionProps {
@@ -31,29 +33,16 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             onSelect={(val) => setTracker("hp", val)}
           >
             <div className="tracker-extra">
-              <div className="tracker-row-top">
-                {t("major-wound")}
-                <button
-                  className={`tracker-check ${data.trackers.majorWound ? "checked" : ""}`}
-                  onClick={() =>
-                    setTracker("majorWound", !data.trackers.majorWound)
-                  }
-                  aria-label={t("major-wound")}
-                  aria-pressed={data.trackers.majorWound}
-                />
-              </div>
-              <div className="tracker-row-top">
-                <label htmlFor="hpMax">{t("max")}</label>
-                <input
-                  id="hpMax"
-                  type="number"
-                  className="small-stat-box"
-                  value={data.trackers.hpMax || ""}
-                  onChange={(e) =>
-                    setTracker("hpMax", parseInt(e.target.value) || 0)
-                  }
-                />
-              </div>
+              <TrackerCheckbox
+                label={t("major-wound")}
+                checked={data.trackers.majorWound}
+                onChange={(val) => setTracker("majorWound", val)}
+              />
+              <TrackerNumber
+                label={t("max")}
+                value={data.trackers.hpMax}
+                onChange={(val) => setTracker("hpMax", val)}
+              />
             </div>
           </Tracker>
           <Tracker
@@ -66,18 +55,11 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             onSelect={(val) => setTracker("mp", val)}
           >
             <div className="tracker-extra">
-              <div className="tracker-row-top">
-                <label htmlFor="mpMax">{t("max")}</label>
-                <input
-                  id="mpMax"
-                  type="number"
-                  className="small-stat-box"
-                  value={data.trackers.mpMax || ""}
-                  onChange={(e) =>
-                    setTracker("mpMax", parseInt(e.target.value) || 0)
-                  }
-                />
-              </div>
+              <TrackerNumber
+                label={t("max")}
+                value={data.trackers.mpMax}
+                onChange={(val) => setTracker("mpMax", val)}
+              />
             </div>
           </Tracker>
         </div>
@@ -95,54 +77,32 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             onSelect={(val) => setTracker("sanity", val)}
             headerLeft={
               <>
-                <label className="tracker-checkbox">
-                  {t("temp")}
-                  <button
-                    className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
-                    onClick={() =>
-                      setTracker("tempInsane", !data.trackers.tempInsane)
-                    }
-                    aria-label={t("temp")}
-                    aria-pressed={data.trackers.tempInsane}
-                  />
-                </label>
-                <label className="tracker-checkbox">
-                  {t("persist")}
-                  <button
-                    className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
-                    onClick={() =>
-                      setTracker("indefInsane", !data.trackers.indefInsane)
-                    }
-                    aria-label={t("persist")}
-                    aria-pressed={data.trackers.indefInsane}
-                  />
-                </label>
+                <TrackerCheckbox
+                  label={t("temp")}
+                  checked={data.trackers.tempInsane}
+                  onChange={(val) => setTracker("tempInsane", val)}
+                />
+                <TrackerCheckbox
+                  label={t("persist")}
+                  checked={data.trackers.indefInsane}
+                  onChange={(val) => setTracker("indefInsane", val)}
+                />
               </>
             }
             headerRight={
               <>
-                <label className="tracker-checkbox">
-                  {t("initial")}
-                  <input
-                    id="sanityInitial"
-                    type="number"
-                    className="small-stat-box"
-                    value={data.trackers.sanityInitial || ""}
-                    onChange={(e) =>
-                      setTracker("sanityInitial", parseInt(e.target.value) || 0)
-                    }
-                  />
-                </label>
-                <label className="tracker-checkbox">
-                  {t("max")}
-                  <input
-                    id="sanityMax"
-                    type="number"
-                    className="small-stat-box"
-                    value={data.trackers.sanityMax || ""}
-                    readOnly
-                  />
-                </label>
+                <TrackerNumber
+                  id="sanityInitial"
+                  label={t("initial")}
+                  value={data.trackers.sanityInitial}
+                  onChange={(val) => setTracker("sanityInitial", val)}
+                />
+                <TrackerNumber
+                  id="sanityMax"
+                  label={t("max")}
+                  value={data.trackers.sanityMax}
+                  readOnly
+                />
               </>
             }
           />

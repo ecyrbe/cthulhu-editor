@@ -589,14 +589,8 @@ input[type="number"] {
   gap: 1px;
 }
 
-.tracker-row-top {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 4px;
-}
-
-.tracker-checkbox {
+.tracker-checkbox-label,
+.tracker-number-label {
   display: flex;
   align-items: center;
   gap: 4px;
