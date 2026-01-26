@@ -18,6 +18,8 @@ export const StaticSkillSchema = BaseSkillSchema.extend({
   base: z.union([z.number(), z.string()]),
 });
 
+export type StaticSkill = z.infer<typeof StaticSkillSchema>;
+
 export const StandardSkillSchema = BaseSkillSchema.extend({
   type: z.literal("standard"),
   key: z.string(),
@@ -34,6 +36,8 @@ export const CustomSkillSchema = BaseSkillSchema.extend({
   current: z.number(),
   checked: z.boolean(),
 });
+
+export type CustomSkill = z.infer<typeof CustomSkillSchema>;
 
 export const SkillSchema = z.discriminatedUnion("type", [
   StaticSkillSchema,
@@ -57,61 +61,79 @@ export const WeaponSchema = z.object({
 
 export type Weapon = z.infer<typeof WeaponSchema>;
 
+export const IdentitySchema = z.object({
+  name: z.string(),
+  player: z.string(),
+  occupation: z.string(),
+  age: z.string(),
+  sex: z.string(),
+  residence: z.string(),
+  birthplace: z.string(),
+});
+
+export type Identity = z.infer<typeof IdentitySchema>;
+
+export const TrackersSchema = z.object({
+  hp: z.number(),
+  mp: z.number(),
+  sanity: z.number(),
+  luck: z.number(),
+  hpMax: z.number(),
+  mpMax: z.number(),
+  sanityInitial: z.number(),
+  sanityMax: z.number(),
+  majorWound: z.boolean(),
+  tempInsane: z.boolean(),
+  indefInsane: z.boolean(),
+});
+
+export type Trackers = z.infer<typeof TrackersSchema>;
+
+export const BackstorySchema = z.object({
+  personalDescription: z.string(),
+  ideologyBeliefs: z.string(),
+  significantPeople: z.string(),
+  meaningfulLocations: z.string(),
+  treasuredPossessions: z.string(),
+  traits: z.string(),
+  injuriesScars: z.string(),
+  phobiasManias: z.string(),
+  arcaneTomesSpells: z.string(),
+  strangeEntities: z.string(),
+});
+
+export type Backstory = z.infer<typeof BackstorySchema>;
+
+export const FellowInvestigatorSchema = z.object({
+  name: z.string(),
+  player: z.string(),
+});
+
+export type FellowInvestigator = z.infer<typeof FellowInvestigatorSchema>;
+
+export const WealthSchema = z.object({
+  spendingLevel: z.string(),
+  cash: z.string(),
+  assets: z.string(),
+});
+
+export type Wealth = z.infer<typeof WealthSchema>;
+
 export const InvestigatorDataSchema = z.object({
   version: z.string(),
-  identity: z.object({
-    name: z.string(),
-    player: z.string(),
-    occupation: z.string(),
-    age: z.string(),
-    sex: z.string(),
-    residence: z.string(),
-    birthplace: z.string(),
-  }),
+  identity: IdentitySchema,
   characteristics: z.record(z.string(), z.number()),
-  trackers: z.object({
-    hp: z.number(),
-    mp: z.number(),
-    sanity: z.number(),
-    luck: z.number(),
-    hpMax: z.number(),
-    mpMax: z.number(),
-    sanityInitial: z.number(),
-    sanityMax: z.number(),
-    majorWound: z.boolean(),
-    tempInsane: z.boolean(),
-    indefInsane: z.boolean(),
-  }),
-  skills: z.array(SkillSchema),
-  backstory: z.object({
-    personalDescription: z.string(),
-    ideologyBeliefs: z.string(),
-    significantPeople: z.string(),
-    meaningfulLocations: z.string(),
-    treasuredPossessions: z.string(),
-    traits: z.string(),
-    injuriesScars: z.string(),
-    phobiasManias: z.string(),
-    arcaneTomesSpells: z.string(),
-    strangeEntities: z.string(),
-  }),
+  trackers: TrackersSchema,
+  skills: SkillSchema.array().length(69),
+  backstory: BackstorySchema,
   gear: z.string(),
-  wealth: z.object({
-    spendingLevel: z.string(),
-    cash: z.string(),
-    assets: z.string(),
-  }),
-  weapons: z.array(WeaponSchema),
-  fellowInvestigators: z.array(
-    z.object({
-      name: z.string(),
-      player: z.string(),
-    }),
-  ),
+  wealth: WealthSchema,
+  weapons: WeaponSchema.array(),
+  fellowInvestigators: FellowInvestigatorSchema.array().length(8),
   notes: z.string(),
   photo: z.string().optional(),
 });
 
 export type InvestigatorData = z.infer<typeof InvestigatorDataSchema>;
 
-export type Language = "fr" | "en" | "es";
+export type Language = "fr" | "en" | "es" | "de" | "pt";
