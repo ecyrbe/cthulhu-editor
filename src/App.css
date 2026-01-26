@@ -1262,7 +1262,8 @@ td {
     transform: none !important;
   }
 
-  .menu-label {
+  .menu-label,
+  .menu-checkbox-wrapper {
     display: none !important;
   }
 
@@ -1450,8 +1451,7 @@ td {
 
   /* Print Blank Mode */
   .print-blank-mode .skill-main-input,
-  .print-blank-mode .skill-sub-box,
-  .print-blank-mode .small-stat-box {
+  .print-blank-mode .skill-sub-box {
     color: transparent !important;
   }
 
