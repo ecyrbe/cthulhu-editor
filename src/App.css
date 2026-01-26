@@ -1190,6 +1190,10 @@ td {
     margin: 0 !important;
   }
 
+  .app-footer {
+    font-size: 0.4em !important;
+  }
+
   .page {
     /* Fix the width to A4 dimensions to lock the desktop layout */
     width: 210mm !important;
@@ -1332,16 +1336,21 @@ td {
   }
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 20px;
+  background-color: var(--app-bg);
+}
+
 .app-footer {
-  width: 100vw;
   padding: 10px 20px;
   font-size: 0.65rem;
   background-color: var(--menu-bg);
   color: #aaa;
   text-align: center;
   line-height: 1.4;
-  margin-top: 40px;
-  margin-left: calc(-50vw + 50%);
 }
 
 .app-footer p {
