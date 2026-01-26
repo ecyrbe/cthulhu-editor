@@ -29,10 +29,14 @@ const InvestigatorSheet: React.FC = () => {
     handlePhotoUpload,
     derivedCombat,
     zoom,
+    printBlankValues,
   } = useInvestigatorContext();
 
   return (
-    <main className="pages-wrapper" style={{ zoom }}>
+    <main
+      className={`pages-wrapper ${printBlankValues ? "print-blank-mode" : ""}`}
+      style={{ zoom }}
+    >
       {/* PAGE 1 */}
       <div className="page" id="page1">
         <div className="page-box">

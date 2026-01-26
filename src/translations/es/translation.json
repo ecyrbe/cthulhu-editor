@@ -2,6 +2,7 @@
   "footer_disclaimer": "Este editor utiliza marcas registradas y/o derechos de autor propiedad de Chaosium Inc/Moon Design Publications LLC, los cuales se utilizan bajo la Política de Material para Fans de Chaosium Inc. Se nos prohíbe expresamente cobrarle por usar o acceder a este contenido. Este editor de hojas de personaje no está publicado, avalado ni específicamente aprobado por Chaosium Inc. Para obtener más información sobre los productos de Chaosium Inc, visite %URL%.",
   "roll": "Generar Estads.",
   "print": "Imprimir",
+  "print_blank": "Ocultar valores para imprimir (habils. y rastreadores)",
   "save": "Guardar",
   "export": "Exportar",
   "import": "Importar",

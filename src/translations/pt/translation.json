@@ -2,6 +2,7 @@
   "footer_disclaimer": "Este editor utiliza marcas registradas e/ou direitos autorais de propriedade da Chaosium Inc/Moon Design Publications LLC, que são usados sob a Política de Material de Fãs da Chaosium Inc. Somos expressamente proibidos de cobrar de você para usar ou acessar este conteúdo. Este editor de ficha de personagem não é publicado, endossado ou aprovado especificamente pela Chaosium Inc. Para mais informações sobre os produtos da Chaosium Inc, visite %URL%.",
   "roll": "Gerar Atributos",
   "print": "Imprimir",
+  "print_blank": "Ocultar valores para impressão (perícias e marcadores)",
   "save": "Salvar",
   "export": "Exportar",
   "import": "Importar",

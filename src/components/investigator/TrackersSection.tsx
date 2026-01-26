@@ -95,46 +95,54 @@ const TrackersSection: React.FC<TrackersSectionProps> = ({
             onSelect={(val) => setTracker("sanity", val)}
             headerLeft={
               <>
-                {t("temp")}
-                <button
-                  className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
-                  onClick={() =>
-                    setTracker("tempInsane", !data.trackers.tempInsane)
-                  }
-                  aria-label={t("temp")}
-                  aria-pressed={data.trackers.tempInsane}
-                />
-                {t("persist")}
-                <button
-                  className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
-                  onClick={() =>
-                    setTracker("indefInsane", !data.trackers.indefInsane)
-                  }
-                  aria-label={t("persist")}
-                  aria-pressed={data.trackers.indefInsane}
-                />
+                <label className="tracker-checkbox">
+                  {t("temp")}
+                  <button
+                    className={`tracker-check ${data.trackers.tempInsane ? "checked" : ""}`}
+                    onClick={() =>
+                      setTracker("tempInsane", !data.trackers.tempInsane)
+                    }
+                    aria-label={t("temp")}
+                    aria-pressed={data.trackers.tempInsane}
+                  />
+                </label>
+                <label className="tracker-checkbox">
+                  {t("persist")}
+                  <button
+                    className={`tracker-check ${data.trackers.indefInsane ? "checked" : ""}`}
+                    onClick={() =>
+                      setTracker("indefInsane", !data.trackers.indefInsane)
+                    }
+                    aria-label={t("persist")}
+                    aria-pressed={data.trackers.indefInsane}
+                  />
+                </label>
               </>
             }
             headerRight={
               <>
-                <label htmlFor="sanityInitial">{t("initial")}</label>
-                <input
-                  id="sanityInitial"
-                  type="number"
-                  className="small-stat-box"
-                  value={data.trackers.sanityInitial || ""}
-                  onChange={(e) =>
-                    setTracker("sanityInitial", parseInt(e.target.value) || 0)
-                  }
-                />
-                <label htmlFor="sanityMax">{t("max")}</label>
-                <input
-                  id="sanityMax"
-                  type="number"
-                  className="small-stat-box"
-                  value={data.trackers.sanityMax || ""}
-                  readOnly
-                />
+                <label className="tracker-checkbox">
+                  {t("initial")}
+                  <input
+                    id="sanityInitial"
+                    type="number"
+                    className="small-stat-box"
+                    value={data.trackers.sanityInitial || ""}
+                    onChange={(e) =>
+                      setTracker("sanityInitial", parseInt(e.target.value) || 0)
+                    }
+                  />
+                </label>
+                <label className="tracker-checkbox">
+                  {t("max")}
+                  <input
+                    id="sanityMax"
+                    type="number"
+                    className="small-stat-box"
+                    value={data.trackers.sanityMax || ""}
+                    readOnly
+                  />
+                </label>
               </>
             }
           />

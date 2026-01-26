@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useInvestigatorContext } from "../../hooks/useInvestigatorContext";
 import diceIcon from "../../assets/dice-six.svg";
 import saveIcon from "../../assets/floppy-disk.svg";
 import printIcon from "../../assets/printing-page.svg";
@@ -25,6 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   onImport,
 }) => {
   const { t, i18n } = useTranslation();
+  const { printBlankValues, setPrintBlankValues } = useInvestigatorContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -124,6 +126,17 @@ const Sidebar: React.FC<SidebarProps> = ({
           />{" "}
           <span className="btn-text">{t("print")}</span>
         </button>
+
+        <div className="menu-checkbox-wrapper">
+          <label className="menu-checkbox-label">
+            <input
+              type="checkbox"
+              checked={printBlankValues}
+              onChange={(e) => setPrintBlankValues(e.target.checked)}
+            />
+            <span className="checkbox-text">{t("print_blank")}</span>
+          </label>
+        </div>
 
         <div className="menu-label">Data</div>
         <button className="menu-btn" onClick={onExport}>

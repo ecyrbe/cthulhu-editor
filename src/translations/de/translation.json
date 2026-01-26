@@ -2,6 +2,7 @@
   "footer_disclaimer": "Dieser Editor verwendet Marken und/oder Urheberrechte von Chaosium Inc/Moon Design Publications LLC, die im Rahmen der Chaosium Inc Fan Material Policy verwendet werden. Es ist uns ausdrücklich untersagt, Gebühren für die Nutzung oder den Zugriff auf diesen Inhalt zu erheben. Dieser Charakterblatt-Editor wird nicht von Chaosium Inc veröffentlicht, unterstützt oder speziell genehmigt. Weitere Informationen zu den Produkten von Chaosium Inc finden Sie unter %URL%.",
   "roll": "Stats generieren",
   "print": "Drucken",
+  "print_blank": "Werte für den Druck ausblenden (Fertigkeiten & Tracker)",
   "save": "Speichern",
   "export": "Exportieren",
   "import": "Importieren",

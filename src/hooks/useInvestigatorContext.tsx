@@ -3,6 +3,8 @@ import { useInvestigator } from "./useInvestigator";
 
 export type InvestigatorContextValue = ReturnType<typeof useInvestigator> & {
   zoom: number;
+  printBlankValues: boolean;
+  setPrintBlankValues: (val: boolean) => void;
   handlePhotoUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleZoomIn: () => void;
   handleZoomOut: () => void;

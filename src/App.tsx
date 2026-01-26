@@ -117,6 +117,7 @@ function MainLayout() {
 
 export default function App() {
   const [zoom, setZoom] = React.useState(1);
+  const [printBlankValues, setPrintBlankValues] = React.useState(false);
   const investigator = useInvestigator();
   const { t } = useTranslation();
 
@@ -206,6 +207,8 @@ export default function App() {
       investigator: {
         ...investigator,
         zoom,
+        printBlankValues,
+        setPrintBlankValues,
         handlePhotoUpload,
         handleZoomIn,
         handleZoomOut,
@@ -217,6 +220,8 @@ export default function App() {
     [
       investigator,
       zoom,
+      printBlankValues,
+      setPrintBlankValues,
       handlePhotoUpload,
       handleZoomIn,
       handleZoomOut,
