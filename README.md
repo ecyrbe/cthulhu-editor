@@ -8,8 +8,6 @@ A modern, responsive web-based character sheet editor compatible with **Call of 
 
 Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manage investigator sheets easily. It provides a clean, digital interface that mimics the classic character sheet while adding modern features like automatic calculations, multi-language support, and easy data management.
 
-This editor uses trademarks and/or copyrights owned by Chaosium Inc/Moon Design Publications LLC, which are used under Chaosium Inc’s Fan Material Policy. We are expressly prohibited from charging you to use or access this content. This Character Sheet editor is not published, endorsed, or specifically approved by Chaosium Inc. For more information about Chaosium Inc’s products, please visit [www.chaosium.com](https://www.chaosium.com).
-
 ### 📂 Examples
 
 - **🖋️ [New Empty Character](https://ecyrbe.github.io/cthulhu-editor/)**
@@ -83,3 +81,9 @@ Contributions are welcome! Feel free to open issues or submit pull requests to i
 ## License
 
 This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
+
+## Copyright Notice
+
+**Code Copyright © 2024-2025 ecyrbe.** All rights reserved.
+
+This editor uses trademarks and/or copyrights owned by Chaosium Inc/Moon Design Publications LLC, which are used under Chaosium Inc’s Fan Material Policy. We are expressly prohibited from charging you to use or access this content. This Character Sheet editor is not published, endorsed, or specifically approved by Chaosium Inc. For more information about Chaosium Inc’s products, please visit [www.chaosium.com](https://www.chaosium.com).
