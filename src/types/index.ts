@@ -26,6 +26,8 @@ export const StandardSkillSchema = BaseSkillSchema.extend({
   checked: z.boolean(),
 });
 
+export type StandardSkill = z.infer<typeof StandardSkillSchema>;
+
 export const CustomSkillSchema = BaseSkillSchema.extend({
   type: z.literal("custom"),
   name: z.string(),
