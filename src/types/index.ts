@@ -1,95 +1,115 @@
-export interface Characteristic {
-  value: number;
-  half: number;
-  fifth: number;
-}
+import { z } from "zod";
 
-export interface BaseSkill {
-  id: string;
-}
+export const CharacteristicSchema = z.object({
+  value: z.number(),
+  half: z.number(),
+  fifth: z.number(),
+});
 
-export interface StaticSkill extends BaseSkill {
-  type: "static";
-  key: string;
-  base: number | string;
-}
+export type Characteristic = z.infer<typeof CharacteristicSchema>;
 
-export interface StandardSkill extends BaseSkill {
-  type: "standard";
-  key: string;
-  base: number | string;
-  current: number;
-  checked: boolean;
-}
+export const BaseSkillSchema = z.object({
+  id: z.string(),
+});
 
-export interface CustomSkill extends BaseSkill {
-  type: "custom";
-  name: string;
-  current: number;
-  checked: boolean;
-}
+export const StaticSkillSchema = BaseSkillSchema.extend({
+  type: z.literal("static"),
+  key: z.string(),
+  base: z.union([z.number(), z.string()]),
+});
 
-export type Skill = StaticSkill | StandardSkill | CustomSkill;
+export const StandardSkillSchema = BaseSkillSchema.extend({
+  type: z.literal("standard"),
+  key: z.string(),
+  base: z.union([z.number(), z.string()]),
+  current: z.number(),
+  checked: z.boolean(),
+});
 
-export interface Weapon {
-  name: string;
-  regular: string;
-  hard: string;
-  extreme: string;
-  damage: string;
-  range: string;
-  attacks: string;
-  ammo: string;
-  malfunction: string;
-}
+export const CustomSkillSchema = BaseSkillSchema.extend({
+  type: z.literal("custom"),
+  name: z.string(),
+  current: z.number(),
+  checked: z.boolean(),
+});
 
-export interface InvestigatorData {
-  identity: {
-    name: string;
-    player: string;
-    occupation: string;
-    age: string;
-    sex: string;
-    residence: string;
-    birthplace: string;
-  };
-  characteristics: Record<string, number>;
-  trackers: {
-    hp: number;
-    mp: number;
-    sanity: number;
-    luck: number;
-    hpMax: number;
-    mpMax: number;
-    sanityInitial: number;
-    sanityMax: number;
-    majorWound: boolean;
-    tempInsane: boolean;
-    indefInsane: boolean;
-  };
-  skills: Skill[];
-  backstory: {
-    personalDescription: string;
-    ideologyBeliefs: string;
-    significantPeople: string;
-    meaningfulLocations: string;
-    treasuredPossessions: string;
-    traits: string;
-    injuriesScars: string;
-    phobiasManias: string;
-    arcaneTomesSpells: string;
-    strangeEntities: string;
-  };
-  gear: string;
-  wealth: {
-    spendingLevel: string;
-    cash: string;
-    assets: string;
-  };
-  weapons: Weapon[];
-  fellowInvestigators: Array<{ name: string; player: string }>;
-  notes: string;
-  photo?: string;
-}
+export const SkillSchema = z.discriminatedUnion("type", [
+  StaticSkillSchema,
+  StandardSkillSchema,
+  CustomSkillSchema,
+]);
+
+export type Skill = z.infer<typeof SkillSchema>;
+
+export const WeaponSchema = z.object({
+  name: z.string(),
+  regular: z.string(),
+  hard: z.string(),
+  extreme: z.string(),
+  damage: z.string(),
+  range: z.string(),
+  attacks: z.string(),
+  ammo: z.string(),
+  malfunction: z.string(),
+});
+
+export type Weapon = z.infer<typeof WeaponSchema>;
+
+export const InvestigatorDataSchema = z.object({
+  version: z.string(),
+  identity: z.object({
+    name: z.string(),
+    player: z.string(),
+    occupation: z.string(),
+    age: z.string(),
+    sex: z.string(),
+    residence: z.string(),
+    birthplace: z.string(),
+  }),
+  characteristics: z.record(z.string(), z.number()),
+  trackers: z.object({
+    hp: z.number(),
+    mp: z.number(),
+    sanity: z.number(),
+    luck: z.number(),
+    hpMax: z.number(),
+    mpMax: z.number(),
+    sanityInitial: z.number(),
+    sanityMax: z.number(),
+    majorWound: z.boolean(),
+    tempInsane: z.boolean(),
+    indefInsane: z.boolean(),
+  }),
+  skills: z.array(SkillSchema),
+  backstory: z.object({
+    personalDescription: z.string(),
+    ideologyBeliefs: z.string(),
+    significantPeople: z.string(),
+    meaningfulLocations: z.string(),
+    treasuredPossessions: z.string(),
+    traits: z.string(),
+    injuriesScars: z.string(),
+    phobiasManias: z.string(),
+    arcaneTomesSpells: z.string(),
+    strangeEntities: z.string(),
+  }),
+  gear: z.string(),
+  wealth: z.object({
+    spendingLevel: z.string(),
+    cash: z.string(),
+    assets: z.string(),
+  }),
+  weapons: z.array(WeaponSchema),
+  fellowInvestigators: z.array(
+    z.object({
+      name: z.string(),
+      player: z.string(),
+    }),
+  ),
+  notes: z.string(),
+  photo: z.string().optional(),
+});
+
+export type InvestigatorData = z.infer<typeof InvestigatorDataSchema>;
 
 export type Language = "fr" | "en" | "es";

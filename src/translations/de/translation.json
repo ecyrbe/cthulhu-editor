@@ -89,6 +89,7 @@
   "toast_import_success": "Investigator-Daten importiert!",
   "toast_reset_success": "Daten zurückgesetzt!",
   "toast_import_error": "JSON-Datei konnte nicht analysiert werden",
+  "toast_import_version_error": "Inkompatible Datenversion",
   "loading_external_data": "Lade Investigator-Daten...",
   "confirm_reset": "Sind Sie sicher, dass Sie alle Daten zurücksetzen möchten?"
 }

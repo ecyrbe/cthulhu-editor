@@ -89,6 +89,7 @@
   "toast_import_success": "¡Datos del investigador importados!",
   "toast_reset_success": "¡Datos restablecidos!",
   "toast_import_error": "Error al analizar el archivo JSON",
+  "toast_import_version_error": "Versión de datos incompatible",
   "loading_external_data": "Cargando datos del investigador...",
   "confirm_reset": "¿Estás seguro de que quieres restablecer todos los datos?"
 }

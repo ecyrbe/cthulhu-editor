@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0",
   "identity": {
     "name": "Ethan Caldwell",
     "player": "",
@@ -23,7 +24,7 @@
     "hp": 9,
     "mp": 9,
     "sanity": 45,
-    "luck": 55,
+    "luck": 41,
     "hpMax": 9,
     "mpMax": 9,
     "sanityInitial": 45,
@@ -34,520 +35,520 @@
   },
   "skills": [
     {
+      "id": "skill-anthro",
       "type": "standard",
       "key": "anthro",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-anthro"
+      "checked": false
     },
     {
+      "id": "skill-archaeology",
       "type": "standard",
       "key": "archaeology",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-archaeology"
+      "checked": false
     },
     {
+      "id": "skill-art",
       "type": "static",
       "key": "art",
-      "base": 5,
-      "id": "skill-art"
+      "base": 5
     },
     {
+      "id": "skill-art-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-art-0"
+      "checked": false
     },
     {
+      "id": "skill-art-1",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-art-1"
+      "checked": false
     },
     {
+      "id": "skill-art-2",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-art-2"
+      "checked": false
     },
     {
+      "id": "skill-fast_talk",
       "type": "standard",
       "key": "fast_talk",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-fast_talk"
+      "checked": false
     },
     {
+      "id": "skill-library",
       "type": "standard",
       "key": "library",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-library"
+      "checked": false
     },
     {
+      "id": "skill-charm",
       "type": "standard",
       "key": "charm",
       "base": 15,
       "current": 15,
-      "checked": false,
-      "id": "skill-charm"
+      "checked": false
     },
     {
+      "id": "skill-ranged_combat",
       "type": "static",
       "key": "ranged_combat",
-      "base": 0,
-      "id": "skill-ranged_combat"
+      "base": 0
     },
     {
+      "id": "skill-handgun",
       "type": "standard",
       "key": "handgun",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-handgun"
+      "checked": false
     },
     {
+      "id": "skill-rifle",
       "type": "standard",
       "key": "rifle",
       "base": 25,
       "current": 25,
-      "checked": false,
-      "id": "skill-rifle"
+      "checked": false
     },
     {
+      "id": "skill-ranged_combat-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-ranged_combat-0"
+      "checked": false
     },
     {
+      "id": "skill-close_combat",
       "type": "static",
       "key": "close_combat",
-      "base": 0,
-      "id": "skill-close_combat"
+      "base": 0
     },
     {
+      "id": "skill-brawl",
       "type": "standard",
       "key": "brawl",
       "base": 25,
       "current": 25,
-      "checked": false,
-      "id": "skill-brawl"
+      "checked": false
     },
     {
+      "id": "skill-close_combat-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-close_combat-0"
+      "checked": false
     },
     {
+      "id": "skill-close_combat-1",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-close_combat-1"
+      "checked": false
     },
     {
+      "id": "skill-accounting",
       "type": "standard",
       "key": "accounting",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-accounting"
+      "checked": false
     },
     {
+      "id": "skill-drive",
       "type": "standard",
       "key": "drive",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-drive"
+      "checked": false
     },
     {
+      "id": "skill-heavy",
       "type": "standard",
       "key": "heavy",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-heavy"
+      "checked": false
     },
     {
+      "id": "skill-credit",
       "type": "standard",
       "key": "credit",
       "base": 0,
       "current": 0,
-      "checked": false,
-      "id": "skill-credit"
+      "checked": false
     },
     {
+      "id": "skill-locksmith",
       "type": "standard",
       "key": "locksmith",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-locksmith"
+      "checked": false
     },
     {
+      "id": "skill-stealth",
       "type": "standard",
       "key": "stealth",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-stealth"
+      "checked": false
     },
     {
+      "id": "skill-law",
       "type": "standard",
       "key": "law",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-law"
+      "checked": false
     },
     {
+      "id": "skill-listen",
       "type": "standard",
       "key": "listen",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-listen"
+      "checked": false
     },
     {
+      "id": "skill-electric",
       "type": "standard",
       "key": "electric",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-electric"
+      "checked": false
     },
     {
+      "id": "skill-electronics",
       "type": "standard",
       "key": "electronics",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-electronics"
+      "checked": false
     },
     {
+      "id": "skill-Dodge",
       "type": "standard",
       "key": "dodge",
       "base": "DEX/2",
       "current": 25,
-      "checked": false,
-      "id": "skill-Dodge"
+      "checked": false
     },
     {
+      "id": "skill-appraise",
       "type": "standard",
       "key": "appraise",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-appraise"
+      "checked": false
     },
     {
+      "id": "skill-climb",
       "type": "standard",
       "key": "climb",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-climb"
+      "checked": false
     },
     {
+      "id": "skill-history",
       "type": "standard",
       "key": "history",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-history"
+      "checked": false
     },
     {
+      "id": "skill-disguise",
       "type": "standard",
       "key": "disguise",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-disguise"
+      "checked": false
     },
     {
+      "id": "skill-computers",
       "type": "standard",
       "key": "computers",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-computers"
+      "checked": false
     },
     {
+      "id": "skill-intimidate",
       "type": "standard",
       "key": "intimidate",
       "base": 15,
       "current": 15,
-      "checked": false,
-      "id": "skill-intimidate"
+      "checked": false
     },
     {
+      "id": "skill-throw",
       "type": "standard",
       "key": "throw",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-throw"
+      "checked": false
     },
     {
+      "id": "skill-MotherTongue",
       "type": "static",
       "key": "mother_tongue",
-      "base": "EDU",
-      "id": "skill-MotherTongue"
+      "base": "EDU"
     },
     {
+      "id": "skill-mother_tongue-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-mother_tongue-0"
+      "checked": false
     },
     {
+      "id": "skill-language",
       "type": "static",
       "key": "languages",
-      "base": 1,
-      "id": "skill-language"
+      "base": 1
     },
     {
+      "id": "skill-language-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-language-0"
+      "checked": false
     },
     {
+      "id": "skill-language-1",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-language-1"
+      "checked": false
     },
     {
+      "id": "skill-language-2",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-language-2"
+      "checked": false
     },
     {
+      "id": "skill-mech",
       "type": "standard",
       "key": "mech",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-mech"
+      "checked": false
     },
     {
+      "id": "skill-medicine",
       "type": "standard",
       "key": "medicine",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-medicine"
+      "checked": false
     },
     {
+      "id": "skill-cthulhu",
       "type": "standard",
       "key": "cthulhu",
       "base": 0,
       "current": 0,
-      "checked": false,
-      "id": "skill-cthulhu"
+      "checked": false
     },
     {
+      "id": "skill-swim",
       "type": "standard",
       "key": "swim",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-swim"
+      "checked": false
     },
     {
+      "id": "skill-nature",
       "type": "standard",
       "key": "nature",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-nature"
+      "checked": false
     },
     {
+      "id": "skill-occult",
       "type": "standard",
       "key": "occult",
       "base": 5,
       "current": 5,
-      "checked": false,
-      "id": "skill-occult"
+      "checked": false
     },
     {
+      "id": "skill-navigate",
       "type": "standard",
       "key": "navigate",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-navigate"
+      "checked": false
     },
     {
+      "id": "skill-persuade",
       "type": "standard",
       "key": "persuade",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-persuade"
+      "checked": false
     },
     {
+      "id": "skill-sleight",
       "type": "standard",
       "key": "sleight",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-sleight"
+      "checked": false
     },
     {
+      "id": "skill-pilot",
       "type": "static",
       "key": "pilot",
-      "base": 1,
-      "id": "skill-pilot"
+      "base": 1
     },
     {
+      "id": "skill-pilot-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-pilot-0"
+      "checked": false
     },
     {
+      "id": "skill-track",
       "type": "standard",
       "key": "track",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-track"
+      "checked": false
     },
     {
+      "id": "skill-first_aid",
       "type": "standard",
       "key": "first_aid",
       "base": 30,
       "current": 30,
-      "checked": false,
-      "id": "skill-first_aid"
+      "checked": false
     },
     {
+      "id": "skill-psychoanalysis",
       "type": "standard",
       "key": "psychoanalysis",
       "base": 1,
       "current": 1,
-      "checked": false,
-      "id": "skill-psychoanalysis"
+      "checked": false
     },
     {
+      "id": "skill-psychology",
       "type": "standard",
       "key": "psychology",
       "base": 10,
       "current": 10,
-      "checked": false,
-      "id": "skill-psychology"
+      "checked": false
     },
     {
+      "id": "skill-jump",
       "type": "standard",
       "key": "jump",
       "base": 20,
       "current": 20,
-      "checked": false,
-      "id": "skill-jump"
+      "checked": false
     },
     {
+      "id": "skill-science",
       "type": "static",
       "key": "science",
-      "base": 1,
-      "id": "skill-science"
+      "base": 1
     },
     {
+      "id": "skill-science-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-science-0"
+      "checked": false
     },
     {
+      "id": "skill-science-1",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-science-1"
+      "checked": false
     },
     {
+      "id": "skill-science-2",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-science-2"
+      "checked": false
     },
     {
+      "id": "skill-survival",
       "type": "static",
       "key": "survival",
-      "base": 10,
-      "id": "skill-survival"
+      "base": 10
     },
     {
+      "id": "skill-survival-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "skill-survival-0"
+      "checked": false
     },
     {
+      "id": "skill-spot",
       "type": "standard",
       "key": "spot",
       "base": 25,
       "current": 25,
-      "checked": false,
-      "id": "skill-spot"
+      "checked": false
     },
     {
+      "id": "custom-0",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "custom-0"
+      "checked": false
     },
     {
+      "id": "custom-1",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "custom-1"
+      "checked": false
     },
     {
+      "id": "custom-2",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "custom-2"
+      "checked": false
     },
     {
+      "id": "custom-3",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "custom-3"
+      "checked": false
     },
     {
+      "id": "custom-4",
       "type": "custom",
       "name": "",
       "current": 0,
-      "checked": false,
-      "id": "custom-4"
+      "checked": false
     }
   ],
   "backstory": {

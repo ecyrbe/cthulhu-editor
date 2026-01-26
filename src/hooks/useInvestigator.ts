@@ -2,12 +2,19 @@ import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import { normalize } from "../utils/normalize";
-import type { InvestigatorData, Skill, Weapon } from "../types";
+import {
+  InvestigatorDataSchema,
+  type InvestigatorData,
+  type Skill,
+  type Weapon,
+} from "../types";
 import { initialSkillsData } from "../constants/skills";
 
 const STORAGE_KEY = "cthulhu-investigator-data";
+const CURRENT_VERSION = "1.0.0";
 
 const getInitialData = (): InvestigatorData => ({
+  version: CURRENT_VERSION,
   identity: {
     name: "",
     player: "",
@@ -82,11 +89,27 @@ export function useInvestigator() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        const result = InvestigatorDataSchema.safeParse(parsed);
+
+        if (!result.success) {
+          console.error("Invalid saved data", result.error);
+          return getInitialData();
+        }
+
+        const validData = result.data;
+
+        if (validData.version !== CURRENT_VERSION) {
+          console.warn(
+            `Version mismatch: saved ${validData.version}, current ${CURRENT_VERSION}`,
+          );
+          return getInitialData();
+        }
+
         // Recalculate reactive skills on load
-        const dex = parsed.characteristics?.DEX || 0;
-        const edu = parsed.characteristics?.EDU || 0;
-        if (parsed.skills) {
-          parsed.skills = parsed.skills.map((s: Skill) => {
+        const dex = validData.characteristics?.DEX || 0;
+        const edu = validData.characteristics?.EDU || 0;
+        if (validData.skills) {
+          validData.skills = validData.skills.map((s: Skill) => {
             if (s.type === "standard" && s.key === "dodge")
               return { ...s, current: Math.floor(dex / 2) };
             if (s.type === "standard" && s.key === "mother_tongue")
@@ -95,17 +118,17 @@ export function useInvestigator() {
           });
 
           // Recalculate sanityMax
-          const cthulhuSkill = parsed.skills.find(
+          const cthulhuSkill = validData.skills.find(
             (s: Skill) => s.type === "standard" && s.key === "cthulhu",
           );
           if (cthulhuSkill && cthulhuSkill.type === "standard") {
-            parsed.trackers = {
-              ...(parsed.trackers || {}),
+            validData.trackers = {
+              ...(validData.trackers || {}),
               sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
             };
           }
         }
-        return { ...getInitialData(), ...parsed };
+        return { ...getInitialData(), ...validData };
       } catch (e) {
         console.error("Failed to load saved data", e);
       }
@@ -284,19 +307,41 @@ export function useInvestigator() {
     URL.revokeObjectURL(url);
   }, [data]);
 
-  const importData = useCallback((newData: InvestigatorData) => {
-    // Ensure sanityMax is correct on import
-    const cthulhuSkill = newData.skills?.find(
-      (s) => s.type === "standard" && s.key === "cthulhu",
-    );
-    if (cthulhuSkill && cthulhuSkill.type === "standard") {
-      newData.trackers = {
-        ...(newData.trackers || {}),
-        sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
-      };
-    }
-    setData({ ...getInitialData(), ...newData });
-  }, []);
+  const importData = useCallback(
+    (newData: unknown) => {
+      const result = InvestigatorDataSchema.safeParse(newData);
+
+      if (!result.success) {
+        console.error("Import validation failed:", result.error);
+        toast.error(t("toast_import_error"));
+        return;
+      }
+
+      const validatedData = result.data;
+
+      if (validatedData.version !== CURRENT_VERSION) {
+        console.error("Import version mismatch:", validatedData.version);
+        toast.error(
+          t("toast_import_version_error") || "Incompatible data version",
+        );
+        return;
+      }
+
+      // Ensure sanityMax is correct on import
+      const cthulhuSkill = validatedData.skills?.find(
+        (s) => s.type === "standard" && s.key === "cthulhu",
+      );
+      if (cthulhuSkill && cthulhuSkill.type === "standard") {
+        validatedData.trackers = {
+          ...(validatedData.trackers || {}),
+          sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
+        };
+      }
+      setData({ ...getInitialData(), ...validatedData });
+      toast.success(t("toast_import_success"));
+    },
+    [t],
+  );
 
   const rollInvestigator = useCallback(() => {
     const rollSimple = () =>

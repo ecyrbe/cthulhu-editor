@@ -64,7 +64,6 @@ function MainLayout() {
           try {
             const json = JSON.parse(event.target?.result as string);
             importData(json);
-            toast.success(t("toast_import_success"));
           } catch (error) {
             toast.error(t("toast_import_error"));
             console.error(error);
@@ -137,7 +136,7 @@ export default function App() {
           if (!response.ok) throw new Error("Failed to fetch");
           const json = await response.json();
           investigator.importData(json);
-          toast.success(t("toast_import_success"), { id: toastId });
+          toast.dismiss(toastId);
           // Redirect to root without the link Param to avoid re-loads
           window.location.hash = "/";
         } catch (error) {
