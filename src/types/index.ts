@@ -120,6 +120,7 @@ export const WealthSchema = z.object({
 export type Wealth = z.infer<typeof WealthSchema>;
 
 export const InvestigatorDataSchema = z.object({
+  id: z.number().optional(),
   version: z.string(),
   identity: IdentitySchema,
   characteristics: z.record(z.string(), z.number()),

@@ -1,0 +1,34 @@
+.editor-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  border-bottom: 1px solid #333;
+  font-size: 0.9rem;
+}
+.editor-nav a {
+  color: #8b0000;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+.editor-nav span {
+  color: #888;
+  margin-left: 0.5rem;
+}
+.app-container {
+  padding-top: 50px;
+}
+#menu-toggle {
+  top: 50px !important;
+}
+@media print {
+  .editor-nav {
+    display: none;
+  }
+}

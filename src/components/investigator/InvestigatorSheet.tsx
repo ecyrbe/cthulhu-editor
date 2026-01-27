@@ -1,5 +1,21 @@
-import React from "react";
-import { useInvestigatorContext } from "../../hooks/useInvestigatorContext";
+import { useAtomValue, useSetAtom } from "jotai";
+import {
+  investigatorDataAtom,
+  derivedCombatAtom,
+  updateIdentityAtom,
+  updateCharacteristicAtom,
+  updateSkillAtom,
+  updateTrackerAtom,
+  updateBackstoryAtom,
+  updateWeaponAtom,
+  updateWealthAtom,
+  updateGearAtom,
+  updateNotesAtom,
+  updateFellowInvestigatorAtom,
+  updatePhotoAtom,
+} from "../../store/investigatorAtoms";
+import { zoomLevelAtom, printBlankValuesAtom } from "../../store/uiAtoms";
+
 import SkillsSection from "./SkillsSection";
 import WeaponTable from "./WeaponTable";
 import CombatSection from "./CombatSection";
@@ -14,23 +30,33 @@ import TrackersSection from "./TrackersSection";
 import type { StandardSkill } from "../../types";
 
 const InvestigatorSheet: React.FC = () => {
-  const {
-    data,
-    setIdentity,
-    setCharacteristic,
-    setSkill,
-    setTracker,
-    setBackstory,
-    setWeapon,
-    setWealth,
-    setGear,
-    setNotes,
-    setFellowInvestigator,
-    handlePhotoUpload,
-    derivedCombat,
-    zoom,
-    printBlankValues,
-  } = useInvestigatorContext();
+  const data = useAtomValue(investigatorDataAtom);
+  const derivedCombat = useAtomValue(derivedCombatAtom);
+  const zoom = useAtomValue(zoomLevelAtom);
+  const printBlankValues = useAtomValue(printBlankValuesAtom);
+
+  const setIdentity = useSetAtom(updateIdentityAtom);
+  const setCharacteristic = useSetAtom(updateCharacteristicAtom);
+  const setSkill = useSetAtom(updateSkillAtom);
+  const setTracker = useSetAtom(updateTrackerAtom);
+  const setBackstory = useSetAtom(updateBackstoryAtom);
+  const setWeapon = useSetAtom(updateWeaponAtom);
+  const setWealth = useSetAtom(updateWealthAtom);
+  const setGear = useSetAtom(updateGearAtom);
+  const setNotes = useSetAtom(updateNotesAtom);
+  const setFellowInvestigator = useSetAtom(updateFellowInvestigatorAtom);
+  const updatePhoto = useSetAtom(updatePhotoAtom);
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        updatePhoto(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <main
@@ -42,20 +68,32 @@ const InvestigatorSheet: React.FC = () => {
         <div className="page-box">
           <HeaderSection
             data={data}
-            setIdentity={setIdentity}
-            setCharacteristic={setCharacteristic}
+            setIdentity={(field, value) => setIdentity({ field, value })}
+            setCharacteristic={(stat, value) =>
+              setCharacteristic({ stat, value })
+            }
             handlePhotoUpload={handlePhotoUpload}
           />
 
-          <TrackersSection data={data} setTracker={setTracker} />
+          <TrackersSection
+            data={data}
+            setTracker={(field, value) => setTracker({ field, value })}
+          />
 
           <SkillsSection
             skills={data.skills}
-            onSkillChange={(idx, field, val) => setSkill(idx, { [field]: val })}
+            onSkillChange={(idx, field, val) =>
+              setSkill({ index: idx, updates: { [field]: val } })
+            }
           />
 
           <div className="section-box combat-weapons-box">
-            <WeaponTable weapons={data.weapons} onWeaponChange={setWeapon} />
+            <WeaponTable
+              weapons={data.weapons}
+              onWeaponChange={(index, field, value) =>
+                setWeapon({ index, field, value })
+              }
+            />
             <div className="vertical-separator" />
             <CombatSection
               db={derivedCombat.db || "0"}
@@ -77,20 +115,25 @@ const InvestigatorSheet: React.FC = () => {
         <div className="page-box">
           <BackstorySection
             backstory={data.backstory}
-            onValueChange={setBackstory}
+            onValueChange={(field, value) => setBackstory({ field, value })}
           />
 
           <div className="section-box gear-wealth-row">
             <GearSection gear={data.gear} onValueChange={setGear} />
             <div className="vertical-separator" />
-            <WealthSection wealth={data.wealth} onValueChange={setWealth} />
+            <WealthSection
+              wealth={data.wealth}
+              onValueChange={(field, value) => setWealth({ field, value })}
+            />
           </div>
 
           <div className="section-box row friends-notes-row">
             <div className="friends-column">
               <FellowInvestigatorsSection
                 fellows={data.fellowInvestigators}
-                onValueChange={setFellowInvestigator}
+                onValueChange={(index, field, value) =>
+                  setFellowInvestigator({ index, field, value })
+                }
               />
             </div>
             <div className="vertical-separator" />

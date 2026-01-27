@@ -1,0 +1,293 @@
+.landing-page-container {
+  background-color: #0c0c0c;
+  color: #d4d4d4;
+  font-family: "Liberation Serif", serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  animation: fadeIn 1.2s ease-out;
+}
+
+.feature-card {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.feature-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.feature-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.feature-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* Header */
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: "P22 Typewriter", serif;
+}
+
+.logo-top {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b0000;
+}
+
+.logo-bottom {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid #8b0000;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.nav-cta:hover {
+  background: #8b0000;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
+  text-align: center;
+  padding: 0 5%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-section h1 {
+  font-family: "P22 Typewriter", serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: #aaa;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.primary-button {
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+.primary-button:hover {
+  background: #a00000;
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.secondary-button:hover {
+  border-color: #8b0000;
+}
+
+/* Features */
+.features-section {
+  padding: 8rem 10%;
+  background-color: #0f0f0f;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-family: "P22 Typewriter", serif;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  color: #fff;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+}
+
+.feature-card {
+  padding: 2.5rem;
+  background: #161616;
+  border: 1px solid #222;
+  border-radius: 8px;
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  border-color: #8b0000;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.feature-card h3 {
+  font-family: "P22 Typewriter", serif;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #888;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 6rem 5%;
+  background: #0c0c0c;
+  display: flex;
+  justify-content: center;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid #222;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.cta-box h2 {
+  font-family: "P22 Typewriter", serif;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cta-box p {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 2.5rem;
+}
+
+.large-button {
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  padding: 1.2rem 3.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.large-button:hover {
+  background: #a00000;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+}
+
+/* Footer override for Landing Page */
+.landing-page-container .app-footer {
+  background: #0c0c0c !important;
+  border-top: 1px solid #222 !important;
+  padding: 3rem 10% !important;
+}
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .landing-header {
+    padding: 1rem 5%;
+  }
+
+  .logo-bottom {
+    font-size: 1.2rem;
+  }
+
+  .nav-cta {
+    display: none; /* Hide in mobile header to save space */
+  }
+
+  .features-section {
+    padding: 4rem 5%;
+  }
+}

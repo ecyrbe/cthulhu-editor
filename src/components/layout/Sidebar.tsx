@@ -1,7 +1,10 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useInvestigatorContext } from "../../hooks/useInvestigatorContext";
+import { Link } from "react-router-dom";
+import { useAtom } from "jotai";
+import { printBlankValuesAtom } from "../../store/uiAtoms";
 import diceIcon from "../../assets/dice-six.svg";
+
 import saveIcon from "../../assets/floppy-disk.svg";
 import printIcon from "../../assets/printing-page.svg";
 import exportIcon from "../../assets/floppy-disk-arrow-out.svg";
@@ -26,8 +29,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   onImport,
 }) => {
   const { t, i18n } = useTranslation();
-  const { printBlankValues, setPrintBlankValues } = useInvestigatorContext();
+  const [printBlankValues, setPrintBlankValues] = useAtom(printBlankValuesAtom);
   const [isOpen, setIsOpen] = useState(false);
+
   const [isLangOpen, setIsLangOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -94,6 +98,22 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
           )}
         </div>
+
+        <div className="menu-label">{t("navigation", "Navigation")}</div>
+        <Link
+          to="/"
+          className="menu-btn nav-link"
+          onClick={() => setIsOpen(false)}
+        >
+          {t("home", "Home")}
+        </Link>
+        <Link
+          to="/manager"
+          className="menu-btn nav-link"
+          onClick={() => setIsOpen(false)}
+        >
+          {t("manager", "Manager")}
+        </Link>
 
         <div className="menu-label">Actions</div>
         <button className="menu-btn" onClick={onRoll}>
