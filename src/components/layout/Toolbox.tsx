@@ -5,7 +5,6 @@ import { printBlankValuesAtom } from "../../store/uiAtoms";
 
 // Icons
 import diceIcon from "../../assets/dice-six.svg";
-import printIcon from "../../assets/printing-page.svg";
 import exportIcon from "../../assets/floppy-disk-arrow-out.svg";
 import importIcon from "../../assets/floppy-disk-arrow-in.svg";
 import resetIcon from "../../assets/erase.svg";
@@ -26,6 +25,39 @@ interface ToolboxProps {
   onResetZoom: () => void;
 }
 
+const PrinterIcon: React.FC<{ filled?: boolean }> = ({ filled }) => (
+  <svg
+    width="18px"
+    height="18px"
+    viewBox="0 0 24 24"
+    fill={filled ? "currentColor" : "none"}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17.5714 18H20.4C20.7314 18 21 17.7314 21 17.4V11C21 8.79086 19.2091 7 17 7H7C4.79086 7 3 8.79086 3 11V17.4C3 17.7314 3.26863 18 3.6 18H6.42857"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    ></path>
+    <path
+      d="M8 7V3.6C8 3.26863 8.26863 3 8.6 3H15.4C15.7314 3 16 3.26863 16 3.6V7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    ></path>
+    <path
+      d="M6.09782 20.3151L6.42855 18L6.92639 14.5151C6.96862 14.2196 7.22177 14 7.52036 14H16.4796C16.7782 14 17.0313 14.2196 17.0736 14.5151L17.5714 18L17.9021 20.3151C17.9538 20.6766 17.6733 21 17.3082 21H6.69179C6.32666 21 6.04618 20.6766 6.09782 20.3151Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    ></path>
+    <path
+      d="M17 10.01L17.01 9.99889"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></path>
+  </svg>
+);
+
 const Toolbox: React.FC<ToolboxProps> = ({
   onRoll,
   onPrint,
@@ -40,8 +72,16 @@ const Toolbox: React.FC<ToolboxProps> = ({
   onResetZoom,
 }) => {
   const { t } = useTranslation();
-  const [printBlankValues, setPrintBlankValues] = useAtom(printBlankValuesAtom);
+  const [, setPrintBlankValues] = useAtom(printBlankValuesAtom);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handlePrintMode = (isBlank: boolean) => {
+    setPrintBlankValues(isBlank);
+    // Brief timeout to ensure the blank mode class is applied before the print dialog blocks
+    setTimeout(() => {
+      onPrint();
+    }, 50);
+  };
 
   // Draggable logic
   const [isDragging, setIsDragging] = useState(false);
@@ -108,6 +148,51 @@ const Toolbox: React.FC<ToolboxProps> = ({
         {t("toolbox", "Toolbox")}
       </div>
       <div className="tools-container">
+        <div className="tools-section section-view">
+          <div className="tools-section-header">{t("view", "View")}</div>
+          <div className="tools-grid two-columns">
+            <div className="zoom-controls-row">
+              <button
+                className="tool-button"
+                onClick={onZoomOut}
+                title={t("zoom_out")}
+              >
+                <span className="tool-text">-</span>
+              </button>
+              <button
+                className="tool-button"
+                onClick={onResetZoom}
+                title={t("reset_zoom")}
+              >
+                <span className="tool-small-text">
+                  {Math.round(zoom * 100)}%
+                </span>
+              </button>
+              <button
+                className="tool-button"
+                onClick={onZoomIn}
+                title={t("zoom_in")}
+              >
+                <span className="tool-text">+</span>
+              </button>
+            </div>
+            <button
+              className="tool-button"
+              onClick={onFitWidth}
+              title={t("fit_to_width")}
+            >
+              <img src={fitWidthIcon} alt="" width="18" height="18" />
+            </button>
+            <button
+              className="tool-button"
+              onClick={onFitHeight}
+              title={t("fit_to_height")}
+            >
+              <img src={fitHeightIcon} alt="" width="18" height="18" />
+            </button>
+          </div>
+        </div>
+
         <div className="tools-section section-actions">
           <div className="tools-section-header">{t("actions", "Actions")}</div>
           <div className="tools-grid single-column">
@@ -160,65 +245,17 @@ const Toolbox: React.FC<ToolboxProps> = ({
           <div className="tools-grid two-columns">
             <button
               className="tool-button"
-              onClick={onPrint}
-              title={t("print")}
+              onClick={() => handlePrintMode(false)}
+              title={t("print_with_values", "Print with values")}
             >
-              <img src={printIcon} alt="" width="18" height="18" />
-            </button>
-            <button
-              className={`tool-button ${!printBlankValues ? "active" : ""}`}
-              onClick={() => setPrintBlankValues(false)}
-              title={t("print_with_values")}
-            >
-              <span className="tool-small-text">VAL</span>
-            </button>
-            <button
-              className={`tool-button ${printBlankValues ? "active" : ""}`}
-              onClick={() => setPrintBlankValues(true)}
-              title={t("print_blank")}
-            >
-              <span className="tool-small-text">{t("blank", "BLANK")}</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="tools-section section-view">
-          <div className="tools-section-header">{t("view", "View")}</div>
-          <div className="tools-grid two-columns">
-            <button
-              className="tool-button"
-              onClick={onZoomIn}
-              title={t("zoom_in")}
-            >
-              <span className="tool-text">+</span>
+              <PrinterIcon filled={true} />
             </button>
             <button
               className="tool-button"
-              onClick={onZoomOut}
-              title={t("zoom_out")}
+              onClick={() => handlePrintMode(true)}
+              title={t("print_blank", "Print blank")}
             >
-              <span className="tool-text">-</span>
-            </button>
-            <button
-              className="tool-button"
-              onClick={onFitWidth}
-              title={t("fit_to_width")}
-            >
-              <img src={fitWidthIcon} alt="" width="18" height="18" />
-            </button>
-            <button
-              className="tool-button"
-              onClick={onFitHeight}
-              title={t("fit_to_height")}
-            >
-              <img src={fitHeightIcon} alt="" width="18" height="18" />
-            </button>
-            <button
-              className="tool-button"
-              onClick={onResetZoom}
-              title={t("reset_zoom")}
-            >
-              <span className="tool-small-text">{Math.round(zoom * 100)}%</span>
+              <PrinterIcon filled={false} />
             </button>
           </div>
         </div>
