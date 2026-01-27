@@ -91,5 +91,10 @@
   "toast_import_error": "Failed to parse JSON file",
   "toast_import_version_error": "Incompatible data version",
   "loading_external_data": "Loading investigator data...",
-  "confirm_reset": "Are you sure you want to reset all data?"
+  "confirm_reset": "Are you sure you want to reset all data?",
+  "error_boundary_title": "Sanity Check Failed",
+  "error_boundary_citation": "The Call of Cthulhu, H.P. Lovecraft",
+  "error_boundary_message": "An eldritch error has corrupted your investigator's reality.",
+  "error_boundary_reload": "Reload",
+  "error_boundary_clear": "New Sheet"
 }

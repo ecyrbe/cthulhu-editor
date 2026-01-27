@@ -91,5 +91,10 @@
   "toast_import_error": "Error al analizar el archivo JSON",
   "toast_import_version_error": "Versión de datos incompatible",
   "loading_external_data": "Cargando datos del investigador...",
-  "confirm_reset": "¿Estás seguro de que quieres restablecer todos los datos?"
+  "confirm_reset": "¿Estás seguro de que quieres restablecer todos los datos?",
+  "error_boundary_title": "Prueba de Cordura Fallida",
+  "error_boundary_citation": "La llamada de Cthulhu, H.P. Lovecraft",
+  "error_boundary_message": "Un error primigenio ha corrompido la realidad de tu investigador.",
+  "error_boundary_reload": "Recargar",
+  "error_boundary_clear": "Nueva Ficha"
 }

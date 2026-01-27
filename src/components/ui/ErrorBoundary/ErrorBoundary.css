@@ -1,0 +1,245 @@
+.eb-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #eee;
+  color: #333;
+  font-family: "Liberation Serif", serif;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+.eb-content {
+  max-width: 600px;
+  background: white;
+  padding: 3rem;
+  border-radius: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pulp Logo Animation */
+.eb-logo-pulp {
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.eb-icon-invader {
+  position: absolute;
+  font-size: 5rem;
+  top: -40px;
+  right: -50px;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 0 15px rgba(170, 0, 0, 0.4));
+  animation: eb-invade-logo 12s infinite ease-in-out;
+  opacity: 0;
+}
+
+@keyframes eb-invade-logo {
+  0% {
+    transform: translate(100px, -80px) rotate(45deg) scale(0.2);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+    transform: translate(20px, -20px) rotate(10deg) scale(0.8);
+  }
+  50% {
+    transform: translate(-10px, 5px) rotate(-5deg) scale(1.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(-40px, 15px) rotate(-15deg) scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-120px, 60px) rotate(-30deg) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.eb-call-of {
+  font-family: "Liberation Serif", serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: -0.5rem;
+  color: #333;
+}
+
+.eb-cthulhu {
+  font-family: sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  color: #000;
+  position: relative;
+  animation:
+    eb-madness-shiver 4s infinite ease-in-out,
+    eb-pulse-glow 5s infinite ease-in-out;
+}
+
+.eb-cthulhu::after {
+  content: "CTHULHU";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(170, 0, 0, 0.7);
+  z-index: -1;
+  filter: blur(2px);
+  animation: eb-madness-ghost 4s infinite ease-in-out;
+}
+
+@keyframes eb-pulse-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0px transparent;
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(170, 0, 0, 0.5),
+      0 0 30px rgba(170, 0, 0, 0.2);
+  }
+}
+
+@keyframes eb-madness-shiver {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  2% {
+    transform: translate(-1px, 1px) scale(1.01);
+  }
+  4% {
+    transform: translate(1px, -1px) scale(0.99);
+  }
+  6% {
+    transform: translate(-1px, -1px) scale(1.01);
+  }
+  8% {
+    transform: translate(1px, 1px) scale(1);
+  }
+}
+
+@keyframes eb-madness-ghost {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(4px, 4px);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(-4px, 2px);
+    opacity: 0.3;
+  }
+}
+
+.eb-title {
+  font-size: 2.2rem;
+  color: #000;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  font-family: "Century Gothic", sans-serif;
+}
+.eb-message {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #444;
+  font-style: italic;
+}
+.eb-details {
+  background: #f8f8f8;
+  padding: 1.25rem;
+  border-radius: 4px;
+  font-family: "P22 Typewriter", Courier, monospace;
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  border-left: 5px solid #a00;
+  color: #600;
+  max-height: 200px;
+}
+.eb-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.eb-btn {
+  background: #a00;
+  color: white;
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-family: "Century Gothic", sans-serif;
+  text-transform: uppercase;
+  border: none;
+}
+.eb-btn:hover {
+  background: #d00;
+}
+.eb-btn-secondary {
+  background: #555;
+}
+.eb-btn-secondary:hover {
+  background: #777;
+}
+
+@media (max-width: 600px) {
+  .eb-container {
+    padding: 1rem;
+    position: absolute;
+    min-height: 100%;
+  }
+  .eb-content {
+    padding: 1.5rem;
+    width: 100%;
+  }
+  .eb-icon {
+    font-size: 3.5rem;
+  }
+  .eb-title {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  .eb-message {
+    font-size: 1rem;
+  }
+  .eb-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .eb-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+}

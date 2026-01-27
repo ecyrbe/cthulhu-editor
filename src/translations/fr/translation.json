@@ -91,5 +91,10 @@
   "toast_import_error": "Échec de l'analyse du fichier JSON",
   "toast_import_version_error": "Version des données incompatible",
   "loading_external_data": "Chargement des données de l'investigateur...",
-  "confirm_reset": "Êtes-vous sûr de vouloir réinitialiser toutes les données ?"
+  "confirm_reset": "Êtes-vous sûr de vouloir réinitialiser toutes les données ?",
+  "error_boundary_title": "Échec du Test de Santé Mentale",
+  "error_boundary_citation": "L'Appel de Cthulhu, H.P. Lovecraft",
+  "error_boundary_message": "Une erreur occulte a corrompu la réalité de votre investigateur.",
+  "error_boundary_reload": "Recharger",
+  "error_boundary_clear": "Nouvelle Fiche"
 }

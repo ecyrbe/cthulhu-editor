@@ -91,5 +91,10 @@
   "toast_import_error": "JSON-Datei konnte nicht analysiert werden",
   "toast_import_version_error": "Inkompatible Datenversion",
   "loading_external_data": "Lade Investigator-Daten...",
-  "confirm_reset": "Sind Sie sicher, dass Sie alle Daten zurücksetzen möchten?"
+  "confirm_reset": "Sind Sie sicher, dass Sie alle Daten zurücksetzen möchten?",
+  "error_boundary_title": "Stabilitätswurf misslungen",
+  "error_boundary_citation": "Cthulhus Ruf, H.P. Lovecraft",
+  "error_boundary_message": "Ein unbeschreiblicher Fehler hat die Realität deines Investigators korrumpiert.",
+  "error_boundary_reload": "Neu laden",
+  "error_boundary_clear": "Neuer Bogen"
 }
