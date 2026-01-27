@@ -1,0 +1,99 @@
+.ui-button {
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ui-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-button.full-width {
+  width: 100%;
+}
+
+/* Variants */
+.variant-primary {
+  background-color: #8b0000;
+  color: #ffffff;
+  border: 1px solid #ff4d4d33;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+.variant-primary:hover:not(:disabled) {
+  background-color: #a00000;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(139, 0, 0, 0.5),
+    0 0 15px rgba(255, 77, 77, 0.2);
+}
+
+.variant-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.variant-secondary {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.variant-secondary:hover:not(:disabled) {
+  background-color: #444;
+  border-color: #555;
+}
+
+.variant-outline {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.variant-outline:hover:not(:disabled) {
+  border-color: #8b0000;
+  color: #fff;
+  background-color: rgba(139, 0, 0, 0.1);
+}
+
+.variant-ghost {
+  background: transparent;
+  border: none;
+  color: #aaa;
+}
+
+.variant-ghost:hover:not(:disabled) {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sizes */
+.size-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.size-md {
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+}
+
+.size-lg {
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .ui-button.size-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+}

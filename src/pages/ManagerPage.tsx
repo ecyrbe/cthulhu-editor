@@ -6,6 +6,7 @@ import { type InvestigatorData } from "../types";
 import { getInitialData } from "../store/investigatorAtoms";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
+import Button from "../components/ui/Button";
 import "./ManagerPage.css";
 
 const ManagerPage: React.FC = () => {
@@ -45,62 +46,65 @@ const ManagerPage: React.FC = () => {
   };
 
   return (
-    <div className="manager-page">
-      <nav className="breadcrumb">
-        <Link to="/">{t("home", "Home")}</Link> /{" "}
-        <span>{t("manager", "Manager")}</span>
-      </nav>
+    <div className="manager-page-container">
+      <div className="manager-page">
+        <nav className="breadcrumb">
+          <Link to="/">{t("home", "Home")}</Link> /{" "}
+          <span>{t("manager", "Manager")}</span>
+        </nav>
 
-      <div className="manager-header">
-        <h1>{t("my_investigators", "My Investigators")}</h1>
-        <div className="header-actions">
-          <LanguageSelector />
-          <button className="add-button" onClick={handleCreate}>
-            {t("new_investigator", "New Investigator")}
-          </button>
-        </div>
-      </div>
-
-      <div className="investigator-list">
-        {investigators.map((inv) => (
-          <div
-            key={inv.id}
-            className="investigator-card"
-            onClick={() => navigate(`/edit/${inv.id}`)}
-          >
-            <div className="photo-container">
-              {inv.photo ? (
-                <img src={inv.photo} alt={inv.identity.name} />
-              ) : (
-                <div className="photo-placeholder">?</div>
-              )}
-            </div>
-            <div className="investigator-details">
-              <h3>{inv.identity.name || t("unnamed", "Unnamed")}</h3>
-              <p className="occupation">
-                {inv.identity.occupation || t("no_occupation", "No occupation")}
-              </p>
-            </div>
-            <button
-              className="delete-btn"
-              onClick={(e) => handleDelete(e, inv.id!)}
-              title={t("delete", "Delete")}
-            >
-              ×
-            </button>
+        <div className="manager-header">
+          <h1>{t("my_investigators", "My Investigators")}</h1>
+          <div className="header-actions">
+            <LanguageSelector />
+            <Button onClick={handleCreate}>
+              {t("new_investigator", "New Investigator")}
+            </Button>
           </div>
-        ))}
-        {investigators.length === 0 && (
-          <p className="empty-message">
-            {t(
-              "no_investigators_found",
-              "No investigators found. Create your first one!",
-            )}
-          </p>
-        )}
-      </div>
+        </div>
 
-      <Footer />
+        <div className="investigator-list">
+          {investigators.map((inv) => (
+            <div
+              key={inv.id}
+              className="investigator-card"
+              onClick={() => navigate(`/edit/${inv.id}`)}
+            >
+              <div className="photo-container">
+                {inv.photo ? (
+                  <img src={inv.photo} alt={inv.identity.name} />
+                ) : (
+                  <div className="photo-placeholder">?</div>
+                )}
+              </div>
+              <div className="investigator-details">
+                <h3>{inv.identity.name || t("unnamed", "Unnamed")}</h3>
+                <p className="occupation">
+                  {inv.identity.occupation ||
+                    t("no_occupation", "No occupation")}
+                </p>
+              </div>
+              <button
+                className="delete-btn"
+                onClick={(e) => handleDelete(e, inv.id!)}
+                title={t("delete", "Delete")}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+          {investigators.length === 0 && (
+            <p className="empty-message">
+              {t(
+                "no_investigators_found",
+                "No investigators found. Create your first one!",
+              )}
+            </p>
+          )}
+        </div>
+
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -70,21 +70,6 @@
   letter-spacing: 1px;
 }
 
-.nav-cta {
-  background: transparent;
-  border: 1px solid #8b0000;
-  color: #fff;
-  padding: 0.5rem 1.2rem;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.nav-cta:hover {
-  background: #8b0000;
-}
-
 /* Hero Section */
 .hero-section {
   height: 100vh;
@@ -124,41 +109,7 @@
   justify-content: center;
 }
 
-.primary-button {
-  background: #8b0000;
-  color: #fff;
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s;
-  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-}
-
-.primary-button:hover {
-  background: #a00000;
-  transform: translateY(-2px);
-}
-
-.secondary-button {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #444;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: border-color 0.2s;
-}
-
-.secondary-button:hover {
-  border-color: #8b0000;
-}
+/* Hero Content overrides if any */
 
 /* Features */
 .features-section {
@@ -245,23 +196,6 @@
   margin-bottom: 2.5rem;
 }
 
-.large-button {
-  background: #8b0000;
-  color: #fff;
-  border: none;
-  padding: 1.2rem 3.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.large-button:hover {
-  background: #a00000;
-  box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
-}
-
 /* Footer override for Landing Page */
 .landing-page-container .app-footer {
   background: #0c0c0c !important;
@@ -281,10 +215,6 @@
 
   .logo-bottom {
     font-size: 1.2rem;
-  }
-
-  .nav-cta {
-    display: none; /* Hide in mobile header to save space */
   }
 
   .features-section {

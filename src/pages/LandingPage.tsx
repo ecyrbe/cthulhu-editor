@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
+import Button from "../components/ui/Button";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
@@ -32,18 +33,20 @@ const LandingPage: React.FC = () => {
             <h1>{t("landing_title")}</h1>
             <p className="subtitle">{t("landing_subtitle")}</p>
             <div className="hero-actions">
-              <button
-                className="primary-button"
+              <Button
+                variant="primary"
+                size="lg"
                 onClick={() => navigate("/manager")}
               >
                 {t("get_started")}
-              </button>
-              <button
-                className="secondary-button"
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
                 onClick={() => scrollToSection("features")}
               >
                 {t("explore_features")}
-              </button>
+              </Button>
             </div>
           </div>
           <div className="hero-overlay"></div>
@@ -74,12 +77,13 @@ const LandingPage: React.FC = () => {
           <div className="cta-box">
             <h2>{t("landing_cta_title")}</h2>
             <p>{t("landing_cta_subtitle")}</p>
-            <button
-              className="large-button"
+            <Button
+              variant="primary"
+              size="lg"
               onClick={() => navigate("/manager")}
             >
               {t("launch_manager")}
-            </button>
+            </Button>
           </div>
         </section>
       </main>
