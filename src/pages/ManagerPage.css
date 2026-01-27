@@ -21,6 +21,12 @@
   align-items: center;
   margin-bottom: 2rem;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .add-button {
   padding: 0.6rem 1.2rem;
   background-color: #8b0000;

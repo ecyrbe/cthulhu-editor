@@ -2,11 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/layout/Footer";
+import LanguageSelector from "../components/layout/LanguageSelector";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="landing-page-container">
@@ -15,9 +23,7 @@ const LandingPage: React.FC = () => {
           <span className="logo-top">{t("logo_top")}</span>
           <span className="logo-bottom">{t("logo_bottom")}</span>
         </div>
-        <button className="nav-cta" onClick={() => navigate("/manager")}>
-          {t("launch_manager")}
-        </button>
+        <LanguageSelector />
       </header>
 
       <main>
@@ -32,9 +38,12 @@ const LandingPage: React.FC = () => {
               >
                 {t("get_started")}
               </button>
-              <a href="#features" className="secondary-button">
+              <button
+                className="secondary-button"
+                onClick={() => scrollToSection("features")}
+              >
                 {t("explore_features")}
-              </a>
+              </button>
             </div>
           </div>
           <div className="hero-overlay"></div>

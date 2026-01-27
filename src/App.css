@@ -1281,13 +1281,15 @@ td {
     align-items: center !important;
     gap: 2px !important;
     padding: 0 !important;
-    width: 16% !important; /* Adjusted width since we have 6 buttons now (Save, Roll, Export, Import, Reset, Lang) */
+    width: 20% !important; /* Adjusted width for mobile bar */
     height: 100% !important;
     border-radius: 0 !important;
     margin: 0 !important;
   }
 
-  .print-btn {
+  .print-btn,
+  .nav-link,
+  .reset-btn {
     display: none !important;
   }
 
@@ -1301,63 +1303,6 @@ td {
     text-align: center !important;
     white-space: nowrap !important;
     opacity: 0.8 !important;
-  }
-
-  /* Mobile Language Popup */
-  .lang-selector-wrapper {
-    width: 13% !important;
-    height: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  .lang-current-btn {
-    background: transparent !important;
-    padding: 0 !important;
-    flex-direction: column !important;
-    gap: 2px !important;
-    height: 100% !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .lang-flag {
-    font-size: 20px !important;
-  }
-
-  .lang-label-text {
-    display: none !important;
-  }
-
-  .lang-current-btn::after {
-    content: "Lang";
-    font-size: 8px !important;
-    opacity: 0.8;
-  }
-
-  .lang-dropdown {
-    position: fixed !important;
-    bottom: 85px !important;
-    top: auto !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 80% !important;
-    max-width: 300px !important;
-    background: #2a2a2a !important;
-    border: 1px solid #444 !important;
-    border-radius: 12px !important;
-    padding: 10px !important;
-  }
-
-  .lang-option {
-    padding: 15px !important;
-    border-radius: 8px !important;
-    margin-bottom: 5px !important;
-  }
-
-  .lang-option:last-child {
-    margin-bottom: 0 !important;
   }
 
   .reset-btn {

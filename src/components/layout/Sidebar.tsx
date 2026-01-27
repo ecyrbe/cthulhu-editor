@@ -28,25 +28,11 @@ const Sidebar: React.FC<SidebarProps> = ({
   onExport,
   onImport,
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [printBlankValues, setPrintBlankValues] = useAtom(printBlankValuesAtom);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isLangOpen, setIsLangOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const languages = [
-    { code: "fr", label: "Français", flag: "🇫🇷" },
-    { code: "en", label: "English", flag: "🇬🇧" },
-    { code: "es", label: "Español", flag: "🇪🇸" },
-    { code: "de", label: "Deutsch", flag: "🇩🇪" },
-    { code: "pt", label: "Português", flag: "🇵🇹" },
-  ];
-
-  const currentLang =
-    languages.find(
-      (l) => l.code === (i18n.resolvedLanguage || i18n.language),
-    ) || languages[0];
 
   return (
     <nav className="sidebar-nav" aria-label={t("menu")}>
@@ -60,46 +46,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         {isOpen ? "✕" : "☰"}
       </button>
       <div id="menu-panel" className={isOpen ? "open" : ""}>
-        <div id="lang-label" className="menu-label">
-          {t("language")}
-        </div>
-        <div className="lang-selector-wrapper">
-          <button
-            className="lang-current-btn"
-            onClick={() => setIsLangOpen(!isLangOpen)}
-            aria-expanded={isLangOpen}
-            aria-haspopup="listbox"
-            aria-labelledby="lang-label"
-          >
-            <span className="lang-flag" aria-hidden="true">
-              {currentLang.flag}
-            </span>
-            <span className="lang-label-text">{currentLang.label}</span>
-          </button>
-          {isLangOpen && (
-            <div className="lang-dropdown" role="listbox">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  className={`lang-option ${currentLang.code === lang.code ? "active" : ""}`}
-                  onClick={() => {
-                    i18n.changeLanguage(lang.code);
-                    setIsLangOpen(false);
-                  }}
-                  role="option"
-                  aria-selected={currentLang.code === lang.code}
-                >
-                  <span className="flag" aria-hidden="true">
-                    {lang.flag}
-                  </span>
-                  <span className="label">{lang.label}</span>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
         <div className="menu-label">{t("navigation", "Navigation")}</div>
+
         <Link
           to="/"
           className="menu-btn nav-link"

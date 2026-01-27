@@ -5,6 +5,7 @@ import { db } from "../db/db";
 import { type InvestigatorData } from "../types";
 import { getInitialData } from "../store/investigatorAtoms";
 import Footer from "../components/layout/Footer";
+import LanguageSelector from "../components/layout/LanguageSelector";
 import "./ManagerPage.css";
 
 const ManagerPage: React.FC = () => {
@@ -52,9 +53,12 @@ const ManagerPage: React.FC = () => {
 
       <div className="manager-header">
         <h1>{t("my_investigators", "My Investigators")}</h1>
-        <button className="add-button" onClick={handleCreate}>
-          {t("new_investigator", "New Investigator")}
-        </button>
+        <div className="header-actions">
+          <LanguageSelector />
+          <button className="add-button" onClick={handleCreate}>
+            {t("new_investigator", "New Investigator")}
+          </button>
+        </div>
       </div>
 
       <div className="investigator-list">
