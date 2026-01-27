@@ -212,6 +212,16 @@
   background: #777;
 }
 
+.eb-btn-icon {
+  filter: invert(1);
+  width: 20px;
+  height: 20px;
+}
+
+.eb-btn-icon-reload {
+  transform: rotate(180deg);
+}
+
 @media (max-width: 600px) {
   .eb-container {
     padding: 1rem;

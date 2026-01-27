@@ -69,13 +69,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <img
                   src={reloadIcon}
                   alt=""
-                  className="eb-btn-icon"
-                  style={{
-                    filter: "invert(1)",
-                    width: "20px",
-                    height: "20px",
-                    transform: "rotate(180deg)",
-                  }}
+                  className="eb-btn-icon eb-btn-icon-reload"
                 />
                 {t("error_boundary_reload")}
               </button>
@@ -83,12 +77,7 @@ class ErrorBoundary extends Component<Props, State> {
                 onClick={this.handleClearAndReload}
                 className="eb-btn eb-btn-secondary"
               >
-                <img
-                  src={resetIcon}
-                  alt=""
-                  className="eb-btn-icon"
-                  style={{ filter: "invert(1)", width: "20px", height: "20px" }}
-                />
+                <img src={resetIcon} alt="" className="eb-btn-icon" />
                 {t("error_boundary_clear")}
               </button>
             </div>
