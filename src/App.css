@@ -1217,6 +1217,12 @@ td {
     margin: 0 !important;
   }
 
+  .pages-wrapper {
+    zoom: 1 !important;
+    width: 100vw !important;
+    align-items: flex-start !important;
+  }
+
   .app-footer {
     font-size: 0.4em !important;
   }
