@@ -224,6 +224,7 @@
     max-width: none;
     border-radius: 0;
     box-shadow: none;
+    color: #000;
   }
   .editor-main-content {
     margin-bottom: 0;

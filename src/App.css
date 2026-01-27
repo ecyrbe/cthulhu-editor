@@ -114,6 +114,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   margin-bottom: 20px;
+  color: #000;
 }
 
 .page-box {
@@ -1181,12 +1182,21 @@ td {
     padding: 0 !important;
     overflow: visible !important;
   }
+  .editor-page-container,
+  .editor-main-content,
+  .sheet-viewport {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   .editor-sidebar-layout,
   .editor-toolbox,
+  .editor-tools-panel,
   .zoom-controls,
   .app-footer,
   .scroll-to-top,
-  .Toaster {
+  .Toaster,
+  .editor-nav,
+  nav {
     display: none !important;
   }
   .pages-wrapper {
@@ -1204,6 +1214,7 @@ td {
     display: flex !important;
     position: relative !important;
     overflow: hidden !important;
+    background: white !important;
   }
   .page:last-child {
     page-break-after: avoid !important;
