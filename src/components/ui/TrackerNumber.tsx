@@ -1,4 +1,5 @@
 import React from "react";
+import { DebouncedInput } from "./DebouncedInput";
 
 interface TrackerNumberProps {
   label: string;
@@ -17,14 +18,12 @@ export const TrackerNumber: React.FC<TrackerNumberProps> = ({
 }) => (
   <label className="tracker-number-label">
     {label}
-    <input
+    <DebouncedInput
       id={id}
       type="number"
       className="small-stat-box"
-      value={value || ""}
-      onChange={
-        onChange ? (e) => onChange(parseInt(e.target.value) || 0) : undefined
-      }
+      value={value}
+      onValueChange={onChange || (() => {})}
       readOnly={readOnly}
     />
   </label>

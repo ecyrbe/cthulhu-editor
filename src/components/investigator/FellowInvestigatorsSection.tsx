@@ -85,18 +85,16 @@ const FriendsGrid: React.FC<FellowInvestigatorsSectionProps> = ({
   );
 };
 
-const FellowInvestigatorsSection: React.FC<FellowInvestigatorsSectionProps> = ({
-  fellows,
-  onValueChange,
-}) => {
-  const { t } = useTranslation();
+const FellowInvestigatorsSection: React.FC<FellowInvestigatorsSectionProps> =
+  React.memo(({ fellows, onValueChange }) => {
+    const { t } = useTranslation();
 
-  return (
-    <div className="grow fellow-investigators-section">
-      <SectionTitle>{t("friends")}</SectionTitle>
-      <FriendsGrid fellows={fellows} onValueChange={onValueChange} />
-    </div>
-  );
-};
+    return (
+      <div className="grow fellow-investigators-section">
+        <SectionTitle>{t("friends")}</SectionTitle>
+        <FriendsGrid fellows={fellows} onValueChange={onValueChange} />
+      </div>
+    );
+  });
 
 export default FellowInvestigatorsSection;

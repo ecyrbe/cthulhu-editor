@@ -5,18 +5,12 @@ import { printBlankValuesAtom } from "../../store/uiAtoms";
 
 // Icons
 import diceIcon from "../../assets/dice-six.svg";
-import exportIcon from "../../assets/floppy-disk-arrow-out.svg";
-import importIcon from "../../assets/floppy-disk-arrow-in.svg";
-import resetIcon from "../../assets/erase.svg";
 import fitWidthIcon from "../../assets/fit-width.svg";
 import fitHeightIcon from "../../assets/fit-height.svg";
 
 interface ToolboxProps {
   onRoll: () => void;
   onPrint: () => void;
-  onReset: () => void;
-  onExport: () => void;
-  onImport: (e: React.ChangeEvent<HTMLInputElement>) => void;
   zoom: number;
   onZoomIn: () => void;
   onZoomOut: () => void;
@@ -61,9 +55,6 @@ const PrinterIcon: React.FC<{ filled?: boolean }> = ({ filled }) => (
 const Toolbox: React.FC<ToolboxProps> = ({
   onRoll,
   onPrint,
-  onReset,
-  onExport,
-  onImport,
   zoom,
   onZoomIn,
   onZoomOut,
@@ -73,7 +64,6 @@ const Toolbox: React.FC<ToolboxProps> = ({
 }) => {
   const { t } = useTranslation();
   const [, setPrintBlankValues] = useAtom(printBlankValuesAtom);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handlePrintMode = (isBlank: boolean) => {
     setPrintBlankValues(isBlank);
@@ -202,40 +192,6 @@ const Toolbox: React.FC<ToolboxProps> = ({
               title={t("roll")}
             >
               <img src={diceIcon} alt="" width="18" height="18" />
-            </button>
-          </div>
-        </div>
-
-        <div className="tools-section section-file">
-          <div className="tools-section-header">{t("file", "File")}</div>
-          <div className="tools-grid two-columns">
-            <button
-              className="tool-button"
-              onClick={() => fileInputRef.current?.click()}
-              title={t("import")}
-            >
-              <img src={importIcon} alt="" width="18" height="18" />
-              <input
-                type="file"
-                ref={fileInputRef}
-                accept=".json"
-                onChange={onImport}
-                style={{ display: "none" }}
-              />
-            </button>
-            <button
-              className="tool-button"
-              onClick={onExport}
-              title={t("export")}
-            >
-              <img src={exportIcon} alt="" width="18" height="18" />
-            </button>
-            <button
-              className="tool-button reset-btn"
-              onClick={onReset}
-              title={t("reset")}
-            >
-              <img src={resetIcon} alt="" width="16" height="16" />
             </button>
           </div>
         </div>

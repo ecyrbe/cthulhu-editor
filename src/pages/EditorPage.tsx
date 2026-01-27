@@ -8,9 +8,7 @@ import {
   loadInvestigatorAtom,
   saveInvestigatorAtom,
   rollInvestigatorAtom,
-  importInvestigatorAtom,
-  resetInvestigatorAtom,
-  exportInvestigatorAtom,
+  investigatorNameAtom,
 } from "../store/investigatorAtoms";
 import {
   zoomLevelAtom,
@@ -26,18 +24,29 @@ import InvestigatorSheet from "../components/investigator/InvestigatorSheet";
 import arrowUpIcon from "../assets/arrow-up.svg";
 import "./EditorPage.css";
 
+const AutoSave: React.FC<{ loading: boolean }> = ({ loading }) => {
+  const data = useAtomValue(investigatorDataAtom);
+  const saveInvestigator = useSetAtom(saveInvestigatorAtom);
+
+  useEffect(() => {
+    if (loading) return;
+    const timer = setTimeout(() => {
+      saveInvestigator();
+    }, 2000); // Save after 2 seconds of inactivity
+    return () => clearTimeout(timer);
+  }, [data, saveInvestigator, loading]);
+
+  return null;
+};
+
 const EditorPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const data = useAtomValue(investigatorDataAtom);
+  const investigatorName = useAtomValue(investigatorNameAtom);
   const loadInvestigator = useSetAtom(loadInvestigatorAtom);
-  const saveInvestigator = useSetAtom(saveInvestigatorAtom);
   const rollInvestigator = useSetAtom(rollInvestigatorAtom);
-  const importInvestigator = useSetAtom(importInvestigatorAtom);
-  const resetInvestigator = useSetAtom(resetInvestigatorAtom);
-  const exportInvestigator = useSetAtom(exportInvestigatorAtom);
 
   const [loading, setLoading] = useState(true);
 
@@ -76,34 +85,8 @@ const EditorPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Auto-save logic
-  useEffect(() => {
-    if (loading) return;
-    const timer = setTimeout(() => {
-      saveInvestigator();
-    }, 2000); // Save after 2 seconds of inactivity
-    return () => clearTimeout(timer);
-  }, [data, saveInvestigator, loading]);
-
   const handlePrint = () => {
     window.print();
-  };
-
-  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const json = JSON.parse(event.target?.result as string);
-          importInvestigator({ newData: json, t });
-        } catch (error) {
-          toast.error(t("toast_import_error"));
-          console.error(error);
-        }
-      };
-      reader.readAsText(file);
-    }
   };
 
   if (loading) return <div>{t("loading", "Loading...")}</div>;
@@ -111,12 +94,13 @@ const EditorPage: React.FC = () => {
   return (
     <div className="editor-page-container">
       <Toaster position="bottom-right" />
+      <AutoSave loading={loading} />
 
       <main className="editor-main-content">
         <nav className="editor-nav breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /
           <Link to="/manager">{t("manager", "Manager")}</Link> /
-          <span>{data.identity.name || t("unnamed", "Unnamed")}</span>
+          <span>{investigatorName || t("unnamed", "Unnamed")}</span>
         </nav>
 
         <div className="sheet-viewport">
@@ -129,9 +113,6 @@ const EditorPage: React.FC = () => {
       <Toolbox
         onRoll={rollInvestigator}
         onPrint={handlePrint}
-        onReset={resetInvestigator}
-        onExport={exportInvestigator}
-        onImport={handleImport}
         zoom={zoom}
         onZoomIn={handleZoomIn}
         onZoomOut={handleZoomOut}

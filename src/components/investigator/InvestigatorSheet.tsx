@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   investigatorDataAtom,
@@ -16,6 +16,7 @@ import {
   updatePhotoAtom,
 } from "../../store/investigatorAtoms";
 import { zoomLevelAtom, printBlankValuesAtom } from "../../store/uiAtoms";
+import { type InvestigatorData, type Weapon } from "../../types";
 
 import SkillsSection from "./SkillsSection";
 import WeaponTable from "./WeaponTable";
@@ -48,16 +49,66 @@ const InvestigatorSheet: React.FC = () => {
   const setFellowInvestigator = useSetAtom(updateFellowInvestigatorAtom);
   const updatePhoto = useSetAtom(updatePhotoAtom);
 
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        updatePhoto(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  const handleIdentityChange = useCallback(
+    (field: keyof InvestigatorData["identity"], value: string) =>
+      setIdentity({ field, value }),
+    [setIdentity],
+  );
+
+  const handleCharacteristicChange = useCallback(
+    (stat: string, value: number) => setCharacteristic({ stat, value }),
+    [setCharacteristic],
+  );
+
+  const handleSkillChange = useCallback(
+    (idx: number, field: string, val: string | number | boolean) =>
+      setSkill({ index: idx, updates: { [field]: val } }),
+    [setSkill],
+  );
+
+  const handleTrackerChange = useCallback(
+    (field: keyof InvestigatorData["trackers"], value: number | boolean) =>
+      setTracker({ field, value }),
+    [setTracker],
+  );
+
+  const handleBackstoryChange = useCallback(
+    (field: keyof InvestigatorData["backstory"], value: string) =>
+      setBackstory({ field, value }),
+    [setBackstory],
+  );
+
+  const handleWeaponChange = useCallback(
+    (index: number, field: keyof Weapon, value: string) =>
+      setWeapon({ index, field, value }),
+    [setWeapon],
+  );
+
+  const handleWealthChange = useCallback(
+    (field: keyof InvestigatorData["wealth"], value: string) =>
+      setWealth({ field, value }),
+    [setWealth],
+  );
+
+  const handleFellowChange = useCallback(
+    (index: number, field: "name" | "player", value: string) =>
+      setFellowInvestigator({ index, field, value }),
+    [setFellowInvestigator],
+  );
+
+  const handlePhotoUpload = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          updatePhoto(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    [updatePhoto],
+  );
 
   return (
     <main
@@ -74,31 +125,22 @@ const InvestigatorSheet: React.FC = () => {
         <div className="page-box">
           <HeaderSection
             data={data}
-            setIdentity={(field, value) => setIdentity({ field, value })}
-            setCharacteristic={(stat, value) =>
-              setCharacteristic({ stat, value })
-            }
+            setIdentity={handleIdentityChange}
+            setCharacteristic={handleCharacteristicChange}
             handlePhotoUpload={handlePhotoUpload}
           />
 
-          <TrackersSection
-            data={data}
-            setTracker={(field, value) => setTracker({ field, value })}
-          />
+          <TrackersSection data={data} setTracker={handleTrackerChange} />
 
           <SkillsSection
             skills={data.skills}
-            onSkillChange={(idx, field, val) =>
-              setSkill({ index: idx, updates: { [field]: val } })
-            }
+            onSkillChange={handleSkillChange}
           />
 
           <div className="section-box combat-weapons-box">
             <WeaponTable
               weapons={data.weapons}
-              onWeaponChange={(index, field, value) =>
-                setWeapon({ index, field, value })
-              }
+              onWeaponChange={handleWeaponChange}
             />
             <div className="vertical-separator" />
             <CombatSection
@@ -121,7 +163,7 @@ const InvestigatorSheet: React.FC = () => {
         <div className="page-box">
           <BackstorySection
             backstory={data.backstory}
-            onValueChange={(field, value) => setBackstory({ field, value })}
+            onValueChange={handleBackstoryChange}
           />
 
           <div className="section-box gear-wealth-row">
@@ -129,7 +171,7 @@ const InvestigatorSheet: React.FC = () => {
             <div className="vertical-separator" />
             <WealthSection
               wealth={data.wealth}
-              onValueChange={(field, value) => setWealth({ field, value })}
+              onValueChange={handleWealthChange}
             />
           </div>
 
@@ -137,9 +179,7 @@ const InvestigatorSheet: React.FC = () => {
             <div className="friends-column">
               <FellowInvestigatorsSection
                 fellows={data.fellowInvestigators}
-                onValueChange={(index, field, value) =>
-                  setFellowInvestigator({ index, field, value })
-                }
+                onValueChange={handleFellowChange}
               />
             </div>
             <div className="vertical-separator" />

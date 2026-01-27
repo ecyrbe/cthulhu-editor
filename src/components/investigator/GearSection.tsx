@@ -8,32 +8,37 @@ interface GearSectionProps {
   onValueChange: (value: string) => void;
 }
 
-const GearSection: React.FC<GearSectionProps> = ({ gear, onValueChange }) => {
-  const { t } = useTranslation();
-  const numLines = 7;
-  const lines = (gear || "").split("\n");
+const GearSection: React.FC<GearSectionProps> = React.memo(
+  ({ gear, onValueChange }) => {
+    const { t } = useTranslation();
+    const numLines = 7;
+    const lines = (gear || "").split("\n");
 
-  const handleLineChange = (index: number, newValue: string) => {
-    const newLines = Array.from({ length: numLines }, (_, i) => lines[i] || "");
-    newLines[index] = newValue;
-    onValueChange(newLines.join("\n").replace(/\n+$/, ""));
-  };
+    const handleLineChange = (index: number, newValue: string) => {
+      const newLines = Array.from(
+        { length: numLines },
+        (_, i) => lines[i] || "",
+      );
+      newLines[index] = newValue;
+      onValueChange(newLines.join("\n").replace(/\n+$/, ""));
+    };
 
-  return (
-    <div className="gear-section-content grow">
-      <SectionTitle>{t("gear")}</SectionTitle>
-      <div className="gear-list">
-        {Array.from({ length: numLines }).map((_, i) => (
-          <DottedInput
-            key={i}
-            value={lines[i] || ""}
-            onChange={(val) => handleLineChange(i, val)}
-            ariaLabel={`${t("gear")} ${i + 1}`}
-          />
-        ))}
+    return (
+      <div className="gear-section-content grow">
+        <SectionTitle>{t("gear")}</SectionTitle>
+        <div className="gear-list">
+          {Array.from({ length: numLines }).map((_, i) => (
+            <DottedInput
+              key={i}
+              value={lines[i] || ""}
+              onChange={(val) => handleLineChange(i, val)}
+              ariaLabel={`${t("gear")} ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
 
 export default GearSection;

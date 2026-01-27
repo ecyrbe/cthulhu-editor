@@ -7,8 +7,6 @@ import {
 } from "../types";
 import { initialSkillsData } from "../constants/skills";
 import { db } from "../db/db";
-import { normalize } from "../utils/normalize";
-import toast from "react-hot-toast";
 
 const CURRENT_VERSION = "1.0.0";
 
@@ -84,6 +82,11 @@ export const getInitialData = (): InvestigatorData => ({
 // Base atoms
 export const investigatorDataAtom = atom<InvestigatorData>(getInitialData());
 
+// Optimization: Atom for identity name to avoid parent re-renders
+export const investigatorNameAtom = atom(
+  (get) => get(investigatorDataAtom).identity.name,
+);
+
 // Derived atoms
 export const derivedCombatAtom = atom((get) => {
   const data = get(investigatorDataAtom);
@@ -136,63 +139,6 @@ export const saveInvestigatorAtom = atom(null, async (get, set) => {
     set(investigatorDataAtom, { ...data, id: id as number });
   }
 });
-
-export const resetInvestigatorAtom = atom(null, (_get, set) => {
-  set(investigatorDataAtom, getInitialData());
-});
-
-export const exportInvestigatorAtom = atom(null, (get) => {
-  const data = get(investigatorDataAtom);
-  const blob = new Blob([JSON.stringify(data, null, 2)], {
-    type: "application/json",
-  });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `investigator-${normalize(data.identity.name) || "unnamed"}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-});
-
-export const importInvestigatorAtom = atom(
-  null,
-  (
-    _get,
-    set,
-    { newData, t }: { newData: unknown; t: (key: string) => string },
-  ) => {
-    const result = InvestigatorDataSchema.safeParse(newData);
-
-    if (!result.success) {
-      console.error("Import validation failed:", result.error);
-      toast.error(t("toast_import_error"));
-      return;
-    }
-
-    const validatedData = result.data;
-
-    if (validatedData.version !== CURRENT_VERSION) {
-      console.error("Import version mismatch:", validatedData.version);
-      toast.error(
-        t("toast_import_version_error") || "Incompatible data version",
-      );
-      return;
-    }
-
-    // Ensure sanityMax is correct on import
-    const cthulhuSkill = validatedData.skills?.find(
-      (s) => s.type === "standard" && s.key === "cthulhu",
-    );
-    if (cthulhuSkill && cthulhuSkill.type === "standard") {
-      validatedData.trackers = {
-        ...(validatedData.trackers || {}),
-        sanityMax: 99 - (Number(cthulhuSkill.current) || 0),
-      };
-    }
-    set(investigatorDataAtom, { ...getInitialData(), ...validatedData });
-    toast.success(t("toast_import_success"));
-  },
-);
 
 export const rollInvestigatorAtom = atom(null, (_get, set) => {
   const rollSimple = () =>

@@ -12,55 +12,54 @@ interface WealthSectionProps {
   ) => void;
 }
 
-const WealthSection: React.FC<WealthSectionProps> = ({
-  wealth,
-  onValueChange,
-}) => {
-  const { t } = useTranslation();
+const WealthSection: React.FC<WealthSectionProps> = React.memo(
+  ({ wealth, onValueChange }) => {
+    const { t } = useTranslation();
 
-  const renderMultiField = (
-    field: keyof InvestigatorData["wealth"],
-    label: string,
-    numLines: number,
-  ) => {
-    const text = wealth[field] || "";
-    const lines = text.split("\n");
+    const renderMultiField = (
+      field: keyof InvestigatorData["wealth"],
+      label: string,
+      numLines: number,
+    ) => {
+      const text = wealth[field] || "";
+      const lines = text.split("\n");
 
-    const handleLineChange = (index: number, newValue: string) => {
-      const newLines = Array.from(
-        { length: numLines },
-        (_, i) => lines[i] || "",
+      const handleLineChange = (index: number, newValue: string) => {
+        const newLines = Array.from(
+          { length: numLines },
+          (_, i) => lines[i] || "",
+        );
+        newLines[index] = newValue;
+        onValueChange(field, newLines.join("\n").replace(/\n+$/, ""));
+      };
+
+      return (
+        <div className="wealth-item">
+          <DottedInput
+            label={label}
+            value={lines[0] || ""}
+            onChange={(val) => handleLineChange(0, val)}
+          />
+          {Array.from({ length: numLines - 1 }).map((_, i) => (
+            <DottedInput
+              key={i + 1}
+              value={lines[i + 1] || ""}
+              onChange={(val) => handleLineChange(i + 1, val)}
+            />
+          ))}
+        </div>
       );
-      newLines[index] = newValue;
-      onValueChange(field, newLines.join("\n").replace(/\n+$/, ""));
     };
 
     return (
-      <div className="wealth-item">
-        <DottedInput
-          label={label}
-          value={lines[0] || ""}
-          onChange={(val) => handleLineChange(0, val)}
-        />
-        {Array.from({ length: numLines - 1 }).map((_, i) => (
-          <DottedInput
-            key={i + 1}
-            value={lines[i + 1] || ""}
-            onChange={(val) => handleLineChange(i + 1, val)}
-          />
-        ))}
+      <div className="wealth-section-content">
+        <SectionTitle>{t("wealth")}</SectionTitle>
+        {renderMultiField("spendingLevel", t("spending"), 1)}
+        {renderMultiField("cash", t("cash"), 1)}
+        {renderMultiField("assets", t("assets"), 5)}
       </div>
     );
-  };
-
-  return (
-    <div className="wealth-section-content">
-      <SectionTitle>{t("wealth")}</SectionTitle>
-      {renderMultiField("spendingLevel", t("spending"), 1)}
-      {renderMultiField("cash", t("cash"), 1)}
-      {renderMultiField("assets", t("assets"), 5)}
-    </div>
-  );
-};
+  },
+);
 
 export default WealthSection;

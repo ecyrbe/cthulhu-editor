@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 
 interface SkillStatBoxProps {
   value: number;
@@ -13,14 +14,39 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
   readOnly,
   ariaLabel,
 }) => {
+  const [localValue, setLocalValue] = useState(value);
+  const lastSentValueRef = React.useRef(value);
+
+  const debouncedOnChange = useDebounce((val: number) => {
+    lastSentValueRef.current = val;
+    onChange?.(val);
+  }, 300);
+
+  useEffect(() => {
+    if (value !== lastSentValueRef.current) {
+      setLocalValue(value);
+      lastSentValueRef.current = value;
+    }
+  }, [value]);
+
+  const handleChange = (newValue: number) => {
+    setLocalValue(newValue);
+    debouncedOnChange(newValue);
+  };
+
   return (
     <div className="skill-stat-container">
       <div className="skill-stat-main">
         <input
           type="number"
           className="skill-main-input"
-          value={value || ""}
-          onChange={(e) => onChange?.(parseInt(e.target.value) || 0)}
+          value={localValue || ""}
+          onChange={(e) => handleChange(parseInt(e.target.value) || 0)}
+          onBlur={() => {
+            if (localValue !== value) {
+              onChange?.(localValue);
+            }
+          }}
           readOnly={readOnly}
           aria-label={ariaLabel}
         />
@@ -28,10 +54,10 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
       </div>
       <div className="skill-sub-boxes">
         <div className="skill-sub-box">
-          {value ? Math.floor(value / 2) : ""}
+          {localValue ? Math.floor(localValue / 2) : ""}
         </div>
         <div className="skill-sub-box">
-          {value ? Math.floor(value / 5) : ""}
+          {localValue ? Math.floor(localValue / 5) : ""}
         </div>
       </div>
     </div>

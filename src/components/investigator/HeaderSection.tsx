@@ -14,26 +14,26 @@ interface HeaderSectionProps {
   handlePhotoUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const HeaderSection: React.FC<HeaderSectionProps> = ({
-  data,
-  setIdentity,
-  setCharacteristic,
-  handlePhotoUpload,
-}) => {
-  return (
-    <div className="header-section">
-      <IdentitySection identity={data.identity} onValueChange={setIdentity} />
-      <div className="vertical-separator" />
+const HeaderSection: React.FC<HeaderSectionProps> = React.memo(
+  ({ data, setIdentity, setCharacteristic, handlePhotoUpload }) => {
+    return (
+      <div className="header-section">
+        <IdentitySection identity={data.identity} onValueChange={setIdentity} />
+        <div className="vertical-separator" />
 
-      <CharacteristicsSection
-        characteristics={data.characteristics}
-        onValueChange={setCharacteristic}
-      />
-      <div className="vertical-separator" />
+        <CharacteristicsSection
+          characteristics={data.characteristics}
+          onValueChange={setCharacteristic}
+        />
+        <div className="vertical-separator" />
 
-      <InvestigatorPhoto photo={data.photo} onPhotoUpload={handlePhotoUpload} />
-    </div>
-  );
-};
+        <InvestigatorPhoto
+          photo={data.photo}
+          onPhotoUpload={handlePhotoUpload}
+        />
+      </div>
+    );
+  },
+);
 
 export default HeaderSection;
