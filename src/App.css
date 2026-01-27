@@ -1323,29 +1323,6 @@ td {
   background-color: var(--app-bg);
 }
 
-.app-footer {
-  padding: 10px 20px;
-  font-size: 0.65rem;
-  background-color: var(--menu-bg);
-  color: #aaa;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.app-footer p {
-  margin: 0 auto;
-  max-width: 1000px;
-}
-
-.app-footer a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.app-footer a:hover {
-  color: #eee;
-}
-
 @media print {
   @page {
     margin: 0;

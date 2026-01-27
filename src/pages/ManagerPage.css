@@ -5,12 +5,16 @@
   color: #d4d4d4;
   font-family: "Liberation Serif", serif;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .manager-page {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  flex: 1;
+  width: 100%;
 }
 
 .breadcrumb {
@@ -156,6 +160,7 @@
   color: #777;
   margin-top: 3rem;
 }
+
 @media (max-width: 600px) {
   .manager-page {
     padding: 1rem;

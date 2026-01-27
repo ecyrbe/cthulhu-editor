@@ -196,13 +196,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* Footer override for Landing Page */
-.landing-page-container .app-footer {
-  background: #0c0c0c !important;
-  border-top: 1px solid #222 !important;
-  padding: 3rem 10% !important;
-}
-
 @media (max-width: 768px) {
   .hero-actions {
     flex-direction: column;

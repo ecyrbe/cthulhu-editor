@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import "./Footer.css";
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();

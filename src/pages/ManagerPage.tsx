@@ -102,9 +102,8 @@ const ManagerPage: React.FC = () => {
             </p>
           )}
         </div>
-
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
