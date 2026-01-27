@@ -19,20 +19,26 @@
 
 .breadcrumb {
   margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
+
 .breadcrumb a {
-  color: #ff4d4d;
+  color: #888;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .breadcrumb a:hover {
   color: #fff;
+  text-decoration: underline;
 }
 
 .breadcrumb span {
-  color: #888;
+  color: #ccc;
+  font-style: italic;
 }
 
 .manager-header h1 {

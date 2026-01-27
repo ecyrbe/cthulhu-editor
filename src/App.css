@@ -1,151 +1,6 @@
-/* --- Menu System --- */
-#menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: var(--menu-bg);
-  color: var(--menu-text);
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1001;
-  font-size: 24px;
-  user-select: none;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
+/* --- Menu System Removed --- */
 
-#menu-panel {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
-  height: 100vh;
-  background: var(--menu-bg);
-  color: var(--menu-text);
-  z-index: 1000;
-  transition: left 0.3s ease;
-  padding: 70px 20px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-}
-
-#menu-panel.open {
-  left: 0;
-}
-
-.menu-btn {
-  background: #a00;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 4px;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-icon {
-  filter: invert(1);
-}
-
-.reset-btn {
-  margin-top: 20px;
-}
-
-.menu-btn:hover {
-  background: #d00;
-}
-
-.menu-label {
-  font-family: sans-serif;
-  font-size: 0.9em;
-  color: #ccc;
-  margin-bottom: -10px;
-}
-
-.menu-checkbox-wrapper {
-  padding: 5px 2px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.menu-checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  color: #eee;
-  font-size: 0.85em;
-  line-height: 1.3;
-}
-
-.menu-checkbox-label input {
-  width: 16px;
-  height: 16px;
-  margin-top: 2px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.checkbox-text {
-  flex: 1;
-  line-height: 1.2;
-}
-
-/* Language Selector styling */
-.lang-selector-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.lang-current-btn {
-  width: 100%;
-  padding: 10px;
-  background: #555;
-  color: white;
-  border-radius: 4px;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9em;
-}
-
-.lang-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #444;
-  border-radius: 4px;
-  margin-top: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  z-index: 1010;
-  overflow: hidden;
-}
-
-.lang-option {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.2s;
-  width: 100%;
-}
-
-.lang-option:hover {
-  background: #666;
-}
-
-.lang-option.active {
-  background: #a00;
-}
+/* --- Language Selector Removed --- */
 
 .lang-option .flag {
   font-size: 1.2em;
@@ -1309,18 +1164,9 @@ td {
     margin-top: 0 !important;
   }
 
-  /* Prevent page content from being hidden behind the bar */
-  body {
-    padding-bottom: 85px !important;
+  .scroll-to-top {
+    display: none !important;
   }
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-top: 20px;
-  background-color: var(--app-bg);
 }
 
 @media print {
@@ -1329,16 +1175,15 @@ td {
     size: A4;
   }
   html,
-  body,
-  .app-container {
+  body {
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: visible !important;
   }
-  #menu-toggle,
-  #menu-panel,
-  #zoom-controls,
+  .editor-sidebar-layout,
+  .editor-toolbox,
+  .zoom-controls,
   .app-footer,
   .scroll-to-top,
   .Toaster {

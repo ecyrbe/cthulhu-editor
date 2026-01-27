@@ -20,8 +20,7 @@ import {
   fitWidthAtom,
   fitHeightAtom,
 } from "../store/uiAtoms";
-import Sidebar from "../components/layout/Sidebar";
-import ZoomControls from "../components/layout/ZoomControls";
+import Toolbox from "../components/layout/Toolbox";
 import Footer from "../components/layout/Footer";
 import InvestigatorSheet from "../components/investigator/InvestigatorSheet";
 import arrowUpIcon from "../assets/arrow-up.svg";
@@ -77,10 +76,14 @@ const EditorPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSave = async () => {
-    await saveInvestigator();
-    toast.success(t("toast_save_success"));
-  };
+  // Auto-save logic
+  useEffect(() => {
+    if (loading) return;
+    const timer = setTimeout(() => {
+      saveInvestigator();
+    }, 2000); // Save after 2 seconds of inactivity
+    return () => clearTimeout(timer);
+  }, [data, saveInvestigator, loading]);
 
   const handlePrint = () => {
     window.print();
@@ -106,25 +109,29 @@ const EditorPage: React.FC = () => {
   if (loading) return <div>{t("loading", "Loading...")}</div>;
 
   return (
-    <div className="app-container">
+    <div className="editor-page-container">
       <Toaster position="bottom-right" />
 
-      <nav className="editor-nav breadcrumb">
-        <Link to="/">{t("home", "Home")}</Link> /
-        <Link to="/manager">{t("manager", "Manager")}</Link> /
-        <span>{data.identity.name || t("unnamed", "Unnamed")}</span>
-      </nav>
+      <main className="editor-main-content">
+        <nav className="editor-nav breadcrumb">
+          <Link to="/">{t("home", "Home")}</Link> /
+          <Link to="/manager">{t("manager", "Manager")}</Link> /
+          <span>{data.identity.name || t("unnamed", "Unnamed")}</span>
+        </nav>
 
-      <Sidebar
+        <div className="sheet-viewport">
+          <InvestigatorSheet />
+        </div>
+
+        <Footer />
+      </main>
+
+      <Toolbox
         onRoll={rollInvestigator}
         onPrint={handlePrint}
-        onSave={handleSave}
         onReset={resetInvestigator}
         onExport={exportInvestigator}
         onImport={handleImport}
-      />
-
-      <ZoomControls
         zoom={zoom}
         onZoomIn={handleZoomIn}
         onZoomOut={handleZoomOut}
@@ -132,10 +139,6 @@ const EditorPage: React.FC = () => {
         onFitHeight={handleFitHeight}
         onResetZoom={handleResetZoom}
       />
-
-      <InvestigatorSheet />
-
-      <Footer />
 
       {showScrollTop && (
         <button

@@ -27,7 +27,7 @@
 
 @media (max-width: 768px) {
   .app-footer {
-    padding: 2.5rem 5%;
+    padding: 1rem;
     font-size: 0.7rem;
   }
 }

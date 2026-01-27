@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
@@ -30,105 +30,47 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const { t } = useTranslation();
   const [printBlankValues, setPrintBlankValues] = useAtom(printBlankValuesAtom);
-  const [isOpen, setIsOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <nav className="sidebar-nav" aria-label={t("menu")}>
-      <button
-        id="menu-toggle"
-        onClick={() => setIsOpen(!isOpen)}
-        title={t("menu")}
-        aria-label={t("menu")}
-        aria-expanded={isOpen}
-      >
-        {isOpen ? "✕" : "☰"}
-      </button>
-      <div id="menu-panel" className={isOpen ? "open" : ""}>
-        <div className="menu-label">{t("navigation", "Navigation")}</div>
-
-        <Link
-          to="/"
-          className="menu-btn nav-link"
-          onClick={() => setIsOpen(false)}
-        >
-          {t("home", "Home")}
-        </Link>
+    <aside className="editor-toolbox" aria-label={t("toolbox", "Toolbox")}>
+      <div className="toolbox-section">
         <Link
           to="/manager"
-          className="menu-btn nav-link"
-          onClick={() => setIsOpen(false)}
+          className="toolbox-btn home-link"
+          title={t("manager", "Manager")}
         >
-          {t("manager", "Manager")}
+          <span className="toolbox-icon">←</span>
         </Link>
+      </div>
 
-        <div className="menu-label">Actions</div>
-        <button className="menu-btn" onClick={onRoll}>
-          <img
-            src={diceIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("roll")}</span>
-        </button>
-        <button className="menu-btn" onClick={onSave}>
-          <img
-            src={saveIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("save")}</span>
-        </button>
-        <button className="menu-btn print-btn" onClick={onPrint}>
-          <img
-            src={printIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("print")}</span>
-        </button>
+      <div className="toolbox-divider" />
 
-        <div className="menu-checkbox-wrapper">
-          <label className="menu-checkbox-label">
-            <input
-              type="checkbox"
-              checked={printBlankValues}
-              onChange={(e) => setPrintBlankValues(e.target.checked)}
-            />
-            <span className="checkbox-text">{t("print_blank")}</span>
-          </label>
-        </div>
+      <div className="toolbox-section">
+        <button className="toolbox-btn" onClick={onRoll} title={t("roll")}>
+          <img src={diceIcon} alt="" width="20" height="20" />
+        </button>
+        <button className="toolbox-btn" onClick={onSave} title={t("save")}>
+          <img src={saveIcon} alt="" width="20" height="20" />
+        </button>
+        <button className="toolbox-btn" onClick={onPrint} title={t("print")}>
+          <img src={printIcon} alt="" width="20" height="20" />
+        </button>
+      </div>
 
-        <div className="menu-label">Data</div>
-        <button className="menu-btn" onClick={onExport}>
-          <img
-            src={exportIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("export")}</span>
+      <div className="toolbox-divider" />
+
+      <div className="toolbox-section">
+        <button className="toolbox-btn" onClick={onExport} title={t("export")}>
+          <img src={exportIcon} alt="" width="20" height="20" />
         </button>
         <button
-          className="menu-btn"
+          className="toolbox-btn"
           onClick={() => fileInputRef.current?.click()}
+          title={t("import")}
         >
-          <img
-            src={importIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("import")}</span>
+          <img src={importIcon} alt="" width="20" height="20" />
           <input
             type="file"
             ref={fileInputRef}
@@ -137,18 +79,33 @@ const Sidebar: React.FC<SidebarProps> = ({
             style={{ display: "none" }}
           />
         </button>
-        <button className="menu-btn reset-btn" onClick={onReset}>
-          <img
-            src={resetIcon}
-            aria-hidden="true"
-            width="18"
-            height="18"
-            className="btn-icon"
-          />{" "}
-          <span className="btn-text">{t("reset")}</span>
+      </div>
+
+      <div className="toolbox-divider" />
+
+      <div className="toolbox-section">
+        <label className="toolbox-checkbox-btn" title={t("print_blank")}>
+          <input
+            type="checkbox"
+            checked={printBlankValues}
+            onChange={(e) => setPrintBlankValues(e.target.checked)}
+          />
+          <span className="checkbox-custom"></span>
+        </label>
+      </div>
+
+      <div className="toolbox-divider" />
+
+      <div className="toolbox-section">
+        <button
+          className="toolbox-btn reset-btn"
+          onClick={onReset}
+          title={t("reset")}
+        >
+          <img src={resetIcon} alt="" width="20" height="20" />
         </button>
       </div>
-    </nav>
+    </aside>
   );
 };
 
