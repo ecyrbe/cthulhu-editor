@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       </button>
       <div id="menu-panel" className={isOpen ? "open" : ""}>
         <div id="lang-label" className="menu-label">
-          Language / Langue
+          {t("language")}
         </div>
         <div className="lang-selector-wrapper">
           <button
