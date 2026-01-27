@@ -167,11 +167,50 @@
   margin-top: 3rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .manager-page {
-    padding: 1rem;
+    padding: 1.5rem 1rem;
   }
+
+  .manager-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .manager-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .breadcrumb {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
   .investigator-list {
     grid-template-columns: 1fr;
+  }
+
+  .investigator-card {
+    padding: 1.2rem;
+    gap: 1rem;
+  }
+
+  .investigator-details h3 {
+    font-size: 1.1rem;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
