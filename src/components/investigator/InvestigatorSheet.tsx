@@ -1,3 +1,4 @@
+import React from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   investigatorDataAtom,
@@ -60,8 +61,13 @@ const InvestigatorSheet: React.FC = () => {
 
   return (
     <main
-      className={`pages-wrapper ${printBlankValues ? "print-blank-mode" : ""}`}
-      style={{ zoom }}
+      className={`pages-wrapper investigator-sheet ${printBlankValues ? "print-blank-mode" : ""}`}
+      style={
+        {
+          zoom: zoom as number,
+          WebkitZoom: zoom as number,
+        } as React.CSSProperties
+      }
     >
       {/* PAGE 1 */}
       <div className="page" id="page1">

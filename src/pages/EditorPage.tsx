@@ -2,18 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom, useAtomValue } from "jotai";
 import {
   investigatorDataAtom,
   loadInvestigatorAtom,
   saveInvestigatorAtom,
   rollInvestigatorAtom,
   importInvestigatorAtom,
-  updatePhotoAtom,
   resetInvestigatorAtom,
   exportInvestigatorAtom,
 } from "../store/investigatorAtoms";
-import { zoomLevelAtom } from "../store/uiAtoms";
+import {
+  zoomLevelAtom,
+  zoomInAtom,
+  zoomOutAtom,
+  resetZoomAtom,
+  fitWidthAtom,
+  fitHeightAtom,
+} from "../store/uiAtoms";
 import Sidebar from "../components/layout/Sidebar";
 import ZoomControls from "../components/layout/ZoomControls";
 import Footer from "../components/layout/Footer";
@@ -26,7 +32,7 @@ const EditorPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [data] = useAtom(investigatorDataAtom);
+  const data = useAtomValue(investigatorDataAtom);
   const loadInvestigator = useSetAtom(loadInvestigatorAtom);
   const saveInvestigator = useSetAtom(saveInvestigatorAtom);
   const rollInvestigator = useSetAtom(rollInvestigatorAtom);
@@ -36,28 +42,12 @@ const EditorPage: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
 
-  const [zoom, setZoom] = useAtom(zoomLevelAtom);
-
-  const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.1, 2));
-
-  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.1, 0.5));
-  const handleResetZoom = () => setZoom(1);
-  const handleFitWidth = () => {
-    const sheet = document.querySelector(".investigator-sheet");
-    if (sheet) {
-      const scale =
-        (window.innerWidth - 40) / (sheet as HTMLElement).offsetWidth;
-      setZoom(Math.min(scale, 1.5));
-    }
-  };
-  const handleFitHeight = () => {
-    const sheet = document.querySelector(".investigator-sheet");
-    if (sheet) {
-      const scale =
-        (window.innerHeight - 80) / (sheet as HTMLElement).offsetHeight;
-      setZoom(Math.min(scale, 1.5));
-    }
-  };
+  const zoom = useAtomValue(zoomLevelAtom);
+  const handleZoomIn = useSetAtom(zoomInAtom);
+  const handleZoomOut = useSetAtom(zoomOutAtom);
+  const handleResetZoom = useSetAtom(resetZoomAtom);
+  const handleFitWidth = useSetAtom(fitWidthAtom);
+  const handleFitHeight = useSetAtom(fitHeightAtom);
 
   const [showScrollTop, setShowScrollTop] = useState(false);
 
