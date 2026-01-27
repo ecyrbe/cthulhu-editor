@@ -195,13 +195,13 @@ const Toolbox: React.FC<ToolboxProps> = ({
 
         <div className="tools-section section-actions">
           <div className="tools-section-header">{t("actions", "Actions")}</div>
-          <div className="tools-grid single-column">
+          <div className="tools-grid two-columns">
             <button
-              className="tool-button tool-button-large primary-action"
+              className="tool-button primary-action"
               onClick={onRoll}
               title={t("roll")}
             >
-              <img src={diceIcon} alt="" width="24" height="24" />
+              <img src={diceIcon} alt="" width="18" height="18" />
             </button>
           </div>
         </div>

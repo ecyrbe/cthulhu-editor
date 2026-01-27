@@ -23,6 +23,7 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  font-family: "P22 Typewriter", serif;
 }
 
 .breadcrumb a {
@@ -37,8 +38,9 @@
 }
 
 .breadcrumb span {
-  color: #ccc;
+  color: #8b0000;
   font-style: italic;
+  font-weight: bold;
 }
 
 .manager-header h1 {
