@@ -117,7 +117,7 @@
   "loading": "Chargement...",
   "navigation": "Navigation",
   "landing_feature_storage_title": "Savoir Interdit",
-  "landing_feature_storage_desc": "Votre grimoire persiste dans l'IndexedDB du navigateur, à l'abri des regards indiscrets du vide.",
+  "landing_feature_storage_desc": "Votre grimoire persiste dans les Archives Arcaniques du navigateur, à l'abri des regards indiscrets du vide.",
   "landing_feature_multichar_title": "Le Registre Infini",
   "landing_feature_multichar_desc": "Gardez la trace de vos investigateurs, même lorsqu'ils disparaissent ou sombrent dans la folie.",
   "landing_feature_print_title": "Cercle d'Invocation",
