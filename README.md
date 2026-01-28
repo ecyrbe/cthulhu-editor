@@ -26,15 +26,33 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 ## Features
 
 - **Full Character Sheet**: Manage Identity, Characteristics, Skills, Combat stats, Backstory, Gear, and more.
+- **Investigator Manager**: A dedicated dashboard to create, manage, and organize multiple character sheets.
+- **Local Persistence**: Automatically saves your investigators in your browser using IndexedDB.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Interactive Trackers**: Easily track Hit Points, Sanity, Luck, and Magic Points.
 - **Weapon & Combat Management**: Dedicated sections for weapons and combat calculations.
 - **Multi-language Support**: Available in English, Spanish, French, German, and Portuguese.
-- **Import/Export**: Save your investigator data as JSON files to keep them safe or share them.
+- **Import/Export**: Save your investigator data as JSON files or import them from local storage or remote URLs.
 - **Printable**: Formatted specifically for printing to take your digital sheet to the physical table.
 - **Aide Memoire**: Quick reference for common rules and rolls.
 - **Rolling System**: Built-in support for character initialization and rolling.
 - **Zoom Controls**: Flexible zooming options to fit the sheet to width, height, or reset to default level.
+
+## 🔗 Sharing & Remote Loading
+
+You can share your character sheets or load them remotely by hosting the character JSON file (e.g., on GitHub, Gist, or any public static file host) and using the following URL format:
+
+`https://ecyrbe.github.io/cthulhu-editor/#/import/<ENCODED_JSON_URL>`
+
+### Example:
+If your JSON is hosted at `https://example.com/character.json`, the sharing link would be:
+`https://ecyrbe.github.io/cthulhu-editor/#/import/https%3A%2F%2Fexample.com%2Fcharacter.json`
+
+When a user opens this link:
+1. The editor fetches the JSON data from the provided URL.
+2. It validates the data format.
+3. It automatically saves the character into the user's local manager.
+4. It redirects the user straight to the Editor.
 
 ## Tech Stack
 
