@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useTransition } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   investigatorDataAtom,
@@ -37,6 +37,8 @@ const InvestigatorSheet: React.FC = () => {
   const zoom = useAtomValue(zoomLevelAtom);
   const printBlankValues = useAtomValue(printBlankValuesAtom);
 
+  const [, startTransition] = useTransition();
+
   const setIdentity = useSetAtom(updateIdentityAtom);
   const setCharacteristic = useSetAtom(updateCharacteristicAtom);
   const setSkill = useSetAtom(updateSkillAtom);
@@ -51,48 +53,51 @@ const InvestigatorSheet: React.FC = () => {
 
   const handleIdentityChange = useCallback(
     (field: keyof InvestigatorData["identity"], value: string) =>
-      setIdentity({ field, value }),
+      startTransition(() => setIdentity({ field, value })),
     [setIdentity],
   );
 
   const handleCharacteristicChange = useCallback(
-    (stat: string, value: number) => setCharacteristic({ stat, value }),
+    (stat: string, value: number) =>
+      startTransition(() => setCharacteristic({ stat, value })),
     [setCharacteristic],
   );
 
   const handleSkillChange = useCallback(
     (idx: number, field: string, val: string | number | boolean) =>
-      setSkill({ index: idx, updates: { [field]: val } }),
+      startTransition(() =>
+        setSkill({ index: idx, updates: { [field]: val } }),
+      ),
     [setSkill],
   );
 
   const handleTrackerChange = useCallback(
     (field: keyof InvestigatorData["trackers"], value: number | boolean) =>
-      setTracker({ field, value }),
+      startTransition(() => setTracker({ field, value })),
     [setTracker],
   );
 
   const handleBackstoryChange = useCallback(
     (field: keyof InvestigatorData["backstory"], value: string) =>
-      setBackstory({ field, value }),
+      startTransition(() => setBackstory({ field, value })),
     [setBackstory],
   );
 
   const handleWeaponChange = useCallback(
     (index: number, field: keyof Weapon, value: string) =>
-      setWeapon({ index, field, value }),
+      startTransition(() => setWeapon({ index, field, value })),
     [setWeapon],
   );
 
   const handleWealthChange = useCallback(
     (field: keyof InvestigatorData["wealth"], value: string) =>
-      setWealth({ field, value }),
+      startTransition(() => setWealth({ field, value })),
     [setWealth],
   );
 
   const handleFellowChange = useCallback(
     (index: number, field: "name" | "player", value: string) =>
-      setFellowInvestigator({ index, field, value }),
+      startTransition(() => setFellowInvestigator({ index, field, value })),
     [setFellowInvestigator],
   );
 

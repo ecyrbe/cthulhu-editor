@@ -9,6 +9,7 @@ import { normalize } from "../utils/normalize";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import Button from "../components/ui/Button";
+import LoadingScreen from "../components/ui/LoadingScreen";
 
 // Icons
 import exportIcon from "../assets/floppy-disk-arrow-out.svg";
@@ -21,11 +22,16 @@ const ManagerPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [investigators, setInvestigators] = useState<InvestigatorData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadInvestigators = async () => {
-      const all = await db.investigators.toArray();
-      setInvestigators(all);
+      try {
+        const all = await db.investigators.toArray();
+        setInvestigators(all);
+      } finally {
+        setLoading(false);
+      }
     };
     loadInvestigators();
   }, []);
@@ -53,6 +59,8 @@ const ManagerPage: React.FC = () => {
       t("toast_export_success", "Investigator exported successfully!"),
     );
   };
+
+  if (loading) return <LoadingScreen />;
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

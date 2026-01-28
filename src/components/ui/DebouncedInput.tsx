@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
+import React from "react";
+import { useBufferedValue } from "../../hooks/useBufferedValue";
 
 interface DebouncedInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -17,32 +17,20 @@ export const DebouncedInput: React.FC<DebouncedInputProps> = ({
   type = "text",
   ...props
 }) => {
-  const [localValue, setLocalValue] = useState(value);
-  const lastSentValueRef = useRef(value);
-
-  const debouncedOnChange = useDebounce((newValue: any) => {
-    lastSentValueRef.current = newValue;
-    onValueChange(newValue);
-  }, delay);
-
-  useEffect(() => {
-    if (value !== lastSentValueRef.current) {
-      setLocalValue(value);
-      lastSentValueRef.current = value;
-    }
-  }, [value]);
+  const [localValue, setLocalValue, forceSync] = useBufferedValue(
+    value,
+    onValueChange,
+    delay,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue =
       type === "number" ? parseInt(e.target.value) || 0 : e.target.value;
     setLocalValue(newValue);
-    debouncedOnChange(newValue);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (localValue !== value) {
-      onValueChange(localValue);
-    }
+    forceSync();
     props.onBlur?.(e);
   };
 
@@ -50,7 +38,7 @@ export const DebouncedInput: React.FC<DebouncedInputProps> = ({
     <input
       {...props}
       type={type}
-      value={localValue || (type === "number" ? 0 : "")}
+      value={localValue ?? (type === "number" ? 0 : "")}
       onChange={handleChange}
       onBlur={handleBlur}
     />

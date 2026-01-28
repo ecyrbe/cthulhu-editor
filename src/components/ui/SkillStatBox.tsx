@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
+import React from "react";
+import { useBufferedValue } from "../../hooks/useBufferedValue";
 
 interface SkillStatBoxProps {
   value: number;
@@ -14,25 +14,11 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
   readOnly,
   ariaLabel,
 }) => {
-  const [localValue, setLocalValue] = useState(value);
-  const lastSentValueRef = React.useRef(value);
-
-  const debouncedOnChange = useDebounce((val: number) => {
-    lastSentValueRef.current = val;
-    onChange?.(val);
-  }, 300);
-
-  useEffect(() => {
-    if (value !== lastSentValueRef.current) {
-      setLocalValue(value);
-      lastSentValueRef.current = value;
-    }
-  }, [value]);
-
-  const handleChange = (newValue: number) => {
-    setLocalValue(newValue);
-    debouncedOnChange(newValue);
-  };
+  const [localValue, setLocalValue, forceSync] = useBufferedValue(
+    value,
+    (val) => onChange?.(val),
+    300,
+  );
 
   return (
     <div className="skill-stat-container">
@@ -41,12 +27,8 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
           type="number"
           className="skill-main-input"
           value={localValue || ""}
-          onChange={(e) => handleChange(parseInt(e.target.value) || 0)}
-          onBlur={() => {
-            if (localValue !== value) {
-              onChange?.(localValue);
-            }
-          }}
+          onChange={(e) => setLocalValue(parseInt(e.target.value) || 0)}
+          onBlur={() => forceSync()}
           readOnly={readOnly}
           aria-label={ariaLabel}
         />

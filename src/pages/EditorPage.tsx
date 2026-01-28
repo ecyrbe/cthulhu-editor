@@ -21,6 +21,7 @@ import {
 import Toolbox from "../components/layout/Toolbox";
 import Footer from "../components/layout/Footer";
 import InvestigatorSheet from "../components/investigator/InvestigatorSheet";
+import LoadingScreen from "../components/ui/LoadingScreen";
 import arrowUpIcon from "../assets/arrow-up.svg";
 import "./EditorPage.css";
 
@@ -89,7 +90,7 @@ const EditorPage: React.FC = () => {
     window.print();
   };
 
-  if (loading) return <div>{t("loading", "Loading...")}</div>;
+  if (loading) return <LoadingScreen />;
 
   return (
     <div className="editor-page-container">
