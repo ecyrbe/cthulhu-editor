@@ -62,6 +62,44 @@ const ManagerPage: React.FC = () => {
 
   if (loading) return <LoadingScreen />;
 
+  const handleImportUrl = async () => {
+    const url = window.prompt(
+      t("enter_import_url", "Enter the URL of the investigator JSON:"),
+    );
+    if (!url) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch");
+      const json = await response.json();
+      const result = InvestigatorDataSchema.safeParse(json);
+
+      if (!result.success) {
+        toast.error(t("toast_import_error", "Failed to import"));
+        return;
+      }
+
+      const dataToSave = { ...result.data };
+      delete dataToSave.id;
+      const newId = await db.investigators.add(dataToSave as InvestigatorData);
+
+      // Update the list
+      const all = await db.investigators.toArray();
+      setInvestigators(all);
+
+      toast.success(
+        t("toast_import_success", "Investigator imported successfully!"),
+      );
+      navigate(`/edit/${newId}`);
+    } catch (error) {
+      console.error("URL Import failed:", error);
+      toast.error(t("toast_import_error", "Failed to import"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -80,7 +118,8 @@ const ManagerPage: React.FC = () => {
           }
 
           // Strip the id to avoid conflicts when importing to a new database
-          const { id: _id, ...dataToSave } = result.data;
+          const dataToSave = { ...result.data };
+          delete dataToSave.id;
 
           // Ensure sanityMax is correct on import
           const cthulhuSkill = dataToSave.skills?.find(
@@ -156,6 +195,14 @@ const ManagerPage: React.FC = () => {
                   className="hidden-file-input"
                 />
               </label>
+              <button
+                className="import-btn-label"
+                onClick={handleImportUrl}
+                title={t("import_url", "Import from URL")}
+              >
+                <img src={importIcon} alt="" width="20" height="20" />
+                <span>{t("import_url", "URL")}</span>
+              </button>
             </div>
             <Button onClick={handleCreate}>
               {t("new_investigator", "New Investigator")}

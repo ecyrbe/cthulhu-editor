@@ -11,7 +11,7 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 ### 📂 Examples
 
 - **🖋️ [New Empty Character](https://ecyrbe.github.io/cthulhu-editor/)**
-- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://ecyrbe.github.io/cthulhu-editor/#link=https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
+- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://ecyrbe.github.io/cthulhu-editor/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
 
 ## Screenshots
 
