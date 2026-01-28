@@ -2,7 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./LanguageSelector.css";
 
-const LanguageSelector: React.FC = () => {
+interface LanguageSelectorProps {
+  align?: "left" | "right";
+}
+
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+  align = "right",
+}) => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +54,7 @@ const LanguageSelector: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="lang-dropdown-menu" role="listbox">
+        <div className={`lang-dropdown-menu align-${align}`} role="listbox">
           {languages.map((lang) => (
             <button
               key={lang.code}
