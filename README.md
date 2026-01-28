@@ -26,7 +26,7 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 ## Features
 
 - **Full Character Sheet**: Manage Identity, Characteristics, Skills, Combat stats, Backstory, Gear, and more.
-- **Investigator Manager**: A dedicated dashboard to create, manage, and organize multiple character sheets.
+- **Investigator Registry**: A dedicated dashboard to create, manage, and organize multiple character sheets.
 - **Local Persistence**: Automatically saves your investigators in your browser using IndexedDB.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Interactive Trackers**: Easily track Hit Points, Sanity, Luck, and Magic Points.
@@ -51,7 +51,7 @@ If your JSON is hosted at `https://example.com/character.json`, the sharing link
 When a user opens this link:
 1. The editor fetches the JSON data from the provided URL.
 2. It validates the data format.
-3. It automatically saves the character into the user's local manager.
+3. It automatically saves the character into the user's local registry.
 4. It redirects the user straight to the Editor.
 
 ## Tech Stack

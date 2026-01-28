@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <Link
           to="/registry"
           className="toolbox-btn home-link"
-          title={t("manager", "Registry")}
+          title={t("registry", "Registry")}
         >
           <span className="toolbox-icon">←</span>
         </Link>

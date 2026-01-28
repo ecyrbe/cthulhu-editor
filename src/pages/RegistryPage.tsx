@@ -177,13 +177,13 @@ const RegistryPage: React.FC = () => {
       <div className="registry-page">
         <nav className="breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /{" "}
-          <span>{t("manager", "Registry")}</span>
+          <span>{t("registry", "Registry")}</span>
         </nav>
 
         <div className="registry-header">
           <h1>{t("my_investigators", "My Investigators")}</h1>
           <div className="header-actions">
-            <LanguageSelector />
+            <LanguageSelector align="left" />
             <div className="file-actions">
               <label className="import-btn-label" title={t("import")}>
                 <img src={importIcon} alt="" width="20" height="20" />

@@ -100,7 +100,7 @@ const EditorPage: React.FC = () => {
       <main className="editor-main-content">
         <nav className="editor-nav breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /
-          <Link to="/registry">{t("manager", "Registry")}</Link> /
+          <Link to="/registry">{t("registry", "Registry")}</Link> /
           <span>{investigatorName || t("unnamed", "Unnamed")}</span>
         </nav>
 

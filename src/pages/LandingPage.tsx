@@ -97,7 +97,7 @@ const LandingPage: React.FC = () => {
               size="lg"
               onClick={() => navigate("/registry")}
             >
-              {t("launch_manager")}
+              {t("launch_registry")}
             </Button>
           </div>
         </section>
