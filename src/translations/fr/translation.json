@@ -102,7 +102,7 @@
   "error_boundary_message": "Une erreur occulte a corrompu la réalité de votre investigateur.",
   "error_boundary_reload": "Recharger",
   "error_boundary_clear": "Nouvelle Fiche",
-  "landing_title": "Registre de Cthulhu",
+  "landing_title": "Registre d'Arkham",
   "landing_subtitle": "Documentez la descente inévitable de vos investigateurs avec une précision archivistique.",
   "launch_registry": "Lancer le Registre",
   "home": "Accueil",
@@ -133,6 +133,6 @@
   "landing_prepared_title": "Prêt pour l'Inconnu",
   "landing_cta_title": "La perte de santé mentale est inévitable. La perte de données ne l'est pas.",
   "landing_cta_subtitle": "Prêt à inscrire votre prochain investigateur ?",
-  "logo_top": "l'Appel de",
+  "logo_top": "L'Appel de",
   "logo_bottom": "Cthulhu"
 }

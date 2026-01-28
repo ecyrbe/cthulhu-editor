@@ -102,7 +102,7 @@
   "error_boundary_message": "Ein unbeschreiblicher Fehler hat die Realität deines Investigators korrumpiert.",
   "error_boundary_reload": "Neu laden",
   "error_boundary_clear": "Neuer Bogen",
-  "landing_title": "Cthulhu Register",
+  "landing_title": "Arkham Register",
   "landing_subtitle": "Dokumentieren Sie den unvermeidlichen Abstieg Ihrer Ermittler mit archivarischer Präzision.",
   "launch_registry": "Register starten",
   "home": "Startseite",
@@ -133,6 +133,6 @@
   "landing_prepared_title": "Bereit für das Unbekannte",
   "landing_cta_title": "Wahnsinn ist unvermeidlich. Datenverlust ist es nicht.",
   "landing_cta_subtitle": "Bereit, Ihren nächsten Ermittler zu registrieren?",
-  "logo_top": "Cthulhus",
-  "logo_bottom": "Ruf"
+  "logo_top": "Der Ruf von",
+  "logo_bottom": "Cthulhu"
 }

@@ -102,7 +102,7 @@
   "error_boundary_message": "Un error primigenio ha corrompido la realidad de tu investigador.",
   "error_boundary_reload": "Recargar",
   "error_boundary_clear": "Nueva Ficha",
-  "landing_title": "Registro de Cthulhu",
+  "landing_title": "Registro de Arkham",
   "landing_subtitle": "Documenta el descenso inevitable de tus investigadores con precisión archivística.",
   "launch_registry": "Lanzar Registro",
   "home": "Inicio",
@@ -133,6 +133,6 @@
   "landing_prepared_title": "Preparado para lo Desconocido",
   "landing_cta_title": "La pérdida de cordura es inevitable. La pérdida de datos no lo es.",
   "landing_cta_subtitle": "¿Listo para registrar a tu próximo investigador?",
-  "logo_top": "La Llamada de",
+  "logo_top": "El Llamado de",
   "logo_bottom": "Cthulhu"
 }
