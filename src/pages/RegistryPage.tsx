@@ -16,9 +16,9 @@ import exportIcon from "../assets/floppy-disk-arrow-out.svg";
 import importIcon from "../assets/floppy-disk-arrow-in.svg";
 import binIcon from "../assets/bin.svg";
 
-import "./ManagerPage.css";
+import "./RegistryPage.css";
 
-const ManagerPage: React.FC = () => {
+const RegistryPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [investigators, setInvestigators] = useState<InvestigatorData[]>([]);
@@ -172,15 +172,15 @@ const ManagerPage: React.FC = () => {
   };
 
   return (
-    <div className="manager-page-container">
+    <div className="registry-page-container">
       <Toaster position="bottom-right" />
-      <div className="manager-page">
+      <div className="registry-page">
         <nav className="breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /{" "}
-          <span>{t("manager", "Manager")}</span>
+          <span>{t("manager", "Registry")}</span>
         </nav>
 
-        <div className="manager-header">
+        <div className="registry-header">
           <h1>{t("my_investigators", "My Investigators")}</h1>
           <div className="header-actions">
             <LanguageSelector />
@@ -264,4 +264,4 @@ const ManagerPage: React.FC = () => {
   );
 };
 
-export default ManagerPage;
+export default RegistryPage;

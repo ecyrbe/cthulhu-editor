@@ -66,7 +66,7 @@ const EditorPage: React.FC = () => {
         const loaded = await loadInvestigator(parseInt(id));
         if (!loaded) {
           toast.error(t("investigator_not_found", "Investigator not found"));
-          navigate("/manager");
+          navigate("/registry");
         }
       }
       setLoading(false);
@@ -100,7 +100,7 @@ const EditorPage: React.FC = () => {
       <main className="editor-main-content">
         <nav className="editor-nav breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /
-          <Link to="/manager">{t("manager", "Manager")}</Link> /
+          <Link to="/registry">{t("manager", "Registry")}</Link> /
           <span>{investigatorName || t("unnamed", "Unnamed")}</span>
         </nav>
 

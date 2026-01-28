@@ -45,6 +45,25 @@
   min-width: 160px;
 }
 
+@media (max-width: 768px) {
+  .language-selector-container {
+    position: static;
+  }
+
+  .lang-dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    margin-top: 0;
+    width: auto;
+    min-width: 0;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
 .lang-option-btn {
   width: 100%;
   padding: 10px 16px;

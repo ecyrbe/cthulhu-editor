@@ -36,7 +36,7 @@ const LandingPage: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => navigate("/manager")}
+                onClick={() => navigate("/registry")}
               >
                 {t("get_started")}
               </Button>
@@ -56,19 +56,34 @@ const LandingPage: React.FC = () => {
           <h2>{t("landing_prepared_title")}</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">📁</div>
-              <h3>{t("landing_feature_storage_title")}</h3>
-              <p>{t("landing_feature_storage_desc")}</p>
+              <div className="feature-icon">🎲</div>
+              <h3>{t("landing_feature_sheet_title")}</h3>
+              <p>{t("landing_feature_sheet_desc")}</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🕵️‍♂️</div>
+              <div className="feature-icon">🏛️</div>
               <h3>{t("landing_feature_multichar_title")}</h3>
               <p>{t("landing_feature_multichar_desc")}</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">📄</div>
+              <div className="feature-icon">💾</div>
+              <h3>{t("landing_feature_storage_title")}</h3>
+              <p>{t("landing_feature_storage_desc")}</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">🔗</div>
               <h3>{t("landing_feature_print_title")}</h3>
               <p>{t("landing_feature_print_desc")}</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">🖨️</div>
+              <h3>{t("landing_feature_offline_title")}</h3>
+              <p>{t("landing_feature_offline_desc")}</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">🌍</div>
+              <h3>{t("landing_feature_i18n_title")}</h3>
+              <p>{t("landing_feature_i18n_desc")}</p>
             </div>
           </div>
         </section>
@@ -80,7 +95,7 @@ const LandingPage: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              onClick={() => navigate("/manager")}
+              onClick={() => navigate("/registry")}
             >
               {t("launch_manager")}
             </Button>

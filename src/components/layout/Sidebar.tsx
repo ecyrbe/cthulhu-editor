@@ -37,9 +37,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     <aside className="editor-toolbox" aria-label={t("toolbox", "Toolbox")}>
       <div className="toolbox-section">
         <Link
-          to="/manager"
+          to="/registry"
           className="toolbox-btn home-link"
-          title={t("manager", "Manager")}
+          title={t("manager", "Registry")}
         >
           <span className="toolbox-icon">←</span>
         </Link>

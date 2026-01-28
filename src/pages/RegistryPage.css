@@ -1,4 +1,4 @@
-.manager-page-container {
+.registry-page-container {
   min-height: 100vh;
   background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
   background-color: #0c0c0c;
@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.manager-page {
+.registry-page {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -43,7 +43,7 @@
   font-weight: bold;
 }
 
-.manager-header h1 {
+.registry-header h1 {
   font-family: "P22 Typewriter", serif;
   font-size: 2.5rem;
   margin: 0;
@@ -51,7 +51,7 @@
   text-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
 }
 
-.manager-header {
+.registry-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -245,11 +245,11 @@
 }
 
 @media (max-width: 768px) {
-  .manager-page {
+  .registry-page {
     padding: 1.5rem 1rem;
   }
 
-  .manager-header {
+  .registry-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -258,7 +258,7 @@
     padding-bottom: 1.5rem;
   }
 
-  .manager-header h1 {
+  .registry-header h1 {
     font-size: 1.8rem;
   }
 
