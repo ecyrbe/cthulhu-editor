@@ -2,7 +2,7 @@
 
 A modern, responsive web-based character sheet editor compatible with **Call of Cthulhu 7th Edition**.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://ecyrbe.github.io/cthulhu-editor/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://arkham-registry.online/)
 
 ## Overview
 
@@ -10,8 +10,8 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 
 ### 📂 Examples
 
-- **🖋️ [New Empty Character](https://ecyrbe.github.io/cthulhu-editor/)**
-- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://ecyrbe.github.io/cthulhu-editor/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
+- **🖋️ [New Empty Character](https://arkham-registry.online/)**
+- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
 
 ## Screenshots
 
@@ -42,11 +42,11 @@ Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manag
 
 You can share your character sheets or load them remotely by hosting the character JSON file (e.g., on GitHub, Gist, or any public static file host) and using the following URL format:
 
-`https://ecyrbe.github.io/cthulhu-editor/#/import/<ENCODED_JSON_URL>`
+`https://arkham-registry.online/#/import/<ENCODED_JSON_URL>`
 
 ### Example:
 If your JSON is hosted at `https://example.com/character.json`, the sharing link would be:
-`https://ecyrbe.github.io/cthulhu-editor/#/import/https%3A%2F%2Fexample.com%2Fcharacter.json`
+`https://arkham-registry.online/#/import/https%3A%2F%2Fexample.com%2Fcharacter.json`
 
 When a user opens this link:
 1. The editor fetches the JSON data from the provided URL.
