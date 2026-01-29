@@ -62,6 +62,12 @@
     right: auto;
     transform: none;
   }
+
+  .lang-dropdown-menu.align-center {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 }
 
 .lang-option-btn {

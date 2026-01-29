@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import Button from "../components/ui/Button";
+import githubLogo from "../assets/github.svg";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
@@ -24,7 +25,18 @@ const LandingPage: React.FC = () => {
           <span className="logo-top">{t("logo_top")}</span>
           <span className="logo-bottom">{t("logo_bottom")}</span>
         </div>
-        <LanguageSelector />
+        <div className="header-actions">
+          <LanguageSelector align="center" />
+          <a
+            href="https://github.com/ecyrbe/cthulhu-editor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-link"
+            title={t("github_repository")}
+          >
+            <img src={githubLogo} alt="GitHub" />
+          </a>
+        </div>
       </header>
 
       <main>

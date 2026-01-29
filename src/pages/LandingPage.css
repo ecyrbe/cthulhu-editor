@@ -49,6 +49,30 @@
   z-index: 10;
 }
 
+.landing-header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.landing-header .github-link {
+  color: #fff;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.landing-header .github-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.landing-header .github-link img {
+  width: 24px;
+  height: 24px;
+}
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -216,6 +240,10 @@
 
   .landing-header {
     padding: 1rem 5%;
+  }
+
+  .landing-header .header-actions {
+    gap: 0.75rem;
   }
 
   .logo-bottom {

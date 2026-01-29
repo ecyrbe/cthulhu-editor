@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import "./LanguageSelector.css";
 
 interface LanguageSelectorProps {
-  align?: "left" | "right";
+  align?: "left" | "right" | "center";
 }
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({
