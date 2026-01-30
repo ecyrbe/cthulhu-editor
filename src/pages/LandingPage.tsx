@@ -73,7 +73,7 @@ const LandingPage: React.FC = () => {
               <p>{t("landing_feature_sheet_desc")}</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🏛️</div>
+              <div className="feature-icon">📚</div>
               <h3>{t("landing_feature_multichar_title")}</h3>
               <p>{t("landing_feature_multichar_desc")}</p>
             </div>
