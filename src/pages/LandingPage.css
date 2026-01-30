@@ -168,10 +168,12 @@
 }
 
 .feature-card {
-  padding: 2.5rem;
   background: #161616;
   border: 1px solid #222;
   border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition:
     transform 0.3s,
     border-color 0.3s;
@@ -183,9 +185,25 @@
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  display: block;
+  height: 180px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a;
+  font-size: 3.5rem;
+  flex-shrink: 0;
+}
+
+.feature-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-card-content {
+  padding: 0 1rem 1.5rem;
+  text-align: center;
 }
 
 .feature-card h3 {
