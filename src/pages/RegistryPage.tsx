@@ -175,10 +175,10 @@ const RegistryPage: React.FC = () => {
     <div className="registry-page-container">
       <Toaster position="bottom-right" />
       <div className="registry-page">
-        <nav className="breadcrumb">
+        <header className="breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /{" "}
           <span>{t("registry", "Registry")}</span>
-        </nav>
+        </header>
 
         <div className="registry-header">
           <h1>{t("my_investigators", "My Investigators")}</h1>

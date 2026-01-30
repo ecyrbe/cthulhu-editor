@@ -98,11 +98,11 @@ const EditorPage: React.FC = () => {
       <AutoSave loading={loading} />
 
       <main className="editor-main-content">
-        <nav className="editor-nav breadcrumb">
+        <header className="editor-nav breadcrumb">
           <Link to="/">{t("home", "Home")}</Link> /
           <Link to="/registry">{t("registry", "Registry")}</Link> /
           <span>{investigatorName || t("unnamed", "Unnamed")}</span>
-        </nav>
+        </header>
 
         <div className="sheet-viewport">
           <InvestigatorSheet />

@@ -18,6 +18,13 @@
 }
 
 .breadcrumb {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background-color: #0c0c0c;
+  padding: 1rem 0;
+  margin-top: -1rem;
   margin-bottom: 2rem;
   font-size: 0.85rem;
   display: flex;
