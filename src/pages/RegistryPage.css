@@ -17,6 +17,14 @@
   width: 100%;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
 .registry-sticky-top {
   position: -webkit-sticky;
   position: sticky;
@@ -30,8 +38,6 @@
 }
 
 .breadcrumb {
-  padding: 1rem 0;
-  margin-bottom: 2rem;
   font-size: 0.85rem;
   display: flex;
   gap: 0.5rem;
@@ -288,8 +294,7 @@
   }
 
   .breadcrumb {
-    justify-content: center;
-    margin-bottom: 1.5rem;
+    justify-content: flex-start;
   }
 
   .investigator-list {

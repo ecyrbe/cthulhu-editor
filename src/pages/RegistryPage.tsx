@@ -176,15 +176,17 @@ const RegistryPage: React.FC = () => {
       <Toaster position="bottom-right" />
       <div className="registry-page">
         <div className="registry-sticky-top">
-          <header className="breadcrumb">
-            <Link to="/">{t("home", "Home")}</Link> /{" "}
-            <span>{t("registry", "Registry")}</span>
+          <header className="registry-page-header">
+            <div className="breadcrumb">
+              <Link to="/">{t("home", "Home")}</Link> /{" "}
+              <span>{t("registry", "Registry")}</span>
+            </div>
+            <LanguageSelector align="left" />
           </header>
 
           <div className="registry-header">
             <h1>{t("my_investigators", "My Investigators")}</h1>
             <div className="header-actions">
-              <LanguageSelector align="left" />
               <div className="file-actions">
                 <label className="import-btn-label" title={t("import")}>
                   <img src={importIcon} alt="" width="20" height="20" />

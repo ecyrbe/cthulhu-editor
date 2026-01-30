@@ -14,15 +14,15 @@
 }
 
 .editor-nav.breadcrumb {
+  justify-content: flex-start;
   padding: 0.8rem 1.5rem;
   background: #0c0c0c;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid rgba(139, 0, 0, 0.3);
   font-size: 0.85rem;
   color: #666;
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1100;
@@ -112,7 +112,7 @@
   color: #666;
   letter-spacing: 1px;
   font-weight: bold;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid rgba(139, 0, 0, 0.3);
   padding-bottom: 0.3rem;
   margin-bottom: 0.2rem;
 }
@@ -225,6 +225,7 @@
   }
 
   .editor-nav.breadcrumb {
+    justify-content: center;
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     margin-bottom: 0 !important;
