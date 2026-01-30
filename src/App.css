@@ -1053,7 +1053,7 @@ td {
   padding-top: 5px;
 }
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 900px) {
   #zoom-controls {
     display: none;
   }
