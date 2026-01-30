@@ -263,7 +263,7 @@ header {
   margin-top: 3rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .registry-page {
     padding: 1.5rem 1rem;
   }

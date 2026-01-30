@@ -161,7 +161,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -232,7 +232,7 @@
   margin-bottom: 2.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
