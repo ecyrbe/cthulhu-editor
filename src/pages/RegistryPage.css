@@ -1,6 +1,6 @@
 .registry-page-container {
   min-height: 100vh;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%) fixed;
   background-color: #0c0c0c;
   color: #d4d4d4;
   font-family: "Liberation Serif", serif;
@@ -17,14 +17,20 @@
   width: 100%;
 }
 
-.breadcrumb {
+.registry-sticky-top {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1100;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%) fixed;
   background-color: #0c0c0c;
+  margin-top: -4rem;
+  padding-top: 3rem;
+  width: 100%;
+}
+
+.breadcrumb {
   padding: 1rem 0;
-  margin-top: -1rem;
   margin-bottom: 2rem;
   font-size: 0.85rem;
   display: flex;
@@ -254,6 +260,11 @@
 @media (max-width: 768px) {
   .registry-page {
     padding: 1.5rem 1rem;
+  }
+
+  .registry-sticky-top {
+    margin-top: -1.5rem;
+    padding-top: 1rem;
   }
 
   .registry-header {

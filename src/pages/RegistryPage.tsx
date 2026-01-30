@@ -175,38 +175,40 @@ const RegistryPage: React.FC = () => {
     <div className="registry-page-container">
       <Toaster position="bottom-right" />
       <div className="registry-page">
-        <header className="breadcrumb">
-          <Link to="/">{t("home", "Home")}</Link> /{" "}
-          <span>{t("registry", "Registry")}</span>
-        </header>
+        <div className="registry-sticky-top">
+          <header className="breadcrumb">
+            <Link to="/">{t("home", "Home")}</Link> /{" "}
+            <span>{t("registry", "Registry")}</span>
+          </header>
 
-        <div className="registry-header">
-          <h1>{t("my_investigators", "My Investigators")}</h1>
-          <div className="header-actions">
-            <LanguageSelector align="left" />
-            <div className="file-actions">
-              <label className="import-btn-label" title={t("import")}>
-                <img src={importIcon} alt="" width="20" height="20" />
-                <span>{t("import")}</span>
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={handleImport}
-                  className="hidden-file-input"
-                />
-              </label>
-              <button
-                className="import-btn-label"
-                onClick={handleImportUrl}
-                title={t("import_url", "Import from URL")}
-              >
-                <img src={importIcon} alt="" width="20" height="20" />
-                <span>{t("import_url", "URL")}</span>
-              </button>
+          <div className="registry-header">
+            <h1>{t("my_investigators", "My Investigators")}</h1>
+            <div className="header-actions">
+              <LanguageSelector align="left" />
+              <div className="file-actions">
+                <label className="import-btn-label" title={t("import")}>
+                  <img src={importIcon} alt="" width="20" height="20" />
+                  <span>{t("import")}</span>
+                  <input
+                    type="file"
+                    accept=".json"
+                    onChange={handleImport}
+                    className="hidden-file-input"
+                  />
+                </label>
+                <button
+                  className="import-btn-label"
+                  onClick={handleImportUrl}
+                  title={t("import_url", "Import from URL")}
+                >
+                  <img src={importIcon} alt="" width="20" height="20" />
+                  <span>{t("import_url", "URL")}</span>
+                </button>
+              </div>
+              <Button onClick={handleCreate}>
+                {t("new_investigator", "New Investigator")}
+              </Button>
             </div>
-            <Button onClick={handleCreate}>
-              {t("new_investigator", "New Investigator")}
-            </Button>
           </div>
         </div>
 
