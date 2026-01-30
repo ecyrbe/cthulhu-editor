@@ -181,7 +181,7 @@ const RegistryPage: React.FC = () => {
               <Link to="/">{t("home", "Home")}</Link> /{" "}
               <span>{t("registry", "Registry")}</span>
             </div>
-            <LanguageSelector align="left" />
+            <LanguageSelector align="right" />
           </header>
 
           <div className="registry-header">
