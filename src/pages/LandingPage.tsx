@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/layout/Footer";
@@ -12,10 +12,55 @@ import archivesIcon from "../assets/miskatonic-archive.png";
 import tonguesIcon from "../assets/tongues-of-the-old-ones.png";
 import storageIcon from "../assets/forbidden-knowledge.png";
 import "./LandingPage.css";
+import { toCryptic } from "../utils/cryptic";
+
+const features = [
+  {
+    id: "sheet",
+    icon: diceIcon,
+    title: "landing_feature_sheet_title",
+    desc: "landing_feature_sheet_desc",
+  },
+  {
+    id: "multichar",
+    icon: registryIcon,
+    title: "landing_feature_multichar_title",
+    desc: "landing_feature_multichar_desc",
+  },
+  {
+    id: "storage",
+    icon: storageIcon,
+    title: "landing_feature_storage_title",
+    desc: "landing_feature_storage_desc",
+  },
+  {
+    id: "print",
+    icon: summoningIcon,
+    title: "landing_feature_print_title",
+    desc: "landing_feature_print_desc",
+  },
+  {
+    id: "offline",
+    icon: archivesIcon,
+    title: "landing_feature_offline_title",
+    desc: "landing_feature_offline_desc",
+  },
+  {
+    id: "i18n",
+    icon: tonguesIcon,
+    title: "landing_feature_i18n_title",
+    desc: "landing_feature_i18n_desc",
+  },
+];
 
 const LandingPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+
+  const setReveal = (id: string, isRevealed: boolean) => {
+    setRevealed((prev) => ({ ...prev, [id]: isRevealed }));
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -73,60 +118,28 @@ const LandingPage: React.FC = () => {
         <section id="features" className="features-section">
           <h2>{t("landing_prepared_title")}</h2>
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={diceIcon} alt="Dice" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_sheet_title")}</h3>
-                <p>{t("landing_feature_sheet_desc")}</p>
-              </div>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={registryIcon} alt="Registry" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_multichar_title")}</h3>
-                <p>{t("landing_feature_multichar_desc")}</p>
-              </div>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={storageIcon} alt="Storage" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_storage_title")}</h3>
-                <p>{t("landing_feature_storage_desc")}</p>
-              </div>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={summoningIcon} alt="Summoning" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_print_title")}</h3>
-                <p>{t("landing_feature_print_desc")}</p>
-              </div>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={archivesIcon} alt="Archives" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_offline_title")}</h3>
-                <p>{t("landing_feature_offline_desc")}</p>
-              </div>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <img src={tonguesIcon} alt="Tongues" />
-              </div>
-              <div className="feature-card-content">
-                <h3>{t("landing_feature_i18n_title")}</h3>
-                <p>{t("landing_feature_i18n_desc")}</p>
-              </div>
-            </div>
+            {features.map((feature) => {
+              const isRevealed = revealed[feature.id];
+              const title = t(feature.title);
+              const desc = t(feature.desc);
+
+              return (
+                <div
+                  key={feature.id}
+                  className={`feature-card ${isRevealed ? "revealed" : ""}`}
+                  onMouseEnter={() => setReveal(feature.id, true)}
+                  onMouseLeave={() => setReveal(feature.id, false)}
+                >
+                  <div className="feature-icon">
+                    <img src={feature.icon} alt={feature.id} />
+                  </div>
+                  <div className="feature-card-content">
+                    <h3>{isRevealed ? title : toCryptic(title)}</h3>
+                    <p>{isRevealed ? desc : toCryptic(desc)}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 

@@ -174,14 +174,32 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   transition:
     transform 0.3s,
-    border-color 0.3s;
+    border-color 0.3s,
+    background-color 0.3s;
 }
 
 .feature-card:hover {
   transform: translateY(-10px);
   border-color: #8b0000;
+  background-color: #1c1c1c;
+}
+
+.feature-card:not(.revealed) h3,
+.feature-card:not(.revealed) p {
+  filter: blur(0.5px);
+  letter-spacing: 0.1rem;
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+
+.feature-card.revealed h3,
+.feature-card.revealed p {
+  filter: blur(0);
+  letter-spacing: normal;
+  opacity: 1;
 }
 
 .feature-icon {
