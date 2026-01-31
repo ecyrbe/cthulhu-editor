@@ -1,5 +1,6 @@
 import React from "react";
 import { useBufferedValue } from "../../hooks/useBufferedValue";
+import { handleNumberInput } from "../../utils/inputHandlers";
 
 interface DebouncedInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -34,12 +35,22 @@ export const DebouncedInput: React.FC<DebouncedInputProps> = ({
     props.onBlur?.(e);
   };
 
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    if (type === "number") {
+      handleNumberInput(e);
+    }
+  };
+
   return (
     <input
       {...props}
       type={type}
+      min={type === "number" ? 0 : props.min}
+      max={type === "number" ? 99 : props.max}
+      step={type === "number" ? 1 : props.step}
       value={localValue ?? (type === "number" ? 0 : "")}
       onChange={handleChange}
+      onInput={handleInput}
       onBlur={handleBlur}
     />
   );

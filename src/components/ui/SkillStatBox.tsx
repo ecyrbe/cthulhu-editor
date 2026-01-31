@@ -1,5 +1,6 @@
 import React from "react";
 import { useBufferedValue } from "../../hooks/useBufferedValue";
+import { handleNumberInput } from "../../utils/inputHandlers";
 
 interface SkillStatBoxProps {
   value: number;
@@ -28,6 +29,10 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
           className="skill-main-input"
           value={localValue || ""}
           onChange={(e) => setLocalValue(parseInt(e.target.value) || 0)}
+          onInput={handleNumberInput}
+          min={0}
+          max={99}
+          step={1}
           onBlur={() => forceSync()}
           readOnly={readOnly}
           aria-label={ariaLabel}

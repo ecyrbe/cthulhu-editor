@@ -1,5 +1,6 @@
 import React from "react";
 import { useBufferedValue } from "../../hooks/useBufferedValue";
+import { handleNumberInput } from "../../utils/inputHandlers";
 
 interface StatBoxProps {
   value: number;
@@ -27,6 +28,10 @@ export const StatBox: React.FC<StatBoxProps> = ({
           type="number"
           value={localValue || ""}
           onChange={(e) => setLocalValue(parseInt(e.target.value) || 0)}
+          onInput={handleNumberInput}
+          min={0}
+          max={99}
+          step={1}
           onBlur={() => forceSync()}
           readOnly={readOnly}
           aria-label={ariaLabel}
