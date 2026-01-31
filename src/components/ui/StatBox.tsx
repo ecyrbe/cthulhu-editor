@@ -1,6 +1,7 @@
 import React from "react";
 import { useBufferedValue } from "../../hooks/useBufferedValue";
 import { handleNumberInput } from "../../utils/inputHandlers";
+import { toExtremeField, toField, toHardField } from "../../utils/numbers";
 
 interface StatBoxProps {
   value: number;
@@ -26,10 +27,10 @@ export const StatBox: React.FC<StatBoxProps> = ({
       <div className="stat-main">
         <input
           type="number"
-          value={localValue || ""}
+          value={toField(localValue)}
           onChange={(e) => setLocalValue(parseInt(e.target.value) || 0)}
           onInput={handleNumberInput}
-          min={0}
+          min={-1}
           max={99}
           step={1}
           onBlur={() => forceSync()}
@@ -38,12 +39,8 @@ export const StatBox: React.FC<StatBoxProps> = ({
         />
       </div>
       <div className="stat-subs">
-        <div className="stat-sub hard">
-          {localValue ? Math.floor(localValue / 2) : ""}
-        </div>
-        <div className="stat-sub extreme">
-          {localValue ? Math.floor(localValue / 5) : ""}
-        </div>
+        <div className="stat-sub hard">{toHardField(localValue)}</div>
+        <div className="stat-sub extreme">{toExtremeField(localValue)}</div>
       </div>
     </div>
   );

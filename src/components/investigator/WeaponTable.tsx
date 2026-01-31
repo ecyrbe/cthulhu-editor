@@ -37,7 +37,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.name}
-                    onValueChange={(val) => onWeaponChange(i, "name", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "name", val as string)
+                    }
                     aria-label={`${t("weapon_name")} ${i + 1}`}
                   />
                 </td>
@@ -45,7 +47,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.regular}
-                    onValueChange={(val) => onWeaponChange(i, "regular", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "regular", val as string)
+                    }
                     aria-label={`${t("reg")} ${i + 1}`}
                   />
                 </td>
@@ -53,7 +57,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.hard}
-                    onValueChange={(val) => onWeaponChange(i, "hard", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "hard", val as string)
+                    }
                     aria-label={`${t("hard")} ${i + 1}`}
                   />
                 </td>
@@ -61,7 +67,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.extreme}
-                    onValueChange={(val) => onWeaponChange(i, "extreme", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "extreme", val as string)
+                    }
                     aria-label={`${t("ext")} ${i + 1}`}
                   />
                 </td>
@@ -69,7 +77,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.damage}
-                    onValueChange={(val) => onWeaponChange(i, "damage", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "damage", val as string)
+                    }
                     aria-label={`${t("damage")} ${i + 1}`}
                   />
                 </td>
@@ -77,7 +87,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.range}
-                    onValueChange={(val) => onWeaponChange(i, "range", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "range", val as string)
+                    }
                     aria-label={`${t("range")} ${i + 1}`}
                   />
                 </td>
@@ -85,7 +97,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.attacks}
-                    onValueChange={(val) => onWeaponChange(i, "attacks", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "attacks", val as string)
+                    }
                     aria-label={`${t("attacks")} ${i + 1}`}
                   />
                 </td>
@@ -93,7 +107,9 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                   <DebouncedInput
                     type="text"
                     value={weapon.ammo}
-                    onValueChange={(val) => onWeaponChange(i, "ammo", val)}
+                    onValueChange={(val) =>
+                      onWeaponChange(i, "ammo", val as string)
+                    }
                     aria-label={`${t("ammo")} ${i + 1}`}
                   />
                 </td>
@@ -102,7 +118,7 @@ const WeaponTable: React.FC<WeaponTableProps> = React.memo(
                     type="text"
                     value={weapon.malfunction}
                     onValueChange={(val) =>
-                      onWeaponChange(i, "malfunction", val)
+                      onWeaponChange(i, "malfunction", val as string)
                     }
                     aria-label={`${t("malf")} ${i + 1}`}
                   />

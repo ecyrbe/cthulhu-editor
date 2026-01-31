@@ -22,24 +22,24 @@ export const getInitialData = (): InvestigatorData => ({
     birthplace: "",
   },
   characteristics: {
-    FOR: 0,
-    CON: 0,
-    TAI: 0,
-    DEX: 0,
-    APP: 0,
-    INT: 0,
-    POU: 0,
-    EDU: 0,
-    MVT: 8,
+    FOR: -1,
+    CON: -1,
+    TAI: -1,
+    DEX: -1,
+    APP: -1,
+    INT: -1,
+    POU: -1,
+    EDU: -1,
+    MVT: -1,
   },
   trackers: {
-    hp: 0,
-    mp: 0,
-    sanity: 0,
-    luck: 0,
-    hpMax: 0,
-    mpMax: 0,
-    sanityInitial: 0,
+    hp: -1,
+    mp: -1,
+    sanity: -1,
+    luck: -1,
+    hpMax: -1,
+    mpMax: -1,
+    sanityInitial: -1,
     sanityMax: 99,
     majorWound: false,
     tempInsane: false,
@@ -188,7 +188,7 @@ export const rollInvestigatorAtom = atom(null, (_get, set) => {
     const updatedSkills = prev.skills.map((s) => {
       if (s.type === "standard" && s.key === "dodge")
         return { ...s, current: Math.floor(dex / 2) };
-      if (s.type === "standard" && s.key === "mother_tongue")
+      if (s.type === "custom" && s.id === "skill-mother_tongue-0")
         return { ...s, current: mergedChars.EDU };
       return s;
     });
@@ -274,7 +274,7 @@ export const updateCharacteristicAtom = atom(
         );
       } else if (stat === "EDU") {
         updatedSkills = updatedSkills.map((s) =>
-          s.type === "standard" && s.key === "mother_tongue"
+          s.type === "custom" && s.id === "skill-mother_tongue-0"
             ? { ...s, current: edu }
             : s,
         );

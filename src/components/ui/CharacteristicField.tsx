@@ -1,6 +1,7 @@
 import React from "react";
 import { StatBox } from "./StatBox";
 import { DebouncedInput } from "./DebouncedInput";
+import { handleNumberInput } from "../../utils/inputHandlers";
 
 interface CharacteristicFieldProps {
   label: string;
@@ -23,7 +24,11 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = ({
           <DebouncedInput
             type="number"
             value={value}
-            onValueChange={onChange}
+            min={-1}
+            max={9}
+            step={1}
+            onInput={(e) => handleNumberInput(e, -1, 9)}
+            onValueChange={(val) => onChange(val as number)}
           />
         </div>
       ) : (

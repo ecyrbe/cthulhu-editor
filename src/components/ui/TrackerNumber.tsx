@@ -23,7 +23,7 @@ export const TrackerNumber: React.FC<TrackerNumberProps> = ({
       type="number"
       className="small-stat-box"
       value={value}
-      onValueChange={onChange || (() => {})}
+      onValueChange={(v) => onChange?.(v as number)}
       readOnly={readOnly}
     />
   </label>

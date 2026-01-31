@@ -70,8 +70,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
                       value={skill.current}
                       onChange={(val) => onSkillChange(index, "current", val)}
                       readOnly={
-                        skill.type === "standard" &&
-                        (skill.key === "dodge" || skill.key === "mother_tongue")
+                        (skill.type === "standard" && skill.key === "dodge") ||
+                        (skill.type === "custom" &&
+                          skill.id === "skill-mother_tongue-0")
                       }
                       ariaLabel={`${skillName} ${t("value")}`}
                     />

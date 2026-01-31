@@ -1,6 +1,7 @@
 import React from "react";
 import { useBufferedValue } from "../../hooks/useBufferedValue";
 import { handleNumberInput } from "../../utils/inputHandlers";
+import { toExtremeField, toField, toHardField } from "../../utils/numbers";
 
 interface SkillStatBoxProps {
   value: number;
@@ -27,10 +28,10 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
         <input
           type="number"
           className="skill-main-input"
-          value={localValue || ""}
+          value={toField(localValue)}
           onChange={(e) => setLocalValue(parseInt(e.target.value) || 0)}
           onInput={handleNumberInput}
-          min={0}
+          min={-1}
           max={99}
           step={1}
           onBlur={() => forceSync()}
@@ -40,12 +41,8 @@ export const SkillStatBox: React.FC<SkillStatBoxProps> = ({
         <span className="skill-percent-char">%</span>
       </div>
       <div className="skill-sub-boxes">
-        <div className="skill-sub-box">
-          {localValue ? Math.floor(localValue / 2) : ""}
-        </div>
-        <div className="skill-sub-box">
-          {localValue ? Math.floor(localValue / 5) : ""}
-        </div>
+        <div className="skill-sub-box">{toHardField(localValue)}</div>
+        <div className="skill-sub-box">{toExtremeField(localValue)}</div>
       </div>
     </div>
   );
