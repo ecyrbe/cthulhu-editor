@@ -42,37 +42,36 @@
 }
 
 .variant-secondary {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #444;
+  background-color: var(--button-bg);
+  color: var(--menu-text);
+  border: 1px solid var(--button-border);
 }
 
 .variant-secondary:hover:not(:disabled) {
-  background-color: #444;
-  border-color: #555;
+  opacity: 0.9;
 }
 
 .variant-outline {
   background-color: transparent;
-  color: #fff;
-  border: 1px solid #444;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 
 .variant-outline:hover:not(:disabled) {
-  border-color: #8b0000;
-  color: #fff;
+  border-color: var(--accent-color);
+  color: var(--header-text);
   background-color: rgba(139, 0, 0, 0.1);
 }
 
 .variant-ghost {
   background: transparent;
   border: none;
-  color: #aaa;
+  color: var(--subtitle-color);
 }
 
 .variant-ghost:hover:not(:disabled) {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--header-text);
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 /* Sizes */

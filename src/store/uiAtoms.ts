@@ -1,5 +1,9 @@
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
+export type Theme = "dark" | "light";
+
+export const themeAtom = atomWithStorage<Theme>("theme", "dark");
 export const zoomLevelAtom = atom<number>(1);
 export const printBlankValuesAtom = atom<boolean>(false);
 

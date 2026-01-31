@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
+import ThemeToggle from "../components/ui/ThemeToggle";
 import Button from "../components/ui/Button";
 import githubLogo from "../assets/github.svg";
 import diceIcon from "../assets/dices.png";
@@ -77,6 +78,7 @@ const LandingPage: React.FC = () => {
           <span className="logo-bottom">{t("logo_bottom")}</span>
         </div>
         <div className="header-actions">
+          <ThemeToggle />
           <LanguageSelector align="center" />
           <a
             href="https://github.com/ecyrbe/cthulhu-editor"

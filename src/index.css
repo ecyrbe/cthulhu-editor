@@ -1,8 +1,58 @@
 :root {
-  --border-color: #000;
-  --bg-color: #fff;
-  --menu-bg: #333;
-  --menu-text: #fff;
+  --bg-color: #0c0c0c;
+  --text-color: #d4d4d4;
+  --header-text: #ffffff;
+  --accent-color: #8b0000;
+  --card-bg: #2a2a2a99;
+  --card-hover-bg: #2a2a2acc;
+  --border-color: #333333;
+  --hero-gradient: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
+  --subtitle-color: #aaaaaa;
+  --menu-bg: #2a2a2a;
+  --menu-text: #ffffff;
+  --cta-gradient: linear-gradient(135deg, #1a1a1a 0%, #111111 100%);
+  --feature-card: #1a1a1a;
+
+  --icon-filter: invert(0.8);
+  --icon-github-filter: invert(0);
+  --button-bg: #2a2a2a;
+  --button-border: #3a3a3a;
+  --button-dark-bg: #0006;
+  --toolbox-bg: #1a1a1a;
+}
+
+body.theme-light {
+  --bg-color: #bbbbbb;
+  --text-color: #111111;
+  --header-text: #000000;
+  --accent-color: #8b0000;
+  --card-bg: #d0d0d0;
+  --card-hover-bg: #e0e0e0;
+  --border-color: #999999;
+  --hero-gradient: radial-gradient(circle at center, #dcdcdc 0%, #bbbbbb 100%);
+  --subtitle-color: #333333;
+  --menu-bg: #cccccc;
+  --menu-text: #111111;
+  --cta-gradient: linear-gradient(135deg, #d0d0d0 0%, #bbbbbb 100%);
+  --feature-card: #d0d0d0;
+  --icon-filter: invert(0.1);
+  --icon-github-filter: invert(1);
+  --button-bg: #cccccc;
+  --button-border: #999999;
+  --button-dark-bg: #fff6;
+  --toolbox-bg: #d0d0d0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  font-family: "Liberation Serif", serif;
+  display: flex;
+  flex-direction: column;
 }
 
 @font-face {
@@ -68,15 +118,6 @@ button {
   cursor: pointer;
   text-align: inherit;
   box-sizing: border-box;
-}
-
-body {
-  font-family: "Liberation Serif", serif;
-  margin: 0;
-  background: #0c0c0c;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
 }
 
 @media print {

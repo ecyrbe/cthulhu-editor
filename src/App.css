@@ -8,7 +8,7 @@
 
 .lang-option .label {
   font-size: 0.9em;
-  color: white;
+  color: var(--text-color);
 }
 
 /* --- Zoom Controls --- */
@@ -64,14 +64,15 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
   padding: 2px;
   border-radius: 4px;
 }
 
 .zoom-btn {
-  background: #444;
-  color: white;
+  background: var(--button-bg);
+  color: var(--menu-text);
+  border: 1px solid var(--button-border);
   width: 28px;
   height: 28px;
   border-radius: 4px;
@@ -83,11 +84,11 @@
 }
 
 .zoom-btn:hover {
-  background: #555;
+  background: var(--card-hover-bg);
 }
 
 .zoom-btn img {
-  filter: invert(1);
+  filter: var(--icon-filter);
 }
 
 .zoom-text {
@@ -109,7 +110,7 @@
 .page {
   width: 210mm;
   height: 297mm;
-  background: var(--bg-color);
+  background: #fff;
   padding: 8mm;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;

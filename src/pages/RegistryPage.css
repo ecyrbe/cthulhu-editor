@@ -1,8 +1,8 @@
 .registry-page-container {
   min-height: 100vh;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%) fixed;
-  background-color: #0c0c0c;
-  color: #d4d4d4;
+  background: var(--hero-gradient) fixed;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: "Liberation Serif", serif;
   width: 100%;
   display: flex;
@@ -30,8 +30,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 1100;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%) fixed;
-  background-color: #0c0c0c;
+  background: var(--hero-gradient) fixed;
+  background-color: var(--bg-color);
   margin-top: -4rem;
   padding-top: 3rem;
   width: 100%;
@@ -52,11 +52,11 @@ header {
 }
 
 .breadcrumb a:hover {
-  color: #fff;
+  color: var(--header-text);
   text-decoration: underline;
 }
 
-.breadcrumb span {
+.breadcrumb > span {
   color: #8b0000;
   font-style: italic;
   font-weight: bold;
@@ -66,7 +66,7 @@ header {
   font-family: "P22 Typewriter", serif;
   font-size: 2.5rem;
   margin: 0;
-  color: #fff;
+  color: var(--header-text);
   text-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
 }
 
@@ -95,29 +95,29 @@ header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(42, 42, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
   padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
   font-family: "P22 Typewriter", serif;
   font-size: 0.85rem;
   transition: all 0.2s ease;
-  color: #d4d4d4;
+  color: var(--text-color);
 }
 
 .import-btn-label:hover {
-  background: rgba(60, 60, 60, 1);
-  border-color: rgba(139, 0, 0, 0.4);
-  color: #fff;
+  background: var(--card-hover-bg);
+  border-color: var(--accent-color);
+  color: var(--header-text);
 }
 
 .import-btn-label img {
-  filter: invert(0.8);
+  filter: var(--icon-filter);
 }
 
 .import-btn-label:hover img {
-  filter: invert(1);
+  filter: var(--icon-filter);
 }
 
 .hidden-file-input {
@@ -131,7 +131,7 @@ header {
 }
 
 .investigator-card {
-  background: rgba(42, 42, 42, 0.6);
+  background: var(--card-bg);
   backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
@@ -142,24 +142,24 @@ header {
   cursor: pointer;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .investigator-card:hover {
   transform: translateY(-5px);
-  background: rgba(51, 51, 51, 0.8);
-  border-color: rgba(139, 0, 0, 0.5);
+  background: var(--card-hover-bg);
+  border-color: var(--accent-color);
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.5),
-    0 0 15px rgba(139, 0, 0, 0.2);
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(139, 0, 0, 0.1);
 }
 
 .photo-container {
   width: 80px;
   height: 80px;
-  background: #1a1a1a;
-  border: 2px solid #333;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,18 +180,18 @@ header {
 }
 .photo-placeholder {
   font-size: 2rem;
-  color: #444;
+  color: var(--subtitle-color);
 }
 .investigator-details h3 {
   margin: 0;
   font-size: 1.3rem;
-  color: #e0e0e0;
+  color: var(--header-text);
   letter-spacing: 0.5px;
   font-family: "P22 Typewriter", serif;
 }
 .occupation {
   margin: 0.3rem 0 0;
-  color: #999;
+  color: var(--subtitle-color);
   font-size: 0.95rem;
   font-style: italic;
   font-family: "P22 Typewriter", serif;
@@ -214,10 +214,10 @@ header {
 }
 
 .card-action-btn {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--button-dark-bg);
+  border: 1px solid var(--button-border);
   border-radius: 6px;
-  color: #888;
+  color: var(--subtitle-color);
   cursor: pointer;
   width: 32px;
   height: 32px;
@@ -228,7 +228,7 @@ header {
 }
 
 .card-action-btn img {
-  filter: invert(0.6);
+  filter: var(--icon-filter);
   transition: all 0.2s ease;
 }
 

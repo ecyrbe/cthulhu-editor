@@ -4,9 +4,9 @@
 }
 
 .lang-toggle-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  color: var(--text-color);
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
@@ -18,7 +18,8 @@
 }
 
 .lang-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--card-hover-bg);
+  border-color: var(--accent-color);
 }
 
 .chevron {
@@ -37,8 +38,8 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: 8px;
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -75,7 +76,7 @@
   padding: 10px 16px;
   background: none;
   border: none;
-  color: #ccc;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -85,13 +86,13 @@
 }
 
 .lang-option-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: var(--card-hover-bg);
+  color: var(--header-text);
 }
 
 .lang-option-btn.active {
-  background: rgba(160, 0, 0, 0.2);
-  color: #ff4d4d;
+  background: rgba(139, 0, 0, 0.2);
+  color: var(--accent-color);
 }
 
 .lang-flag {

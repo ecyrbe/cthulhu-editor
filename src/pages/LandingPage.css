@@ -1,6 +1,6 @@
 .landing-page-container {
-  background-color: #0c0c0c;
-  color: #d4d4d4;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: "Liberation Serif", serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -56,7 +56,7 @@
 }
 
 .landing-header .github-link {
-  color: #fff;
+  color: var(--header-text);
   opacity: 0.7;
   transition: all 0.2s ease;
   display: flex;
@@ -71,6 +71,7 @@
 .landing-header .github-link img {
   width: 24px;
   height: 24px;
+  filter: var(--icon-github-filter);
 }
 
 .logo {
@@ -90,7 +91,7 @@
 .logo-bottom {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
+  color: var(--header-text);
   letter-spacing: 1px;
 }
 
@@ -101,7 +102,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
+  background: var(--hero-gradient);
   text-align: center;
   padding: 0 5%;
 }
@@ -115,14 +116,14 @@
 .hero-section h1 {
   font-family: "P22 Typewriter", serif;
   font-size: clamp(2.5rem, 8vw, 4.5rem);
-  color: #fff;
+  color: var(--header-text);
   margin-bottom: 1.5rem;
   text-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
 }
 
 .subtitle {
   font-size: clamp(1.1rem, 3vw, 1.4rem);
-  color: #aaa;
+  color: var(--subtitle-color);
   margin-bottom: 3rem;
   line-height: 1.6;
 }
@@ -138,7 +139,7 @@
 /* Features */
 .features-section {
   padding: 8rem 10%;
-  background-color: #0c0c0c;
+  background-color: var(--bg-color);
   text-align: center;
 }
 
@@ -146,7 +147,7 @@
   font-family: "P22 Typewriter", serif;
   font-size: 2.5rem;
   margin-bottom: 4rem;
-  color: #fff;
+  color: var(--header-text);
 }
 
 .features-grid {
@@ -168,8 +169,8 @@
 }
 
 .feature-card {
-  background: #161616;
-  border: 1px solid #222;
+  background: var(--feature-card);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -183,8 +184,8 @@
 
 .feature-card:hover {
   transform: translateY(-10px);
-  border-color: #8b0000;
-  background-color: #1c1c1c;
+  border-color: var(--accent-color);
+  background-color: var(--card-hover-bg);
 }
 
 .feature-card:not(.revealed) h3,
@@ -208,8 +209,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1a1a1a;
-  border-bottom: 3px double #8b0000;
+  background-color: var(--card-bg);
+  border-bottom: 3px double var(--accent-color);
   font-size: 3.5rem;
   flex-shrink: 0;
 }
@@ -228,44 +229,44 @@
 .feature-card h3 {
   font-family: "P22 Typewriter", serif;
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--header-text);
   margin-bottom: 1rem;
 }
 
 .feature-card p {
-  color: #888;
+  color: var(--text-color);
   line-height: 1.6;
 }
 
 /* CTA Section */
 .cta-section {
   padding: 6rem 5%;
-  background: #0c0c0c;
+  background: var(--bg-color);
   display: flex;
   justify-content: center;
 }
 
 .cta-box {
-  background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+  background: var(--cta-gradient);
   padding: 4rem 2rem;
   border-radius: 12px;
   max-width: 900px;
   width: 100%;
   text-align: center;
-  border: 1px solid #222;
+  border: 1px solid var(--border-color);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .cta-box h2 {
   font-family: "P22 Typewriter", serif;
   font-size: 2.2rem;
-  color: #fff;
+  color: var(--header-text);
   margin-bottom: 1rem;
 }
 
 .cta-box p {
   font-size: 1.2rem;
-  color: #aaa;
+  color: var(--subtitle-color);
   margin-bottom: 2.5rem;
 }
 

@@ -1,0 +1,26 @@
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--button-border);
+  color: var(--header-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background-color: var(--button-bg);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--accent-color);
+}
+
+.theme-toggle img {
+  filter: var(--icon-filter);
+  display: block;
+}

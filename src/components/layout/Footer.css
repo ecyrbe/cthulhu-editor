@@ -1,11 +1,11 @@
 .app-footer {
   padding: 3rem 10%;
   font-size: 0.75rem;
-  background-color: #0c0c0c;
-  color: #666;
+  background-color: var(--bg-color);
+  color: var(--subtitle-color);
   text-align: center;
   line-height: 1.6;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
   width: 100%;
 }
 

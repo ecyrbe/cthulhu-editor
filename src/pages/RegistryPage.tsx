@@ -8,6 +8,7 @@ import { getInitialData } from "../store/investigatorAtoms";
 import { normalize } from "../utils/normalize";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
+import ThemeToggle from "../components/ui/ThemeToggle";
 import Button from "../components/ui/Button";
 import LoadingScreen from "../components/ui/LoadingScreen";
 
@@ -181,7 +182,10 @@ const RegistryPage: React.FC = () => {
               <Link to="/">{t("home", "Home")}</Link> /{" "}
               <span>{t("registry", "Registry")}</span>
             </div>
-            <LanguageSelector align="right" />
+            <div className="header-actions">
+              <ThemeToggle />
+              <LanguageSelector align="right" />
+            </div>
           </header>
 
           <div className="registry-header">
