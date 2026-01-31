@@ -88,14 +88,14 @@
 }
 
 .logo-top {
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #8b0000;
 }
 
 .logo-bottom {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: var(--header-text);
   letter-spacing: 1px;
@@ -291,12 +291,12 @@
   }
 
   .logo-top {
-    font-size: 0.6rem;
-    letter-spacing: 1px;
+    font-size: 0.7rem !important;
+    letter-spacing: 1px !important;
   }
 
   .logo-bottom {
-    font-size: 1rem;
+    font-size: 1.75rem !important;
   }
 
   .landing-header .github-link,
