@@ -22,7 +22,7 @@ export const initialSkillsData: Skill[] = [
   { type: "standard", key: "accounting", base: 5, current: 5, checked: false, id: "skill-accounting" },
   { type: "standard", key: "drive", base: 20, current: 20, checked: false, id: "skill-drive" },
   { type: "standard", key: "heavy", base: 1, current: 1, checked: false, id: "skill-heavy" },
-  { type: "standard", key: "credit", base: 0, current: -1, checked: false, id: "skill-credit" },
+  { type: "standard", key: "credit", base: 0, current: 0, checked: false, id: "skill-credit" },
   { type: "standard", key: "locksmith", base: 1, current: 1, checked: false, id: "skill-locksmith" },
   { type: "standard", key: "stealth", base: 20, current: 20, checked: false, id: "skill-stealth" },
   { type: "standard", key: "law", base: 5, current: 5, checked: false, id: "skill-law" },
