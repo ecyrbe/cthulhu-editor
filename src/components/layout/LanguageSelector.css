@@ -97,6 +97,7 @@
 
 .lang-flag {
   font-size: 1.1rem;
+  font-family: "Noto Color Flags", sans-serif;
 }
 
 @media (max-width: 768px) {

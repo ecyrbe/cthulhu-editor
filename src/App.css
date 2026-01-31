@@ -1,14 +1,6 @@
-/* --- Menu System Removed --- */
-
-/* --- Language Selector Removed --- */
-
-.lang-option .flag {
-  font-size: 1.2em;
-}
-
-.lang-option .label {
-  font-size: 0.9em;
-  color: var(--text-color);
+/* --- Language Selector --- */
+.lang-option-btn .flag {
+  font-family: "Noto Color Flags", sans-serif;
 }
 
 /* --- Zoom Controls --- */
