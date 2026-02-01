@@ -147,9 +147,12 @@ const RegistryPage: React.FC = () => {
     let newList: InvestigatorData[] = [];
     if (currentDragOverInvId) {
       // Find the index of the target investigator
-      const targetIdx = categoryInvs.findIndex((i) => i.id === currentDragOverInvId);
-      const insertionIdx = currentDragSide === "after" ? targetIdx + 1 : targetIdx;
-      
+      const targetIdx = categoryInvs.findIndex(
+        (i) => i.id === currentDragOverInvId,
+      );
+      const insertionIdx =
+        currentDragSide === "after" ? targetIdx + 1 : targetIdx;
+
       newList = [
         ...categoryInvs.slice(0, insertionIdx),
         { ...movingInv, categoryId: finalCatId },
@@ -429,7 +432,8 @@ const RegistryPage: React.FC = () => {
                             const showAfter = isOver && dragSide === "after";
 
                             // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
-                            const showPlaceholderAtOrigin = isDragging && !dragOverInvId;
+                            const showPlaceholderAtOrigin =
+                              isDragging && !dragOverInvId;
 
                             return (
                               <React.Fragment key={inv.id}>
@@ -449,12 +453,17 @@ const RegistryPage: React.FC = () => {
                                   onDragOver={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    const rect = e.currentTarget.getBoundingClientRect();
-                                    const mouseXRelativeToCard = e.clientX - rect.left;
+                                    const rect =
+                                      e.currentTarget.getBoundingClientRect();
+                                    const mouseXRelativeToCard =
+                                      e.clientX - rect.left;
 
                                     // In a multi-column grid, we mostly care about horizontal position
                                     // If the mouse is in the first 50% of the card width, it's "before"
-                                    const side = mouseXRelativeToCard < rect.width / 2 ? "before" : "after";
+                                    const side =
+                                      mouseXRelativeToCard < rect.width / 2
+                                        ? "before"
+                                        : "after";
 
                                     if (
                                       dragOverInvId !== inv.id ||
@@ -582,7 +591,8 @@ const RegistryPage: React.FC = () => {
                         const showAfter = isOver && dragSide === "after";
 
                         // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
-                        const showPlaceholderAtOrigin = isDragging && !dragOverInvId;
+                        const showPlaceholderAtOrigin =
+                          isDragging && !dragOverInvId;
 
                         return (
                           <React.Fragment key={inv.id}>
@@ -600,13 +610,18 @@ const RegistryPage: React.FC = () => {
                               onDragOver={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                const mouseXRelativeToCard = e.clientX - rect.left;
+                                const rect =
+                                  e.currentTarget.getBoundingClientRect();
+                                const mouseXRelativeToCard =
+                                  e.clientX - rect.left;
 
                                 // In a multi-column grid, we mostly care about horizontal position
                                 // unless the user is dragging between rows.
                                 // If the mouse is in the first 50% of the card width, it's "before"
-                                const side = mouseXRelativeToCard < rect.width / 2 ? "before" : "after";
+                                const side =
+                                  mouseXRelativeToCard < rect.width / 2
+                                    ? "before"
+                                    : "after";
 
                                 if (
                                   dragOverInvId !== inv.id ||
@@ -620,7 +635,10 @@ const RegistryPage: React.FC = () => {
                             >
                               <div className="photo-container">
                                 {inv.photo ? (
-                                  <img src={inv.photo} alt={inv.identity.name} />
+                                  <img
+                                    src={inv.photo}
+                                    alt={inv.identity.name}
+                                  />
                                 ) : (
                                   <div className="photo-placeholder">?</div>
                                 )}
