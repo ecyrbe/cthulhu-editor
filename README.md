@@ -15,6 +15,10 @@ Arkham Registry is a comprehensive tool designed for Keepers and Players to mana
 
 ## Screenshots
 
+### Registry View
+
+![Registry View](docs/cthulhu-editor-registry.png)
+
 ### Desktop View
 
 ![Desktop View](docs/cthulhu-editor-desktop.png)
