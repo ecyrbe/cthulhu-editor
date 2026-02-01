@@ -394,7 +394,11 @@ const RegistryPage: React.FC = () => {
                       }
                       onDragOver={(e) => {
                         onDragOver(e, cat.id!);
-                        if (!(e.target as HTMLElement).closest(".investigator-card")) {
+                        if (
+                          !(e.target as HTMLElement).closest(
+                            ".investigator-card",
+                          )
+                        ) {
                           setDragOverInvId(null);
                           setDragSide(null);
                         }
@@ -564,7 +568,9 @@ const RegistryPage: React.FC = () => {
                     }
                     onDragOver={(e) => {
                       onDragOver(e, "uncategorized");
-                      if (!(e.target as HTMLElement).closest(".investigator-card")) {
+                      if (
+                        !(e.target as HTMLElement).closest(".investigator-card")
+                      ) {
                         setDragOverInvId(null);
                         setDragSide(null);
                       }
@@ -605,108 +611,113 @@ const RegistryPage: React.FC = () => {
                         </div>
                       ) : (
                         uncategorizedInvs.map((inv) => {
-                        const isDragging = activeDragId === inv.id;
-                        const isOver = dragOverInvId === inv.id;
+                          const isDragging = activeDragId === inv.id;
+                          const isOver = dragOverInvId === inv.id;
 
-                        // Determine if placeholder should be before or after the target card
-                        const showBefore = isOver && dragSide === "before";
-                        const showAfter = isOver && dragSide === "after";
+                          // Determine if placeholder should be before or after the target card
+                          const showBefore = isOver && dragSide === "before";
+                          const showAfter = isOver && dragSide === "after";
 
-                        // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
-                        const showPlaceholderAtOrigin =
-                          isDragging && !dragOverInvId;
+                          // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
+                          const showPlaceholderAtOrigin =
+                            isDragging && !dragOverInvId;
 
-                        return (
-                          <React.Fragment key={inv.id}>
-                            {showBefore && <div className="drag-placeholder" />}
-                            {showPlaceholderAtOrigin && (
-                              <div className="drag-placeholder" />
-                            )}
-                            <div
-                              className={`investigator-card ${
-                                activeDragId === inv.id ? "is-dragging" : ""
-                              }`}
-                              draggable="true"
-                              onDragStart={(e) => onDragStart(e, inv.id!)}
-                              onDragEnd={onDragEnd}
-                              onDragOver={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                const rect =
-                                  e.currentTarget.getBoundingClientRect();
-                                const mouseXRelativeToCard =
-                                  e.clientX - rect.left;
+                          return (
+                            <React.Fragment key={inv.id}>
+                              {showBefore && (
+                                <div className="drag-placeholder" />
+                              )}
+                              {showPlaceholderAtOrigin && (
+                                <div className="drag-placeholder" />
+                              )}
+                              <div
+                                className={`investigator-card ${
+                                  activeDragId === inv.id ? "is-dragging" : ""
+                                }`}
+                                draggable="true"
+                                onDragStart={(e) => onDragStart(e, inv.id!)}
+                                onDragEnd={onDragEnd}
+                                onDragOver={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  const rect =
+                                    e.currentTarget.getBoundingClientRect();
+                                  const mouseXRelativeToCard =
+                                    e.clientX - rect.left;
 
-                                // In a multi-column grid, we mostly care about horizontal position
-                                // unless the user is dragging between rows.
-                                // If the mouse is in the first 50% of the card width, it's "before"
-                                const side =
-                                  mouseXRelativeToCard < rect.width / 2
-                                    ? "before"
-                                    : "after";
+                                  // In a multi-column grid, we mostly care about horizontal position
+                                  // unless the user is dragging between rows.
+                                  // If the mouse is in the first 50% of the card width, it's "before"
+                                  const side =
+                                    mouseXRelativeToCard < rect.width / 2
+                                      ? "before"
+                                      : "after";
 
-                                if (
-                                  dragOverInvId !== inv.id ||
-                                  dragSide !== side
-                                ) {
-                                  setDragOverInvId(inv.id!);
-                                  setDragSide(side);
-                                }
-                              }}
-                              onClick={() => navigate(`/edit/${inv.id}`)}
-                            >
-                              <div className="photo-container">
-                                {inv.photo ? (
-                                  <img
-                                    src={inv.photo}
-                                    alt={inv.identity.name}
-                                  />
-                                ) : (
-                                  <div className="photo-placeholder">?</div>
-                                )}
+                                  if (
+                                    dragOverInvId !== inv.id ||
+                                    dragSide !== side
+                                  ) {
+                                    setDragOverInvId(inv.id!);
+                                    setDragSide(side);
+                                  }
+                                }}
+                                onClick={() => navigate(`/edit/${inv.id}`)}
+                              >
+                                <div className="photo-container">
+                                  {inv.photo ? (
+                                    <img
+                                      src={inv.photo}
+                                      alt={inv.identity.name}
+                                    />
+                                  ) : (
+                                    <div className="photo-placeholder">?</div>
+                                  )}
+                                </div>
+                                <div className="investigator-details">
+                                  <h3>
+                                    {inv.identity.name ||
+                                      t("unnamed", "Unnamed")}
+                                  </h3>
+                                  <p className="occupation">
+                                    {inv.identity.occupation ||
+                                      t("no_occupation", "No occupation")}
+                                  </p>
+                                </div>
+                                <div className="card-actions">
+                                  <button
+                                    className="card-action-btn delete-btn"
+                                    onClick={(e) => handleDelete(e, inv.id!)}
+                                    title={t("delete", "Delete")}
+                                  >
+                                    <img
+                                      src={binIcon}
+                                      alt=""
+                                      width="16"
+                                      height="16"
+                                    />
+                                  </button>
+                                  <button
+                                    className="card-action-btn export-btn"
+                                    onClick={(e) => handleExport(e, inv)}
+                                    title={t("export", "Export")}
+                                  >
+                                    <img
+                                      src={exportIcon}
+                                      alt=""
+                                      width="16"
+                                      height="16"
+                                    />
+                                  </button>
+                                </div>
                               </div>
-                              <div className="investigator-details">
-                                <h3>
-                                  {inv.identity.name || t("unnamed", "Unnamed")}
-                                </h3>
-                                <p className="occupation">
-                                  {inv.identity.occupation ||
-                                    t("no_occupation", "No occupation")}
-                                </p>
-                              </div>
-                              <div className="card-actions">
-                                <button
-                                  className="card-action-btn delete-btn"
-                                  onClick={(e) => handleDelete(e, inv.id!)}
-                                  title={t("delete", "Delete")}
-                                >
-                                  <img
-                                    src={binIcon}
-                                    alt=""
-                                    width="16"
-                                    height="16"
-                                  />
-                                </button>
-                                <button
-                                  className="card-action-btn export-btn"
-                                  onClick={(e) => handleExport(e, inv)}
-                                  title={t("export", "Export")}
-                                >
-                                  <img
-                                    src={exportIcon}
-                                    alt=""
-                                    width="16"
-                                    height="16"
-                                  />
-                                </button>
-                              </div>
-                            </div>
-                            {showAfter && <div className="drag-placeholder" />}
-                          </React.Fragment>
-                        );
-                      })
-                    )}
-                    {dragOverCategoryId === "uncategorized" &&
+                              {showAfter && (
+                                <div className="drag-placeholder" />
+                              )}
+                            </React.Fragment>
+                          );
+                        })
+                      )}
+                      {dragOverCategoryId === "uncategorized" &&
                         !dragOverInvId &&
                         activeDragId &&
                         !uncategorizedInvs.some(
