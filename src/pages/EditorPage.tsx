@@ -22,7 +22,7 @@ import Toolbox from "../components/layout/Toolbox";
 import Footer from "../components/layout/Footer";
 import InvestigatorSheet from "../components/investigator/InvestigatorSheet";
 import LoadingScreen from "../components/ui/LoadingScreen";
-import arrowUpIcon from "../assets/arrow-up.svg";
+import ScrollToTop from "../components/ui/ScrollToTop";
 import "./EditorPage.css";
 
 const AutoSave: React.FC<{ loading: boolean }> = ({ loading }) => {
@@ -58,8 +58,6 @@ const EditorPage: React.FC = () => {
   const handleFitWidth = useSetAtom(fitWidthAtom);
   const handleFitHeight = useSetAtom(fitHeightAtom);
 
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
   useEffect(() => {
     const load = async () => {
       if (id) {
@@ -73,18 +71,6 @@ const EditorPage: React.FC = () => {
     };
     load();
   }, [id, loadInvestigator, navigate, t]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const handlePrint = () => {
     window.print();
@@ -122,15 +108,7 @@ const EditorPage: React.FC = () => {
         onResetZoom={handleResetZoom}
       />
 
-      {showScrollTop && (
-        <button
-          className="scroll-to-top"
-          onClick={scrollToTop}
-          aria-label={t("scroll_to_top")}
-        >
-          <img src={arrowUpIcon} alt="" />
-        </button>
-      )}
+      <ScrollToTop />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import LanguageSelector from "../components/layout/LanguageSelector";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import Button from "../components/ui/Button";
 import LoadingScreen from "../components/ui/LoadingScreen";
+import ScrollToTop from "../components/ui/ScrollToTop";
 
 // Icons
 import exportIcon from "../assets/floppy-disk-arrow-out.svg";
@@ -268,6 +269,7 @@ const RegistryPage: React.FC = () => {
         </div>
       </div>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import Button from "../components/ui/Button";
+import ScrollToTop from "../components/ui/ScrollToTop";
 import githubLogo from "../assets/github.svg";
 import diceIcon from "../assets/dices.png";
 import registryIcon from "../assets/infinite-registry.png";
@@ -161,6 +162,7 @@ const LandingPage: React.FC = () => {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
