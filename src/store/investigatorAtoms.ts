@@ -12,6 +12,8 @@ const CURRENT_VERSION = "1.0.0";
 
 export const getInitialData = (): InvestigatorData => ({
   version: CURRENT_VERSION,
+  categoryId: undefined,
+  category: undefined,
   identity: {
     name: "",
     player: "",
@@ -237,6 +239,16 @@ export const updateIdentityAtom = atom(
     set(investigatorDataAtom, (prev) => ({
       ...prev,
       identity: { ...prev.identity, [field]: value },
+    }));
+  },
+);
+
+export const updateCategoryAtom = atom(
+  null,
+  (_get, set, value: number | undefined) => {
+    set(investigatorDataAtom, (prev) => ({
+      ...prev,
+      categoryId: value,
     }));
   },
 );

@@ -135,5 +135,14 @@
   "landing_cta_subtitle": "Pronto para registrar seu próximo investigador?",
   "logo_top": "Chamado de",
   "logo_bottom": "Cthulhu",
-  "github_repository": "Repositório GitHub"
+  "github_repository": "Repositório GitHub",
+  "import_url": "Importar da URL",
+  "enter_new_category_name": "Digite o nome da nova categoria:",
+  "new_category": "Nova Categoria",
+  "enter_category": "Digite o nome da categoria (deixe em branco para sem categoria):",
+  "category": "Categoria",
+  "uncategorized": "Sem categoria",
+  "add_to_category": "Adicionar um novo investigador a esta categoria",
+  "move_to_category": "Mover para categoria",
+  "toast_moved_success": "Investigador movido para a categoria com sucesso!"
 }

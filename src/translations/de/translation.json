@@ -135,5 +135,14 @@
   "landing_cta_subtitle": "Bereit, Ihren nächsten Ermittler zu registrieren?",
   "logo_top": "Der Ruf von",
   "logo_bottom": "Cthulhu",
-  "github_repository": "GitHub-Repository"
+  "github_repository": "GitHub-Repository",
+  "import_url": "Von URL importieren",
+  "enter_new_category_name": "Neuen Kategorienamen eingeben:",
+  "new_category": "Neue Kategorie",
+  "enter_category": "Kategorienamen eingeben (leer lassen für nicht kategorisiert):",
+  "category": "Kategorie",
+  "uncategorized": "Nicht kategorisiert",
+  "add_to_category": "Einen neuen Ermittler zu dieser Kategorie hinzufügen",
+  "move_to_category": "In Kategorie verschieben",
+  "toast_moved_success": "Ermittler erfolgreich in Kategorie verschoben!"
 }

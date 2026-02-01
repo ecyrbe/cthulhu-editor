@@ -119,9 +119,20 @@ export const WealthSchema = z.object({
 
 export type Wealth = z.infer<typeof WealthSchema>;
 
+export const CategorySchema = z.object({
+  id: z.number().optional(),
+  name: z.string(),
+  color: z.string().optional(),
+});
+
+export type Category = z.infer<typeof CategorySchema>;
+
 export const InvestigatorDataSchema = z.object({
   id: z.number().optional(),
   version: z.string(),
+  order: z.number().optional(),
+  categoryId: z.number().optional(),
+  category: z.string().optional(), // Keep for migration/backward compatibility
   identity: IdentitySchema,
   characteristics: z.record(z.string(), z.number()),
   trackers: TrackersSchema,

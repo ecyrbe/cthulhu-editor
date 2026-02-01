@@ -21,6 +21,12 @@
   width: 100%;
 }
 
+.ui-button.is-circle {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  padding: 0;
+}
+
 /* Variants */
 .variant-primary {
   background-color: #8b0000;
@@ -74,6 +80,25 @@
   background-color: rgba(128, 128, 128, 0.1);
 }
 
+.variant-action {
+  background-color: var(--button-bg);
+  color: var(--header-text);
+  border: 1px solid var(--button-border);
+}
+
+.variant-action:hover:not(:disabled) {
+  background-color: var(--card-hover-bg);
+  border-color: var(--accent-color);
+}
+
+.variant-action img {
+  filter: var(--icon-filter) brightness(1.2);
+}
+
+.variant-primary img {
+  filter: brightness(0) invert(1);
+}
+
 /* Sizes */
 .size-sm {
   padding: 0.5rem 1rem;
@@ -88,6 +113,12 @@
 .size-lg {
   padding: 1.2rem 3rem;
   font-size: 1.1rem;
+}
+
+.size-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
 }
 
 @media (max-width: 768px) {

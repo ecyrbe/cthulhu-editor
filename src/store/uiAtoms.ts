@@ -6,6 +6,10 @@ export type Theme = "dark" | "light";
 export const themeAtom = atomWithStorage<Theme>("theme", "dark");
 export const zoomLevelAtom = atom<number>(1);
 export const printBlankValuesAtom = atom<boolean>(false);
+export const showEmptyCategoriesAtom = atomWithStorage<boolean>(
+  "showEmptyCategories",
+  false,
+);
 
 export const zoomInAtom = atom(null, (get, set) => {
   set(zoomLevelAtom, Math.min(get(zoomLevelAtom) + 0.1, 3));

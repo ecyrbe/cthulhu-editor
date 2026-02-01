@@ -1,0 +1,55 @@
+.ui-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.ui-toggle:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--accent-color);
+}
+
+.ui-toggle.is-active {
+  color: var(--header-text);
+}
+
+.toggle-track {
+  width: 32px;
+  height: 18px;
+  background: #444;
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.ui-toggle.is-active .toggle-track {
+  background: var(--accent-color);
+}
+
+.toggle-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+}
+
+.ui-toggle.is-active .toggle-thumb {
+  transform: translateX(14px);
+}
+
+.toggle-label {
+  white-space: nowrap;
+}
