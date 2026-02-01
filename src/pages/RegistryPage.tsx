@@ -382,7 +382,9 @@ const RegistryPage: React.FC = () => {
                 })
                 .map((cat) => {
                   const catInvs = investigators
-                    .filter((i) => i.categoryId === cat.id)
+                    .filter(
+                      (i) => i.categoryId === cat.id && i.id !== activeDragId,
+                    )
                     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
                   return (
                     <section
@@ -395,11 +397,7 @@ const RegistryPage: React.FC = () => {
                       }
                       onDragOver={(e) => {
                         onDragOver(e, cat.id!);
-                        if (
-                          !(e.target as HTMLElement).closest(
-                            ".investigator-card",
-                          )
-                        ) {
+                        if (e.target === e.currentTarget) {
                           setDragOverInvId(null);
                           setDragSide(null);
                         }
@@ -421,9 +419,14 @@ const RegistryPage: React.FC = () => {
                         </button>
                       </div>
                       <div className="investigator-list">
-                        {catInvs.length === 0 &&
-                        !(dragOverCategoryId === cat.id && activeDragId) ? (
-                          <div className="empty-category-msg">
+                        {catInvs.length === 0 ? (
+                          <div
+                            className={`empty-category-msg ${
+                              dragOverCategoryId === cat.id && activeDragId
+                                ? "is-dragging-over"
+                                : ""
+                            }`}
+                          >
                             <p>
                               {t(
                                 "empty_category",
@@ -436,27 +439,19 @@ const RegistryPage: React.FC = () => {
                           </div>
                         ) : (
                           catInvs.map((inv) => {
-                            const isDragging = activeDragId === inv.id;
                             const isOver = dragOverInvId === inv.id;
                             // Determine if placeholder should be before or after the target card
                             const showBefore = isOver && dragSide === "before";
                             const showAfter = isOver && dragSide === "after";
-
-                            // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
-                            const showPlaceholderAtOrigin =
-                              isDragging && !dragOverInvId;
 
                             return (
                               <React.Fragment key={inv.id}>
                                 {showBefore && (
                                   <div className="drag-placeholder" />
                                 )}
-                                {showPlaceholderAtOrigin && (
-                                  <div className="drag-placeholder" />
-                                )}
                                 <div
                                   className={`investigator-card ${
-                                    isDragging ? "is-dragging" : ""
+                                    activeDragId === inv.id ? "is-dragging" : ""
                                   }`}
                                   draggable="true"
                                   onDragStart={(e) => onDragStart(e, inv.id!)}
@@ -542,10 +537,7 @@ const RegistryPage: React.FC = () => {
                         )}
                         {dragOverCategoryId === cat.id &&
                           !dragOverInvId &&
-                          activeDragId &&
-                          !catInvs.some((i) => i.id === activeDragId) && (
-                            <div className="drag-placeholder" />
-                          )}
+                          activeDragId && <div className="drag-placeholder" />}
                       </div>
                     </section>
                   );
@@ -573,9 +565,7 @@ const RegistryPage: React.FC = () => {
                     }
                     onDragOver={(e) => {
                       onDragOver(e, "uncategorized");
-                      if (
-                        !(e.target as HTMLElement).closest(".investigator-card")
-                      ) {
+                      if (e.target === e.currentTarget) {
                         setDragOverInvId(null);
                         setDragSide(null);
                       }
@@ -599,11 +589,15 @@ const RegistryPage: React.FC = () => {
                       </button>
                     </div>
                     <div className="investigator-list">
-                      {uncategorizedInvs.length === 0 &&
-                      !(
-                        dragOverCategoryId === "uncategorized" && activeDragId
-                      ) ? (
-                        <div className="empty-category-msg">
+                      {uncategorizedInvs.length === 0 ? (
+                        <div
+                          className={`empty-category-msg ${
+                            dragOverCategoryId === "uncategorized" &&
+                            activeDragId
+                              ? "is-dragging-over"
+                              : ""
+                          }`}
+                        >
                           <p>
                             {t(
                               "empty_category",
@@ -616,23 +610,15 @@ const RegistryPage: React.FC = () => {
                         </div>
                       ) : (
                         uncategorizedInvs.map((inv) => {
-                          const isDragging = activeDragId === inv.id;
                           const isOver = dragOverInvId === inv.id;
 
                           // Determine if placeholder should be before or after the target card
                           const showBefore = isOver && dragSide === "before";
                           const showAfter = isOver && dragSide === "after";
 
-                          // The placeholder at the origin: only show if we are NOT hovering over any card in ANY category
-                          const showPlaceholderAtOrigin =
-                            isDragging && !dragOverInvId;
-
                           return (
                             <React.Fragment key={inv.id}>
                               {showBefore && (
-                                <div className="drag-placeholder" />
-                              )}
-                              {showPlaceholderAtOrigin && (
                                 <div className="drag-placeholder" />
                               )}
                               <div
@@ -724,10 +710,7 @@ const RegistryPage: React.FC = () => {
                       )}
                       {dragOverCategoryId === "uncategorized" &&
                         !dragOverInvId &&
-                        activeDragId &&
-                        !uncategorizedInvs.some(
-                          (i) => i.id === activeDragId,
-                        ) && <div className="drag-placeholder" />}
+                        activeDragId && <div className="drag-placeholder" />}
                     </div>
                   </section>
                 );

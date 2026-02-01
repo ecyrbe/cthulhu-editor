@@ -182,7 +182,7 @@ header {
   opacity: 0.8;
   transition: all 0.2s ease;
   grid-column: span 1;
-  pointer-events: none; /* Crucial: Mouse should see the card underneath */
+  pointer-events: auto;
 }
 
 .investigator-card {
@@ -210,6 +210,7 @@ header {
   height: 0;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .investigator-card:hover {
@@ -357,9 +358,21 @@ header {
   gap: 1rem;
   transition: all 0.2s ease;
   min-height: 154px;
+  position: relative;
 }
 
-.category-section.drag-over .empty-category-msg {
+.empty-category-msg.is-dragging-over {
+  border-color: var(--accent-color);
+  background: rgba(var(--accent-color-rgb), 0.1);
+  box-shadow: inset 0 0 15px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.empty-category-msg.is-dragging-over > * {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.category-section.drag-over .empty-category-msg:not(.is-dragging-over) {
   border-color: var(--accent-color);
   background: rgba(var(--accent-color-rgb), 0.05);
 }
