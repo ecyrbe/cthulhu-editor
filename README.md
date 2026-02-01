@@ -1,4 +1,4 @@
-# Cthulhu Editor
+# Arkham Registry
 
 A modern, responsive web-based character sheet editor compatible with **Call of Cthulhu 7th Edition**.
 
@@ -6,7 +6,7 @@ A modern, responsive web-based character sheet editor compatible with **Call of 
 
 ## Overview
 
-Cthulhu Editor is a comprehensive tool designed for Keepers and Players to manage investigator sheets easily. It provides a clean, digital interface that mimics the classic character sheet while adding modern features like automatic calculations, multi-language support, and easy data management.
+Arkham Registry is a comprehensive tool designed for Keepers and Players to manage investigator sheets easily. It provides a clean, digital interface that mimics the classic character sheet while adding modern features like automatic calculations, multi-language support, and easy data management.
 
 ### 📂 Examples
 
