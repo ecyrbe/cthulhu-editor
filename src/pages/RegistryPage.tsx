@@ -360,17 +360,17 @@ const RegistryPage: React.FC = () => {
 
         <div className="investigator-list-container">
           {investigators.length === 0 && categories.length === 0 ? (
-            <p className="empty-message">
-              {t(
-                "no_investigators_found",
-                "No investigators found. Create your first one!",
-              )}
-              <br />
-              <br />
+            <div className="empty-message">
+              <p>
+                {t(
+                  "no_investigators_found",
+                  "No investigators found. Create your first one!",
+                )}
+              </p>
               <Button onClick={() => handleCreate()}>
                 {t("new_investigator", "New Investigator")}
               </Button>
-            </p>
+            </div>
           ) : (
             <>
               {/* Categorized Investigators */}
@@ -394,7 +394,7 @@ const RegistryPage: React.FC = () => {
                       }
                       onDragOver={(e) => {
                         onDragOver(e, cat.id!);
-                        if (e.target === e.currentTarget) {
+                        if (!(e.target as HTMLElement).closest(".investigator-card")) {
                           setDragOverInvId(null);
                           setDragSide(null);
                         }
@@ -416,13 +416,19 @@ const RegistryPage: React.FC = () => {
                         </button>
                       </div>
                       <div className="investigator-list">
-                        {catInvs.length === 0 ? (
-                          <p className="empty-category-msg">
-                            {t(
-                              "empty_category",
-                              "No investigators in this category.",
-                            )}
-                          </p>
+                        {catInvs.length === 0 &&
+                        !(dragOverCategoryId === cat.id && activeDragId) ? (
+                          <div className="empty-category-msg">
+                            <p>
+                              {t(
+                                "empty_category",
+                                "No investigators in this category.",
+                              )}
+                            </p>
+                            <Button onClick={() => handleCreate(cat.id)}>
+                              {t("new_investigator", "New Investigator")}
+                            </Button>
+                          </div>
                         ) : (
                           catInvs.map((inv) => {
                             const isDragging = activeDragId === inv.id;
@@ -558,7 +564,7 @@ const RegistryPage: React.FC = () => {
                     }
                     onDragOver={(e) => {
                       onDragOver(e, "uncategorized");
-                      if (e.target === e.currentTarget) {
+                      if (!(e.target as HTMLElement).closest(".investigator-card")) {
                         setDragOverInvId(null);
                         setDragSide(null);
                       }
@@ -582,7 +588,23 @@ const RegistryPage: React.FC = () => {
                       </button>
                     </div>
                     <div className="investigator-list">
-                      {uncategorizedInvs.map((inv) => {
+                      {uncategorizedInvs.length === 0 &&
+                      !(
+                        dragOverCategoryId === "uncategorized" && activeDragId
+                      ) ? (
+                        <div className="empty-category-msg">
+                          <p>
+                            {t(
+                              "empty_category",
+                              "No investigators in this category.",
+                            )}
+                          </p>
+                          <Button onClick={() => handleCreate()}>
+                            {t("new_investigator", "New Investigator")}
+                          </Button>
+                        </div>
+                      ) : (
+                        uncategorizedInvs.map((inv) => {
                         const isDragging = activeDragId === inv.id;
                         const isOver = dragOverInvId === inv.id;
 
@@ -682,8 +704,9 @@ const RegistryPage: React.FC = () => {
                             {showAfter && <div className="drag-placeholder" />}
                           </React.Fragment>
                         );
-                      })}
-                      {dragOverCategoryId === "uncategorized" &&
+                      })
+                    )}
+                    {dragOverCategoryId === "uncategorized" &&
                         !dragOverInvId &&
                         activeDragId &&
                         !uncategorizedInvs.some(

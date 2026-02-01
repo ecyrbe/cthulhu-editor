@@ -336,6 +336,32 @@ header {
   border-radius: 12px;
   color: #777;
   margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.empty-category-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(42, 42, 42, 0.2);
+  border: 2px dashed rgba(139, 0, 0, 0.2);
+  border-radius: 12px;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+  min-height: 154px;
+}
+
+.category-section.drag-over .empty-category-msg {
+  border-color: var(--accent-color);
+  background: rgba(var(--accent-color-rgb), 0.05);
 }
 
 @media (max-width: 900px) {
