@@ -144,5 +144,17 @@
   "uncategorized": "Nicht kategorisiert",
   "add_to_category": "Einen neuen Ermittler zu dieser Kategorie hinzufügen",
   "move_to_category": "In Kategorie verschieben",
-  "toast_moved_success": "Ermittler erfolgreich in Kategorie verschoben!"
+  "toast_moved_success": "Ermittler erfolgreich in Kategorie verschoben!",
+  "manage_categories": "Kategorien verwalten",
+  "new_category_name": "Neuer Kategoriename...",
+  "add": "Hinzufügen",
+  "no_categories": "Noch keine Kategorien erstellt.",
+  "cancel": "Abbrechen",
+  "confirm_delete_category": "Sind Sie sicher, dass Sie diese Kategorie löschen möchten? Die darin enthaltenen Bögen werden nicht kategorisiert.",
+  "toast_export_success": "Ermittler erfolgreich exportiert!",
+  "toast_error": "Etwas ist schief gelaufen",
+  "enter_import_url": "Geben Sie die URL des Ermittler-JSONs ein:",
+  "show_empty": "Leere anzeigen",
+  "toggle_empty_categories": "Leere Kategorien ein-/ausblenden",
+  "empty_category": "Keine Ermittler in dieser Kategorie."
 }

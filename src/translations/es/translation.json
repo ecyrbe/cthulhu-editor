@@ -144,5 +144,17 @@
   "landing_cta_subtitle": "¿Listo para registrar a tu próximo investigador?",
   "logo_top": "El Llamado de",
   "logo_bottom": "Cthulhu",
-  "github_repository": "Repositorio de GitHub"
+  "github_repository": "Repositorio de GitHub",
+  "manage_categories": "Gestionar categorías",
+  "new_category_name": "Nombre de la nueva categoría...",
+  "add": "Añadir",
+  "no_categories": "Aún no se han creado categorías.",
+  "cancel": "Cancelar",
+  "confirm_delete_category": "¿Estás seguro de que quieres eliminar esta categoría? Las fichas en su interior quedarán sin categoría.",
+  "toast_export_success": "¡Investigador exportado con éxito!",
+  "toast_error": "Algo salió mal",
+  "enter_import_url": "Introduce la URL del JSON del investigador:",
+  "show_empty": "Mostrar vacías",
+  "toggle_empty_categories": "Mostrar/Ocultar categorías vacías",
+  "empty_category": "No hay investigadores en esta categoría."
 }

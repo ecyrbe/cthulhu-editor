@@ -145,5 +145,17 @@
   "landing_cta_subtitle": "Prêt à inscrire votre prochain investigateur ?",
   "logo_top": "L'Appel de",
   "logo_bottom": "Cthulhu",
-  "github_repository": "Dépôt GitHub"
+  "github_repository": "Dépôt GitHub",
+  "manage_categories": "Gérer les catégories",
+  "new_category_name": "Nom de la nouvelle catégorie...",
+  "add": "Ajouter",
+  "no_categories": "Aucune catégorie créée pour le moment.",
+  "cancel": "Annuler",
+  "confirm_delete_category": "Êtes-vous sûr de vouloir supprimer cette catégorie ? Les fiches à l'intérieur deviendront non catégorisées.",
+  "toast_export_success": "Investigateur exporté avec succès !",
+  "toast_error": "Une erreur est survenue",
+  "enter_import_url": "Entrez l'URL du JSON de l'investigateur :",
+  "show_empty": "Afficher vides",
+  "toggle_empty_categories": "Afficher/Masquer les catégories vides",
+  "empty_category": "Aucun investigateur dans cette catégorie."
 }

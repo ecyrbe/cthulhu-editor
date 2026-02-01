@@ -145,5 +145,17 @@
   "landing_cta_subtitle": "Ready to register your next investigator?",
   "logo_top": "Call of",
   "logo_bottom": "Cthulhu",
-  "github_repository": "GitHub Repository"
+  "github_repository": "GitHub Repository",
+  "manage_categories": "Manage Categories",
+  "new_category_name": "New category name...",
+  "add": "Add",
+  "no_categories": "No categories created yet.",
+  "cancel": "Cancel",
+  "confirm_delete_category": "Are you sure you want to delete this category? Sheets inside will become uncategorized.",
+  "toast_export_success": "Investigator exported successfully!",
+  "toast_error": "Something went wrong",
+  "enter_import_url": "Enter the URL of the investigator JSON:",
+  "show_empty": "Show empty",
+  "toggle_empty_categories": "Show/Hide empty categories",
+  "empty_category": "No investigators in this category."
 }
