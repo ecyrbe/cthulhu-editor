@@ -182,16 +182,19 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  box-shadow: 0 4px 20px var(--shadow-color);
   transition:
     transform 0.3s,
     border-color 0.3s,
-    background-color 0.3s;
+    background-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .feature-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent-color);
   background-color: var(--card-hover-bg);
+  box-shadow: 0 12px 30px var(--shadow-hover-color);
 }
 
 .feature-card:not(.revealed) h3,
@@ -260,7 +263,7 @@
   width: 100%;
   text-align: center;
   border: 1px solid var(--border-color);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px var(--shadow-deep);
 }
 
 .cta-box h2 {

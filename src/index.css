@@ -19,6 +19,11 @@
   --button-border: #3a3a3a;
   --button-dark-bg: #0006;
   --toolbox-bg: #1a1a1a;
+  --shadow-color: rgba(255, 255, 255, 0.08);
+  --shadow-hover-color: rgba(255, 255, 255, 0.15);
+  --shadow-accent: rgba(255, 0, 0, 0.2);
+  --shadow-deep: rgba(255, 255, 255, 0.1);
+  --shadow-inset: inset 0 0 5px rgba(255, 255, 255, 0.15);
 }
 
 body.theme-light {
@@ -41,6 +46,11 @@ body.theme-light {
   --button-border: #999999;
   --button-dark-bg: #fff6;
   --toolbox-bg: #d0d0d0;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --shadow-hover-color: rgba(0, 0, 0, 0.25);
+  --shadow-accent: rgba(139, 0, 0, 0.2);
+  --shadow-deep: rgba(0, 0, 0, 0.3);
+  --shadow-inset: inset 0 0 5px rgba(139, 0, 0, 0.15);
 }
 
 body {

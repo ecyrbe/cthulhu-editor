@@ -21,7 +21,7 @@
   background: var(--card-bg);
   padding: 3rem;
   border-radius: 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px var(--shadow-color);
   border: 2px solid var(--border-color);
   position: relative;
   overflow: hidden;

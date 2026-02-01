@@ -15,7 +15,7 @@
   background: var(--menu-bg);
   padding: 5px 10px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 5px var(--shadow-color);
   color: var(--menu-text);
 }
 
@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1001;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px var(--shadow-color);
   transition:
     opacity 0.3s,
     transform 0.3s;
@@ -104,7 +104,7 @@
   height: 297mm;
   background: #fff;
   padding: 8mm;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px var(--shadow-deep);
   position: relative;
   margin-bottom: 20px;
   color: #000;
@@ -1111,7 +1111,7 @@ td {
     align-items: center !important;
     padding: 0 5px !important;
     gap: 0 !important;
-    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 -3px 15px var(--shadow-deep) !important;
     z-index: 2000 !important;
     zoom: 1 !important;
     transform: none !important;
