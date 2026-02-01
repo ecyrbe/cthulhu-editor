@@ -157,5 +157,8 @@
   "enter_import_url": "Enter the URL of the investigator JSON:",
   "show_empty": "Show empty",
   "toggle_empty_categories": "Show/Hide empty categories",
-  "empty_category": "No investigators in this category."
+  "empty_category": "No investigators in this category.",
+  "select_category": "Select Category",
+  "change_category": "Change Category",
+  "toast_category_updated": "Category updated successfully!"
 }

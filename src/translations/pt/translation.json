@@ -156,5 +156,8 @@
   "enter_import_url": "Digite a URL do JSON do investigador:",
   "show_empty": "Mostrar vazias",
   "toggle_empty_categories": "Mostrar/Ocultar categorias vazias",
-  "empty_category": "Nenhum investigador nesta categoria."
+  "empty_category": "Nenhum investigador nesta categoria.",
+  "select_category": "Selecionar Categoria",
+  "change_category": "Alterar Categoria",
+  "toast_category_updated": "Categoria atualizada com sucesso"
 }

@@ -328,6 +328,15 @@ header {
   filter: invert(0.6) sepia(1) saturate(5) hue-rotate(120deg);
 }
 
+.folder-btn:hover {
+  background: rgba(243, 156, 18, 0.2);
+  border-color: rgba(243, 156, 18, 0.4);
+}
+
+.folder-btn:hover img {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(10deg);
+}
+
 .empty-message {
   grid-column: 1 / -1;
   text-align: center;

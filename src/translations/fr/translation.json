@@ -157,5 +157,8 @@
   "enter_import_url": "Entrez l'URL du JSON de l'investigateur :",
   "show_empty": "Afficher vides",
   "toggle_empty_categories": "Afficher/Masquer les catégories vides",
-  "empty_category": "Aucun investigateur dans cette catégorie."
+  "empty_category": "Aucun investigateur dans cette catégorie.",
+  "select_category": "Choisir une catégorie",
+  "change_category": "Changer de catégorie",
+  "toast_category_updated": "Catégorie mise à jour avec succès"
 }

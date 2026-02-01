@@ -20,11 +20,11 @@ import LoadingScreen from "../components/ui/LoadingScreen";
 import ScrollToTop from "../components/ui/ScrollToTop";
 import Toggle from "../components/ui/Toggle";
 import CategoryManager from "../components/layout/CategoryManager";
+import InvestigatorCard from "../components/investigator/InvestigatorCard";
+import CategorySelectorModal from "../components/investigator/CategorySelectorModal";
 
 // Icons
-import exportIcon from "../assets/floppy-disk-arrow-out.svg";
 import importIcon from "../assets/floppy-disk-arrow-in.svg";
-import binIcon from "../assets/bin.svg";
 import folderSettingsIcon from "../assets/folder-settings.svg";
 import linkIcon from "../assets/link.svg";
 
@@ -43,6 +43,9 @@ const RegistryPage: React.FC = () => {
   const [dragSide, setDragSide] = useState<"before" | "after" | null>(null);
   const [activeDragId, setActiveDragId] = useState<number | null>(null);
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
+  const [isCategorySelectorOpen, setIsCategorySelectorOpen] = useState(false);
+  const [selectedInvForCategory, setSelectedInvForCategory] =
+    useState<InvestigatorData | null>(null);
   const [showEmptyCategories, setShowEmptyCategories] = useAtom(
     showEmptyCategoriesAtom,
   );
@@ -289,6 +292,46 @@ const RegistryPage: React.FC = () => {
     }
   };
 
+  const handleOpenCategorySelector = (
+    e: React.MouseEvent,
+    inv: InvestigatorData,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedInvForCategory(inv);
+    setIsCategorySelectorOpen(true);
+  };
+
+  const handleCategoryChange = async (categoryId?: number) => {
+    if (!selectedInvForCategory || selectedInvForCategory.id === undefined)
+      return;
+
+    try {
+      await db.investigators.update(selectedInvForCategory.id, { categoryId });
+      await loadData();
+      toast.success(t("toast_category_updated", "Category updated"));
+    } catch (error) {
+      console.error("Failed to update category:", error);
+      toast.error(t("toast_error", "Something went wrong"));
+    }
+  };
+
+  const handleCardDragOver = (e: React.DragEvent, inv: InvestigatorData) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseXRelativeToCard = e.clientX - rect.left;
+
+    // In a multi-column grid, we mostly care about horizontal position
+    // If the mouse is in the first 50% of the card width, it's "before"
+    const side = mouseXRelativeToCard < rect.width / 2 ? "before" : "after";
+
+    if (dragOverInvId !== inv.id || dragSide !== side) {
+      setDragOverInvId(inv.id!);
+      setDragSide(side);
+    }
+  };
+
   return (
     <div className="registry-page-container">
       <Toaster position="bottom-right" />
@@ -449,85 +492,17 @@ const RegistryPage: React.FC = () => {
                                 {showBefore && (
                                   <div className="drag-placeholder" />
                                 )}
-                                <div
-                                  className={`investigator-card ${
-                                    activeDragId === inv.id ? "is-dragging" : ""
-                                  }`}
-                                  draggable="true"
-                                  onDragStart={(e) => onDragStart(e, inv.id!)}
+                                <InvestigatorCard
+                                  inv={inv}
+                                  isActiveDragging={activeDragId === inv.id}
+                                  onDragStart={onDragStart}
                                   onDragEnd={onDragEnd}
-                                  onDragOver={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    const rect =
-                                      e.currentTarget.getBoundingClientRect();
-                                    const mouseXRelativeToCard =
-                                      e.clientX - rect.left;
-
-                                    // In a multi-column grid, we mostly care about horizontal position
-                                    // If the mouse is in the first 50% of the card width, it's "before"
-                                    const side =
-                                      mouseXRelativeToCard < rect.width / 2
-                                        ? "before"
-                                        : "after";
-
-                                    if (
-                                      dragOverInvId !== inv.id ||
-                                      dragSide !== side
-                                    ) {
-                                      setDragOverInvId(inv.id!);
-                                      setDragSide(side);
-                                    }
-                                  }}
+                                  onDragOver={(e) => handleCardDragOver(e, inv)}
                                   onClick={() => navigate(`/edit/${inv.id}`)}
-                                >
-                                  <div className="photo-container">
-                                    {inv.photo ? (
-                                      <img
-                                        src={inv.photo}
-                                        alt={inv.identity.name}
-                                      />
-                                    ) : (
-                                      <div className="photo-placeholder">?</div>
-                                    )}
-                                  </div>
-                                  <div className="investigator-details">
-                                    <h3>
-                                      {inv.identity.name ||
-                                        t("unnamed", "Unnamed")}
-                                    </h3>
-                                    <p className="occupation">
-                                      {inv.identity.occupation ||
-                                        t("no_occupation", "No occupation")}
-                                    </p>
-                                  </div>
-                                  <div className="card-actions">
-                                    <button
-                                      className="card-action-btn delete-btn"
-                                      onClick={(e) => handleDelete(e, inv.id!)}
-                                      title={t("delete", "Delete")}
-                                    >
-                                      <img
-                                        src={binIcon}
-                                        alt=""
-                                        width="16"
-                                        height="16"
-                                      />
-                                    </button>
-                                    <button
-                                      className="card-action-btn export-btn"
-                                      onClick={(e) => handleExport(e, inv)}
-                                      title={t("export", "Export")}
-                                    >
-                                      <img
-                                        src={exportIcon}
-                                        alt=""
-                                        width="16"
-                                        height="16"
-                                      />
-                                    </button>
-                                  </div>
-                                </div>
+                                  onDelete={handleDelete}
+                                  onExport={handleExport}
+                                  onChangeCategory={handleOpenCategorySelector}
+                                />
                                 {showAfter && (
                                   <div className="drag-placeholder" />
                                 )}
@@ -621,86 +596,17 @@ const RegistryPage: React.FC = () => {
                               {showBefore && (
                                 <div className="drag-placeholder" />
                               )}
-                              <div
-                                className={`investigator-card ${
-                                  activeDragId === inv.id ? "is-dragging" : ""
-                                }`}
-                                draggable="true"
-                                onDragStart={(e) => onDragStart(e, inv.id!)}
+                              <InvestigatorCard
+                                inv={inv}
+                                isActiveDragging={activeDragId === inv.id}
+                                onDragStart={onDragStart}
                                 onDragEnd={onDragEnd}
-                                onDragOver={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  const rect =
-                                    e.currentTarget.getBoundingClientRect();
-                                  const mouseXRelativeToCard =
-                                    e.clientX - rect.left;
-
-                                  // In a multi-column grid, we mostly care about horizontal position
-                                  // unless the user is dragging between rows.
-                                  // If the mouse is in the first 50% of the card width, it's "before"
-                                  const side =
-                                    mouseXRelativeToCard < rect.width / 2
-                                      ? "before"
-                                      : "after";
-
-                                  if (
-                                    dragOverInvId !== inv.id ||
-                                    dragSide !== side
-                                  ) {
-                                    setDragOverInvId(inv.id!);
-                                    setDragSide(side);
-                                  }
-                                }}
+                                onDragOver={(e) => handleCardDragOver(e, inv)}
                                 onClick={() => navigate(`/edit/${inv.id}`)}
-                              >
-                                <div className="photo-container">
-                                  {inv.photo ? (
-                                    <img
-                                      src={inv.photo}
-                                      alt={inv.identity.name}
-                                    />
-                                  ) : (
-                                    <div className="photo-placeholder">?</div>
-                                  )}
-                                </div>
-                                <div className="investigator-details">
-                                  <h3>
-                                    {inv.identity.name ||
-                                      t("unnamed", "Unnamed")}
-                                  </h3>
-                                  <p className="occupation">
-                                    {inv.identity.occupation ||
-                                      t("no_occupation", "No occupation")}
-                                  </p>
-                                </div>
-                                <div className="card-actions">
-                                  <button
-                                    className="card-action-btn delete-btn"
-                                    onClick={(e) => handleDelete(e, inv.id!)}
-                                    title={t("delete", "Delete")}
-                                  >
-                                    <img
-                                      src={binIcon}
-                                      alt=""
-                                      width="16"
-                                      height="16"
-                                    />
-                                  </button>
-                                  <button
-                                    className="card-action-btn export-btn"
-                                    onClick={(e) => handleExport(e, inv)}
-                                    title={t("export", "Export")}
-                                  >
-                                    <img
-                                      src={exportIcon}
-                                      alt=""
-                                      width="16"
-                                      height="16"
-                                    />
-                                  </button>
-                                </div>
-                              </div>
+                                onDelete={handleDelete}
+                                onExport={handleExport}
+                                onChangeCategory={handleOpenCategorySelector}
+                              />
                               {showAfter && (
                                 <div className="drag-placeholder" />
                               )}
@@ -723,6 +629,16 @@ const RegistryPage: React.FC = () => {
         isOpen={isCategoryManagerOpen}
         onClose={() => setIsCategoryManagerOpen(false)}
         onCategoriesChanged={loadData}
+      />
+      <CategorySelectorModal
+        isOpen={isCategorySelectorOpen}
+        onClose={() => {
+          setIsCategorySelectorOpen(false);
+          setSelectedInvForCategory(null);
+        }}
+        categories={categories}
+        currentCategoryId={selectedInvForCategory?.categoryId}
+        onSelect={handleCategoryChange}
       />
       <Footer />
       <ScrollToTop />
