@@ -376,7 +376,8 @@ const RegistryPage: React.FC = () => {
               {/* Categorized Investigators */}
               {categories
                 .filter((cat) => {
-                  if (showEmptyCategories) return true;
+                  if (showEmptyCategories || investigators.length === 0)
+                    return true;
                   return investigators.some((i) => i.categoryId === cat.id);
                 })
                 .map((cat) => {
@@ -555,7 +556,11 @@ const RegistryPage: React.FC = () => {
                 const uncategorizedInvs = investigators
                   .filter((i) => !i.categoryId)
                   .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-                if (!showEmptyCategories && uncategorizedInvs.length === 0) {
+                if (
+                  !showEmptyCategories &&
+                  uncategorizedInvs.length === 0 &&
+                  investigators.length > 0
+                ) {
                   return null;
                 }
                 return (
