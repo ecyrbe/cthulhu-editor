@@ -1,10 +1,9 @@
-import React, { useCallback, useTransition, useEffect, useState } from "react";
+import React, { useCallback, useTransition } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   investigatorDataAtom,
   derivedCombatAtom,
   updateIdentityAtom,
-  updateCategoryAtom,
   updateCharacteristicAtom,
   updateSkillAtom,
   updateTrackerAtom,
@@ -17,8 +16,7 @@ import {
   updatePhotoAtom,
 } from "../../store/investigatorAtoms";
 import { zoomLevelAtom, printBlankValuesAtom } from "../../store/uiAtoms";
-import { type InvestigatorData, type Weapon, type Category } from "../../types";
-import { db } from "../../db/db";
+import { type InvestigatorData, type Weapon } from "../../types";
 
 import SkillsSection from "./SkillsSection";
 import WeaponTable from "./WeaponTable";
@@ -38,20 +36,10 @@ const InvestigatorSheet: React.FC = () => {
   const derivedCombat = useAtomValue(derivedCombatAtom);
   const zoom = useAtomValue(zoomLevelAtom);
   const printBlankValues = useAtomValue(printBlankValuesAtom);
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    const load = async () => {
-      const all = await db.categories.toArray();
-      setCategories(all.sort((a, b) => a.name.localeCompare(b.name)));
-    };
-    load();
-  }, []);
 
   const [, startTransition] = useTransition();
 
   const setIdentity = useSetAtom(updateIdentityAtom);
-  const setCategory = useSetAtom(updateCategoryAtom);
   const setCharacteristic = useSetAtom(updateCharacteristicAtom);
   const setSkill = useSetAtom(updateSkillAtom);
   const setTracker = useSetAtom(updateTrackerAtom);
@@ -67,11 +55,6 @@ const InvestigatorSheet: React.FC = () => {
     (field: keyof InvestigatorData["identity"], value: string) =>
       startTransition(() => setIdentity({ field, value })),
     [setIdentity],
-  );
-
-  const handleCategoryChange = useCallback(
-    (value: number | undefined) => startTransition(() => setCategory(value)),
-    [setCategory],
   );
 
   const handleCharacteristicChange = useCallback(
@@ -147,9 +130,7 @@ const InvestigatorSheet: React.FC = () => {
         <div className="page-box">
           <HeaderSection
             data={data}
-            categories={categories}
             setIdentity={handleIdentityChange}
-            setCategory={handleCategoryChange}
             setCharacteristic={handleCharacteristicChange}
             handlePhotoUpload={handlePhotoUpload}
           />

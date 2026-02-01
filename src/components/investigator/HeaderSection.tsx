@@ -2,38 +2,23 @@ import React from "react";
 import IdentitySection from "./IdentitySection";
 import CharacteristicsSection from "./CharacteristicsSection";
 import InvestigatorPhoto from "./InvestigatorPhoto";
-import type { InvestigatorData, Category } from "../../types";
+import type { InvestigatorData } from "../../types";
 
 interface HeaderSectionProps {
   data: InvestigatorData;
-  categories: Category[];
   setIdentity: (
     field: keyof InvestigatorData["identity"],
     value: string,
   ) => void;
-  setCategory: (value: number | undefined) => void;
   setCharacteristic: (stat: string, value: number) => void;
   handlePhotoUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const HeaderSection: React.FC<HeaderSectionProps> = React.memo(
-  ({
-    data,
-    categories,
-    setIdentity,
-    setCategory,
-    setCharacteristic,
-    handlePhotoUpload,
-  }) => {
+  ({ data, setIdentity, setCharacteristic, handlePhotoUpload }) => {
     return (
       <div className="header-section">
-        <IdentitySection
-          identity={data.identity}
-          categoryId={data.categoryId}
-          categories={categories}
-          onValueChange={setIdentity}
-          onCategoryChange={setCategory}
-        />
+        <IdentitySection identity={data.identity} onValueChange={setIdentity} />
         <div className="vertical-separator" />
 
         <CharacteristicsSection
