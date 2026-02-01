@@ -55,3 +55,55 @@ All notable changes to this project are documented here, in chronological order,
     - Synchronized the root `<html lang="...">` attribute with the i18next state.
     - Wrapped all interactive elements in properly labeled buttons.
 - **Feat**: Added a `normalize` utility to sanitize investigator names for safe file downloads.
+- **Fix**: Enhanced `WeaponTable` component and added weapon management to investigator data.
+- **Fix**: Expanded skill list to match the original template with alternating background colors.
+- **Feat**: Refactored `Tracker` component for better flexibility using `children` and added new layout options.
+- **Feat**: Added GNU General Public License v2.0.
+
+## 2026-01-25
+- **Feat**: Major architectural overhaul of the investigator sheet, breaking it into modular sections (`HeaderSection`, `TrackersSection`, `IdentitySection`, etc.).
+- **Feat**: Introduced the `InvestigatorPhoto` component for improved image handling and upload.
+- **Feat**: Updated primary typography to "Liberation Serif".
+- **Fix**: Improved data integrity with better `sanityMax` calculations and read-only inputs for calculated values.
+- **Fix**: Refined skill management and enhanced type definitions for better stability.
+- **Refactor**: Simplified routing and state management within the `App` component.
+
+## 2026-01-26
+- **Feat**: Integrated a global `Footer` component with localized copyright and trademark disclaimers.
+- **Feat**: Added a "Print Blank" mode to allow users to export empty sheets.
+- **Feat**: Refactored the `TrackersSection` to utilize specialized `TrackerCheckbox` and `TrackerNumber` components.
+- **Feat**: Added the `CharacteristicField` component for standardized stat handling.
+
+## 2026-01-27
+- **Feat**: Replaced the legacy `Sidebar` and `ZoomControls` with an integrated `Toolbox` component, adding a new printer action.
+- **Feat**: Migrated application state management to **Jotai** and implemented **React Router** for enhanced navigation.
+- **Feat**: Added a global `ErrorBoundary` for improved application resilience.
+- **Feat**: Defined new schemas and TypeScript interfaces for Investigator sub-sections (Identity, Trackers, Backstory, etc.).
+- **Fix**: Resolved a critical layout issue that caused extra blank pages during printing.
+
+## 2026-01-28
+- **Feat**: Rebranded the investigator management interface from "Manager" to **"Registry"**.
+- **Feat**: Implemented the `RegistryPage` with support for importing/exporting investigators.
+- **Feat**: Added an `ImportPage` and enabled loading investigator data directly from URLs.
+- **Feat**: Introduced a `LoadingScreen` and implemented buffered value handling to smooth out UI transitions.
+- **Refactor**: Unified all input components to use `DebouncedInput` for better performance during rapid data entry.
+
+## 2026-01-29
+- **Feat**: Officially rebranded the project as **"Arkham Registry"**, updating metadata, Open Graph assets, and the landing page experience.
+- **Feat**: Configured the application for deployment on the new `arkham-registry` domain.
+
+## 2026-01-30
+- **Feat**: Improved `RegistryPage` UX with a sticky breadcrumb header and responsive navigation layout.
+- **Style**: Refined the `LandingPage` with new feature icons, reveal effects, and thematic styling.
+- **Fix**: Standardized mobile view thresholds and adjusted media queries for better layout consistency.
+
+## 2026-01-31
+- **Feat**: Implemented a **Light/Dark mode** toggle with theme persistence.
+- **Feat**: Added `handleNumberInput` utility to standardize numeric input across `StatBox`, `SkillStatBox`, and `DebouncedInput`.
+- **Feat**: Updated example investigator data and balanced starting skill values.
+- **Style**: Enhanced accessibility by increasing the hit area and visibility of key interactive icons.
+
+## 2026-02-01
+- **Feat**: Added the `ScrollToTop` component to improve navigation on long pages.
+- **Feat**: Integrated the **Noto Color Emoji** font to ensure consistent flag rendering across different OS environments.
+- **Style**: Switched the default fallback language to English for broader accessibility.
