@@ -11,12 +11,12 @@ FONT_NAME = "Noto Color Flags"
 PS_NAME = "NotoColorFlags"
 OUTPUT_FILENAME = "NotoColorFlags.woff2"
 
-# Unicode for current flags: FR, GB, ES, DE, PT :
-# U+1F1EB U+1F1F7 (FR) 🇫🇷
-# U+1F1EC U+1F1E7 (GB) 🇬🇧
-# U+1F1EA U+1F1F8 (ES) 🇪🇸
-# U+1F1DE U+1F1EA (DE) 🇩🇪
-# U+1F1F5 U+1F1F9 (PT) 🇵🇹
+# Unicode for current flags:
+# (FR) U+1F1EB U+1F1F7 🇫🇷
+# (GB) U+1F1EC U+1F1E7 🇬🇧
+# (ES) U+1F1EA U+1F1F8 🇪🇸
+# (DE) U+1F1DE U+1F1EA 🇩🇪
+# (PT) U+1F1F5 U+1F1F9 🇵🇹
 UNICODES = "U+1F1DE,U+1F1EA,U+1F1EC,U+1F1E7,U+1F1EA,U+1F1F8,U+1F1EB,U+1F1F7,U+1F1F5,U+1F1F9"
 
 def rename_font(path, new_name, ps_name):
