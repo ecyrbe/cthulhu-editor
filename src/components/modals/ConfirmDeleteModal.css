@@ -1,0 +1,43 @@
+.confirm-delete-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.confirm-delete-modal-content p {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.confirm-delete-modal-content .investigator-name {
+  font-weight: bold;
+  color: #8b0000;
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+  font-family: "P22 Typewriter", serif;
+}
+
+.confirm-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .confirm-delete-actions {
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+  }
+
+  .confirm-delete-actions button {
+    flex: 1;
+    width: 100%;
+  }
+}

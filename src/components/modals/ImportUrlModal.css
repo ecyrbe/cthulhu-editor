@@ -35,3 +35,15 @@
   gap: 1rem;
   margin-top: 0.5rem;
 }
+
+@media (max-width: 480px) {
+  .import-url-actions {
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+  }
+
+  .import-url-actions button {
+    flex: 1;
+    width: 100%;
+  }
+}

@@ -24,6 +24,7 @@ import CategoryManager from "../components/modals/CategoryManager";
 import InvestigatorCard from "../components/investigator/InvestigatorCard";
 import CategorySelectorModal from "../components/modals/CategorySelectorModal";
 import ImportUrlModal from "../components/modals/ImportUrlModal";
+import ConfirmDeleteModal from "../components/modals/ConfirmDeleteModal";
 
 // Icons
 import importIcon from "../assets/floppy-disk-arrow-in.svg";
@@ -47,7 +48,10 @@ const RegistryPage: React.FC = () => {
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
   const [isCategorySelectorOpen, setIsCategorySelectorOpen] = useState(false);
   const [isImportUrlModalOpen, setIsImportUrlModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedInvForCategory, setSelectedInvForCategory] =
+    useState<InvestigatorData | null>(null);
+  const [investigatorToDelete, setInvestigatorToDelete] =
     useState<InvestigatorData | null>(null);
   const [showEmptyCategories, setShowEmptyCategories] = useAtom(
     showEmptyCategoriesAtom,
@@ -277,20 +281,28 @@ const RegistryPage: React.FC = () => {
     e.target.value = "";
   };
 
-  const handleDelete = async (e: React.MouseEvent, id: number) => {
+  const handleDelete = (e: React.MouseEvent, id: number) => {
     e.preventDefault();
     e.stopPropagation();
-    if (
-      confirm(
-        t(
-          "confirm_delete",
-          "Are you sure you want to delete this investigator?",
-        ),
-      )
-    ) {
-      await db.investigators.delete(id);
-      setInvestigators(investigators.filter((i) => i.id !== id));
+    const inv = investigators.find((i) => i.id === id);
+    if (inv) {
+      setInvestigatorToDelete(inv);
+      setIsDeleteModalOpen(true);
     }
+  };
+
+  const performDelete = async () => {
+    if (!investigatorToDelete?.id) return;
+
+    await db.investigators.delete(investigatorToDelete.id);
+    setInvestigators(
+      investigators.filter((i) => i.id !== investigatorToDelete.id),
+    );
+    setIsDeleteModalOpen(false);
+    setInvestigatorToDelete(null);
+    toast.success(
+      t("toast_delete_success", "Investigator deleted successfully!"),
+    );
   };
 
   const handleOpenCategorySelector = (
@@ -645,6 +657,15 @@ const RegistryPage: React.FC = () => {
         isOpen={isImportUrlModalOpen}
         onClose={() => setIsImportUrlModalOpen(false)}
         onImport={performUrlImport}
+      />
+      <ConfirmDeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => {
+          setIsDeleteModalOpen(false);
+          setInvestigatorToDelete(null);
+        }}
+        onConfirm={performDelete}
+        investigatorName={investigatorToDelete?.identity.name}
       />
       <Footer />
       <ScrollToTop />

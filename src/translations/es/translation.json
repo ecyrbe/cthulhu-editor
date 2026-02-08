@@ -159,5 +159,6 @@
   "empty_category": "No hay investigadores en esta categoría.",
   "select_category": "Seleccionar Categoría",
   "change_category": "Cambiar Categoría",
+  "delete_investigator": "Eliminar investigador",
   "toast_category_updated": "Categoría actualizada con éxito"
 }

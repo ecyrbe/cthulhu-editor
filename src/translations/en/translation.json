@@ -160,5 +160,6 @@
   "empty_category": "No investigators in this category.",
   "select_category": "Select Category",
   "change_category": "Change Category",
+  "delete_investigator": "Delete Investigator",
   "toast_category_updated": "Category updated successfully!"
 }

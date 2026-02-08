@@ -156,5 +156,9 @@
   "enter_import_url": "Geben Sie die URL des Ermittler-JSONs ein:",
   "show_empty": "Leere anzeigen",
   "toggle_empty_categories": "Leere Kategorien ein-/ausblenden",
-  "empty_category": "Keine Ermittler in dieser Kategorie."
+  "empty_category": "Keine Ermittler in dieser Kategorie.",
+  "select_category": "Kategorie wählen",
+  "change_category": "Kategorie ändern",
+  "delete_investigator": "Investigator löschen",
+  "toast_category_updated": "Kategorie erfolgreich aktualisiert"
 }
