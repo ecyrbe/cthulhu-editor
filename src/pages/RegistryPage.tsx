@@ -12,6 +12,7 @@ import {
 import { getInitialData } from "../store/investigatorAtoms";
 import { showEmptyCategoriesAtom } from "../store/uiAtoms";
 import { normalize } from "../utils/normalize";
+import { saveToFile } from "../utils/fileSystem";
 import Footer from "../components/layout/Footer";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import ThemeToggle from "../components/ui/ThemeToggle";
@@ -76,7 +77,7 @@ const RegistryPage: React.FC = () => {
     navigate(`/edit/${id}`);
   };
 
-  const handleExport = (e: React.MouseEvent, data: InvestigatorData) => {
+  const handleExport = async (e: React.MouseEvent, data: InvestigatorData) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -86,18 +87,16 @@ const RegistryPage: React.FC = () => {
     delete exportData.categoryId;
     delete exportData.category;
 
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `investigator-${normalize(data.identity.name) || "unnamed"}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success(
-      t("toast_export_success", "Investigator exported successfully!"),
-    );
+    const fileName = `investigator-${normalize(data.identity.name) || "unnamed"}.json`;
+    const content = JSON.stringify(exportData, null, 2);
+
+    const success = await saveToFile(content, fileName);
+
+    if (success) {
+      toast.success(
+        t("toast_export_success", "Investigator exported successfully!"),
+      );
+    }
   };
 
   const onDragStart = (e: React.DragEvent, id: number) => {
