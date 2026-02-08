@@ -10,8 +10,20 @@ Arkham Registry is a comprehensive tool designed for Keepers and Players to mana
 
 ### 📂 Examples
 
+|                           Thumbnail                           | Name             |                       JSON                       |                                                                                        Action                                                                                        |
+| :-----------------------------------------------------------: | :--------------- | :----------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|   <img src="examples/alan-weiss-thumbnail.png" width="80">    | Alan Weiss       |    [📄](examples/investigator-alan-weiss.json)    |        [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-alan-weiss.json)        |
+|     <img src="examples/emilly-thumbnail.png" width="80">      | Emilly Caldwell  | [📄](examples/investigator-emilly-caldwell.json)  |     [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-emilly-caldwell.json)      |
+| <img src="examples/ethan-caldwell-thumbnail.png" width="80">  | Ethan Caldwell   |  [📄](examples/investigator-ethan-caldwell.json)  |      [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)      |
+|     <img src="examples/ezekiel-thumbnail.png" width="80">     | Ezekiel Carter   |  [📄](examples/investigator-ezekiel-carter.json)  |      [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ezekiel-carter.json)      |
+|      <img src="examples/jonah-thumbnail.png" width="80">      | Jonah Jensen     |   [📄](examples/investigator-jonah-jensen.json)   |       [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-jonah-jensen.json)       |
+|     <img src="examples/julian-thumbnail.png" width="80">      | Julian Baxter    |  [📄](examples/investigator-julian-baxter.json)   |      [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-julian-baxter.json)       |
+| <img src="examples/margaret-o-neil-thumbnail.png" width="80"> | Margaret O'Neill | [📄](examples/investigator-margaret-o’neill.json) | [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-margaret-o%E2%80%99neill.json) |
+|      <img src="examples/minh-thumbnail.png" width="80">       | Minh Tran        |    [📄](examples/investigator-minh-tran.json)     |        [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-minh-tran.json)         |
+|  <img src="examples/rachel-miller-thumbnail.png" width="80">  | Rachel Miller    |  [📄](examples/investigator-rachel-miller.json)   |      [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-rachel-miller.json)       |
+|   <img src="examples/thomas-reed-thumbnail.png" width="80">   | Thomas Reed      |   [📄](examples/investigator-thomas-reed.json)    |       [📥 Import](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-thomas-reed.json)        |
+
 - **🖋️ [New Empty Character](https://arkham-registry.online/)**
-- **🕵️‍♂️ [Load Example: Ethan Caldwell](https://arkham-registry.online/#/import/https%3A%2F%2Fraw.githubusercontent.com%2Fecyrbe%2Fcthulhu-editor%2Fmain%2Fexamples%2Finvestigator-ethan-caldwell.json)**
 
 ## Screenshots
 
