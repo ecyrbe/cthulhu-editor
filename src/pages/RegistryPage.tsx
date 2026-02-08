@@ -20,9 +20,10 @@ import Button from "../components/ui/Button";
 import LoadingScreen from "../components/ui/LoadingScreen";
 import ScrollToTop from "../components/ui/ScrollToTop";
 import Toggle from "../components/ui/Toggle";
-import CategoryManager from "../components/layout/CategoryManager";
+import CategoryManager from "../components/modals/CategoryManager";
 import InvestigatorCard from "../components/investigator/InvestigatorCard";
-import CategorySelectorModal from "../components/investigator/CategorySelectorModal";
+import CategorySelectorModal from "../components/modals/CategorySelectorModal";
+import ImportUrlModal from "../components/modals/ImportUrlModal";
 
 // Icons
 import importIcon from "../assets/floppy-disk-arrow-in.svg";
@@ -45,6 +46,7 @@ const RegistryPage: React.FC = () => {
   const [activeDragId, setActiveDragId] = useState<number | null>(null);
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
   const [isCategorySelectorOpen, setIsCategorySelectorOpen] = useState(false);
+  const [isImportUrlModalOpen, setIsImportUrlModalOpen] = useState(false);
   const [selectedInvForCategory, setSelectedInvForCategory] =
     useState<InvestigatorData | null>(null);
   const [showEmptyCategories, setShowEmptyCategories] = useAtom(
@@ -190,12 +192,11 @@ const RegistryPage: React.FC = () => {
 
   if (loading) return <LoadingScreen />;
 
-  const handleImportUrl = async () => {
-    const url = window.prompt(
-      t("enter_import_url", "Enter the URL of the investigator JSON:"),
-    );
-    if (!url) return;
+  const handleImportUrl = () => {
+    setIsImportUrlModalOpen(true);
+  };
 
+  const performUrlImport = async (url: string) => {
     setLoading(true);
     try {
       const response = await fetch(url);
@@ -205,6 +206,7 @@ const RegistryPage: React.FC = () => {
 
       if (!result.success) {
         toast.error(t("toast_import_error", "Failed to import"));
+        setLoading(false);
         return;
       }
 
@@ -638,6 +640,11 @@ const RegistryPage: React.FC = () => {
         categories={categories}
         currentCategoryId={selectedInvForCategory?.categoryId}
         onSelect={handleCategoryChange}
+      />
+      <ImportUrlModal
+        isOpen={isImportUrlModalOpen}
+        onClose={() => setIsImportUrlModalOpen(false)}
+        onImport={performUrlImport}
       />
       <Footer />
       <ScrollToTop />
