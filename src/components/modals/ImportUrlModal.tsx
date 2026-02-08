@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
@@ -18,18 +18,21 @@ const ImportUrlModal: React.FC<ImportUrlModalProps> = ({
   const { t } = useTranslation();
   const [url, setUrl] = useState("");
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setUrl("");
     onClose();
-  };
+  }, [onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (url.trim()) {
-      onImport(url.trim());
-      handleClose();
-    }
-  };
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (url.trim()) {
+        onImport(url.trim());
+        handleClose();
+      }
+    },
+    [url, onImport, handleClose],
+  );
 
   return (
     <Modal
