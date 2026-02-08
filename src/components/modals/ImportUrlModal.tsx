@@ -18,19 +18,23 @@ const ImportUrlModal: React.FC<ImportUrlModalProps> = ({
   const { t } = useTranslation();
   const [url, setUrl] = useState("");
 
+  const handleClose = () => {
+    setUrl("");
+    onClose();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url.trim()) {
       onImport(url.trim());
-      setUrl("");
-      onClose();
+      handleClose();
     }
   };
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title={t("import_url", "Import from URL")}
     >
       <form onSubmit={handleSubmit} className="import-url-modal-content">
@@ -47,7 +51,7 @@ const ImportUrlModal: React.FC<ImportUrlModalProps> = ({
           required
         />
         <div className="import-url-actions">
-          <Button variant="secondary" onClick={onClose} type="button">
+          <Button variant="secondary" onClick={handleClose} type="button">
             {t("cancel", "Cancel")}
           </Button>
           <Button variant="primary" type="submit" disabled={!url.trim()}>
