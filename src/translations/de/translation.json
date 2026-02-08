@@ -160,5 +160,6 @@
   "select_category": "Kategorie wählen",
   "change_category": "Kategorie ändern",
   "delete_investigator": "Investigator löschen",
-  "toast_category_updated": "Kategorie erfolgreich aktualisiert"
+  "toast_category_updated": "Kategorie erfolgreich aktualisiert",
+  "toast_delete_success": "Investigator erfolgreich gelöscht!"
 }

@@ -161,5 +161,6 @@
   "select_category": "Select Category",
   "change_category": "Change Category",
   "delete_investigator": "Delete Investigator",
-  "toast_category_updated": "Category updated successfully!"
+  "toast_category_updated": "Category updated successfully!",
+  "toast_delete_success": "Investigator deleted successfully!"
 }
