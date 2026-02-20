@@ -13,6 +13,7 @@ import summoningIcon from "../assets/summoning-circle.png";
 import archivesIcon from "../assets/miskatonic-archive.png";
 import tonguesIcon from "../assets/tongues-of-the-old-ones.png";
 import storageIcon from "../assets/forbidden-knowledge.png";
+import mapIcon from "../assets/folder-settings.svg"; // Using an existing icon for now
 import "./LandingPage.css";
 import { toCryptic } from "../utils/cryptic";
 
@@ -52,6 +53,12 @@ const features = [
     icon: tonguesIcon,
     title: "landing_feature_i18n_title",
     desc: "landing_feature_i18n_desc",
+  },
+  {
+    id: "map",
+    icon: mapIcon,
+    title: "landing_feature_map_title",
+    desc: "landing_feature_map_desc",
   },
 ];
 
@@ -105,6 +112,13 @@ const LandingPage: React.FC = () => {
                 onClick={() => navigate("/registry")}
               >
                 {t("get_started")}
+              </Button>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => navigate("/map")}
+              >
+                {t("launch_map")}
               </Button>
               <Button
                 variant="outline"

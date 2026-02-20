@@ -161,5 +161,21 @@
   "change_category": "Kategorie ändern",
   "delete_investigator": "Investigator löschen",
   "toast_category_updated": "Kategorie erfolgreich aktualisiert",
-  "toast_delete_success": "Investigator erfolgreich gelöscht!"
+  "toast_delete_success": "Investigator erfolgreich gelöscht!",
+  "landing_feature_map_title": "Arkham Kartographie",
+  "landing_feature_map_desc": "Interaktive Vintage-Karten, um Orte zu verfolgen und Ihre Ermittlungen zu planen.",
+  "launch_map": "Karte Öffnen",
+  "map_title": "Arkham Kartographie",
+  "map_add_location": "Ort Hinzufügen",
+  "map_edit_location": "Ort Bearbeiten",
+  "map_delete_location": "Ort Löschen",
+  "map_location_name": "Ortsname",
+  "map_location_desc": "Beschreibung",
+  "map_save": "Speichern",
+  "map_cancel": "Abbrechen",
+  "map_click_to_add": "Klicken Sie auf die Karte, um einen Ort hinzuzufügen",
+  "map_locations_index": "Ortsverzeichnis",
+  "map_no_locations": "Noch keine Orte erfasst.",
+  "map_confirm_delete": "Sind Sie sicher, dass Sie diesen Ort löschen möchten?",
+  "map_back_to_home": "Zurück zur Startseite"
 }

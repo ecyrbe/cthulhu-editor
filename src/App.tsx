@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import RegistryPage from "./pages/RegistryPage";
 import EditorPage from "./pages/EditorPage";
 import ImportPage from "./pages/ImportPage";
+import MapPage from "./pages/MapPage";
 import { useAtomValue } from "jotai";
 import { themeAtom } from "./store/uiAtoms";
 import { useEffect } from "react";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/registry" element={<RegistryPage />} />
         <Route path="/edit/:id" element={<EditorPage />} />
         <Route path="/import/:url" element={<ImportPage />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
     </Router>
   );

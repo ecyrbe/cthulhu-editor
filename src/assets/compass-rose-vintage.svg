@@ -1,0 +1,50 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <radialGradient id="paper" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(110 110) rotate(90) scale(110)">
+      <stop offset="0" stop-color="#F4E8CF"/>
+      <stop offset="1" stop-color="#C7AA7A"/>
+    </radialGradient>
+    <filter id="grain" x="0" y="0" width="1" height="1">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.09"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <circle cx="110" cy="110" r="105" fill="url(#paper)" stroke="#6F4C2F" stroke-width="3"/>
+  <circle cx="110" cy="110" r="89" fill="none" stroke="#6F4C2F" stroke-opacity="0.55" stroke-width="1.5"/>
+  <circle cx="110" cy="110" r="74" fill="none" stroke="#6F4C2F" stroke-opacity="0.45" stroke-width="1"/>
+
+  <g stroke="#5D3B26" stroke-width="2" stroke-linecap="round" opacity="0.8">
+    <path d="M110 16L110 204"/>
+    <path d="M16 110L204 110"/>
+  </g>
+
+  <g stroke="#5D3B26" stroke-width="1.3" stroke-linecap="round" opacity="0.65">
+    <path d="M42 42L178 178"/>
+    <path d="M178 42L42 178"/>
+  </g>
+
+  <g fill="#7F1D1D" stroke="#4A120F" stroke-width="1.2">
+    <path d="M110 30L123 97L110 110L97 97L110 30Z"/>
+    <path d="M190 110L123 123L110 110L123 97L190 110Z"/>
+    <path d="M110 190L97 123L110 110L123 123L110 190Z"/>
+    <path d="M30 110L97 97L110 110L97 123L30 110Z"/>
+  </g>
+
+  <g fill="#4F2E1D" opacity="0.95">
+    <circle cx="110" cy="110" r="9"/>
+    <circle cx="110" cy="110" r="3" fill="#EED7AE"/>
+  </g>
+
+  <g fill="#4A2D1A" font-family="serif" font-size="20" font-weight="700" text-anchor="middle">
+    <text x="110" y="27">N</text>
+    <text x="110" y="205">S</text>
+    <text x="199" y="117">E</text>
+    <text x="21" y="117">W</text>
+  </g>
+
+  <rect x="0" y="0" width="220" height="220" filter="url(#grain)"/>
+</svg>

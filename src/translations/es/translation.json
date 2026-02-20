@@ -161,5 +161,21 @@
   "change_category": "Cambiar Categoría",
   "delete_investigator": "Eliminar investigador",
   "toast_category_updated": "Categoría actualizada con éxito",
-  "toast_delete_success": "¡Investigador eliminado con éxito!"
+  "toast_delete_success": "¡Investigador eliminado con éxito!",
+  "landing_feature_map_title": "Cartografía de Arkham",
+  "landing_feature_map_desc": "Mapas vintage interactivos para rastrear ubicaciones y planificar tus investigaciones.",
+  "launch_map": "Abrir Mapa",
+  "map_title": "Cartografía de Arkham",
+  "map_add_location": "Añadir Ubicación",
+  "map_edit_location": "Editar Ubicación",
+  "map_delete_location": "Eliminar Ubicación",
+  "map_location_name": "Nombre de la Ubicación",
+  "map_location_desc": "Descripción",
+  "map_save": "Guardar",
+  "map_cancel": "Cancelar",
+  "map_click_to_add": "Haz clic en el mapa para añadir una ubicación",
+  "map_locations_index": "Índice de Ubicaciones",
+  "map_no_locations": "Aún no hay ubicaciones registradas.",
+  "map_confirm_delete": "¿Estás seguro de que quieres eliminar esta ubicación?",
+  "map_back_to_home": "Volver al Inicio"
 }

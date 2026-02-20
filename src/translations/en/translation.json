@@ -162,5 +162,21 @@
   "change_category": "Change Category",
   "delete_investigator": "Delete Investigator",
   "toast_category_updated": "Category updated successfully!",
-  "toast_delete_success": "Investigator deleted successfully!"
+  "toast_delete_success": "Investigator deleted successfully!",
+  "landing_feature_map_title": "Arkham Cartography",
+  "landing_feature_map_desc": "Interactive vintage maps to track locations and plan your investigations.",
+  "launch_map": "Open Map",
+  "map_title": "Arkham Cartography",
+  "map_add_location": "Add Location",
+  "map_edit_location": "Edit Location",
+  "map_delete_location": "Delete Location",
+  "map_location_name": "Location Name",
+  "map_location_desc": "Description",
+  "map_save": "Save",
+  "map_cancel": "Cancel",
+  "map_click_to_add": "Click on the map to add a location",
+  "map_locations_index": "Location Index",
+  "map_no_locations": "No locations recorded yet.",
+  "map_confirm_delete": "Are you sure you want to delete this location?",
+  "map_back_to_home": "Back to Home"
 }
