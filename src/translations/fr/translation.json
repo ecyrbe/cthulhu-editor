@@ -179,5 +179,13 @@
   "map_locations_index": "Index des Lieux",
   "map_no_locations": "Aucun lieu enregistré pour le moment.",
   "map_confirm_delete": "Êtes-vous sûr de vouloir supprimer ce lieu ?",
-  "map_back_to_home": "Retour à l'Accueil"
+  "map_back_to_home": "Retour à l'Accueil",
+  "map_search_placeholder": "Rechercher une ville (ex. Arkham, Boston, Paris)",
+  "map_search_action": "Rechercher",
+  "map_search_not_found": "Aucune ville trouvée pour cette recherche.",
+  "map_search_error": "La recherche est actuellement indisponible.",
+  "map_not_ready": "La carte est encore en cours de chargement, réessayez dans une seconde.",
+  "map_fullscreen": "Passer en plein écran",
+  "map_exit_fullscreen": "Quitter le plein écran",
+  "map_fullscreen_error": "Le mode plein écran n'est pas disponible dans ce navigateur."
 }

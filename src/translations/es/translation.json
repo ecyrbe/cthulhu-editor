@@ -178,5 +178,13 @@
   "map_locations_index": "Índice de Ubicaciones",
   "map_no_locations": "Aún no hay ubicaciones registradas.",
   "map_confirm_delete": "¿Estás seguro de que quieres eliminar esta ubicación?",
-  "map_back_to_home": "Volver al Inicio"
+  "map_back_to_home": "Volver al Inicio",
+  "map_search_placeholder": "Buscar ciudad (ej. Arkham, Boston, París)",
+  "map_search_action": "Buscar",
+  "map_search_not_found": "No se encontró ninguna ciudad para esta búsqueda.",
+  "map_search_error": "La búsqueda no está disponible en este momento.",
+  "map_not_ready": "El mapa todavía está cargando, inténtalo de nuevo en un segundo.",
+  "map_fullscreen": "Entrar en pantalla completa",
+  "map_exit_fullscreen": "Salir de pantalla completa",
+  "map_fullscreen_error": "La pantalla completa no está disponible en este navegador."
 }

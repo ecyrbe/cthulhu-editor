@@ -178,5 +178,13 @@
   "map_locations_index": "Índice de Locais",
   "map_no_locations": "Nenhum local registrado ainda.",
   "map_confirm_delete": "Tem certeza de que deseja excluir este local?",
-  "map_back_to_home": "Voltar ao Início"
+  "map_back_to_home": "Voltar ao Início",
+  "map_search_placeholder": "Buscar cidade (ex.: Arkham, Boston, Paris)",
+  "map_search_action": "Buscar",
+  "map_search_not_found": "Nenhuma cidade encontrada para esta busca.",
+  "map_search_error": "A busca está indisponível no momento.",
+  "map_not_ready": "O mapa ainda está carregando, tente novamente em um segundo.",
+  "map_fullscreen": "Entrar em tela cheia",
+  "map_exit_fullscreen": "Sair da tela cheia",
+  "map_fullscreen_error": "A tela cheia não está disponível neste navegador."
 }

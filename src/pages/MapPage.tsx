@@ -20,7 +20,7 @@ const MapInstanceBinder = ({
 };
 
 const MapPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -76,10 +76,7 @@ const MapPage: React.FC = () => {
 
     if (!activeMap) {
       setSearchMessage(
-        t(
-          "map_search_error",
-          "Map is still loading, try once more in a second.",
-        ),
+        t("map_not_ready", "Map is still loading, try once more in a second."),
       );
       return;
     }
@@ -99,7 +96,7 @@ const MapPage: React.FC = () => {
         {
           headers: {
             Accept: "application/json",
-            "Accept-Language": "en",
+            "Accept-Language": i18n.resolvedLanguage || i18n.language || "en",
           },
         },
       );
