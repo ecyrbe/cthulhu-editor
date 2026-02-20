@@ -166,6 +166,7 @@
   "landing_feature_cartography_title": "Cartografía de Arkham",
   "landing_feature_cartography_desc": "Mapas vintage interactivos para rastrear ubicaciones y planificar tus investigaciones.",
   "launch_cartography": "Abrir Mapa",
+  "cartography_breadcrumb": "Cartografía",
   "cartography_title": "Cartografía de Arkham",
   "cartography_add_location": "Añadir Ubicación",
   "cartography_edit_location": "Editar Ubicación",

@@ -167,6 +167,7 @@
   "landing_feature_cartography_title": "Arkham Cartography",
   "landing_feature_cartography_desc": "Interactive vintage maps to track locations and plan your investigations.",
   "launch_cartography": "Open Map",
+  "cartography_breadcrumb": "Cartography",
   "cartography_title": "Arkham Cartography",
   "cartography_add_location": "Add Location",
   "cartography_edit_location": "Edit Location",

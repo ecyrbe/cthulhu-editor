@@ -21,6 +21,7 @@ const MapInstanceBinder = ({
 
 const CartographyPage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const hideSearchDelayMs = 2000;
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +31,10 @@ const CartographyPage: React.FC = () => {
   >(null);
   const [isSearching, setIsSearching] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
   const mapWrapperRef = useRef<HTMLDivElement | null>(null);
+  const hideSearchTimeoutRef = useRef<number | null>(null);
 
   const cityTitle =
     searchMessageKind === "city"
@@ -46,6 +50,27 @@ const CartographyPage: React.FC = () => {
     setMapInstance((current) => current ?? map);
   }, []);
 
+  const clearHideSearchTimeout = useCallback(() => {
+    if (hideSearchTimeoutRef.current !== null) {
+      window.clearTimeout(hideSearchTimeoutRef.current);
+      hideSearchTimeoutRef.current = null;
+    }
+  }, []);
+
+  const scheduleSearchHide = useCallback(() => {
+    clearHideSearchTimeout();
+    if (isSearchFocused) return;
+
+    hideSearchTimeoutRef.current = window.setTimeout(() => {
+      setIsSearchVisible(false);
+    }, hideSearchDelayMs);
+  }, [clearHideSearchTimeout, isSearchFocused]);
+
+  const showSearchControls = useCallback(() => {
+    setIsSearchVisible(true);
+    scheduleSearchHide();
+  }, [scheduleSearchHide]);
+
   useEffect(() => {
     const handleFullscreenChange = () => {
       const wrapper = mapWrapperRef.current;
@@ -57,6 +82,20 @@ const CartographyPage: React.FC = () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (isSearchFocused) {
+      clearHideSearchTimeout();
+      setIsSearchVisible(true);
+      return;
+    }
+
+    scheduleSearchHide();
+
+    return () => {
+      clearHideSearchTimeout();
+    };
+  }, [isSearchFocused, scheduleSearchHide, clearHideSearchTimeout]);
 
   const handleToggleFullscreen = async () => {
     const wrapper = mapWrapperRef.current;
@@ -181,7 +220,7 @@ const CartographyPage: React.FC = () => {
           <header className="map-page-header">
             <div className="breadcrumb">
               <Link to="/">{t("home", "Home")}</Link> /{" "}
-              <span>{t("cartography_title")}</span>
+              <span>{t("cartography_breadcrumb", "Cartography")}</span>
             </div>
             <div className="header-actions">
               <ThemeToggle />
@@ -195,9 +234,29 @@ const CartographyPage: React.FC = () => {
         </div>
 
         <main className="map-main">
-          <div className="map-wrapper" ref={mapWrapperRef}>
-            <div className="map-top-controls">
-              <form className="map-overlay-search" onSubmit={handleSearchCity}>
+          <div
+            className="map-wrapper"
+            ref={mapWrapperRef}
+            onMouseMove={showSearchControls}
+          >
+            <div
+              className={`map-top-controls ${isSearchVisible ? "map-top-controls-visible" : "map-top-controls-hidden"}`}
+            >
+              <form
+                className="map-overlay-search"
+                onSubmit={handleSearchCity}
+                onFocusCapture={() => {
+                  setIsSearchFocused(true);
+                  setIsSearchVisible(true);
+                }}
+                onBlurCapture={(event) => {
+                  if (
+                    !event.currentTarget.contains(event.relatedTarget as Node)
+                  ) {
+                    setIsSearchFocused(false);
+                  }
+                }}
+              >
                 <div className="map-search-input-wrap">
                   <input
                     type="text"

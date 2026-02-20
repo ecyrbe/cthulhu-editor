@@ -167,6 +167,7 @@
   "landing_feature_cartography_title": "Cartographie d'Arkham",
   "landing_feature_cartography_desc": "Cartes vintage interactives pour suivre les lieux et planifier vos enquêtes.",
   "launch_cartography": "Ouvrir la Carte",
+  "cartography_breadcrumb": "Cartographie",
   "cartography_title": "Cartographie d'Arkham",
   "cartography_add_location": "Ajouter un Lieu",
   "cartography_edit_location": "Modifier le Lieu",
