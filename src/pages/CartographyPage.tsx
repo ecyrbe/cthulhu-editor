@@ -7,7 +7,7 @@ import L from "leaflet";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import compassRoseVintage from "../assets/compass-rose-vintage.svg";
-import "./MapPage.css";
+import "./CartographyPage.css";
 
 const MapInstanceBinder = ({
   onMapReady,
@@ -19,15 +19,27 @@ const MapInstanceBinder = ({
   return null;
 };
 
-const MapPage: React.FC = () => {
+const CartographyPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchMessage, setSearchMessage] = useState("");
+  const [searchMessageKind, setSearchMessageKind] = useState<
+    "city" | "status" | null
+  >(null);
   const [isSearching, setIsSearching] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const mapWrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const cityTitle =
+    searchMessageKind === "city"
+      ? (searchMessage.split(",")[0]?.trim() ?? "")
+      : "";
+  const cityDetails =
+    searchMessageKind === "city"
+      ? searchMessage.split(",").slice(1).join(",").trim()
+      : "";
 
   const handleMapReady = useCallback((map: L.Map) => {
     mapInstanceRef.current = map;
@@ -58,7 +70,10 @@ const MapPage: React.FC = () => {
       }
     } catch {
       setSearchMessage(
-        t("map_fullscreen_error", "Fullscreen is unavailable in this browser."),
+        t(
+          "cartography_fullscreen_error",
+          "Fullscreen is unavailable in this browser.",
+        ),
       );
     }
   };
@@ -69,6 +84,7 @@ const MapPage: React.FC = () => {
 
     if (!query) {
       setSearchMessage("");
+      setSearchMessageKind(null);
       return;
     }
 
@@ -76,14 +92,19 @@ const MapPage: React.FC = () => {
 
     if (!activeMap) {
       setSearchMessage(
-        t("map_not_ready", "Map is still loading, try once more in a second."),
+        t(
+          "cartography_not_ready",
+          "Map is still loading, try once more in a second.",
+        ),
       );
+      setSearchMessageKind("status");
       return;
     }
 
     try {
       setIsSearching(true);
       setSearchMessage("");
+      setSearchMessageKind(null);
 
       const params = new URLSearchParams({
         q: query,
@@ -113,8 +134,9 @@ const MapPage: React.FC = () => {
 
       if (results.length === 0) {
         setSearchMessage(
-          t("map_search_not_found", "No city found for this search."),
+          t("cartography_search_not_found", "No city found for this search."),
         );
+        setSearchMessageKind("status");
         return;
       }
 
@@ -127,10 +149,12 @@ const MapPage: React.FC = () => {
       }
 
       setSearchMessage(result.display_name);
+      setSearchMessageKind("city");
     } catch {
       setSearchMessage(
-        t("map_search_error", "Search is currently unavailable."),
+        t("cartography_search_error", "Search is currently unavailable."),
       );
+      setSearchMessageKind("status");
     } finally {
       setIsSearching(false);
     }
@@ -157,7 +181,7 @@ const MapPage: React.FC = () => {
           <header className="map-page-header">
             <div className="breadcrumb">
               <Link to="/">{t("home", "Home")}</Link> /{" "}
-              <span>{t("map_title")}</span>
+              <span>{t("cartography_title")}</span>
             </div>
             <div className="header-actions">
               <ThemeToggle />
@@ -166,7 +190,7 @@ const MapPage: React.FC = () => {
           </header>
 
           <div className="map-header">
-            <h1 className="map-title">{t("map_title")}</h1>
+            <h1 className="map-title">{t("cartography_title")}</h1>
           </div>
         </div>
 
@@ -180,11 +204,11 @@ const MapPage: React.FC = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={t(
-                      "map_search_placeholder",
+                      "cartography_search_placeholder",
                       "Search city (e.g. Arkham, Boston, Paris)",
                     )}
                     aria-label={t(
-                      "map_search_placeholder",
+                      "cartography_search_placeholder",
                       "Search city (e.g. Arkham, Boston, Paris)",
                     )}
                   />
@@ -192,8 +216,8 @@ const MapPage: React.FC = () => {
                     className="map-search-icon-btn"
                     type="submit"
                     disabled={isSearching}
-                    aria-label={t("map_search_action", "Search")}
-                    title={t("map_search_action", "Search")}
+                    aria-label={t("cartography_search_action", "Search")}
+                    title={t("cartography_search_action", "Search")}
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <circle cx="11" cy="11" r="6.5" />
@@ -202,12 +226,6 @@ const MapPage: React.FC = () => {
                   </button>
                 </div>
               </form>
-
-              {searchMessage && (
-                <p className="map-search-message map-overlay-message">
-                  {searchMessage}
-                </p>
-              )}
             </div>
 
             <div className="map-viewport">
@@ -231,19 +249,36 @@ const MapPage: React.FC = () => {
               <img src={compassRoseVintage} alt="" />
             </div>
 
+            {searchMessage && (
+              <div className="map-bottom-message-wrap">
+                {searchMessageKind === "city" ? (
+                  <div className="map-search-message map-overlay-message map-bottom-message map-bottom-message-city">
+                    <div className="map-city-title">{cityTitle}</div>
+                    {cityDetails && (
+                      <div className="map-city-details">{cityDetails}</div>
+                    )}
+                  </div>
+                ) : (
+                  <p className="map-search-message map-overlay-message map-bottom-message">
+                    {searchMessage}
+                  </p>
+                )}
+              </div>
+            )}
+
             <button
               className="map-fullscreen-control"
               type="button"
               onClick={handleToggleFullscreen}
               aria-label={
                 isFullscreen
-                  ? t("map_exit_fullscreen", "Exit fullscreen")
-                  : t("map_fullscreen", "Enter fullscreen")
+                  ? t("cartography_exit_fullscreen", "Exit fullscreen")
+                  : t("cartography_fullscreen", "Enter fullscreen")
               }
               title={
                 isFullscreen
-                  ? t("map_exit_fullscreen", "Exit fullscreen")
-                  : t("map_fullscreen", "Enter fullscreen")
+                  ? t("cartography_exit_fullscreen", "Exit fullscreen")
+                  : t("cartography_fullscreen", "Enter fullscreen")
               }
             >
               <span aria-hidden="true">⛶</span>
@@ -279,4 +314,4 @@ const MapPage: React.FC = () => {
   );
 };
 
-export default MapPage;
+export default CartographyPage;

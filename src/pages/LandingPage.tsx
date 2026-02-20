@@ -146,23 +146,23 @@ const LandingPage: React.FC = () => {
               className="feature-card revealed"
               role="button"
               tabIndex={0}
-              onClick={() => navigate("/map")}
+              onClick={() => navigate("/cartography")}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
-                  navigate("/map");
+                  navigate("/cartography");
                 }
               }}
             >
               <div className="feature-icon">
                 <img
                   src={cartographyImage}
-                  alt={t("landing_feature_map_title")}
+                  alt={t("landing_feature_cartography_title")}
                 />
               </div>
               <div className="feature-card-content">
-                <h3>{t("landing_feature_map_title")}</h3>
-                <p>{t("landing_feature_map_desc")}</p>
+                <h3>{t("landing_feature_cartography_title")}</h3>
+                <p>{t("landing_feature_cartography_desc")}</p>
               </div>
             </div>
           </div>

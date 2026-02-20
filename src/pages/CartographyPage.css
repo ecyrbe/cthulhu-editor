@@ -247,6 +247,51 @@
   pointer-events: auto;
 }
 
+.map-bottom-message-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 1005;
+  width: min(68%, 460px);
+  pointer-events: none;
+}
+
+.map-bottom-message {
+  padding: 0.95rem 1.35rem;
+  border: 1px solid
+    color-mix(in srgb, var(--map-parchment-border) 90%, transparent);
+  background: var(--map-parchment-surface);
+  opacity: 1;
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  font-family: "P22 Typewriter", serif;
+  letter-spacing: 0.02rem;
+}
+
+.map-bottom-message-city {
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 1px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+.map-city-title {
+  text-align: center;
+  font-family: "P22 Typewriter", serif;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 0.3rem;
+}
+
+.map-city-details {
+  text-align: center;
+  font-family: "Liberation Serif", serif;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
 .map-compass {
   position: absolute;
   left: 20px;
@@ -352,5 +397,9 @@
     height: 102px;
     left: 14px;
     bottom: 14px;
+  }
+
+  .map-bottom-message-wrap {
+    bottom: 12px;
   }
 }
