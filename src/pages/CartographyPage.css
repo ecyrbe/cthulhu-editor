@@ -145,7 +145,7 @@
   top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1005;
+  z-index: 1010;
   width: min(92%, 880px);
   display: flex;
   flex-direction: column;
@@ -294,6 +294,7 @@
 .map-city-title {
   text-align: center;
   font-family: "P22 Typewriter", serif;
+  font-weight: 800;
   font-size: 1.3rem;
   line-height: 1.25;
   margin-bottom: 0.3rem;
@@ -393,6 +394,63 @@
   border-color: var(--accent-color);
 }
 
+.map-scale-widget {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  pointer-events: none;
+  background: var(--map-parchment-surface);
+  opacity: 1;
+  padding: 0.38rem 0.48rem 0.32rem;
+  border: 1px solid var(--map-parchment-border);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.map-scale-title {
+  text-align: center;
+  font-family: "P22 Typewriter", serif;
+  color: var(--map-parchment-text);
+  font-size: 11px;
+  letter-spacing: 0.03rem;
+  margin-bottom: 0.25rem;
+}
+
+.map-scale-ruler {
+  position: relative;
+  height: 10px;
+  border: 1px solid var(--map-parchment-border);
+  border-top: none;
+  border-bottom-width: 2px;
+  background: color-mix(in srgb, var(--map-parchment-surface) 92%, black 8%);
+}
+
+.map-scale-tick {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--map-parchment-text);
+  transform: translateX(-0.5px);
+}
+
+.map-scale-tick-major {
+  height: 8px;
+}
+
+.map-scale-labels {
+  margin-top: 0.18rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--map-parchment-text);
+  font-family: "P22 Typewriter", serif;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
 @media (max-width: 1024px) {
   .map-wrapper {
     height: calc(100vh - 300px);
@@ -416,6 +474,12 @@
   .map-bottom-message-wrap {
     width: min(56%, 300px);
     bottom: 6px;
+  }
+
+  .map-scale-widget {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
   }
 
   .map-bottom-message {
@@ -444,6 +508,12 @@
   .map-bottom-message-wrap {
     width: min(50%, 220px);
     bottom: 4px;
+  }
+
+  .map-scale-widget {
+    top: 8px;
+    right: 8px;
+    bottom: auto;
   }
 
   .map-bottom-message {

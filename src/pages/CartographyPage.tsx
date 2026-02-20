@@ -7,6 +7,7 @@ import L from "leaflet";
 import ThemeToggle from "../components/ui/ThemeToggle";
 import LanguageSelector from "../components/layout/LanguageSelector";
 import compassRoseVintage from "../assets/compass-rose-vintage.svg";
+import MapScaleLegend from "../components/cartography/MapScaleLegend";
 import "./CartographyPage.css";
 
 const MapInstanceBinder = ({
@@ -307,6 +308,8 @@ const CartographyPage: React.FC = () => {
             <div className="map-compass" aria-hidden="true">
               <img src={compassRoseVintage} alt="" />
             </div>
+
+            <MapScaleLegend map={mapInstance} />
 
             {searchMessage && (
               <div className="map-bottom-message-wrap">
