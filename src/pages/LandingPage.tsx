@@ -13,7 +13,7 @@ import summoningIcon from "../assets/summoning-circle.png";
 import archivesIcon from "../assets/miskatonic-archive.png";
 import tonguesIcon from "../assets/tongues-of-the-old-ones.png";
 import storageIcon from "../assets/forbidden-knowledge.png";
-import mapIcon from "../assets/folder-settings.svg"; // Using an existing icon for now
+import cartographyImage from "../assets/arkham-carthography.png";
 import "./LandingPage.css";
 import { toCryptic } from "../utils/cryptic";
 
@@ -53,12 +53,6 @@ const features = [
     icon: tonguesIcon,
     title: "landing_feature_i18n_title",
     desc: "landing_feature_i18n_desc",
-  },
-  {
-    id: "map",
-    icon: mapIcon,
-    title: "landing_feature_map_title",
-    desc: "landing_feature_map_desc",
   },
 ];
 
@@ -114,22 +108,64 @@ const LandingPage: React.FC = () => {
                 {t("get_started")}
               </Button>
               <Button
-                variant="primary"
-                size="lg"
-                onClick={() => navigate("/map")}
-              >
-                {t("launch_map")}
-              </Button>
-              <Button
                 variant="outline"
                 size="lg"
-                onClick={() => scrollToSection("features")}
+                onClick={() => scrollToSection("entries")}
               >
                 {t("explore_features")}
               </Button>
             </div>
           </div>
           <div className="hero-overlay"></div>
+        </section>
+
+        <section id="entries" className="entries-section">
+          <h2>{t("landing_entries_title")}</h2>
+          <div className="entries-grid">
+            <div
+              className="feature-card revealed"
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate("/registry")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  navigate("/registry");
+                }
+              }}
+            >
+              <div className="feature-icon">
+                <img src={registryIcon} alt={t("launch_registry")} />
+              </div>
+              <div className="feature-card-content">
+                <h3>{t("launch_registry")}</h3>
+                <p>{t("landing_feature_multichar_desc")}</p>
+              </div>
+            </div>
+            <div
+              className="feature-card revealed"
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate("/map")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  navigate("/map");
+                }
+              }}
+            >
+              <div className="feature-icon">
+                <img
+                  src={cartographyImage}
+                  alt={t("landing_feature_map_title")}
+                />
+              </div>
+              <div className="feature-card-content">
+                <h3>{t("landing_feature_map_title")}</h3>
+                <p>{t("landing_feature_map_desc")}</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="features" className="features-section">
