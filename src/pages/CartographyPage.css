@@ -265,7 +265,7 @@
 .map-bottom-message-wrap {
   position: absolute;
   left: 50%;
-  bottom: 16px;
+  bottom: 18px;
   transform: translateX(-50%);
   z-index: 1005;
   width: min(68%, 460px);
@@ -398,7 +398,7 @@
 .map-scale-widget {
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: 18px;
   z-index: 1000;
   pointer-events: none;
   background: var(--map-parchment-surface);
@@ -474,13 +474,13 @@
 
   .map-bottom-message-wrap {
     width: min(56%, 300px);
-    bottom: 6px;
+    bottom: 8px;
   }
 
   .map-scale-widget {
-    top: 10px;
+    top: auto;
     right: 10px;
-    bottom: auto;
+    bottom: 8px;
   }
 
   .map-bottom-message {
@@ -512,7 +512,7 @@
 
   .map-bottom-message-wrap {
     width: min(50%, 220px);
-    bottom: 4px;
+    bottom: 6px;
   }
 
   .map-scale-widget {
