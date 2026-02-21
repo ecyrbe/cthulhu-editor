@@ -428,7 +428,7 @@ input[type="number"] {
 }
 
 .tracker-left-side {
-  min-width: 70px;
+  min-width: 68px;
   display: flex;
   flex-direction: column;
   justify-content: center;
