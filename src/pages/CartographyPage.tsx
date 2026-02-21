@@ -10,6 +10,21 @@ import compassRoseVintage from "../assets/compass-rose-vintage.svg";
 import MapScaleLegend from "../components/cartography/MapScaleLegend";
 import "./CartographyPage.css";
 
+const DEFAULT_MAP_CENTER: [number, number] = [42.5, -71.0];
+
+const CAPITAL_CENTER_BY_LANGUAGE: Record<string, [number, number]> = {
+  en: [51.5072, -0.1276],
+  fr: [48.8566, 2.3522],
+  es: [40.4168, -3.7038],
+  de: [52.52, 13.405],
+  pt: [38.7223, -9.1393],
+};
+
+const getLanguageCapitalCenter = (language?: string): [number, number] => {
+  const normalizedLanguage = language?.toLowerCase().split("-")[0] ?? "";
+  return CAPITAL_CENTER_BY_LANGUAGE[normalizedLanguage] ?? DEFAULT_MAP_CENTER;
+};
+
 const MapInstanceBinder = ({
   onMapReady,
 }: {
@@ -22,6 +37,9 @@ const MapInstanceBinder = ({
 
 const CartographyPage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const defaultMapCenter = getLanguageCapitalCenter(
+    i18n.resolvedLanguage || i18n.language,
+  );
   const hideSearchDelayMs = 2000;
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -97,6 +115,13 @@ const CartographyPage: React.FC = () => {
       clearHideSearchTimeout();
     };
   }, [isSearchFocused, scheduleSearchHide, clearHideSearchTimeout]);
+
+  useEffect(() => {
+    const activeMap = mapInstanceRef.current ?? mapInstance;
+    if (!activeMap) return;
+
+    activeMap.setView(defaultMapCenter, activeMap.getZoom());
+  }, [defaultMapCenter, mapInstance]);
 
   const handleToggleFullscreen = async () => {
     const wrapper = mapWrapperRef.current;
@@ -290,8 +315,8 @@ const CartographyPage: React.FC = () => {
 
             <div className="map-viewport">
               <MapContainer
-                center={[42.5, -71.0]}
-                zoom={8}
+                center={defaultMapCenter}
+                zoom={11}
                 className="leaflet-container"
                 zoomControl={false}
                 attributionControl={false}
