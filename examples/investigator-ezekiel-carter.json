@@ -11,24 +11,24 @@
     "birthplace": "Jackson"
   },
   "characteristics": {
-    "FOR": -1,
-    "CON": -1,
-    "TAI": -1,
-    "DEX": -1,
-    "APP": -1,
-    "INT": -1,
-    "POU": -1,
-    "EDU": -1,
-    "MVT": -1
+    "FOR": 20,
+    "CON": 45,
+    "TAI": 45,
+    "DEX": 30,
+    "APP": 60,
+    "INT": 85,
+    "POU": 55,
+    "EDU": 70,
+    "MVT": 7
   },
   "trackers": {
-    "hp": -1,
-    "mp": -1,
-    "sanity": -1,
-    "luck": -1,
-    "hpMax": -1,
-    "mpMax": -1,
-    "sanityInitial": -1,
+    "hp": 9,
+    "mp": 11,
+    "sanity": 55,
+    "luck": 45,
+    "hpMax": 9,
+    "mpMax": 11,
+    "sanityInitial": 55,
     "sanityMax": 99,
     "majorWound": false,
     "tempInsane": false,
@@ -91,7 +91,7 @@
       "type": "standard",
       "key": "library",
       "base": 20,
-      "current": 20,
+      "current": 70,
       "checked": false
     },
     {
@@ -127,8 +127,8 @@
     {
       "id": "skill-ranged_combat-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Arc",
+      "current": 60,
       "checked": false
     },
     {
@@ -204,7 +204,7 @@
       "type": "standard",
       "key": "stealth",
       "base": 20,
-      "current": 20,
+      "current": 70,
       "checked": false
     },
     {
@@ -220,7 +220,7 @@
       "type": "standard",
       "key": "listen",
       "base": 20,
-      "current": 20,
+      "current": 69,
       "checked": false
     },
     {
@@ -244,7 +244,7 @@
       "type": "standard",
       "key": "dodge",
       "base": "DEX/2",
-      "current": -1,
+      "current": 15,
       "checked": false
     },
     {
@@ -260,7 +260,7 @@
       "type": "standard",
       "key": "climb",
       "base": 20,
-      "current": 20,
+      "current": 50,
       "checked": false
     },
     {
@@ -268,7 +268,7 @@
       "type": "standard",
       "key": "history",
       "base": 5,
-      "current": 5,
+      "current": 55,
       "checked": false
     },
     {
@@ -312,8 +312,8 @@
     {
       "id": "skill-mother_tongue-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Anglais",
+      "current": 70,
       "checked": false
     },
     {
@@ -325,8 +325,8 @@
     {
       "id": "skill-language-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Shoshones",
+      "current": 33,
       "checked": false
     },
     {
@@ -380,8 +380,8 @@
       "type": "standard",
       "key": "nature",
       "base": 10,
-      "current": 10,
-      "checked": false
+      "current": 60,
+      "checked": true
     },
     {
       "id": "skill-occult",
@@ -504,8 +504,8 @@
     {
       "id": "skill-survival-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Forêt en montagne",
+      "current": 40,
       "checked": false
     },
     {
@@ -513,14 +513,14 @@
       "type": "standard",
       "key": "spot",
       "base": 25,
-      "current": 25,
+      "current": 55,
       "checked": false
     },
     {
       "id": "custom-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Religion chrétienne",
+      "current": 19,
       "checked": false
     },
     {
@@ -554,17 +554,17 @@
   ],
   "backstory": {
     "personalDescription": "",
-    "ideologyBeliefs": "",
-    "significantPeople": "",
-    "meaningfulLocations": "",
-    "treasuredPossessions": "",
-    "traits": "",
-    "injuriesScars": "",
-    "phobiasManias": "",
+    "ideologyBeliefs": "S'interresse aux non dits\nde la religion chrétienne",
+    "significantPeople": "Becky se sent coupable.\nAcceptera d'aider même si cela l'ennuie",
+    "meaningfulLocations": "Tombe de mon grand père\nShoshones qui m'appaise",
+    "treasuredPossessions": "Arc de mon grand père,\ngrande valeur personnelle et réelle",
+    "traits": "Timide, réservé, résilient",
+    "injuriesScars": "Abandon famillial",
+    "phobiasManias": "Violence corps à corps",
     "arcaneTomesSpells": "",
     "strangeEntities": ""
   },
-  "gear": "",
+  "gear": "Arc",
   "wealth": {
     "spendingLevel": "",
     "cash": "",
@@ -572,10 +572,10 @@
   },
   "weapons": [
     {
-      "name": "",
-      "regular": "",
-      "hard": "",
-      "extreme": "",
+      "name": "A mains nues",
+      "regular": "25",
+      "hard": "12",
+      "extreme": "5",
       "damage": "",
       "range": "",
       "attacks": "",
@@ -583,10 +583,10 @@
       "malfunction": ""
     },
     {
-      "name": "",
-      "regular": "",
-      "hard": "",
-      "extreme": "",
+      "name": "Petit Arc",
+      "regular": "60",
+      "hard": "30",
+      "extreme": "12",
       "damage": "",
       "range": "",
       "attacks": "",
