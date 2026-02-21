@@ -294,12 +294,10 @@ const CartographyPage: React.FC = () => {
                 zoom={8}
                 className="leaflet-container"
                 zoomControl={false}
+                attributionControl={false}
               >
                 <MapInstanceBinder onMapReady={handleMapReady} />
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               </MapContainer>
             </div>
 
