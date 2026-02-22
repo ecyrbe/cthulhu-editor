@@ -216,6 +216,7 @@ input[type="number"] {
   padding: 4px 8px;
 }
 .header-col.left {
+  padding-left: 0;
   width: 30%;
 }
 .header-col.mid {
