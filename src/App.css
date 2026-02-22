@@ -111,11 +111,20 @@
 }
 
 .page-box {
-  border: 3px solid #000;
-  border-radius: 2%;
+  position: relative;
+  padding: 2px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.page-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: center / 100% 100% no-repeat url("./assets/page-box-border.svg");
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* Utils */
