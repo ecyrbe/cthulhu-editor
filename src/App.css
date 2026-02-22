@@ -291,10 +291,12 @@ input[type="number"] {
 
 .stat-box {
   display: flex;
-  border: 1px solid #000;
   width: 60px;
   height: 30px;
-  background: #fff;
+  background:
+    center / 100% 100% no-repeat url("./assets/stat-box-border.svg"),
+    #fff;
+  position: relative;
 }
 
 .stat-main {
