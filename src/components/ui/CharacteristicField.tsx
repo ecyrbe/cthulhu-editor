@@ -1,7 +1,6 @@
 import React from "react";
 import { StatBox } from "./StatBox";
-import { DebouncedInput } from "./DebouncedInput";
-import { handleNumberInput } from "../../utils/inputHandlers";
+import { MvtStatBox } from "./MvtStatBox";
 
 interface CharacteristicFieldProps {
   label: string;
@@ -20,17 +19,7 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = ({
     <label className="stat-container">
       <span className="stat-label">{label}</span>
       {isMvt ? (
-        <div className="mvt-box">
-          <DebouncedInput
-            type="number"
-            value={value}
-            min={-1}
-            max={9}
-            step={1}
-            onInput={(e) => handleNumberInput(e, -1, 9)}
-            onValueChange={(val) => onChange(val as number)}
-          />
-        </div>
+        <MvtStatBox value={value} onChange={onChange} />
       ) : (
         <StatBox value={value} onChange={onChange} />
       )}

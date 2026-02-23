@@ -338,19 +338,17 @@ input[type="number"] {
 }
 
 .mvt-box {
-  width: 60px;
-  height: 30px;
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
+  align-items: stretch;
 }
 
 .mvt-box input {
   text-align: center;
   font-size: 1.2em;
   border: none;
+}
+
+.mvt-box .mvt-static {
+  color: #999;
 }
 
 .photo-box {
