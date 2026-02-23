@@ -8,27 +8,27 @@
     "age": "12",
     "sex": "Masculin",
     "residence": "Jackson",
-    "birthplace": ""
+    "birthplace": "Jackson"
   },
   "characteristics": {
-    "FOR": -1,
-    "CON": -1,
-    "TAI": -1,
-    "DEX": -1,
-    "APP": -1,
-    "INT": -1,
-    "POU": -1,
-    "EDU": -1,
-    "MVT": -1
+    "FOR": 45,
+    "CON": 50,
+    "TAI": 55,
+    "DEX": 70,
+    "APP": 70,
+    "INT": 45,
+    "POU": 65,
+    "EDU": 70,
+    "MVT": 8
   },
   "trackers": {
-    "hp": -1,
-    "mp": -1,
-    "sanity": -1,
-    "luck": -1,
-    "hpMax": -1,
-    "mpMax": -1,
-    "sanityInitial": -1,
+    "hp": 10,
+    "mp": 13,
+    "sanity": 65,
+    "luck": 50,
+    "hpMax": 10,
+    "mpMax": 13,
+    "sanityInitial": 65,
     "sanityMax": 99,
     "majorWound": false,
     "tempInsane": false,
@@ -40,7 +40,7 @@
       "type": "standard",
       "key": "anthro",
       "base": 1,
-      "current": 1,
+      "current": 31,
       "checked": false
     },
     {
@@ -60,8 +60,8 @@
     {
       "id": "skill-art-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Football Américain",
+      "current": 55,
       "checked": false
     },
     {
@@ -91,7 +91,7 @@
       "type": "standard",
       "key": "library",
       "base": 20,
-      "current": 20,
+      "current": 40,
       "checked": false
     },
     {
@@ -142,7 +142,7 @@
       "type": "standard",
       "key": "brawl",
       "base": 25,
-      "current": 25,
+      "current": 35,
       "checked": false
     },
     {
@@ -164,7 +164,7 @@
       "type": "standard",
       "key": "accounting",
       "base": 5,
-      "current": 5,
+      "current": 20,
       "checked": false
     },
     {
@@ -212,7 +212,7 @@
       "type": "standard",
       "key": "law",
       "base": 5,
-      "current": 5,
+      "current": 20,
       "checked": false
     },
     {
@@ -220,7 +220,7 @@
       "type": "standard",
       "key": "listen",
       "base": 20,
-      "current": 20,
+      "current": 40,
       "checked": false
     },
     {
@@ -244,7 +244,7 @@
       "type": "standard",
       "key": "dodge",
       "base": "DEX/2",
-      "current": -1,
+      "current": 35,
       "checked": false
     },
     {
@@ -268,7 +268,7 @@
       "type": "standard",
       "key": "history",
       "base": 5,
-      "current": 5,
+      "current": 45,
       "checked": false
     },
     {
@@ -300,7 +300,7 @@
       "type": "standard",
       "key": "throw",
       "base": 20,
-      "current": 20,
+      "current": 40,
       "checked": false
     },
     {
@@ -312,8 +312,8 @@
     {
       "id": "skill-mother_tongue-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Anglais",
+      "current": 70,
       "checked": false
     },
     {
@@ -325,8 +325,8 @@
     {
       "id": "skill-language-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Hawaïen",
+      "current": 71,
       "checked": false
     },
     {
@@ -348,7 +348,7 @@
       "type": "standard",
       "key": "mech",
       "base": 10,
-      "current": 10,
+      "current": 20,
       "checked": false
     },
     {
@@ -372,7 +372,7 @@
       "type": "standard",
       "key": "swim",
       "base": 20,
-      "current": 20,
+      "current": 30,
       "checked": false
     },
     {
@@ -388,7 +388,7 @@
       "type": "standard",
       "key": "occult",
       "base": 5,
-      "current": 5,
+      "current": 20,
       "checked": false
     },
     {
@@ -396,7 +396,7 @@
       "type": "standard",
       "key": "navigate",
       "base": 10,
-      "current": 10,
+      "current": 30,
       "checked": false
     },
     {
@@ -477,8 +477,8 @@
     {
       "id": "skill-science-0",
       "type": "custom",
-      "name": "",
-      "current": -1,
+      "name": "Géologie",
+      "current": 30,
       "checked": false
     },
     {
@@ -513,7 +513,7 @@
       "type": "standard",
       "key": "spot",
       "base": 25,
-      "current": 25,
+      "current": 35,
       "checked": false
     },
     {
@@ -554,12 +554,12 @@
   ],
   "backstory": {
     "personalDescription": "",
-    "ideologyBeliefs": "",
-    "significantPeople": "",
-    "meaningfulLocations": "",
-    "treasuredPossessions": "",
-    "traits": "",
-    "injuriesScars": "",
+    "ideologyBeliefs": "Chrétien & Hoʻoponopono",
+    "significantPeople": "Ma mère, se sent coupable\nde ne pas être présent.",
+    "meaningfulLocations": "Lady's of the old church",
+    "treasuredPossessions": "Un chien nommé ???",
+    "traits": "Réservé mais expréssif avec ses amis",
+    "injuriesScars": "La mort de ma soeur Ailani",
     "phobiasManias": "",
     "arcaneTomesSpells": "",
     "strangeEntities": ""
@@ -567,20 +567,20 @@
   "gear": "",
   "wealth": {
     "spendingLevel": "",
-    "cash": "",
+    "cash": "10$/sem",
     "assets": ""
   },
   "weapons": [
     {
-      "name": "",
-      "regular": "",
-      "hard": "",
-      "extreme": "",
-      "damage": "",
-      "range": "",
-      "attacks": "",
-      "ammo": "",
-      "malfunction": ""
+      "name": "A main nues",
+      "regular": "35",
+      "hard": "17",
+      "extreme": "7",
+      "damage": "1D3+Imp",
+      "range": "-",
+      "attacks": "1",
+      "ammo": "-",
+      "malfunction": "-"
     },
     {
       "name": "",
