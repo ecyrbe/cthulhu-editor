@@ -3,11 +3,18 @@ import { useTranslation } from "react-i18next";
 import { CharacteristicField } from "../ui/CharacteristicField";
 import { SectionTitle } from "../ui/SectionTitle";
 import type { InvestigatorData } from "../../types";
+import { getCharacteristicTranslationKey } from "../../utils/characteristics";
 
 interface CharacteristicsSectionProps {
   characteristics: InvestigatorData["characteristics"];
   onValueChange: (stat: string, value: number) => void;
 }
+
+const CHARACTERISTICS_ROWS = [
+  ["FOR", "DEX", "POU"],
+  ["CON", "APP", "EDU"],
+  ["TAI", "INT", "MVT"],
+];
 
 const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
   characteristics,
@@ -19,16 +26,12 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
     <div className="header-col mid">
       <SectionTitle>{t("characteristics")}</SectionTitle>
       <div className="stats-grid">
-        {[
-          ["FOR", "DEX", "POU"],
-          ["CON", "APP", "EDU"],
-          ["TAI", "INT", "MVT"],
-        ].map((row, i) => (
+        {CHARACTERISTICS_ROWS.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((stat) => (
               <CharacteristicField
                 key={stat}
-                label={t(stat.toLowerCase())}
+                label={t(getCharacteristicTranslationKey(stat))}
                 value={
                   characteristics[
                     stat as keyof InvestigatorData["characteristics"]
