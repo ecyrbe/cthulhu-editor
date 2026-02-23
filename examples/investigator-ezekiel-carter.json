@@ -220,7 +220,7 @@
       "type": "standard",
       "key": "listen",
       "base": 20,
-      "current": 69,
+      "current": 70,
       "checked": false
     },
     {
@@ -381,7 +381,7 @@
       "key": "nature",
       "base": 10,
       "current": 60,
-      "checked": true
+      "checked": false
     },
     {
       "id": "skill-occult",
@@ -520,7 +520,7 @@
       "id": "custom-0",
       "type": "custom",
       "name": "Religion chrétienne",
-      "current": 19,
+      "current": 18,
       "checked": false
     },
     {
@@ -564,7 +564,7 @@
     "arcaneTomesSpells": "",
     "strangeEntities": ""
   },
-  "gear": "Arc",
+  "gear": "Arc Grand père +1D4 dégâts",
   "wealth": {
     "spendingLevel": "",
     "cash": "",
@@ -576,22 +576,22 @@
       "regular": "25",
       "hard": "12",
       "extreme": "5",
-      "damage": "",
-      "range": "",
-      "attacks": "",
-      "ammo": "",
-      "malfunction": ""
+      "damage": "1D3+Imp",
+      "range": "-",
+      "attacks": "1",
+      "ammo": "-",
+      "malfunction": "-"
     },
     {
-      "name": "Petit Arc",
+      "name": "Arc",
       "regular": "60",
       "hard": "30",
       "extreme": "12",
-      "damage": "",
-      "range": "",
-      "attacks": "",
-      "ammo": "",
-      "malfunction": ""
+      "damage": "1D6+Imp/2",
+      "range": "30m",
+      "attacks": "1",
+      "ammo": "1",
+      "malfunction": "97"
     },
     {
       "name": "",

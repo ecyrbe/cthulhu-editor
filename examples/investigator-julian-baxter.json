@@ -576,22 +576,22 @@
       "regular": "25",
       "hard": "12",
       "extreme": "5",
-      "damage": "",
-      "range": "",
-      "attacks": "",
-      "ammo": "",
-      "malfunction": ""
+      "damage": "1D3+Imp",
+      "range": "-",
+      "attacks": "1",
+      "ammo": "-",
+      "malfunction": "-"
     },
     {
       "name": "Fusils a plomb",
       "regular": "45",
       "hard": "22",
       "extreme": "9",
-      "damage": "",
-      "range": "",
-      "attacks": "",
-      "ammo": "",
-      "malfunction": ""
+      "damage": "1D4+Imp",
+      "range": "50m",
+      "attacks": "1",
+      "ammo": "6",
+      "malfunction": "97"
     },
     {
       "name": "",
