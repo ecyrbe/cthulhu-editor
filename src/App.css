@@ -370,7 +370,7 @@ input[type="number"] {
 
 /* Trackers */
 .trackers-section {
-  border-bottom: 2px solid #000;
+  border-bottom: 1.5px solid #000;
   background-color: #f1f1f0;
 }
 
