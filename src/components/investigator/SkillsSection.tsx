@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { SkillStatBox } from "../ui/SkillStatBox";
 import { SectionTitle } from "../ui/SectionTitle";
 import { DebouncedInput } from "../ui/DebouncedInput";
+import ClickTooltip from "../ui/ClickTooltip";
 import type { Skill } from "../../types";
 
 interface SkillsSectionProps {
@@ -27,6 +28,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
               skill.type === "custom"
                 ? skill.name || t("custom_skill")
                 : t(`skills:${skill.key}`);
+            const skillDescription =
+              skill.type === "custom"
+                ? ""
+                : t(`skills:descriptions.${skill.key}`, { defaultValue: "" });
 
             return (
               <div key={index} className="skill-row">
@@ -42,8 +47,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
                 ) : (
                   <div className="skill-check-spacer" />
                 )}
-                <div className="skill-name">
-                  {skill.type === "custom" ? (
+                {skill.type === "custom" ? (
+                  <div className="skill-name">
                     <DebouncedInput
                       type="text"
                       className="custom-name-input"
@@ -51,19 +56,24 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
                       onValueChange={(val) => onSkillChange(index, "name", val)}
                       aria-label={t("skill_name")}
                     />
-                  ) : (
-                    <>
-                      {t(`skills:${skill.key}`)}
-                      <span className="skill-base">
-                        (
-                        {typeof skill.base === "number"
-                          ? `${skill.base}%`
-                          : skill.base}
-                        )
-                      </span>
-                    </>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <ClickTooltip
+                    className="skill-name"
+                    content={skillDescription}
+                    ariaLabel={skillName}
+                    maxWidth={280}
+                  >
+                    {t(`skills:${skill.key}`)}
+                    <span className="skill-base">
+                      (
+                      {typeof skill.base === "number"
+                        ? `${skill.base}%`
+                        : skill.base}
+                      )
+                    </span>
+                  </ClickTooltip>
+                )}
                 {skill.type !== "static" && (
                   <div className="skill-box-wrapper">
                     <SkillStatBox

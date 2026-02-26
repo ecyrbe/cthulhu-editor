@@ -1,0 +1,35 @@
+.click-tooltip-anchor {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  overflow: visible;
+  outline: none;
+}
+
+.click-tooltip-anchor.has-tooltip {
+  cursor: pointer;
+}
+
+.click-tooltip-popup {
+  position: fixed;
+  z-index: 120;
+  width: max-content;
+  white-space: normal;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  padding: 6px 8px;
+  line-height: 1.25;
+  font-size: 0.95em;
+  box-shadow: 1px -1px 0 #000;
+  pointer-events: none;
+}
+
+.click-tooltip-popup.above {
+  transform: translateY(-100%);
+}
+
+.click-tooltip-popup.below {
+  transform: none;
+}
