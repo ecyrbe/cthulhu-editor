@@ -1,4 +1,5 @@
 :root {
+  view-transition-name: root;
   --bg-color: #0c0c0c;
   --text-color: #d4d4d4;
   --header-text: #ffffff;
@@ -34,6 +35,20 @@
   --map-overlay-accent: rgba(139, 0, 0, 0.12);
   --map-frame-border: rgba(139, 0, 0, 0.45);
   --map-frame-shadow: rgba(0, 0, 0, 0.35);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root.theme-transition-reverse::view-transition-old(root) {
+  z-index: 2;
+}
+
+:root.theme-transition-reverse::view-transition-new(root) {
+  z-index: 1;
 }
 
 body.theme-light {
