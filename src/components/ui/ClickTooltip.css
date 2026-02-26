@@ -33,3 +33,11 @@
 .click-tooltip-popup.below {
   transform: none;
 }
+
+@media (max-width: 768px) {
+  .click-tooltip-popup {
+    font-size: 0.5em;
+    line-height: 0.6;
+    padding: 5px 7px;
+  }
+}

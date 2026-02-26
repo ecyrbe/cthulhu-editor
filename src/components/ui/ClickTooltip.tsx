@@ -42,7 +42,11 @@ const ClickTooltip: React.FC<ClickTooltipProps> = ({
     const viewportPadding = 8;
     const gap = 6;
     const estimatedTooltipHeight = 140;
-    const estimatedTooltipWidth = maxWidth;
+    const effectiveMaxWidth = Math.min(
+      maxWidth,
+      window.innerWidth - viewportPadding * 2,
+    );
+    const estimatedTooltipWidth = effectiveMaxWidth;
     const spaceBelow = window.innerHeight - rect.bottom;
     const above =
       spaceBelow < estimatedTooltipHeight && rect.top > estimatedTooltipHeight;
@@ -111,7 +115,7 @@ const ClickTooltip: React.FC<ClickTooltipProps> = ({
             style={{
               left: `${tooltipPosition.left}px`,
               top: `${tooltipPosition.top}px`,
-              maxWidth: `${maxWidth}px`,
+              maxWidth: `min(${maxWidth}px, calc(100vw - 16px))`,
             }}
             role="tooltip"
           >
