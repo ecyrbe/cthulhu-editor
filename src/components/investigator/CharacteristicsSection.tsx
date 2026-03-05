@@ -3,7 +3,10 @@ import { useTranslation } from "react-i18next";
 import { CharacteristicField } from "../ui/CharacteristicField";
 import { SectionTitle } from "../ui/SectionTitle";
 import type { InvestigatorData } from "../../types";
-import { getCharacteristicTranslationKey } from "../../utils/characteristics";
+import {
+  getCharacteristicRollFormula,
+  getCharacteristicTranslationKey,
+} from "../../utils/characteristics";
 
 interface CharacteristicsSectionProps {
   characteristics: InvestigatorData["characteristics"];
@@ -32,6 +35,7 @@ const CharacteristicsSection: React.FC<CharacteristicsSectionProps> = ({
               <CharacteristicField
                 key={stat}
                 label={t(getCharacteristicTranslationKey(stat))}
+                tootip={getCharacteristicRollFormula(stat)}
                 value={
                   characteristics[
                     stat as keyof InvestigatorData["characteristics"]

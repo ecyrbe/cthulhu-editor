@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { SkillStatBox } from "../ui/SkillStatBox";
 import { SectionTitle } from "../ui/SectionTitle";
 import { DebouncedInput } from "../ui/DebouncedInput";
-import ClickTooltip from "../ui/ClickTooltip";
+import Tooltip from "../ui/Tooltip";
 import type { Skill } from "../../types";
 
 interface SkillsSectionProps {
@@ -58,7 +58,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
                     />
                   </div>
                 ) : (
-                  <ClickTooltip
+                  <Tooltip
                     className="skill-name"
                     content={skillDescription}
                     ariaLabel={skillName}
@@ -72,7 +72,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = React.memo(
                         : skill.base}
                       )
                     </span>
-                  </ClickTooltip>
+                  </Tooltip>
                 )}
                 {skill.type !== "static" && (
                   <div className="skill-box-wrapper">

@@ -2,22 +2,24 @@ import React from "react";
 import { createPortal } from "react-dom";
 import "./ClickTooltip.css";
 
-interface ClickTooltipProps {
+interface TooltipProps {
   content: string;
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
   maxWidth?: number;
   ariaLabel?: string;
+  trigger?: "click" | "hover";
 }
 
-const ClickTooltip: React.FC<ClickTooltipProps> = ({
+const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
   className = "",
   disabled = false,
   maxWidth = 280,
   ariaLabel,
+  trigger = "click",
 }) => {
   const [tooltipPosition, setTooltipPosition] = React.useState<{
     left: number;
@@ -94,13 +96,30 @@ const ClickTooltip: React.FC<ClickTooltipProps> = ({
     <>
       <div
         className={`click-tooltip-anchor ${hasTooltip ? "has-tooltip" : ""} ${className}`}
-        onClick={(event) => showTooltip(event.currentTarget)}
+        onClick={
+          trigger === "click"
+            ? (event) => showTooltip(event.currentTarget)
+            : undefined
+        }
+        onMouseEnter={
+          trigger === "hover"
+            ? (event) => showTooltip(event.currentTarget)
+            : undefined
+        }
         onMouseLeave={hideTooltip}
+        onFocus={
+          trigger === "hover"
+            ? (event) => showTooltip(event.currentTarget)
+            : undefined
+        }
         onBlur={hideTooltip}
         tabIndex={hasTooltip ? 0 : -1}
         aria-label={hasTooltip ? ariaLabel : undefined}
         onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
+          if (
+            trigger === "click" &&
+            (event.key === "Enter" || event.key === " ")
+          ) {
             event.preventDefault();
             showTooltip(event.currentTarget);
           }
@@ -127,4 +146,4 @@ const ClickTooltip: React.FC<ClickTooltipProps> = ({
   );
 };
 
-export default ClickTooltip;
+export default Tooltip;
