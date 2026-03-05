@@ -1,4 +1,4 @@
-.click-tooltip-anchor {
+.tooltip-anchor {
   position: relative;
   display: flex;
   align-items: baseline;
@@ -7,11 +7,15 @@
   outline: none;
 }
 
-.click-tooltip-anchor.has-tooltip {
+.tooltip-anchor.has-tooltip {
   cursor: pointer;
 }
 
-.click-tooltip-popup {
+.tooltip-anchor.stat-label {
+  justify-content: center;
+}
+
+.tooltip-popup {
   position: fixed;
   z-index: 120;
   width: max-content;
@@ -26,16 +30,16 @@
   pointer-events: none;
 }
 
-.click-tooltip-popup.above {
+.tooltip-popup.above {
   transform: translateY(-100%);
 }
 
-.click-tooltip-popup.below {
+.tooltip-popup.below {
   transform: none;
 }
 
 @media (max-width: 768px) {
-  .click-tooltip-popup {
+  .tooltip-popup {
     font-size: 0.5em;
     line-height: 0.6;
     padding: 5px 7px;

@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import "./ClickTooltip.css";
+import "./Tooltip.css";
 
 interface TooltipProps {
   content: string;
@@ -9,7 +9,6 @@ interface TooltipProps {
   disabled?: boolean;
   maxWidth?: number;
   ariaLabel?: string;
-  trigger?: "click" | "hover";
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -19,12 +18,10 @@ const Tooltip: React.FC<TooltipProps> = ({
   disabled = false,
   maxWidth = 280,
   ariaLabel,
-  trigger = "click",
 }) => {
   const [tooltipPosition, setTooltipPosition] = React.useState<{
     left: number;
     top: number;
-    above: boolean;
   } | null>(null);
 
   const trimmedContent = content.trim();
@@ -43,15 +40,11 @@ const Tooltip: React.FC<TooltipProps> = ({
     const rect = target.getBoundingClientRect();
     const viewportPadding = 8;
     const gap = 6;
-    const estimatedTooltipHeight = 140;
     const effectiveMaxWidth = Math.min(
       maxWidth,
       window.innerWidth - viewportPadding * 2,
     );
     const estimatedTooltipWidth = effectiveMaxWidth;
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const above =
-      spaceBelow < estimatedTooltipHeight && rect.top > estimatedTooltipHeight;
 
     const left = Math.max(
       viewportPadding,
@@ -63,8 +56,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 
     setTooltipPosition({
       left,
-      top: above ? rect.top - gap : rect.bottom + gap,
-      above,
+      top: rect.top - gap,
     });
   };
 
@@ -95,42 +87,20 @@ const Tooltip: React.FC<TooltipProps> = ({
   return (
     <>
       <div
-        className={`click-tooltip-anchor ${hasTooltip ? "has-tooltip" : ""} ${className}`}
-        onClick={
-          trigger === "click"
-            ? (event) => showTooltip(event.currentTarget)
-            : undefined
-        }
-        onMouseEnter={
-          trigger === "hover"
-            ? (event) => showTooltip(event.currentTarget)
-            : undefined
-        }
+        className={`tooltip-anchor ${hasTooltip ? "has-tooltip" : ""} ${className}`}
+        onMouseEnter={(event) => showTooltip(event.currentTarget)}
         onMouseLeave={hideTooltip}
-        onFocus={
-          trigger === "hover"
-            ? (event) => showTooltip(event.currentTarget)
-            : undefined
-        }
+        onFocus={(event) => showTooltip(event.currentTarget)}
         onBlur={hideTooltip}
         tabIndex={hasTooltip ? 0 : -1}
         aria-label={hasTooltip ? ariaLabel : undefined}
-        onKeyDown={(event) => {
-          if (
-            trigger === "click" &&
-            (event.key === "Enter" || event.key === " ")
-          ) {
-            event.preventDefault();
-            showTooltip(event.currentTarget);
-          }
-        }}
       >
         {children}
       </div>
       {tooltipPosition &&
         createPortal(
           <div
-            className={`click-tooltip-popup ${tooltipPosition.above ? "above" : "below"}`}
+            className={`tooltip-popup above`}
             style={{
               left: `${tooltipPosition.left}px`,
               top: `${tooltipPosition.top}px`,

@@ -24,7 +24,6 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = ({
         <Tooltip
           className="stat-label"
           content={tootip}
-          trigger="hover"
           ariaLabel={`${label} ${tootip}`}
         >
           {label}
